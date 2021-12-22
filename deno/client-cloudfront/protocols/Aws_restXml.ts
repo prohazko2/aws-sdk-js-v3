@@ -496,7 +496,7 @@ import {
 } from "../../types/mod.ts";
 import { XmlNode as __XmlNode, XmlText as __XmlText } from "../../xml-builder/mod.ts";
 import { decodeHTML } from "https://jspm.dev/entities";
-import { parse as xmlParse } from "https://jspm.dev/fast-xml-parser";
+import { parse as xmlParse } from "https://jspm.dev/fast-xml-parser@3";
 
 export const serializeAws_restXmlAssociateAliasCommand = async (
   input: AssociateAliasCommandInput,

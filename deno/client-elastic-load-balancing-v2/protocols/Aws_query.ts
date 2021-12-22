@@ -229,7 +229,7 @@ import {
   SmithyException as __SmithyException,
 } from "../../types/mod.ts";
 import { decodeHTML } from "https://jspm.dev/entities";
-import { parse as xmlParse } from "https://jspm.dev/fast-xml-parser";
+import { parse as xmlParse } from "https://jspm.dev/fast-xml-parser@3";
 
 export const serializeAws_queryAddListenerCertificatesCommand = async (
   input: AddListenerCertificatesCommandInput,

@@ -208,7 +208,7 @@ async function denoifyTsFile(file, depth) {
               output.push(replaced);
               continue;
             } else if (importFrom === "fast-xml-parser") {
-              replaced = `${match[1]}from "https://jspm.dev/fast-xml-parser";`;
+              replaced = `${match[1]}from "https://jspm.dev/fast-xml-parser@3";`;
               output.push(replaced);
               continue;
             } else if (importFrom === "entities") {
