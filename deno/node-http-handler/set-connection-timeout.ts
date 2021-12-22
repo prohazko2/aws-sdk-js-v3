@@ -1,3 +1,4 @@
+import { Socket } from "https://deno.land/std@0.119.0/node/net.ts";
 
 export const setConnectionTimeout = (request: ClientRequest, reject: (err: Error) => void, timeoutInMs = 0) => {
   if (!timeoutInMs) {
