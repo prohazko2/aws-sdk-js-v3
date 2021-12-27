@@ -29,6 +29,7 @@ export * from "./commands/DeleteUserGroupCommand.ts";
 export * from "./commands/DescribeCacheClustersCommand.ts";
 export * from "./pagination/DescribeCacheClustersPaginator.ts";
 export * from "./waiters/waitForCacheClusterAvailable.ts";
+export * from "./waiters/waitForCacheClusterDeleted.ts";
 export * from "./commands/DescribeCacheEngineVersionsCommand.ts";
 export * from "./pagination/DescribeCacheEngineVersionsPaginator.ts";
 export * from "./commands/DescribeCacheParameterGroupsCommand.ts";

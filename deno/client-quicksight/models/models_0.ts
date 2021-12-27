@@ -28,7 +28,7 @@ export namespace AccessDeniedException {
 }
 
 /**
- * <p>The Amazon QuickSight customizations associated with your Amazon Web Services account; or a QuickSight namespace in a specific Region;.</p>
+ * <p>The Amazon QuickSight customizations associated with your Amazon Web Services account; or a QuickSight namespace in a specific Amazon Web Services Region;.</p>
  */
 export interface AccountCustomization {
   /**
@@ -1153,7 +1153,7 @@ export interface CreateAccountCustomizationRequest {
   Namespace?: string;
 
   /**
-   * <p>The QuickSight customizations you're adding in the current Region;. You can add
+   * <p>The QuickSight customizations you're adding in the current Amazon Web Services Region;. You can add
    *             these to an Amazon Web Services account; and a QuickSight namespace. </p>
    *         <p>For example, you can add a default theme by setting <code>AccountCustomization</code>
    *             to the midnight theme: <code>"AccountCustomization": { "DefaultTheme":
@@ -1196,7 +1196,7 @@ export interface CreateAccountCustomizationResponse {
   Namespace?: string;
 
   /**
-   * <p>The QuickSight customizations you're adding in the current Region;. </p>
+   * <p>The QuickSight customizations you're adding in the current Amazon Web Services Region;. </p>
    */
   AccountCustomization?: AccountCustomization;
 
@@ -1713,7 +1713,7 @@ export interface CreateDashboardRequest {
    *             to a template by using the <a>CreateTemplate</a> API operation. For
    *             <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source
    *             template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account; and any
-   *             QuickSight-supported Region;. </p>
+   *             QuickSight-supported Amazon Web Services Region;. </p>
    *         <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to
    *             list the replacement datasets for the placeholders listed in the original. The schema in
    *             each dataset must match its placeholder. </p>
@@ -2610,7 +2610,7 @@ export interface CreateDataSetRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>An ID for the dataset that you want to create. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>An ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSetId: string | undefined;
 
@@ -2711,7 +2711,7 @@ export interface CreateDataSetResponse {
   Arn?: string;
 
   /**
-   * <p>The ID for the dataset that you want to create. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSetId?: string;
 
@@ -4036,7 +4036,7 @@ export interface CreateDataSourceRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>An ID for the data source. This ID is unique per Region; for each Amazon Web Services account;. </p>
+   * <p>An ID for the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;. </p>
    */
   DataSourceId: string | undefined;
 
@@ -4109,7 +4109,7 @@ export interface CreateDataSourceResponse {
   Arn?: string;
 
   /**
-   * <p>The ID of the data source. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSourceId?: string;
 
@@ -4761,7 +4761,7 @@ export interface CreateNamespaceResponse {
   Name?: string;
 
   /**
-   * <p>The Region; that you want to use for the free SPICE capacity for the new namespace.
+   * <p>The Amazon Web Services Region; that you want to use for the free SPICE capacity for the new namespace.
    *             This is set to the region that you run CreateNamespace in. </p>
    */
   CapacityRegion?: string;
@@ -4877,7 +4877,7 @@ export interface CreateTemplateRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>An ID for the template that you want to create. This template is unique per Region; in
+   * <p>An ID for the template that you want to create. This template is unique per Amazon Web Services Region; in
    * 			each Amazon Web Services account;.</p>
    */
   TemplateId: string | undefined;
@@ -4899,7 +4899,7 @@ export interface CreateTemplateRequest {
    * 			analysis. Both of these require an Amazon Resource Name (ARN). For
    * 			<code>SourceTemplate</code>, specify the ARN of the source template. For
    * 			<code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code>
-   * 			ARN can contain any Amazon Web Services account; and any QuickSight-supported Region;. </p>
+   * 			ARN can contain any Amazon Web Services account; and any QuickSight-supported Amazon Web Services Region;. </p>
    * 		       <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or
    * 			<code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed
    * 			in the original. The schema in each dataset must match its placeholder. </p>
@@ -5343,7 +5343,7 @@ export interface CreateThemeRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>An ID for the theme that you want to create. The theme ID is unique per Region; in
+   * <p>An ID for the theme that you want to create. The theme ID is unique per Amazon Web Services Region; in
    * 			each Amazon Web Services account;.</p>
    */
   ThemeId: string | undefined;
@@ -6105,7 +6105,7 @@ export interface DataSource {
   Arn?: string;
 
   /**
-   * <p>The ID of the data source. This ID is unique per Region; for each
+   * <p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each
    *             Amazon Web Services account;.</p>
    */
   DataSourceId?: string;
@@ -6194,7 +6194,7 @@ export namespace DataSource {
 export interface DeleteAccountCustomizationRequest {
   /**
    * <p>The ID for the Amazon Web Services account; that you want to delete QuickSight customizations from in
-   *             this Region;.</p>
+   *             this Amazon Web Services Region;.</p>
    */
   AwsAccountId: string | undefined;
 
@@ -6371,7 +6371,7 @@ export interface DeleteDataSetRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>The ID for the dataset that you want to create. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSetId: string | undefined;
 }
@@ -6392,7 +6392,7 @@ export interface DeleteDataSetResponse {
   Arn?: string;
 
   /**
-   * <p>The ID for the dataset that you want to create. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSetId?: string;
 
@@ -6423,7 +6423,7 @@ export interface DeleteDataSourceRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>The ID of the data source. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSourceId: string | undefined;
 }
@@ -6444,7 +6444,7 @@ export interface DeleteDataSourceResponse {
   Arn?: string;
 
   /**
-   * <p>The ID of the data source. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSourceId?: string;
 
@@ -7162,7 +7162,7 @@ export interface DescribeAccountCustomizationResponse {
   Namespace?: string;
 
   /**
-   * <p>The QuickSight customizations that exist in the current Region;. </p>
+   * <p>The QuickSight customizations that exist in the current Amazon Web Services Region;. </p>
    */
   AccountCustomization?: AccountCustomization;
 
@@ -7209,7 +7209,7 @@ export interface DescribeAccountSettingsResponse {
    *             QuickSight subscription. In the QuickSight console, the QuickSight subscription is sometimes
    *             referred to as a QuickSight "account" even though it's technically not an account
    *             by itself. Instead, it's a subscription to the QuickSight service for your Amazon Web Services account;. The
-   *             edition that you subscribe to applies to QuickSight in every Region; where you use it.</p>
+   *             edition that you subscribe to applies to QuickSight in every Amazon Web Services Region; where you use it.</p>
    */
   AccountSettings?: AccountSettings;
 
@@ -7468,7 +7468,7 @@ export interface DescribeDataSetRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>The ID for the dataset that you want to create. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSetId: string | undefined;
 }
@@ -7516,7 +7516,7 @@ export interface DescribeDataSetPermissionsRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>The ID for the dataset that you want to create. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSetId: string | undefined;
 }
@@ -7537,7 +7537,7 @@ export interface DescribeDataSetPermissionsResponse {
   DataSetArn?: string;
 
   /**
-   * <p>The ID for the dataset that you want to create. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSetId?: string;
 
@@ -7573,7 +7573,7 @@ export interface DescribeDataSourceRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>The ID of the data source. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSourceId: string | undefined;
 }
@@ -7621,7 +7621,7 @@ export interface DescribeDataSourcePermissionsRequest {
   AwsAccountId: string | undefined;
 
   /**
-   * <p>The ID of the data source. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSourceId: string | undefined;
 }
@@ -7642,7 +7642,7 @@ export interface DescribeDataSourcePermissionsResponse {
   DataSourceArn?: string;
 
   /**
-   * <p>The ID of the data source. This ID is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   DataSourceId?: string;
 
@@ -8367,7 +8367,7 @@ export interface NamespaceInfoV2 {
   Arn?: string;
 
   /**
-   * <p>The namespace Region;.</p>
+   * <p>The namespace Amazon Web Services Region;.</p>
    */
   CapacityRegion?: string;
 
@@ -8399,7 +8399,7 @@ export namespace NamespaceInfoV2 {
 export interface DescribeNamespaceResponse {
   /**
    * <p>The information about the namespace that you're describing. The response includes
-   *         the namespace ARN, name, Region;, creation status, and identity store. <code>DescribeNamespace</code> also
+   *         the namespace ARN, name, Amazon Web Services Region;, creation status, and identity store. <code>DescribeNamespace</code> also
    *         works for namespaces that are in the process of being created. For incomplete namespaces,
    *         this API operation lists the namespace error types and messages associated with the creation process.</p>
    */
@@ -8580,7 +8580,7 @@ export interface Template {
   Version?: TemplateVersion;
 
   /**
-   * <p>The ID for the template. This is unique per Region; for each Amazon Web Services account;.</p>
+   * <p>The ID for the template. This is unique per Amazon Web Services Region; for each Amazon Web Services account;.</p>
    */
   TemplateId?: string;
 

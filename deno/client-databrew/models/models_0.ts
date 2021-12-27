@@ -1359,6 +1359,7 @@ export enum OutputFormat {
   JSON = "JSON",
   ORC = "ORC",
   PARQUET = "PARQUET",
+  TABLEAUHYPER = "TABLEAUHYPER",
   XML = "XML",
 }
 

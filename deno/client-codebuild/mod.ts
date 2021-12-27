@@ -54,6 +54,7 @@ export * from "./commands/StartBuildBatchCommand.ts";
 export * from "./commands/StopBuildCommand.ts";
 export * from "./commands/StopBuildBatchCommand.ts";
 export * from "./commands/UpdateProjectCommand.ts";
+export * from "./commands/UpdateProjectVisibilityCommand.ts";
 export * from "./commands/UpdateReportGroupCommand.ts";
 export * from "./commands/UpdateWebhookCommand.ts";
 export * from "./pagination/Interfaces.ts";

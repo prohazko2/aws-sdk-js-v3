@@ -40,5 +40,6 @@ export async function* getChunkStream<T>(
   yield {
     partNumber,
     data: Buffer.concat(currentBuffer.chunks),
+    lastPart: true,
   };
 }
