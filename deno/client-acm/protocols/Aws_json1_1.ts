@@ -94,7 +94,7 @@ import {
   ValidationException,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectNumber as __expectNumber, expectString as __expectString } from "../../smithy-client/mod.ts";
+import { expectInt as __expectInt, expectString as __expectString } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   HeaderBag as __HeaderBag,
@@ -2131,7 +2131,7 @@ const deserializeAws_json1_1ExpiryEventsConfiguration = (
   context: __SerdeContext
 ): ExpiryEventsConfiguration => {
   return {
-    DaysBeforeExpiry: __expectNumber(output.DaysBeforeExpiry),
+    DaysBeforeExpiry: __expectInt(output.DaysBeforeExpiry),
   } as any;
 };
 

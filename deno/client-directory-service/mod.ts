@@ -22,6 +22,7 @@ export * from "./commands/DeleteTrustCommand.ts";
 export * from "./commands/DeregisterCertificateCommand.ts";
 export * from "./commands/DeregisterEventTopicCommand.ts";
 export * from "./commands/DescribeCertificateCommand.ts";
+export * from "./commands/DescribeClientAuthenticationSettingsCommand.ts";
 export * from "./commands/DescribeConditionalForwardersCommand.ts";
 export * from "./commands/DescribeDirectoriesCommand.ts";
 export * from "./commands/DescribeDomainControllersCommand.ts";

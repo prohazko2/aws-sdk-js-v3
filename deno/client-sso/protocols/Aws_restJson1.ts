@@ -13,7 +13,7 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectNumber as __expectNumber,
+  expectInt as __expectInt,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -527,7 +527,7 @@ const deserializeAws_restJson1AccountListType = (output: any, context: __SerdeCo
 const deserializeAws_restJson1RoleCredentials = (output: any, context: __SerdeContext): RoleCredentials => {
   return {
     accessKeyId: __expectString(output.accessKeyId),
-    expiration: __expectNumber(output.expiration),
+    expiration: __expectInt(output.expiration),
     secretAccessKey: __expectString(output.secretAccessKey),
     sessionToken: __expectString(output.sessionToken),
   } as any;

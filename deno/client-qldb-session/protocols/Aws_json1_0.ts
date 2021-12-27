@@ -28,7 +28,7 @@ import {
   ValueHolder,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectNumber as __expectNumber, expectString as __expectString } from "../../smithy-client/mod.ts";
+import { expectInt as __expectInt, expectString as __expectString } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   HeaderBag as __HeaderBag,
@@ -428,8 +428,8 @@ const deserializeAws_json1_0InvalidSessionException = (
 
 const deserializeAws_json1_0IOUsage = (output: any, context: __SerdeContext): IOUsage => {
   return {
-    ReadIOs: __expectNumber(output.ReadIOs),
-    WriteIOs: __expectNumber(output.WriteIOs),
+    ReadIOs: __expectInt(output.ReadIOs),
+    WriteIOs: __expectInt(output.WriteIOs),
   } as any;
 };
 
@@ -516,7 +516,7 @@ const deserializeAws_json1_0StartTransactionResult = (output: any, context: __Se
 
 const deserializeAws_json1_0TimingInformation = (output: any, context: __SerdeContext): TimingInformation => {
   return {
-    ProcessingTimeMilliseconds: __expectNumber(output.ProcessingTimeMilliseconds),
+    ProcessingTimeMilliseconds: __expectInt(output.ProcessingTimeMilliseconds),
   } as any;
 };
 

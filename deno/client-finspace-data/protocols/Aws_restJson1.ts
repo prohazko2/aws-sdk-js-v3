@@ -16,7 +16,7 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectNumber as __expectNumber,
+  expectInt as __expectInt,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -223,7 +223,7 @@ export const deserializeAws_restJson1GetProgrammaticAccessCredentialsCommand = a
     contents.credentials = deserializeAws_restJson1Credentials(data.credentials, context);
   }
   if (data.durationInMinutes !== undefined && data.durationInMinutes !== null) {
-    contents.durationInMinutes = __expectNumber(data.durationInMinutes);
+    contents.durationInMinutes = __expectInt(data.durationInMinutes);
   }
   return Promise.resolve(contents);
 };
