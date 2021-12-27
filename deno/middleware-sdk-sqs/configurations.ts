@@ -1,5 +1,5 @@
-import { Hash } from "../types/mod.ts";
+import { HashConstructor } from "../types/mod.ts";
 
 export interface PreviouslyResolved {
-  md5: { new (): Hash };
+  md5: HashConstructor;
 }

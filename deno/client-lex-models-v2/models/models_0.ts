@@ -247,7 +247,7 @@ export namespace BotAliasSummary {
 }
 
 /**
- * <p>Provided the identity of a the bot that was exported.</p>
+ * <p>Provides the identity of a the bot that was exported.</p>
  */
 export interface BotExportSpecification {
   /**
@@ -2194,6 +2194,14 @@ export interface IntentClosingSetting {
    *          complete.</p>
    */
   closingResponse: ResponseSpecification | undefined;
+
+  /**
+   * <p>Specifies whether an intent's closing response is used. When this
+   *          field is false, the closing response isn't sent to the user and no
+   *          closing input from the user is used. If the <code>active</code> field
+   *          isn't specified, the default is true.</p>
+   */
+  active?: boolean;
 }
 
 export namespace IntentClosingSetting {
@@ -2261,6 +2269,15 @@ export interface IntentConfirmationSetting {
    *          to acknowledge that the intent was canceled. </p>
    */
   declinationResponse: ResponseSpecification | undefined;
+
+  /**
+   * <p>Specifies whether the intent's confirmation is sent to the user.
+   *          When this field is false, confirmation and declination responses aren't
+   *          sent and processing continues as if the responses aren't present. If
+   *          the <code>active</code> field isn't specified, the default is
+   *          true.</p>
+   */
+  active?: boolean;
 }
 
 export namespace IntentConfirmationSetting {
@@ -2775,11 +2792,11 @@ export interface MultipleValuesSetting {
    *             <code>true</code>, the slot may return more than one value in a
    *          response. When <code>false</code>, the slot returns only a single
    *          value.</p>
-   *          <p>Multi-value slots are only available in the en-US locale. If you
-   *          set this value to <code>true</code> in any other locale, Amazon Lex throws a
-   *          <code>ValidationException</code>.</p>
+   *          <p>Multi-value slots are only available in the en-US locale. If you set
+   *          this value to <code>true</code> in any other locale, Amazon Lex throws a
+   *             <code>ValidationException</code>.</p>
    *          <p>If the <code>allowMutlipleValues</code> is not set, the default
-   *             value is <code>false</code>.</p>
+   *          value is <code>false</code>.</p>
    */
   allowMultipleValues?: boolean;
 }
@@ -2927,6 +2944,15 @@ export interface WaitAndContinueSpecification {
    *          that the bot is still waiting for input from the user.</p>
    */
   stillWaitingResponse?: StillWaitingResponseSpecification;
+
+  /**
+   * <p>Specifies whether the bot will wait for a user to respond. When this
+   *          field is false, wait and continue responses for a slot aren't used and
+   *          the bot expects an appropriate response within the configured timeout.
+   *          If the <code>active</code> field isn't specified, the default is
+   *          true.</p>
+   */
+  active?: boolean;
 }
 
 export namespace WaitAndContinueSpecification {
@@ -3050,7 +3076,7 @@ export interface CreateSlotRequest {
    *          this value to <code>true</code> in any other locale, Amazon Lex throws a
    *             <code>ValidationException</code>. </p>
    *          <p>If the <code>multipleValuesSetting</code> is not set, the default
-   *       value is <code>false</code>.</p>
+   *          value is <code>false</code>.</p>
    */
   multipleValuesSetting?: MultipleValuesSetting;
 }
@@ -4873,8 +4899,8 @@ export interface DescribeSlotResponse {
   lastUpdatedDateTime?: Date;
 
   /**
-   * <p>Indicates whether the slot accepts multiple values in a
-   *          single utterance.</p>
+   * <p>Indicates whether the slot accepts multiple values in a single
+   *          utterance.</p>
    *          <p>If the <code>multipleValuesSetting</code> is not set, the default
    *          value is <code>false</code>.</p>
    */

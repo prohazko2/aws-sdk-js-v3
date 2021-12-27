@@ -1,4 +1,8 @@
 import {
+  CreateCallAnalyticsCategoryCommandInput,
+  CreateCallAnalyticsCategoryCommandOutput,
+} from "./commands/CreateCallAnalyticsCategoryCommand.ts";
+import {
   CreateLanguageModelCommandInput,
   CreateLanguageModelCommandOutput,
 } from "./commands/CreateLanguageModelCommand.ts";
@@ -11,6 +15,14 @@ import {
   CreateVocabularyFilterCommandInput,
   CreateVocabularyFilterCommandOutput,
 } from "./commands/CreateVocabularyFilterCommand.ts";
+import {
+  DeleteCallAnalyticsCategoryCommandInput,
+  DeleteCallAnalyticsCategoryCommandOutput,
+} from "./commands/DeleteCallAnalyticsCategoryCommand.ts";
+import {
+  DeleteCallAnalyticsJobCommandInput,
+  DeleteCallAnalyticsJobCommandOutput,
+} from "./commands/DeleteCallAnalyticsJobCommand.ts";
 import {
   DeleteLanguageModelCommandInput,
   DeleteLanguageModelCommandOutput,
@@ -37,6 +49,14 @@ import {
   DescribeLanguageModelCommandOutput,
 } from "./commands/DescribeLanguageModelCommand.ts";
 import {
+  GetCallAnalyticsCategoryCommandInput,
+  GetCallAnalyticsCategoryCommandOutput,
+} from "./commands/GetCallAnalyticsCategoryCommand.ts";
+import {
+  GetCallAnalyticsJobCommandInput,
+  GetCallAnalyticsJobCommandOutput,
+} from "./commands/GetCallAnalyticsJobCommand.ts";
+import {
   GetMedicalTranscriptionJobCommandInput,
   GetMedicalTranscriptionJobCommandOutput,
 } from "./commands/GetMedicalTranscriptionJobCommand.ts";
@@ -53,6 +73,14 @@ import {
   GetVocabularyFilterCommandInput,
   GetVocabularyFilterCommandOutput,
 } from "./commands/GetVocabularyFilterCommand.ts";
+import {
+  ListCallAnalyticsCategoriesCommandInput,
+  ListCallAnalyticsCategoriesCommandOutput,
+} from "./commands/ListCallAnalyticsCategoriesCommand.ts";
+import {
+  ListCallAnalyticsJobsCommandInput,
+  ListCallAnalyticsJobsCommandOutput,
+} from "./commands/ListCallAnalyticsJobsCommand.ts";
 import { ListLanguageModelsCommandInput, ListLanguageModelsCommandOutput } from "./commands/ListLanguageModelsCommand.ts";
 import {
   ListMedicalTranscriptionJobsCommandInput,
@@ -72,6 +100,10 @@ import {
   ListVocabularyFiltersCommandOutput,
 } from "./commands/ListVocabularyFiltersCommand.ts";
 import {
+  StartCallAnalyticsJobCommandInput,
+  StartCallAnalyticsJobCommandOutput,
+} from "./commands/StartCallAnalyticsJobCommand.ts";
+import {
   StartMedicalTranscriptionJobCommandInput,
   StartMedicalTranscriptionJobCommandOutput,
 } from "./commands/StartMedicalTranscriptionJobCommand.ts";
@@ -79,6 +111,10 @@ import {
   StartTranscriptionJobCommandInput,
   StartTranscriptionJobCommandOutput,
 } from "./commands/StartTranscriptionJobCommand.ts";
+import {
+  UpdateCallAnalyticsCategoryCommandInput,
+  UpdateCallAnalyticsCategoryCommandOutput,
+} from "./commands/UpdateCallAnalyticsCategoryCommand.ts";
 import {
   UpdateMedicalVocabularyCommandInput,
   UpdateMedicalVocabularyCommandOutput,
@@ -141,10 +177,13 @@ import {
 } from "../types/mod.ts";
 
 export type ServiceInputTypes =
+  | CreateCallAnalyticsCategoryCommandInput
   | CreateLanguageModelCommandInput
   | CreateMedicalVocabularyCommandInput
   | CreateVocabularyCommandInput
   | CreateVocabularyFilterCommandInput
+  | DeleteCallAnalyticsCategoryCommandInput
+  | DeleteCallAnalyticsJobCommandInput
   | DeleteLanguageModelCommandInput
   | DeleteMedicalTranscriptionJobCommandInput
   | DeleteMedicalVocabularyCommandInput
@@ -152,28 +191,37 @@ export type ServiceInputTypes =
   | DeleteVocabularyCommandInput
   | DeleteVocabularyFilterCommandInput
   | DescribeLanguageModelCommandInput
+  | GetCallAnalyticsCategoryCommandInput
+  | GetCallAnalyticsJobCommandInput
   | GetMedicalTranscriptionJobCommandInput
   | GetMedicalVocabularyCommandInput
   | GetTranscriptionJobCommandInput
   | GetVocabularyCommandInput
   | GetVocabularyFilterCommandInput
+  | ListCallAnalyticsCategoriesCommandInput
+  | ListCallAnalyticsJobsCommandInput
   | ListLanguageModelsCommandInput
   | ListMedicalTranscriptionJobsCommandInput
   | ListMedicalVocabulariesCommandInput
   | ListTranscriptionJobsCommandInput
   | ListVocabulariesCommandInput
   | ListVocabularyFiltersCommandInput
+  | StartCallAnalyticsJobCommandInput
   | StartMedicalTranscriptionJobCommandInput
   | StartTranscriptionJobCommandInput
+  | UpdateCallAnalyticsCategoryCommandInput
   | UpdateMedicalVocabularyCommandInput
   | UpdateVocabularyCommandInput
   | UpdateVocabularyFilterCommandInput;
 
 export type ServiceOutputTypes =
+  | CreateCallAnalyticsCategoryCommandOutput
   | CreateLanguageModelCommandOutput
   | CreateMedicalVocabularyCommandOutput
   | CreateVocabularyCommandOutput
   | CreateVocabularyFilterCommandOutput
+  | DeleteCallAnalyticsCategoryCommandOutput
+  | DeleteCallAnalyticsJobCommandOutput
   | DeleteLanguageModelCommandOutput
   | DeleteMedicalTranscriptionJobCommandOutput
   | DeleteMedicalVocabularyCommandOutput
@@ -181,19 +229,25 @@ export type ServiceOutputTypes =
   | DeleteVocabularyCommandOutput
   | DeleteVocabularyFilterCommandOutput
   | DescribeLanguageModelCommandOutput
+  | GetCallAnalyticsCategoryCommandOutput
+  | GetCallAnalyticsJobCommandOutput
   | GetMedicalTranscriptionJobCommandOutput
   | GetMedicalVocabularyCommandOutput
   | GetTranscriptionJobCommandOutput
   | GetVocabularyCommandOutput
   | GetVocabularyFilterCommandOutput
+  | ListCallAnalyticsCategoriesCommandOutput
+  | ListCallAnalyticsJobsCommandOutput
   | ListLanguageModelsCommandOutput
   | ListMedicalTranscriptionJobsCommandOutput
   | ListMedicalVocabulariesCommandOutput
   | ListTranscriptionJobsCommandOutput
   | ListVocabulariesCommandOutput
   | ListVocabularyFiltersCommandOutput
+  | StartCallAnalyticsJobCommandOutput
   | StartMedicalTranscriptionJobCommandOutput
   | StartTranscriptionJobCommandOutput
+  | UpdateCallAnalyticsCategoryCommandOutput
   | UpdateMedicalVocabularyCommandOutput
   | UpdateVocabularyCommandOutput
   | UpdateVocabularyFilterCommandOutput;

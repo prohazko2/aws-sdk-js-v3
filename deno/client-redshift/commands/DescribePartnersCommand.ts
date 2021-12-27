@@ -1,5 +1,5 @@
 import { RedshiftClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../RedshiftClient.ts";
-import { DescribePartnersInputMessage, DescribePartnersOutputMessage } from "../models/models_0.ts";
+import { DescribePartnersInputMessage, DescribePartnersOutputMessage } from "../models/models_1.ts";
 import {
   deserializeAws_queryDescribePartnersCommand,
   serializeAws_queryDescribePartnersCommand,
