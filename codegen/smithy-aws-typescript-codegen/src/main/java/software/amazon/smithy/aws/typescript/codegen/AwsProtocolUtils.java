@@ -135,7 +135,8 @@ final class AwsProtocolUtils {
                     writer.openBlock("if (encoded.length) {", "}", () -> {
                         writer.write("const parsedObj = xmlParse(encoded, { attributeNamePrefix: '', "
                                 + "ignoreAttributes: false, parseNodeValue: false, trimValues: false, "
-                                + "tagValueProcessor: (val, tagName) => val.trim() === '' ? '': decodeHTML(val) });");
+                                + "tagValueProcessor: (val) => (val.trim() === '' && val.includes('\\n'))"
+                                + " ? '': decodeHTML(val) });");
                         writer.write("const textNodeName = '#text';");
                         writer.write("const key = Object.keys(parsedObj)[0];");
                         writer.write("const parsedObjToReturn = parsedObj[key];");
@@ -293,14 +294,7 @@ final class AwsProtocolUtils {
         if (testCase.getId().equals("QueryCustomizedError")) {
             return true;
         }
-        //TODO: enable with Smithy 1.10
-        if ((testCase.getId().equals("RestJsonAllQueryStringTypes")
-                || testCase.getId().equals("RestJsonQueryStringEscaping"))
-                && settings.generateServerSdk()) {
-            return true;
-        }
-        // TODO: follow-up with smithy on whether whitespace strings should be trimmed.
-        if (testCase.getId().equals("SimpleScalarPropertiesPureWhiteSpace")) {
+        if (testCase.getId().equals("RestJsonNoInputAndOutput")) {
             return true;
         }
         return false;
