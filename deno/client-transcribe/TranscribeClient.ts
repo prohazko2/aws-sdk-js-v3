@@ -91,6 +91,10 @@ import {
   ListMedicalVocabulariesCommandOutput,
 } from "./commands/ListMedicalVocabulariesCommand.ts";
 import {
+  ListTagsForResourceCommandInput,
+  ListTagsForResourceCommandOutput,
+} from "./commands/ListTagsForResourceCommand.ts";
+import {
   ListTranscriptionJobsCommandInput,
   ListTranscriptionJobsCommandOutput,
 } from "./commands/ListTranscriptionJobsCommand.ts";
@@ -111,6 +115,8 @@ import {
   StartTranscriptionJobCommandInput,
   StartTranscriptionJobCommandOutput,
 } from "./commands/StartTranscriptionJobCommand.ts";
+import { TagResourceCommandInput, TagResourceCommandOutput } from "./commands/TagResourceCommand.ts";
+import { UntagResourceCommandInput, UntagResourceCommandOutput } from "./commands/UntagResourceCommand.ts";
 import {
   UpdateCallAnalyticsCategoryCommandInput,
   UpdateCallAnalyticsCategoryCommandOutput,
@@ -203,12 +209,15 @@ export type ServiceInputTypes =
   | ListLanguageModelsCommandInput
   | ListMedicalTranscriptionJobsCommandInput
   | ListMedicalVocabulariesCommandInput
+  | ListTagsForResourceCommandInput
   | ListTranscriptionJobsCommandInput
   | ListVocabulariesCommandInput
   | ListVocabularyFiltersCommandInput
   | StartCallAnalyticsJobCommandInput
   | StartMedicalTranscriptionJobCommandInput
   | StartTranscriptionJobCommandInput
+  | TagResourceCommandInput
+  | UntagResourceCommandInput
   | UpdateCallAnalyticsCategoryCommandInput
   | UpdateMedicalVocabularyCommandInput
   | UpdateVocabularyCommandInput
@@ -241,12 +250,15 @@ export type ServiceOutputTypes =
   | ListLanguageModelsCommandOutput
   | ListMedicalTranscriptionJobsCommandOutput
   | ListMedicalVocabulariesCommandOutput
+  | ListTagsForResourceCommandOutput
   | ListTranscriptionJobsCommandOutput
   | ListVocabulariesCommandOutput
   | ListVocabularyFiltersCommandOutput
   | StartCallAnalyticsJobCommandOutput
   | StartMedicalTranscriptionJobCommandOutput
   | StartTranscriptionJobCommandOutput
+  | TagResourceCommandOutput
+  | UntagResourceCommandOutput
   | UpdateCallAnalyticsCategoryCommandOutput
   | UpdateMedicalVocabularyCommandOutput
   | UpdateVocabularyCommandOutput
@@ -325,10 +337,9 @@ export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__
   maxAttempts?: number | __Provider<number>;
 
   /**
-   * Specifies provider for retry algorithm to use.
-   * @internal
+   * Specifies which retry algorithm to use.
    */
-  retryModeProvider?: __Provider<string>;
+  retryMode?: string | __Provider<string>;
 
   /**
    * Optional logger for logging debug/info/warn/error.

@@ -15,6 +15,7 @@ import {
   BatchDeleteTableVersionCommandInput,
   BatchDeleteTableVersionCommandOutput,
 } from "./commands/BatchDeleteTableVersionCommand.ts";
+import { BatchGetBlueprintsCommandInput, BatchGetBlueprintsCommandOutput } from "./commands/BatchGetBlueprintsCommand.ts";
 import { BatchGetCrawlersCommandInput, BatchGetCrawlersCommandOutput } from "./commands/BatchGetCrawlersCommand.ts";
 import {
   BatchGetDevEndpointsCommandInput,
@@ -34,6 +35,7 @@ import {
   CheckSchemaVersionValidityCommandInput,
   CheckSchemaVersionValidityCommandOutput,
 } from "./commands/CheckSchemaVersionValidityCommand.ts";
+import { CreateBlueprintCommandInput, CreateBlueprintCommandOutput } from "./commands/CreateBlueprintCommand.ts";
 import { CreateClassifierCommandInput, CreateClassifierCommandOutput } from "./commands/CreateClassifierCommand.ts";
 import { CreateConnectionCommandInput, CreateConnectionCommandOutput } from "./commands/CreateConnectionCommand.ts";
 import { CreateCrawlerCommandInput, CreateCrawlerCommandOutput } from "./commands/CreateCrawlerCommand.ts";
@@ -60,6 +62,7 @@ import {
   CreateUserDefinedFunctionCommandOutput,
 } from "./commands/CreateUserDefinedFunctionCommand.ts";
 import { CreateWorkflowCommandInput, CreateWorkflowCommandOutput } from "./commands/CreateWorkflowCommand.ts";
+import { DeleteBlueprintCommandInput, DeleteBlueprintCommandOutput } from "./commands/DeleteBlueprintCommand.ts";
 import { DeleteClassifierCommandInput, DeleteClassifierCommandOutput } from "./commands/DeleteClassifierCommand.ts";
 import {
   DeleteColumnStatisticsForPartitionCommandInput,
@@ -102,6 +105,9 @@ import {
   DeleteUserDefinedFunctionCommandOutput,
 } from "./commands/DeleteUserDefinedFunctionCommand.ts";
 import { DeleteWorkflowCommandInput, DeleteWorkflowCommandOutput } from "./commands/DeleteWorkflowCommand.ts";
+import { GetBlueprintCommandInput, GetBlueprintCommandOutput } from "./commands/GetBlueprintCommand.ts";
+import { GetBlueprintRunCommandInput, GetBlueprintRunCommandOutput } from "./commands/GetBlueprintRunCommand.ts";
+import { GetBlueprintRunsCommandInput, GetBlueprintRunsCommandOutput } from "./commands/GetBlueprintRunsCommand.ts";
 import {
   GetCatalogImportStatusCommandInput,
   GetCatalogImportStatusCommandOutput,
@@ -197,6 +203,7 @@ import {
   ImportCatalogToGlueCommandInput,
   ImportCatalogToGlueCommandOutput,
 } from "./commands/ImportCatalogToGlueCommand.ts";
+import { ListBlueprintsCommandInput, ListBlueprintsCommandOutput } from "./commands/ListBlueprintsCommand.ts";
 import { ListCrawlersCommandInput, ListCrawlersCommandOutput } from "./commands/ListCrawlersCommand.ts";
 import { ListDevEndpointsCommandInput, ListDevEndpointsCommandOutput } from "./commands/ListDevEndpointsCommand.ts";
 import { ListJobsCommandInput, ListJobsCommandOutput } from "./commands/ListJobsCommand.ts";
@@ -234,6 +241,7 @@ import {
 import { ResetJobBookmarkCommandInput, ResetJobBookmarkCommandOutput } from "./commands/ResetJobBookmarkCommand.ts";
 import { ResumeWorkflowRunCommandInput, ResumeWorkflowRunCommandOutput } from "./commands/ResumeWorkflowRunCommand.ts";
 import { SearchTablesCommandInput, SearchTablesCommandOutput } from "./commands/SearchTablesCommand.ts";
+import { StartBlueprintRunCommandInput, StartBlueprintRunCommandOutput } from "./commands/StartBlueprintRunCommand.ts";
 import { StartCrawlerCommandInput, StartCrawlerCommandOutput } from "./commands/StartCrawlerCommand.ts";
 import {
   StartCrawlerScheduleCommandInput,
@@ -267,6 +275,7 @@ import { StopTriggerCommandInput, StopTriggerCommandOutput } from "./commands/St
 import { StopWorkflowRunCommandInput, StopWorkflowRunCommandOutput } from "./commands/StopWorkflowRunCommand.ts";
 import { TagResourceCommandInput, TagResourceCommandOutput } from "./commands/TagResourceCommand.ts";
 import { UntagResourceCommandInput, UntagResourceCommandOutput } from "./commands/UntagResourceCommand.ts";
+import { UpdateBlueprintCommandInput, UpdateBlueprintCommandOutput } from "./commands/UpdateBlueprintCommand.ts";
 import { UpdateClassifierCommandInput, UpdateClassifierCommandOutput } from "./commands/UpdateClassifierCommand.ts";
 import {
   UpdateColumnStatisticsForPartitionCommandInput,
@@ -354,6 +363,7 @@ export type ServiceInputTypes =
   | BatchDeletePartitionCommandInput
   | BatchDeleteTableCommandInput
   | BatchDeleteTableVersionCommandInput
+  | BatchGetBlueprintsCommandInput
   | BatchGetCrawlersCommandInput
   | BatchGetDevEndpointsCommandInput
   | BatchGetJobsCommandInput
@@ -364,6 +374,7 @@ export type ServiceInputTypes =
   | BatchUpdatePartitionCommandInput
   | CancelMLTaskRunCommandInput
   | CheckSchemaVersionValidityCommandInput
+  | CreateBlueprintCommandInput
   | CreateClassifierCommandInput
   | CreateConnectionCommandInput
   | CreateCrawlerCommandInput
@@ -381,6 +392,7 @@ export type ServiceInputTypes =
   | CreateTriggerCommandInput
   | CreateUserDefinedFunctionCommandInput
   | CreateWorkflowCommandInput
+  | DeleteBlueprintCommandInput
   | DeleteClassifierCommandInput
   | DeleteColumnStatisticsForPartitionCommandInput
   | DeleteColumnStatisticsForTableCommandInput
@@ -402,6 +414,9 @@ export type ServiceInputTypes =
   | DeleteTriggerCommandInput
   | DeleteUserDefinedFunctionCommandInput
   | DeleteWorkflowCommandInput
+  | GetBlueprintCommandInput
+  | GetBlueprintRunCommandInput
+  | GetBlueprintRunsCommandInput
   | GetCatalogImportStatusCommandInput
   | GetClassifierCommandInput
   | GetClassifiersCommandInput
@@ -455,6 +470,7 @@ export type ServiceInputTypes =
   | GetWorkflowRunPropertiesCommandInput
   | GetWorkflowRunsCommandInput
   | ImportCatalogToGlueCommandInput
+  | ListBlueprintsCommandInput
   | ListCrawlersCommandInput
   | ListDevEndpointsCommandInput
   | ListJobsCommandInput
@@ -474,6 +490,7 @@ export type ServiceInputTypes =
   | ResetJobBookmarkCommandInput
   | ResumeWorkflowRunCommandInput
   | SearchTablesCommandInput
+  | StartBlueprintRunCommandInput
   | StartCrawlerCommandInput
   | StartCrawlerScheduleCommandInput
   | StartExportLabelsTaskRunCommandInput
@@ -489,6 +506,7 @@ export type ServiceInputTypes =
   | StopWorkflowRunCommandInput
   | TagResourceCommandInput
   | UntagResourceCommandInput
+  | UpdateBlueprintCommandInput
   | UpdateClassifierCommandInput
   | UpdateColumnStatisticsForPartitionCommandInput
   | UpdateColumnStatisticsForTableCommandInput
@@ -513,6 +531,7 @@ export type ServiceOutputTypes =
   | BatchDeletePartitionCommandOutput
   | BatchDeleteTableCommandOutput
   | BatchDeleteTableVersionCommandOutput
+  | BatchGetBlueprintsCommandOutput
   | BatchGetCrawlersCommandOutput
   | BatchGetDevEndpointsCommandOutput
   | BatchGetJobsCommandOutput
@@ -523,6 +542,7 @@ export type ServiceOutputTypes =
   | BatchUpdatePartitionCommandOutput
   | CancelMLTaskRunCommandOutput
   | CheckSchemaVersionValidityCommandOutput
+  | CreateBlueprintCommandOutput
   | CreateClassifierCommandOutput
   | CreateConnectionCommandOutput
   | CreateCrawlerCommandOutput
@@ -540,6 +560,7 @@ export type ServiceOutputTypes =
   | CreateTriggerCommandOutput
   | CreateUserDefinedFunctionCommandOutput
   | CreateWorkflowCommandOutput
+  | DeleteBlueprintCommandOutput
   | DeleteClassifierCommandOutput
   | DeleteColumnStatisticsForPartitionCommandOutput
   | DeleteColumnStatisticsForTableCommandOutput
@@ -561,6 +582,9 @@ export type ServiceOutputTypes =
   | DeleteTriggerCommandOutput
   | DeleteUserDefinedFunctionCommandOutput
   | DeleteWorkflowCommandOutput
+  | GetBlueprintCommandOutput
+  | GetBlueprintRunCommandOutput
+  | GetBlueprintRunsCommandOutput
   | GetCatalogImportStatusCommandOutput
   | GetClassifierCommandOutput
   | GetClassifiersCommandOutput
@@ -614,6 +638,7 @@ export type ServiceOutputTypes =
   | GetWorkflowRunPropertiesCommandOutput
   | GetWorkflowRunsCommandOutput
   | ImportCatalogToGlueCommandOutput
+  | ListBlueprintsCommandOutput
   | ListCrawlersCommandOutput
   | ListDevEndpointsCommandOutput
   | ListJobsCommandOutput
@@ -633,6 +658,7 @@ export type ServiceOutputTypes =
   | ResetJobBookmarkCommandOutput
   | ResumeWorkflowRunCommandOutput
   | SearchTablesCommandOutput
+  | StartBlueprintRunCommandOutput
   | StartCrawlerCommandOutput
   | StartCrawlerScheduleCommandOutput
   | StartExportLabelsTaskRunCommandOutput
@@ -648,6 +674,7 @@ export type ServiceOutputTypes =
   | StopWorkflowRunCommandOutput
   | TagResourceCommandOutput
   | UntagResourceCommandOutput
+  | UpdateBlueprintCommandOutput
   | UpdateClassifierCommandOutput
   | UpdateColumnStatisticsForPartitionCommandOutput
   | UpdateColumnStatisticsForTableCommandOutput
@@ -739,10 +766,9 @@ export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__
   maxAttempts?: number | __Provider<number>;
 
   /**
-   * Specifies provider for retry algorithm to use.
-   * @internal
+   * Specifies which retry algorithm to use.
    */
-  retryModeProvider?: __Provider<string>;
+  retryMode?: string | __Provider<string>;
 
   /**
    * Optional logger for logging debug/info/warn/error.

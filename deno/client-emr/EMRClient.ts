@@ -38,6 +38,10 @@ import {
 import { DescribeStepCommandInput, DescribeStepCommandOutput } from "./commands/DescribeStepCommand.ts";
 import { DescribeStudioCommandInput, DescribeStudioCommandOutput } from "./commands/DescribeStudioCommand.ts";
 import {
+  GetAutoTerminationPolicyCommandInput,
+  GetAutoTerminationPolicyCommandOutput,
+} from "./commands/GetAutoTerminationPolicyCommand.ts";
+import {
   GetBlockPublicAccessConfigurationCommandInput,
   GetBlockPublicAccessConfigurationCommandOutput,
 } from "./commands/GetBlockPublicAccessConfigurationCommand.ts";
@@ -86,6 +90,10 @@ import {
   PutAutoScalingPolicyCommandOutput,
 } from "./commands/PutAutoScalingPolicyCommand.ts";
 import {
+  PutAutoTerminationPolicyCommandInput,
+  PutAutoTerminationPolicyCommandOutput,
+} from "./commands/PutAutoTerminationPolicyCommand.ts";
+import {
   PutBlockPublicAccessConfigurationCommandInput,
   PutBlockPublicAccessConfigurationCommandOutput,
 } from "./commands/PutBlockPublicAccessConfigurationCommand.ts";
@@ -97,6 +105,10 @@ import {
   RemoveAutoScalingPolicyCommandInput,
   RemoveAutoScalingPolicyCommandOutput,
 } from "./commands/RemoveAutoScalingPolicyCommand.ts";
+import {
+  RemoveAutoTerminationPolicyCommandInput,
+  RemoveAutoTerminationPolicyCommandOutput,
+} from "./commands/RemoveAutoTerminationPolicyCommand.ts";
 import {
   RemoveManagedScalingPolicyCommandInput,
   RemoveManagedScalingPolicyCommandOutput,
@@ -196,6 +208,7 @@ export type ServiceInputTypes =
   | DescribeSecurityConfigurationCommandInput
   | DescribeStepCommandInput
   | DescribeStudioCommandInput
+  | GetAutoTerminationPolicyCommandInput
   | GetBlockPublicAccessConfigurationCommandInput
   | GetManagedScalingPolicyCommandInput
   | GetStudioSessionMappingCommandInput
@@ -214,9 +227,11 @@ export type ServiceInputTypes =
   | ModifyInstanceFleetCommandInput
   | ModifyInstanceGroupsCommandInput
   | PutAutoScalingPolicyCommandInput
+  | PutAutoTerminationPolicyCommandInput
   | PutBlockPublicAccessConfigurationCommandInput
   | PutManagedScalingPolicyCommandInput
   | RemoveAutoScalingPolicyCommandInput
+  | RemoveAutoTerminationPolicyCommandInput
   | RemoveManagedScalingPolicyCommandInput
   | RemoveTagsCommandInput
   | RunJobFlowCommandInput
@@ -247,6 +262,7 @@ export type ServiceOutputTypes =
   | DescribeSecurityConfigurationCommandOutput
   | DescribeStepCommandOutput
   | DescribeStudioCommandOutput
+  | GetAutoTerminationPolicyCommandOutput
   | GetBlockPublicAccessConfigurationCommandOutput
   | GetManagedScalingPolicyCommandOutput
   | GetStudioSessionMappingCommandOutput
@@ -265,9 +281,11 @@ export type ServiceOutputTypes =
   | ModifyInstanceFleetCommandOutput
   | ModifyInstanceGroupsCommandOutput
   | PutAutoScalingPolicyCommandOutput
+  | PutAutoTerminationPolicyCommandOutput
   | PutBlockPublicAccessConfigurationCommandOutput
   | PutManagedScalingPolicyCommandOutput
   | RemoveAutoScalingPolicyCommandOutput
+  | RemoveAutoTerminationPolicyCommandOutput
   | RemoveManagedScalingPolicyCommandOutput
   | RemoveTagsCommandOutput
   | RunJobFlowCommandOutput
@@ -352,10 +370,9 @@ export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__
   maxAttempts?: number | __Provider<number>;
 
   /**
-   * Specifies provider for retry algorithm to use.
-   * @internal
+   * Specifies which retry algorithm to use.
    */
-  retryModeProvider?: __Provider<string>;
+  retryMode?: string | __Provider<string>;
 
   /**
    * Optional logger for logging debug/info/warn/error.

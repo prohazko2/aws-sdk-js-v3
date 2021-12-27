@@ -1,3 +1,3 @@
-export * from "./CustomEndpointsConfig.ts";
-export * from "./EndpointsConfig.ts";
+export * from "./endpointsConfig/index.ts";
 export * from "./RegionConfig.ts";
+export * from "./regionInfo/index.ts";

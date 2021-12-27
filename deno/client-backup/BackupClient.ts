@@ -4,6 +4,8 @@ import {
   CreateBackupSelectionCommandOutput,
 } from "./commands/CreateBackupSelectionCommand.ts";
 import { CreateBackupVaultCommandInput, CreateBackupVaultCommandOutput } from "./commands/CreateBackupVaultCommand.ts";
+import { CreateFrameworkCommandInput, CreateFrameworkCommandOutput } from "./commands/CreateFrameworkCommand.ts";
+import { CreateReportPlanCommandInput, CreateReportPlanCommandOutput } from "./commands/CreateReportPlanCommand.ts";
 import { DeleteBackupPlanCommandInput, DeleteBackupPlanCommandOutput } from "./commands/DeleteBackupPlanCommand.ts";
 import {
   DeleteBackupSelectionCommandInput,
@@ -18,16 +20,19 @@ import {
   DeleteBackupVaultNotificationsCommandInput,
   DeleteBackupVaultNotificationsCommandOutput,
 } from "./commands/DeleteBackupVaultNotificationsCommand.ts";
+import { DeleteFrameworkCommandInput, DeleteFrameworkCommandOutput } from "./commands/DeleteFrameworkCommand.ts";
 import {
   DeleteRecoveryPointCommandInput,
   DeleteRecoveryPointCommandOutput,
 } from "./commands/DeleteRecoveryPointCommand.ts";
+import { DeleteReportPlanCommandInput, DeleteReportPlanCommandOutput } from "./commands/DeleteReportPlanCommand.ts";
 import { DescribeBackupJobCommandInput, DescribeBackupJobCommandOutput } from "./commands/DescribeBackupJobCommand.ts";
 import {
   DescribeBackupVaultCommandInput,
   DescribeBackupVaultCommandOutput,
 } from "./commands/DescribeBackupVaultCommand.ts";
 import { DescribeCopyJobCommandInput, DescribeCopyJobCommandOutput } from "./commands/DescribeCopyJobCommand.ts";
+import { DescribeFrameworkCommandInput, DescribeFrameworkCommandOutput } from "./commands/DescribeFrameworkCommand.ts";
 import {
   DescribeGlobalSettingsCommandInput,
   DescribeGlobalSettingsCommandOutput,
@@ -44,6 +49,8 @@ import {
   DescribeRegionSettingsCommandInput,
   DescribeRegionSettingsCommandOutput,
 } from "./commands/DescribeRegionSettingsCommand.ts";
+import { DescribeReportJobCommandInput, DescribeReportJobCommandOutput } from "./commands/DescribeReportJobCommand.ts";
+import { DescribeReportPlanCommandInput, DescribeReportPlanCommandOutput } from "./commands/DescribeReportPlanCommand.ts";
 import { DescribeRestoreJobCommandInput, DescribeRestoreJobCommandOutput } from "./commands/DescribeRestoreJobCommand.ts";
 import {
   DisassociateRecoveryPointCommandInput,
@@ -95,6 +102,7 @@ import {
 } from "./commands/ListBackupSelectionsCommand.ts";
 import { ListBackupVaultsCommandInput, ListBackupVaultsCommandOutput } from "./commands/ListBackupVaultsCommand.ts";
 import { ListCopyJobsCommandInput, ListCopyJobsCommandOutput } from "./commands/ListCopyJobsCommand.ts";
+import { ListFrameworksCommandInput, ListFrameworksCommandOutput } from "./commands/ListFrameworksCommand.ts";
 import {
   ListProtectedResourcesCommandInput,
   ListProtectedResourcesCommandOutput,
@@ -107,6 +115,8 @@ import {
   ListRecoveryPointsByResourceCommandInput,
   ListRecoveryPointsByResourceCommandOutput,
 } from "./commands/ListRecoveryPointsByResourceCommand.ts";
+import { ListReportJobsCommandInput, ListReportJobsCommandOutput } from "./commands/ListReportJobsCommand.ts";
+import { ListReportPlansCommandInput, ListReportPlansCommandOutput } from "./commands/ListReportPlansCommand.ts";
 import { ListRestoreJobsCommandInput, ListRestoreJobsCommandOutput } from "./commands/ListRestoreJobsCommand.ts";
 import { ListTagsCommandInput, ListTagsCommandOutput } from "./commands/ListTagsCommand.ts";
 import {
@@ -119,11 +129,13 @@ import {
 } from "./commands/PutBackupVaultNotificationsCommand.ts";
 import { StartBackupJobCommandInput, StartBackupJobCommandOutput } from "./commands/StartBackupJobCommand.ts";
 import { StartCopyJobCommandInput, StartCopyJobCommandOutput } from "./commands/StartCopyJobCommand.ts";
+import { StartReportJobCommandInput, StartReportJobCommandOutput } from "./commands/StartReportJobCommand.ts";
 import { StartRestoreJobCommandInput, StartRestoreJobCommandOutput } from "./commands/StartRestoreJobCommand.ts";
 import { StopBackupJobCommandInput, StopBackupJobCommandOutput } from "./commands/StopBackupJobCommand.ts";
 import { TagResourceCommandInput, TagResourceCommandOutput } from "./commands/TagResourceCommand.ts";
 import { UntagResourceCommandInput, UntagResourceCommandOutput } from "./commands/UntagResourceCommand.ts";
 import { UpdateBackupPlanCommandInput, UpdateBackupPlanCommandOutput } from "./commands/UpdateBackupPlanCommand.ts";
+import { UpdateFrameworkCommandInput, UpdateFrameworkCommandOutput } from "./commands/UpdateFrameworkCommand.ts";
 import {
   UpdateGlobalSettingsCommandInput,
   UpdateGlobalSettingsCommandOutput,
@@ -136,6 +148,7 @@ import {
   UpdateRegionSettingsCommandInput,
   UpdateRegionSettingsCommandOutput,
 } from "./commands/UpdateRegionSettingsCommand.ts";
+import { UpdateReportPlanCommandInput, UpdateReportPlanCommandOutput } from "./commands/UpdateReportPlanCommand.ts";
 import { getRuntimeConfig as __getRuntimeConfig } from "./runtimeConfig.ts";
 import {
   EndpointsInputConfig,
@@ -192,19 +205,26 @@ export type ServiceInputTypes =
   | CreateBackupPlanCommandInput
   | CreateBackupSelectionCommandInput
   | CreateBackupVaultCommandInput
+  | CreateFrameworkCommandInput
+  | CreateReportPlanCommandInput
   | DeleteBackupPlanCommandInput
   | DeleteBackupSelectionCommandInput
   | DeleteBackupVaultAccessPolicyCommandInput
   | DeleteBackupVaultCommandInput
   | DeleteBackupVaultNotificationsCommandInput
+  | DeleteFrameworkCommandInput
   | DeleteRecoveryPointCommandInput
+  | DeleteReportPlanCommandInput
   | DescribeBackupJobCommandInput
   | DescribeBackupVaultCommandInput
   | DescribeCopyJobCommandInput
+  | DescribeFrameworkCommandInput
   | DescribeGlobalSettingsCommandInput
   | DescribeProtectedResourceCommandInput
   | DescribeRecoveryPointCommandInput
   | DescribeRegionSettingsCommandInput
+  | DescribeReportJobCommandInput
+  | DescribeReportPlanCommandInput
   | DescribeRestoreJobCommandInput
   | DisassociateRecoveryPointCommandInput
   | ExportBackupPlanTemplateCommandInput
@@ -223,41 +243,54 @@ export type ServiceInputTypes =
   | ListBackupSelectionsCommandInput
   | ListBackupVaultsCommandInput
   | ListCopyJobsCommandInput
+  | ListFrameworksCommandInput
   | ListProtectedResourcesCommandInput
   | ListRecoveryPointsByBackupVaultCommandInput
   | ListRecoveryPointsByResourceCommandInput
+  | ListReportJobsCommandInput
+  | ListReportPlansCommandInput
   | ListRestoreJobsCommandInput
   | ListTagsCommandInput
   | PutBackupVaultAccessPolicyCommandInput
   | PutBackupVaultNotificationsCommandInput
   | StartBackupJobCommandInput
   | StartCopyJobCommandInput
+  | StartReportJobCommandInput
   | StartRestoreJobCommandInput
   | StopBackupJobCommandInput
   | TagResourceCommandInput
   | UntagResourceCommandInput
   | UpdateBackupPlanCommandInput
+  | UpdateFrameworkCommandInput
   | UpdateGlobalSettingsCommandInput
   | UpdateRecoveryPointLifecycleCommandInput
-  | UpdateRegionSettingsCommandInput;
+  | UpdateRegionSettingsCommandInput
+  | UpdateReportPlanCommandInput;
 
 export type ServiceOutputTypes =
   | CreateBackupPlanCommandOutput
   | CreateBackupSelectionCommandOutput
   | CreateBackupVaultCommandOutput
+  | CreateFrameworkCommandOutput
+  | CreateReportPlanCommandOutput
   | DeleteBackupPlanCommandOutput
   | DeleteBackupSelectionCommandOutput
   | DeleteBackupVaultAccessPolicyCommandOutput
   | DeleteBackupVaultCommandOutput
   | DeleteBackupVaultNotificationsCommandOutput
+  | DeleteFrameworkCommandOutput
   | DeleteRecoveryPointCommandOutput
+  | DeleteReportPlanCommandOutput
   | DescribeBackupJobCommandOutput
   | DescribeBackupVaultCommandOutput
   | DescribeCopyJobCommandOutput
+  | DescribeFrameworkCommandOutput
   | DescribeGlobalSettingsCommandOutput
   | DescribeProtectedResourceCommandOutput
   | DescribeRecoveryPointCommandOutput
   | DescribeRegionSettingsCommandOutput
+  | DescribeReportJobCommandOutput
+  | DescribeReportPlanCommandOutput
   | DescribeRestoreJobCommandOutput
   | DisassociateRecoveryPointCommandOutput
   | ExportBackupPlanTemplateCommandOutput
@@ -276,23 +309,29 @@ export type ServiceOutputTypes =
   | ListBackupSelectionsCommandOutput
   | ListBackupVaultsCommandOutput
   | ListCopyJobsCommandOutput
+  | ListFrameworksCommandOutput
   | ListProtectedResourcesCommandOutput
   | ListRecoveryPointsByBackupVaultCommandOutput
   | ListRecoveryPointsByResourceCommandOutput
+  | ListReportJobsCommandOutput
+  | ListReportPlansCommandOutput
   | ListRestoreJobsCommandOutput
   | ListTagsCommandOutput
   | PutBackupVaultAccessPolicyCommandOutput
   | PutBackupVaultNotificationsCommandOutput
   | StartBackupJobCommandOutput
   | StartCopyJobCommandOutput
+  | StartReportJobCommandOutput
   | StartRestoreJobCommandOutput
   | StopBackupJobCommandOutput
   | TagResourceCommandOutput
   | UntagResourceCommandOutput
   | UpdateBackupPlanCommandOutput
+  | UpdateFrameworkCommandOutput
   | UpdateGlobalSettingsCommandOutput
   | UpdateRecoveryPointLifecycleCommandOutput
-  | UpdateRegionSettingsCommandOutput;
+  | UpdateRegionSettingsCommandOutput
+  | UpdateReportPlanCommandOutput;
 
 export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__HttpHandlerOptions>> {
   /**
@@ -367,10 +406,9 @@ export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__
   maxAttempts?: number | __Provider<number>;
 
   /**
-   * Specifies provider for retry algorithm to use.
-   * @internal
+   * Specifies which retry algorithm to use.
    */
-  retryModeProvider?: __Provider<string>;
+  retryMode?: string | __Provider<string>;
 
   /**
    * Optional logger for logging debug/info/warn/error.
@@ -434,10 +472,11 @@ type BackupClientResolvedConfigType = __SmithyResolvedConfiguration<__HttpHandle
 export interface BackupClientResolvedConfig extends BackupClientResolvedConfigType {}
 
 /**
- * <fullname>AWS Backup</fullname>
- *          <p>AWS Backup is a unified backup service designed to protect AWS services and their
- *          associated data. AWS Backup simplifies the creation, migration, restoration, and deletion
- *          of backups, while also providing reporting and auditing.</p>
+ * <fullname>Backup</fullname>
+ *          <p>Backup is a unified backup service designed to protect Amazon Web Services
+ *          services and their associated data. Backup simplifies the creation, migration,
+ *          restoration, and deletion of backups, while also providing reporting and
+ *          auditing.</p>
  */
 export class BackupClient extends __Client<
   __HttpHandlerOptions,

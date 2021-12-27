@@ -378,6 +378,7 @@ export * from "./pagination/DescribeTransitGatewaysPaginator.ts";
 export * from "./commands/DescribeTransitGatewayVpcAttachmentsCommand.ts";
 export * from "./pagination/DescribeTransitGatewayVpcAttachmentsPaginator.ts";
 export * from "./commands/DescribeTrunkInterfaceAssociationsCommand.ts";
+export * from "./pagination/DescribeTrunkInterfaceAssociationsPaginator.ts";
 export * from "./commands/DescribeVolumeAttributeCommand.ts";
 export * from "./commands/DescribeVolumesCommand.ts";
 export * from "./pagination/DescribeVolumesPaginator.ts";
