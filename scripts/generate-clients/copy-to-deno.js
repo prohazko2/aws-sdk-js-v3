@@ -154,8 +154,8 @@ async function denoifyTsFile(file, depth) {
       continue;
     }
 
-    if (line.match(/tagValueProcessor: \(val, tagName\) => /)) {
-      replaced = line.replace("(val, tagName)", "(val: string)");
+    if (line.match(/tagValueProcessor: \(val\) => /)) {
+      replaced = line.replace("(val)", "(val: string)");
     }
 
     if (state === "nothing") {
