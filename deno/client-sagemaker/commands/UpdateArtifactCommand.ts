@@ -1,5 +1,5 @@
 import { SageMakerClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../SageMakerClient.ts";
-import { UpdateArtifactRequest, UpdateArtifactResponse } from "../models/models_2.ts";
+import { UpdateArtifactRequest, UpdateArtifactResponse } from "../models/models_3.ts";
 import {
   deserializeAws_json1_1UpdateArtifactCommand,
   serializeAws_json1_1UpdateArtifactCommand,

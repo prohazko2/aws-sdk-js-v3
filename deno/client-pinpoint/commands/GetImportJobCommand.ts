@@ -1,5 +1,5 @@
 import { PinpointClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../PinpointClient.ts";
-import { GetImportJobRequest, GetImportJobResponse } from "../models/models_0.ts";
+import { GetImportJobRequest, GetImportJobResponse } from "../models/models_1.ts";
 import {
   deserializeAws_restJson1GetImportJobCommand,
   serializeAws_restJson1GetImportJobCommand,

@@ -493,6 +493,10 @@ import {
 } from "./commands/PutModelPackageGroupPolicyCommand.ts";
 import { RegisterDevicesCommandInput, RegisterDevicesCommandOutput } from "./commands/RegisterDevicesCommand.ts";
 import { RenderUiTemplateCommandInput, RenderUiTemplateCommandOutput } from "./commands/RenderUiTemplateCommand.ts";
+import {
+  RetryPipelineExecutionCommandInput,
+  RetryPipelineExecutionCommandOutput,
+} from "./commands/RetryPipelineExecutionCommand.ts";
 import { SearchCommandInput, SearchCommandOutput } from "./commands/SearchCommand.ts";
 import {
   SendPipelineExecutionStepFailureCommandInput,
@@ -839,6 +843,7 @@ export type ServiceInputTypes =
   | PutModelPackageGroupPolicyCommandInput
   | RegisterDevicesCommandInput
   | RenderUiTemplateCommandInput
+  | RetryPipelineExecutionCommandInput
   | SearchCommandInput
   | SendPipelineExecutionStepFailureCommandInput
   | SendPipelineExecutionStepSuccessCommandInput
@@ -1080,6 +1085,7 @@ export type ServiceOutputTypes =
   | PutModelPackageGroupPolicyCommandOutput
   | RegisterDevicesCommandOutput
   | RenderUiTemplateCommandOutput
+  | RetryPipelineExecutionCommandOutput
   | SearchCommandOutput
   | SendPipelineExecutionStepFailureCommandOutput
   | SendPipelineExecutionStepSuccessCommandOutput

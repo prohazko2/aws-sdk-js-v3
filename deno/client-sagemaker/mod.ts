@@ -264,6 +264,7 @@ export * from "./pagination/ListWorkteamsPaginator.ts";
 export * from "./commands/PutModelPackageGroupPolicyCommand.ts";
 export * from "./commands/RegisterDevicesCommand.ts";
 export * from "./commands/RenderUiTemplateCommand.ts";
+export * from "./commands/RetryPipelineExecutionCommand.ts";
 export * from "./commands/SearchCommand.ts";
 export * from "./pagination/SearchPaginator.ts";
 export * from "./commands/SendPipelineExecutionStepFailureCommand.ts";

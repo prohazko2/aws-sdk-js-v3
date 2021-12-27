@@ -6,6 +6,10 @@ import {
 } from "./commands/CreateEmailTemplateCommand.ts";
 import { CreateExportJobCommandInput, CreateExportJobCommandOutput } from "./commands/CreateExportJobCommand.ts";
 import { CreateImportJobCommandInput, CreateImportJobCommandOutput } from "./commands/CreateImportJobCommand.ts";
+import {
+  CreateInAppTemplateCommandInput,
+  CreateInAppTemplateCommandOutput,
+} from "./commands/CreateInAppTemplateCommand.ts";
 import { CreateJourneyCommandInput, CreateJourneyCommandOutput } from "./commands/CreateJourneyCommand.ts";
 import { CreatePushTemplateCommandInput, CreatePushTemplateCommandOutput } from "./commands/CreatePushTemplateCommand.ts";
 import {
@@ -43,6 +47,10 @@ import {
 import { DeleteEndpointCommandInput, DeleteEndpointCommandOutput } from "./commands/DeleteEndpointCommand.ts";
 import { DeleteEventStreamCommandInput, DeleteEventStreamCommandOutput } from "./commands/DeleteEventStreamCommand.ts";
 import { DeleteGcmChannelCommandInput, DeleteGcmChannelCommandOutput } from "./commands/DeleteGcmChannelCommand.ts";
+import {
+  DeleteInAppTemplateCommandInput,
+  DeleteInAppTemplateCommandOutput,
+} from "./commands/DeleteInAppTemplateCommand.ts";
 import { DeleteJourneyCommandInput, DeleteJourneyCommandOutput } from "./commands/DeleteJourneyCommand.ts";
 import { DeletePushTemplateCommandInput, DeletePushTemplateCommandOutput } from "./commands/DeletePushTemplateCommand.ts";
 import {
@@ -108,6 +116,8 @@ import { GetExportJobsCommandInput, GetExportJobsCommandOutput } from "./command
 import { GetGcmChannelCommandInput, GetGcmChannelCommandOutput } from "./commands/GetGcmChannelCommand.ts";
 import { GetImportJobCommandInput, GetImportJobCommandOutput } from "./commands/GetImportJobCommand.ts";
 import { GetImportJobsCommandInput, GetImportJobsCommandOutput } from "./commands/GetImportJobsCommand.ts";
+import { GetInAppMessagesCommandInput, GetInAppMessagesCommandOutput } from "./commands/GetInAppMessagesCommand.ts";
+import { GetInAppTemplateCommandInput, GetInAppTemplateCommandOutput } from "./commands/GetInAppTemplateCommand.ts";
 import { GetJourneyCommandInput, GetJourneyCommandOutput } from "./commands/GetJourneyCommand.ts";
 import {
   GetJourneyDateRangeKpiCommandInput,
@@ -199,6 +209,10 @@ import {
   UpdateEndpointsBatchCommandOutput,
 } from "./commands/UpdateEndpointsBatchCommand.ts";
 import { UpdateGcmChannelCommandInput, UpdateGcmChannelCommandOutput } from "./commands/UpdateGcmChannelCommand.ts";
+import {
+  UpdateInAppTemplateCommandInput,
+  UpdateInAppTemplateCommandOutput,
+} from "./commands/UpdateInAppTemplateCommand.ts";
 import { UpdateJourneyCommandInput, UpdateJourneyCommandOutput } from "./commands/UpdateJourneyCommand.ts";
 import { UpdateJourneyStateCommandInput, UpdateJourneyStateCommandOutput } from "./commands/UpdateJourneyStateCommand.ts";
 import { UpdatePushTemplateCommandInput, UpdatePushTemplateCommandOutput } from "./commands/UpdatePushTemplateCommand.ts";
@@ -276,6 +290,7 @@ export type ServiceInputTypes =
   | CreateEmailTemplateCommandInput
   | CreateExportJobCommandInput
   | CreateImportJobCommandInput
+  | CreateInAppTemplateCommandInput
   | CreateJourneyCommandInput
   | CreatePushTemplateCommandInput
   | CreateRecommenderConfigurationCommandInput
@@ -295,6 +310,7 @@ export type ServiceInputTypes =
   | DeleteEndpointCommandInput
   | DeleteEventStreamCommandInput
   | DeleteGcmChannelCommandInput
+  | DeleteInAppTemplateCommandInput
   | DeleteJourneyCommandInput
   | DeletePushTemplateCommandInput
   | DeleteRecommenderConfigurationCommandInput
@@ -330,6 +346,8 @@ export type ServiceInputTypes =
   | GetGcmChannelCommandInput
   | GetImportJobCommandInput
   | GetImportJobsCommandInput
+  | GetInAppMessagesCommandInput
+  | GetInAppTemplateCommandInput
   | GetJourneyCommandInput
   | GetJourneyDateRangeKpiCommandInput
   | GetJourneyExecutionActivityMetricsCommandInput
@@ -373,6 +391,7 @@ export type ServiceInputTypes =
   | UpdateEndpointCommandInput
   | UpdateEndpointsBatchCommandInput
   | UpdateGcmChannelCommandInput
+  | UpdateInAppTemplateCommandInput
   | UpdateJourneyCommandInput
   | UpdateJourneyStateCommandInput
   | UpdatePushTemplateCommandInput
@@ -390,6 +409,7 @@ export type ServiceOutputTypes =
   | CreateEmailTemplateCommandOutput
   | CreateExportJobCommandOutput
   | CreateImportJobCommandOutput
+  | CreateInAppTemplateCommandOutput
   | CreateJourneyCommandOutput
   | CreatePushTemplateCommandOutput
   | CreateRecommenderConfigurationCommandOutput
@@ -409,6 +429,7 @@ export type ServiceOutputTypes =
   | DeleteEndpointCommandOutput
   | DeleteEventStreamCommandOutput
   | DeleteGcmChannelCommandOutput
+  | DeleteInAppTemplateCommandOutput
   | DeleteJourneyCommandOutput
   | DeletePushTemplateCommandOutput
   | DeleteRecommenderConfigurationCommandOutput
@@ -444,6 +465,8 @@ export type ServiceOutputTypes =
   | GetGcmChannelCommandOutput
   | GetImportJobCommandOutput
   | GetImportJobsCommandOutput
+  | GetInAppMessagesCommandOutput
+  | GetInAppTemplateCommandOutput
   | GetJourneyCommandOutput
   | GetJourneyDateRangeKpiCommandOutput
   | GetJourneyExecutionActivityMetricsCommandOutput
@@ -487,6 +510,7 @@ export type ServiceOutputTypes =
   | UpdateEndpointCommandOutput
   | UpdateEndpointsBatchCommandOutput
   | UpdateGcmChannelCommandOutput
+  | UpdateInAppTemplateCommandOutput
   | UpdateJourneyCommandOutput
   | UpdateJourneyStateCommandOutput
   | UpdatePushTemplateCommandOutput

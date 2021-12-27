@@ -49,6 +49,7 @@ export * from "./commands/ListFindingsFiltersCommand.ts";
 export * from "./pagination/ListFindingsFiltersPaginator.ts";
 export * from "./commands/ListInvitationsCommand.ts";
 export * from "./pagination/ListInvitationsPaginator.ts";
+export * from "./commands/ListManagedDataIdentifiersCommand.ts";
 export * from "./commands/ListMembersCommand.ts";
 export * from "./pagination/ListMembersPaginator.ts";
 export * from "./commands/ListOrganizationAdminAccountsCommand.ts";

@@ -1,5 +1,5 @@
 import { OpenSearchClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../OpenSearchClient.ts";
-import { ListDomainNamesResponse } from "../models/models_0.ts";
+import { ListDomainNamesRequest, ListDomainNamesResponse } from "../models/models_0.ts";
 import {
   deserializeAws_restJson1ListDomainNamesCommand,
   serializeAws_restJson1ListDomainNamesCommand,
@@ -17,7 +17,7 @@ import {
   SerdeContext as __SerdeContext,
 } from "../../types/mod.ts";
 
-export interface ListDomainNamesCommandInput {}
+export interface ListDomainNamesCommandInput extends ListDomainNamesRequest {}
 export interface ListDomainNamesCommandOutput extends ListDomainNamesResponse, __MetadataBearer {}
 
 /**
@@ -70,7 +70,7 @@ export class ListDomainNamesCommand extends $Command<
       logger,
       clientName,
       commandName,
-      inputFilterSensitiveLog: (input: any) => input,
+      inputFilterSensitiveLog: ListDomainNamesRequest.filterSensitiveLog,
       outputFilterSensitiveLog: ListDomainNamesResponse.filterSensitiveLog,
     };
     const { requestHandler } = configuration;
