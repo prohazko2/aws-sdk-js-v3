@@ -37,9 +37,13 @@ import {
 import {
   expectBoolean as __expectBoolean,
   expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
   expectString as __expectString,
+  expectUnion as __expectUnion,
   limitedParseDouble as __limitedParseDouble,
   limitedParseFloat32 as __limitedParseFloat32,
+  parseEpochTimestamp as __parseEpochTimestamp,
   serializeFloat as __serializeFloat,
 } from "@aws-sdk/smithy-client";
 import {
@@ -751,7 +755,7 @@ const deserializeAws_json1_0MyUnion = (output: any, context: __SerdeContext): My
   }
   if (output.timestampValue !== undefined && output.timestampValue !== null) {
     return {
-      timestampValue: new Date(Math.round(output.timestampValue * 1000)),
+      timestampValue: __expectNonNull(__parseEpochTimestamp(__expectNumber(output.timestampValue))),
     };
   }
   return { $unknown: Object.entries(output)[0] };
@@ -775,7 +779,7 @@ const deserializeAws_json1_0UnionInputOutput = (output: any, context: __SerdeCon
   return {
     contents:
       output.contents !== undefined && output.contents !== null
-        ? deserializeAws_json1_0MyUnion(output.contents, context)
+        ? deserializeAws_json1_0MyUnion(__expectUnion(output.contents), context)
         : undefined,
   } as any;
 };

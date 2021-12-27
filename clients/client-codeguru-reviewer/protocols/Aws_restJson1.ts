@@ -67,6 +67,7 @@ import {
   RepositoryHeadSourceCodeType,
   RequestMetadata,
   ResourceNotFoundException,
+  RuleMetadata,
   S3BucketRepository,
   S3Repository,
   S3RepositoryDetails,
@@ -80,9 +81,11 @@ import {
   expectInt32 as __expectInt32,
   expectLong as __expectLong,
   expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
+  parseEpochTimestamp as __parseEpochTimestamp,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -2094,11 +2097,11 @@ const deserializeAws_restJson1CodeReview = (output: any, context: __SerdeContext
     CodeReviewArn: __expectString(output.CodeReviewArn),
     CreatedTimeStamp:
       output.CreatedTimeStamp !== undefined && output.CreatedTimeStamp !== null
-        ? new Date(Math.round(output.CreatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedTimeStamp)))
         : undefined,
     LastUpdatedTimeStamp:
       output.LastUpdatedTimeStamp !== undefined && output.LastUpdatedTimeStamp !== null
-        ? new Date(Math.round(output.LastUpdatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.LastUpdatedTimeStamp)))
         : undefined,
     Metrics:
       output.Metrics !== undefined && output.Metrics !== null
@@ -2135,11 +2138,11 @@ const deserializeAws_restJson1CodeReviewSummary = (output: any, context: __Serde
     CodeReviewArn: __expectString(output.CodeReviewArn),
     CreatedTimeStamp:
       output.CreatedTimeStamp !== undefined && output.CreatedTimeStamp !== null
-        ? new Date(Math.round(output.CreatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedTimeStamp)))
         : undefined,
     LastUpdatedTimeStamp:
       output.LastUpdatedTimeStamp !== undefined && output.LastUpdatedTimeStamp !== null
-        ? new Date(Math.round(output.LastUpdatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.LastUpdatedTimeStamp)))
         : undefined,
     MetricsSummary:
       output.MetricsSummary !== undefined && output.MetricsSummary !== null
@@ -2217,11 +2220,11 @@ const deserializeAws_restJson1RecommendationFeedback = (
     CodeReviewArn: __expectString(output.CodeReviewArn),
     CreatedTimeStamp:
       output.CreatedTimeStamp !== undefined && output.CreatedTimeStamp !== null
-        ? new Date(Math.round(output.CreatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedTimeStamp)))
         : undefined,
     LastUpdatedTimeStamp:
       output.LastUpdatedTimeStamp !== undefined && output.LastUpdatedTimeStamp !== null
-        ? new Date(Math.round(output.LastUpdatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.LastUpdatedTimeStamp)))
         : undefined,
     Reactions:
       output.Reactions !== undefined && output.Reactions !== null
@@ -2281,6 +2284,11 @@ const deserializeAws_restJson1RecommendationSummary = (output: any, context: __S
     FilePath: __expectString(output.FilePath),
     RecommendationCategory: __expectString(output.RecommendationCategory),
     RecommendationId: __expectString(output.RecommendationId),
+    RuleMetadata:
+      output.RuleMetadata !== undefined && output.RuleMetadata !== null
+        ? deserializeAws_restJson1RuleMetadata(output.RuleMetadata, context)
+        : undefined,
+    Severity: __expectString(output.Severity),
     StartLine: __expectInt32(output.StartLine),
   } as any;
 };
@@ -2292,7 +2300,7 @@ const deserializeAws_restJson1RepositoryAssociation = (output: any, context: __S
     ConnectionArn: __expectString(output.ConnectionArn),
     CreatedTimeStamp:
       output.CreatedTimeStamp !== undefined && output.CreatedTimeStamp !== null
-        ? new Date(Math.round(output.CreatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedTimeStamp)))
         : undefined,
     KMSKeyDetails:
       output.KMSKeyDetails !== undefined && output.KMSKeyDetails !== null
@@ -2300,7 +2308,7 @@ const deserializeAws_restJson1RepositoryAssociation = (output: any, context: __S
         : undefined,
     LastUpdatedTimeStamp:
       output.LastUpdatedTimeStamp !== undefined && output.LastUpdatedTimeStamp !== null
-        ? new Date(Math.round(output.LastUpdatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.LastUpdatedTimeStamp)))
         : undefined,
     Name: __expectString(output.Name),
     Owner: __expectString(output.Owner),
@@ -2338,7 +2346,7 @@ const deserializeAws_restJson1RepositoryAssociationSummary = (
     ConnectionArn: __expectString(output.ConnectionArn),
     LastUpdatedTimeStamp:
       output.LastUpdatedTimeStamp !== undefined && output.LastUpdatedTimeStamp !== null
-        ? new Date(Math.round(output.LastUpdatedTimeStamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.LastUpdatedTimeStamp)))
         : undefined,
     Name: __expectString(output.Name),
     Owner: __expectString(output.Owner),
@@ -2366,6 +2374,30 @@ const deserializeAws_restJson1RequestMetadata = (output: any, context: __SerdeCo
     Requester: __expectString(output.Requester),
     VendorName: __expectString(output.VendorName),
   } as any;
+};
+
+const deserializeAws_restJson1RuleMetadata = (output: any, context: __SerdeContext): RuleMetadata => {
+  return {
+    LongDescription: __expectString(output.LongDescription),
+    RuleId: __expectString(output.RuleId),
+    RuleName: __expectString(output.RuleName),
+    RuleTags:
+      output.RuleTags !== undefined && output.RuleTags !== null
+        ? deserializeAws_restJson1RuleTags(output.RuleTags, context)
+        : undefined,
+    ShortDescription: __expectString(output.ShortDescription),
+  } as any;
+};
+
+const deserializeAws_restJson1RuleTags = (output: any, context: __SerdeContext): string[] => {
+  return (output || [])
+    .filter((e: any) => e != null)
+    .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
+      return __expectString(entry) as any;
+    });
 };
 
 const deserializeAws_restJson1S3BucketRepository = (output: any, context: __SerdeContext): S3BucketRepository => {

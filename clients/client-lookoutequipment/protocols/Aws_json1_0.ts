@@ -127,7 +127,10 @@ import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@a
 import {
   LazyJsonString as __LazyJsonString,
   expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
   expectString as __expectString,
+  parseEpochTimestamp as __parseEpochTimestamp,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -2547,6 +2550,7 @@ const serializeAws_json1_0CreateModelRequest = (input: CreateModelRequest, conte
         LabelsInputConfiguration: serializeAws_json1_0LabelsInputConfiguration(input.LabelsInputConfiguration, context),
       }),
     ...(input.ModelName !== undefined && input.ModelName !== null && { ModelName: input.ModelName }),
+    ...(input.OffCondition !== undefined && input.OffCondition !== null && { OffCondition: input.OffCondition }),
     ...(input.RoleArn !== undefined && input.RoleArn !== null && { RoleArn: input.RoleArn }),
     ...(input.ServerSideKmsKeyId !== undefined &&
       input.ServerSideKmsKeyId !== null && { ServerSideKmsKeyId: input.ServerSideKmsKeyId }),
@@ -3018,7 +3022,7 @@ const deserializeAws_json1_0DatasetSummary = (output: any, context: __SerdeConte
   return {
     CreatedAt:
       output.CreatedAt !== undefined && output.CreatedAt !== null
-        ? new Date(Math.round(output.CreatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedAt)))
         : undefined,
     DatasetArn: __expectString(output.DatasetArn),
     DatasetName: __expectString(output.DatasetName),
@@ -3033,7 +3037,7 @@ const deserializeAws_json1_0DescribeDataIngestionJobResponse = (
   return {
     CreatedAt:
       output.CreatedAt !== undefined && output.CreatedAt !== null
-        ? new Date(Math.round(output.CreatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedAt)))
         : undefined,
     DatasetArn: __expectString(output.DatasetArn),
     FailedReason: __expectString(output.FailedReason),
@@ -3054,7 +3058,7 @@ const deserializeAws_json1_0DescribeDatasetResponse = (
   return {
     CreatedAt:
       output.CreatedAt !== undefined && output.CreatedAt !== null
-        ? new Date(Math.round(output.CreatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedAt)))
         : undefined,
     DatasetArn: __expectString(output.DatasetArn),
     DatasetName: __expectString(output.DatasetName),
@@ -3064,7 +3068,7 @@ const deserializeAws_json1_0DescribeDatasetResponse = (
         : undefined,
     LastUpdatedAt:
       output.LastUpdatedAt !== undefined && output.LastUpdatedAt !== null
-        ? new Date(Math.round(output.LastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.LastUpdatedAt)))
         : undefined,
     Schema: output.Schema !== undefined && output.Schema !== null ? new __LazyJsonString(output.Schema) : undefined,
     ServerSideKmsKeyId: __expectString(output.ServerSideKmsKeyId),
@@ -3079,7 +3083,7 @@ const deserializeAws_json1_0DescribeInferenceSchedulerResponse = (
   return {
     CreatedAt:
       output.CreatedAt !== undefined && output.CreatedAt !== null
-        ? new Date(Math.round(output.CreatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedAt)))
         : undefined,
     DataDelayOffsetInMinutes: __expectLong(output.DataDelayOffsetInMinutes),
     DataInputConfiguration:
@@ -3100,7 +3104,7 @@ const deserializeAws_json1_0DescribeInferenceSchedulerResponse = (
     Status: __expectString(output.Status),
     UpdatedAt:
       output.UpdatedAt !== undefined && output.UpdatedAt !== null
-        ? new Date(Math.round(output.UpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.UpdatedAt)))
         : undefined,
   } as any;
 };
@@ -3109,7 +3113,7 @@ const deserializeAws_json1_0DescribeModelResponse = (output: any, context: __Ser
   return {
     CreatedAt:
       output.CreatedAt !== undefined && output.CreatedAt !== null
-        ? new Date(Math.round(output.CreatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedAt)))
         : undefined,
     DataPreProcessingConfiguration:
       output.DataPreProcessingConfiguration !== undefined && output.DataPreProcessingConfiguration !== null
@@ -3119,11 +3123,11 @@ const deserializeAws_json1_0DescribeModelResponse = (output: any, context: __Ser
     DatasetName: __expectString(output.DatasetName),
     EvaluationDataEndTime:
       output.EvaluationDataEndTime !== undefined && output.EvaluationDataEndTime !== null
-        ? new Date(Math.round(output.EvaluationDataEndTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.EvaluationDataEndTime)))
         : undefined,
     EvaluationDataStartTime:
       output.EvaluationDataStartTime !== undefined && output.EvaluationDataStartTime !== null
-        ? new Date(Math.round(output.EvaluationDataStartTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.EvaluationDataStartTime)))
         : undefined,
     FailedReason: __expectString(output.FailedReason),
     LabelsInputConfiguration:
@@ -3132,7 +3136,7 @@ const deserializeAws_json1_0DescribeModelResponse = (output: any, context: __Ser
         : undefined,
     LastUpdatedTime:
       output.LastUpdatedTime !== undefined && output.LastUpdatedTime !== null
-        ? new Date(Math.round(output.LastUpdatedTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.LastUpdatedTime)))
         : undefined,
     ModelArn: __expectString(output.ModelArn),
     ModelMetrics:
@@ -3140,25 +3144,26 @@ const deserializeAws_json1_0DescribeModelResponse = (output: any, context: __Ser
         ? new __LazyJsonString(output.ModelMetrics)
         : undefined,
     ModelName: __expectString(output.ModelName),
+    OffCondition: __expectString(output.OffCondition),
     RoleArn: __expectString(output.RoleArn),
     Schema: output.Schema !== undefined && output.Schema !== null ? new __LazyJsonString(output.Schema) : undefined,
     ServerSideKmsKeyId: __expectString(output.ServerSideKmsKeyId),
     Status: __expectString(output.Status),
     TrainingDataEndTime:
       output.TrainingDataEndTime !== undefined && output.TrainingDataEndTime !== null
-        ? new Date(Math.round(output.TrainingDataEndTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.TrainingDataEndTime)))
         : undefined,
     TrainingDataStartTime:
       output.TrainingDataStartTime !== undefined && output.TrainingDataStartTime !== null
-        ? new Date(Math.round(output.TrainingDataStartTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.TrainingDataStartTime)))
         : undefined,
     TrainingExecutionEndTime:
       output.TrainingExecutionEndTime !== undefined && output.TrainingExecutionEndTime !== null
-        ? new Date(Math.round(output.TrainingExecutionEndTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.TrainingExecutionEndTime)))
         : undefined,
     TrainingExecutionStartTime:
       output.TrainingExecutionStartTime !== undefined && output.TrainingExecutionStartTime !== null
-        ? new Date(Math.round(output.TrainingExecutionStartTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.TrainingExecutionStartTime)))
         : undefined,
   } as any;
 };
@@ -3188,7 +3193,7 @@ const deserializeAws_json1_0InferenceExecutionSummary = (
         : undefined,
     DataEndTime:
       output.DataEndTime !== undefined && output.DataEndTime !== null
-        ? new Date(Math.round(output.DataEndTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.DataEndTime)))
         : undefined,
     DataInputConfiguration:
       output.DataInputConfiguration !== undefined && output.DataInputConfiguration !== null
@@ -3200,7 +3205,7 @@ const deserializeAws_json1_0InferenceExecutionSummary = (
         : undefined,
     DataStartTime:
       output.DataStartTime !== undefined && output.DataStartTime !== null
-        ? new Date(Math.round(output.DataStartTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.DataStartTime)))
         : undefined,
     FailedReason: __expectString(output.FailedReason),
     InferenceSchedulerArn: __expectString(output.InferenceSchedulerArn),
@@ -3209,7 +3214,7 @@ const deserializeAws_json1_0InferenceExecutionSummary = (
     ModelName: __expectString(output.ModelName),
     ScheduledStartTime:
       output.ScheduledStartTime !== undefined && output.ScheduledStartTime !== null
-        ? new Date(Math.round(output.ScheduledStartTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.ScheduledStartTime)))
         : undefined,
     Status: __expectString(output.Status),
   } as any;
@@ -3443,7 +3448,7 @@ const deserializeAws_json1_0ModelSummary = (output: any, context: __SerdeContext
   return {
     CreatedAt:
       output.CreatedAt !== undefined && output.CreatedAt !== null
-        ? new Date(Math.round(output.CreatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedAt)))
         : undefined,
     DatasetArn: __expectString(output.DatasetArn),
     DatasetName: __expectString(output.DatasetName),

@@ -116,7 +116,9 @@ import {
   expectNonNull as __expectNonNull,
   expectObject as __expectObject,
   expectString as __expectString,
+  expectUnion as __expectUnion,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
+  parseRfc3339DateTime as __parseRfc3339DateTime,
   strictParseInt32 as __strictParseInt32,
 } from "@aws-sdk/smithy-client";
 import {
@@ -4023,7 +4025,10 @@ const deserializeAws_restJson1AccessPreview = (output: any, context: __SerdeCont
       output.configurations !== undefined && output.configurations !== null
         ? deserializeAws_restJson1ConfigurationsMap(output.configurations, context)
         : undefined,
-    createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
+    createdAt:
+      output.createdAt !== undefined && output.createdAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.createdAt))
+        : undefined,
     id: __expectString(output.id),
     status: __expectString(output.status),
     statusReason:
@@ -4044,7 +4049,10 @@ const deserializeAws_restJson1AccessPreviewFinding = (output: any, context: __Se
       output.condition !== undefined && output.condition !== null
         ? deserializeAws_restJson1ConditionKeyMap(output.condition, context)
         : undefined,
-    createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
+    createdAt:
+      output.createdAt !== undefined && output.createdAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.createdAt))
+        : undefined,
     error: __expectString(output.error),
     existingFindingId: __expectString(output.existingFindingId),
     existingFindingStatus: __expectString(output.existingFindingStatus),
@@ -4102,7 +4110,10 @@ const deserializeAws_restJson1AccessPreviewStatusReason = (
 const deserializeAws_restJson1AccessPreviewSummary = (output: any, context: __SerdeContext): AccessPreviewSummary => {
   return {
     analyzerArn: __expectString(output.analyzerArn),
-    createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
+    createdAt:
+      output.createdAt !== undefined && output.createdAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.createdAt))
+        : undefined,
     id: __expectString(output.id),
     status: __expectString(output.status),
     statusReason:
@@ -4139,8 +4150,14 @@ const deserializeAws_restJson1AnalyzedResource = (output: any, context: __SerdeC
       output.actions !== undefined && output.actions !== null
         ? deserializeAws_restJson1ActionList(output.actions, context)
         : undefined,
-    analyzedAt: output.analyzedAt !== undefined && output.analyzedAt !== null ? new Date(output.analyzedAt) : undefined,
-    createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
+    analyzedAt:
+      output.analyzedAt !== undefined && output.analyzedAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.analyzedAt))
+        : undefined,
+    createdAt:
+      output.createdAt !== undefined && output.createdAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.createdAt))
+        : undefined,
     error: __expectString(output.error),
     isPublic: __expectBoolean(output.isPublic),
     resourceArn: __expectString(output.resourceArn),
@@ -4151,7 +4168,10 @@ const deserializeAws_restJson1AnalyzedResource = (output: any, context: __SerdeC
         ? deserializeAws_restJson1SharedViaList(output.sharedVia, context)
         : undefined,
     status: __expectString(output.status),
-    updatedAt: output.updatedAt !== undefined && output.updatedAt !== null ? new Date(output.updatedAt) : undefined,
+    updatedAt:
+      output.updatedAt !== undefined && output.updatedAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.updatedAt))
+        : undefined,
   } as any;
 };
 
@@ -4194,11 +4214,14 @@ const deserializeAws_restJson1AnalyzersList = (output: any, context: __SerdeCont
 const deserializeAws_restJson1AnalyzerSummary = (output: any, context: __SerdeContext): AnalyzerSummary => {
   return {
     arn: __expectString(output.arn),
-    createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
+    createdAt:
+      output.createdAt !== undefined && output.createdAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.createdAt))
+        : undefined,
     lastResourceAnalyzed: __expectString(output.lastResourceAnalyzed),
     lastResourceAnalyzedAt:
       output.lastResourceAnalyzedAt !== undefined && output.lastResourceAnalyzedAt !== null
-        ? new Date(output.lastResourceAnalyzedAt)
+        ? __expectNonNull(__parseRfc3339DateTime(output.lastResourceAnalyzedAt))
         : undefined,
     name: __expectString(output.name),
     status: __expectString(output.status),
@@ -4227,20 +4250,32 @@ const deserializeAws_restJson1ArchiveRulesList = (output: any, context: __SerdeC
 
 const deserializeAws_restJson1ArchiveRuleSummary = (output: any, context: __SerdeContext): ArchiveRuleSummary => {
   return {
-    createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
+    createdAt:
+      output.createdAt !== undefined && output.createdAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.createdAt))
+        : undefined,
     filter:
       output.filter !== undefined && output.filter !== null
         ? deserializeAws_restJson1FilterCriteriaMap(output.filter, context)
         : undefined,
     ruleName: __expectString(output.ruleName),
-    updatedAt: output.updatedAt !== undefined && output.updatedAt !== null ? new Date(output.updatedAt) : undefined,
+    updatedAt:
+      output.updatedAt !== undefined && output.updatedAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.updatedAt))
+        : undefined,
   } as any;
 };
 
 const deserializeAws_restJson1CloudTrailProperties = (output: any, context: __SerdeContext): CloudTrailProperties => {
   return {
-    endTime: output.endTime !== undefined && output.endTime !== null ? new Date(output.endTime) : undefined,
-    startTime: output.startTime !== undefined && output.startTime !== null ? new Date(output.startTime) : undefined,
+    endTime:
+      output.endTime !== undefined && output.endTime !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.endTime))
+        : undefined,
+    startTime:
+      output.startTime !== undefined && output.startTime !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.startTime))
+        : undefined,
     trailProperties:
       output.trailProperties !== undefined && output.trailProperties !== null
         ? deserializeAws_restJson1TrailPropertiesList(output.trailProperties, context)
@@ -4302,7 +4337,7 @@ const deserializeAws_restJson1ConfigurationsMap = (
     }
     return {
       ...acc,
-      [key]: deserializeAws_restJson1Configuration(value, context),
+      [key]: deserializeAws_restJson1Configuration(__expectUnion(value), context),
     };
   }, {});
 };
@@ -4344,12 +4379,18 @@ const deserializeAws_restJson1Finding = (output: any, context: __SerdeContext): 
       output.action !== undefined && output.action !== null
         ? deserializeAws_restJson1ActionList(output.action, context)
         : undefined,
-    analyzedAt: output.analyzedAt !== undefined && output.analyzedAt !== null ? new Date(output.analyzedAt) : undefined,
+    analyzedAt:
+      output.analyzedAt !== undefined && output.analyzedAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.analyzedAt))
+        : undefined,
     condition:
       output.condition !== undefined && output.condition !== null
         ? deserializeAws_restJson1ConditionKeyMap(output.condition, context)
         : undefined,
-    createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
+    createdAt:
+      output.createdAt !== undefined && output.createdAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.createdAt))
+        : undefined,
     error: __expectString(output.error),
     id: __expectString(output.id),
     isPublic: __expectBoolean(output.isPublic),
@@ -4365,7 +4406,10 @@ const deserializeAws_restJson1Finding = (output: any, context: __SerdeContext): 
         ? deserializeAws_restJson1FindingSourceList(output.sources, context)
         : undefined,
     status: __expectString(output.status),
-    updatedAt: output.updatedAt !== undefined && output.updatedAt !== null ? new Date(output.updatedAt) : undefined,
+    updatedAt:
+      output.updatedAt !== undefined && output.updatedAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.updatedAt))
+        : undefined,
   } as any;
 };
 
@@ -4413,12 +4457,18 @@ const deserializeAws_restJson1FindingSummary = (output: any, context: __SerdeCon
       output.action !== undefined && output.action !== null
         ? deserializeAws_restJson1ActionList(output.action, context)
         : undefined,
-    analyzedAt: output.analyzedAt !== undefined && output.analyzedAt !== null ? new Date(output.analyzedAt) : undefined,
+    analyzedAt:
+      output.analyzedAt !== undefined && output.analyzedAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.analyzedAt))
+        : undefined,
     condition:
       output.condition !== undefined && output.condition !== null
         ? deserializeAws_restJson1ConditionKeyMap(output.condition, context)
         : undefined,
-    createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
+    createdAt:
+      output.createdAt !== undefined && output.createdAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.createdAt))
+        : undefined,
     error: __expectString(output.error),
     id: __expectString(output.id),
     isPublic: __expectBoolean(output.isPublic),
@@ -4434,7 +4484,10 @@ const deserializeAws_restJson1FindingSummary = (output: any, context: __SerdeCon
         ? deserializeAws_restJson1FindingSourceList(output.sources, context)
         : undefined,
     status: __expectString(output.status),
-    updatedAt: output.updatedAt !== undefined && output.updatedAt !== null ? new Date(output.updatedAt) : undefined,
+    updatedAt:
+      output.updatedAt !== undefined && output.updatedAt !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.updatedAt))
+        : undefined,
   } as any;
 };
 
@@ -4495,13 +4548,18 @@ const deserializeAws_restJson1InternetConfiguration = (output: any, context: __S
 const deserializeAws_restJson1JobDetails = (output: any, context: __SerdeContext): JobDetails => {
   return {
     completedOn:
-      output.completedOn !== undefined && output.completedOn !== null ? new Date(output.completedOn) : undefined,
+      output.completedOn !== undefined && output.completedOn !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.completedOn))
+        : undefined,
     jobError:
       output.jobError !== undefined && output.jobError !== null
         ? deserializeAws_restJson1JobError(output.jobError, context)
         : undefined,
     jobId: __expectString(output.jobId),
-    startedOn: output.startedOn !== undefined && output.startedOn !== null ? new Date(output.startedOn) : undefined,
+    startedOn:
+      output.startedOn !== undefined && output.startedOn !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.startedOn))
+        : undefined,
     status: __expectString(output.status),
   } as any;
 };
@@ -4673,17 +4731,22 @@ const deserializeAws_restJson1PathElementList = (output: any, context: __SerdeCo
       if (entry === null) {
         return null as any;
       }
-      return deserializeAws_restJson1PathElement(entry, context);
+      return deserializeAws_restJson1PathElement(__expectUnion(entry), context);
     });
 };
 
 const deserializeAws_restJson1PolicyGeneration = (output: any, context: __SerdeContext): PolicyGeneration => {
   return {
     completedOn:
-      output.completedOn !== undefined && output.completedOn !== null ? new Date(output.completedOn) : undefined,
+      output.completedOn !== undefined && output.completedOn !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.completedOn))
+        : undefined,
     jobId: __expectString(output.jobId),
     principalArn: __expectString(output.principalArn),
-    startedOn: output.startedOn !== undefined && output.startedOn !== null ? new Date(output.startedOn) : undefined,
+    startedOn:
+      output.startedOn !== undefined && output.startedOn !== null
+        ? __expectNonNull(__parseRfc3339DateTime(output.startedOn))
+        : undefined,
     status: __expectString(output.status),
   } as any;
 };
@@ -4738,7 +4801,7 @@ const deserializeAws_restJson1S3AccessPointConfiguration = (
     accessPointPolicy: __expectString(output.accessPointPolicy),
     networkOrigin:
       output.networkOrigin !== undefined && output.networkOrigin !== null
-        ? deserializeAws_restJson1NetworkOriginConfiguration(output.networkOrigin, context)
+        ? deserializeAws_restJson1NetworkOriginConfiguration(__expectUnion(output.networkOrigin), context)
         : undefined,
     publicAccessBlock:
       output.publicAccessBlock !== undefined && output.publicAccessBlock !== null
@@ -4772,7 +4835,7 @@ const deserializeAws_restJson1S3BucketAclGrantConfiguration = (
   return {
     grantee:
       output.grantee !== undefined && output.grantee !== null
-        ? deserializeAws_restJson1AclGrantee(output.grantee, context)
+        ? deserializeAws_restJson1AclGrantee(__expectUnion(output.grantee), context)
         : undefined,
     permission: __expectString(output.permission),
   } as any;

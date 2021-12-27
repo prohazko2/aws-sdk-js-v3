@@ -322,27 +322,6 @@ final class AwsProtocolUtils {
             return true;
         }
 
-        // TODO: handle timestamps
-        if (testCase.hasTag("timestamp")) {
-            return true;
-        }
-
-        //TODO: request serialization does not verify that the request is an object
-        if (testCase.hasTag("technically_valid_json_body")) {
-            return true;
-        }
-        //TODO: we don't do any union validation
-        if (testCase.getId().startsWith("RestJsonMalformedUnion")) {
-            return true;
-        }
-        //TODO: we don't do any set validation
-        if (testCase.getId().startsWith("RestJsonMalformedSet")) {
-            return true;
-        }
-        //TODO: we don't do any list validation
-        if (testCase.getId().startsWith("RestJsonBodyMalformedList")) {
-            return true;
-        }
         //TODO: we don't validate map values
         if (testCase.getId().equals("RestJsonBodyMalformedMapNullValue")) {
             return true;
@@ -350,6 +329,11 @@ final class AwsProtocolUtils {
         //TODO: Buffer.from isn't decoding base64 strictly.
         if (testCase.getId().equals("RestJsonBodyMalformedBlobInvalidBase64_case1")
             || testCase.getId().equals("RestJsonBodyMalformedBlobInvalidBase64_case2")) {
+            return true;
+        }
+
+        //TODO: Fixed after Smithy 1.11.0
+        if (testCase.getId().equals("RestJsonPathTimestampDefaultRejectsDifferent8601Formats_case14")) {
             return true;
         }
 

@@ -145,7 +145,11 @@ import {
   expectBoolean as __expectBoolean,
   expectInt32 as __expectInt32,
   expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
   expectString as __expectString,
+  expectUnion as __expectUnion,
+  parseEpochTimestamp as __parseEpochTimestamp,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -3321,7 +3325,7 @@ const deserializeAws_json1_1Consumer = (output: any, context: __SerdeContext): C
     ConsumerARN: __expectString(output.ConsumerARN),
     ConsumerCreationTimestamp:
       output.ConsumerCreationTimestamp !== undefined && output.ConsumerCreationTimestamp !== null
-        ? new Date(Math.round(output.ConsumerCreationTimestamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.ConsumerCreationTimestamp)))
         : undefined,
     ConsumerName: __expectString(output.ConsumerName),
     ConsumerStatus: __expectString(output.ConsumerStatus),
@@ -3333,7 +3337,7 @@ const deserializeAws_json1_1ConsumerDescription = (output: any, context: __Serde
     ConsumerARN: __expectString(output.ConsumerARN),
     ConsumerCreationTimestamp:
       output.ConsumerCreationTimestamp !== undefined && output.ConsumerCreationTimestamp !== null
-        ? new Date(Math.round(output.ConsumerCreationTimestamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.ConsumerCreationTimestamp)))
         : undefined,
     ConsumerName: __expectString(output.ConsumerName),
     ConsumerStatus: __expectString(output.ConsumerStatus),
@@ -3653,7 +3657,7 @@ const deserializeAws_json1_1_Record = (output: any, context: __SerdeContext): _R
   return {
     ApproximateArrivalTimestamp:
       output.ApproximateArrivalTimestamp !== undefined && output.ApproximateArrivalTimestamp !== null
-        ? new Date(Math.round(output.ApproximateArrivalTimestamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.ApproximateArrivalTimestamp)))
         : undefined,
     Data: output.Data !== undefined && output.Data !== null ? context.base64Decoder(output.Data) : undefined,
     EncryptionType: __expectString(output.EncryptionType),
@@ -3762,7 +3766,7 @@ const deserializeAws_json1_1StreamDescription = (output: any, context: __SerdeCo
     StreamARN: __expectString(output.StreamARN),
     StreamCreationTimestamp:
       output.StreamCreationTimestamp !== undefined && output.StreamCreationTimestamp !== null
-        ? new Date(Math.round(output.StreamCreationTimestamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.StreamCreationTimestamp)))
         : undefined,
     StreamName: __expectString(output.StreamName),
     StreamStatus: __expectString(output.StreamStatus),
@@ -3786,7 +3790,7 @@ const deserializeAws_json1_1StreamDescriptionSummary = (
     StreamARN: __expectString(output.StreamARN),
     StreamCreationTimestamp:
       output.StreamCreationTimestamp !== undefined && output.StreamCreationTimestamp !== null
-        ? new Date(Math.round(output.StreamCreationTimestamp * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.StreamCreationTimestamp)))
         : undefined,
     StreamName: __expectString(output.StreamName),
     StreamStatus: __expectString(output.StreamStatus),
@@ -3892,7 +3896,7 @@ const deserializeAws_json1_1SubscribeToShardOutput = (output: any, context: __Se
   return {
     EventStream:
       output.EventStream !== undefined && output.EventStream !== null
-        ? deserializeAws_json1_1SubscribeToShardEventStream(output.EventStream, context)
+        ? deserializeAws_json1_1SubscribeToShardEventStream(__expectUnion(output.EventStream), context)
         : undefined,
   } as any;
 };
