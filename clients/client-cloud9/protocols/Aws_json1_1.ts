@@ -77,7 +77,7 @@ import {
   UpdateEnvironmentResult,
 } from "../models/models_0";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
-import { expectNumber as __expectNumber, expectString as __expectString } from "@aws-sdk/smithy-client";
+import { expectInt as __expectInt, expectString as __expectString } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
   HeaderBag as __HeaderBag,
@@ -1645,6 +1645,7 @@ const serializeAws_json1_1CreateEnvironmentEC2Request = (
     ...(input.connectionType !== undefined &&
       input.connectionType !== null && { connectionType: input.connectionType }),
     ...(input.description !== undefined && input.description !== null && { description: input.description }),
+    ...(input.dryRun !== undefined && input.dryRun !== null && { dryRun: input.dryRun }),
     ...(input.imageId !== undefined && input.imageId !== null && { imageId: input.imageId }),
     ...(input.instanceType !== undefined && input.instanceType !== null && { instanceType: input.instanceType }),
     ...(input.name !== undefined && input.name !== null && { name: input.name }),
@@ -1808,6 +1809,8 @@ const serializeAws_json1_1UpdateEnvironmentRequest = (
   return {
     ...(input.description !== undefined && input.description !== null && { description: input.description }),
     ...(input.environmentId !== undefined && input.environmentId !== null && { environmentId: input.environmentId }),
+    ...(input.managedCredentialsAction !== undefined &&
+      input.managedCredentialsAction !== null && { managedCredentialsAction: input.managedCredentialsAction }),
     ...(input.name !== undefined && input.name !== null && { name: input.name }),
   };
 };
@@ -1815,7 +1818,7 @@ const serializeAws_json1_1UpdateEnvironmentRequest = (
 const deserializeAws_json1_1BadRequestException = (output: any, context: __SerdeContext): BadRequestException => {
   return {
     className: __expectString(output.className),
-    code: __expectNumber(output.code),
+    code: __expectInt(output.code),
     message: __expectString(output.message),
   } as any;
 };
@@ -1826,7 +1829,7 @@ const deserializeAws_json1_1ConcurrentAccessException = (
 ): ConcurrentAccessException => {
   return {
     className: __expectString(output.className),
-    code: __expectNumber(output.code),
+    code: __expectInt(output.code),
     message: __expectString(output.message),
   } as any;
 };
@@ -1834,7 +1837,7 @@ const deserializeAws_json1_1ConcurrentAccessException = (
 const deserializeAws_json1_1ConflictException = (output: any, context: __SerdeContext): ConflictException => {
   return {
     className: __expectString(output.className),
-    code: __expectNumber(output.code),
+    code: __expectInt(output.code),
     message: __expectString(output.message),
   } as any;
 };
@@ -1983,7 +1986,7 @@ const deserializeAws_json1_1EnvironmentMembersList = (output: any, context: __Se
 const deserializeAws_json1_1ForbiddenException = (output: any, context: __SerdeContext): ForbiddenException => {
   return {
     className: __expectString(output.className),
-    code: __expectNumber(output.code),
+    code: __expectInt(output.code),
     message: __expectString(output.message),
   } as any;
 };
@@ -1994,7 +1997,7 @@ const deserializeAws_json1_1InternalServerErrorException = (
 ): InternalServerErrorException => {
   return {
     className: __expectString(output.className),
-    code: __expectNumber(output.code),
+    code: __expectInt(output.code),
     message: __expectString(output.message),
   } as any;
 };
@@ -2002,7 +2005,7 @@ const deserializeAws_json1_1InternalServerErrorException = (
 const deserializeAws_json1_1LimitExceededException = (output: any, context: __SerdeContext): LimitExceededException => {
   return {
     className: __expectString(output.className),
-    code: __expectNumber(output.code),
+    code: __expectInt(output.code),
     message: __expectString(output.message),
   } as any;
 };
@@ -2032,7 +2035,7 @@ const deserializeAws_json1_1ListTagsForResourceResponse = (
 const deserializeAws_json1_1NotFoundException = (output: any, context: __SerdeContext): NotFoundException => {
   return {
     className: __expectString(output.className),
-    code: __expectNumber(output.code),
+    code: __expectInt(output.code),
     message: __expectString(output.message),
   } as any;
 };
@@ -2065,7 +2068,7 @@ const deserializeAws_json1_1TooManyRequestsException = (
 ): TooManyRequestsException => {
   return {
     className: __expectString(output.className),
-    code: __expectNumber(output.code),
+    code: __expectInt(output.code),
     message: __expectString(output.message),
   } as any;
 };
