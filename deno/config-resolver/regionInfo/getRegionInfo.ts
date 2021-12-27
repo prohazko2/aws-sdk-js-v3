@@ -3,7 +3,7 @@ import { RegionInfo } from "../../types/mod.ts";
 import { getResolvedHostname, GetResolvedHostnameOptions, RegionHash } from "./getResolvedHostname.ts";
 import { getResolvedPartition, PartitionHash } from "./getResolvedPartition.ts";
 
-export { RegionHash, PartitionHash };
+export type { RegionHash, PartitionHash };
 
 export interface GetRegionInfoOptions extends GetResolvedHostnameOptions {}
 

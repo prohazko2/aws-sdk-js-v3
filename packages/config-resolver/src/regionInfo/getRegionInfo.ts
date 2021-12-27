@@ -3,7 +3,7 @@ import { RegionInfo } from "@aws-sdk/types";
 import { getResolvedHostname, GetResolvedHostnameOptions, RegionHash } from "./getResolvedHostname";
 import { getResolvedPartition, PartitionHash } from "./getResolvedPartition";
 
-export { RegionHash, PartitionHash };
+export type { RegionHash, PartitionHash };
 
 export interface GetRegionInfoOptions extends GetResolvedHostnameOptions {}
 
