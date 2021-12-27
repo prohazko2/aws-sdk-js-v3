@@ -20,6 +20,7 @@ import {
   DeleteFargateProfileCommandOutput,
 } from "./commands/DeleteFargateProfileCommand.ts";
 import { DeleteNodegroupCommandInput, DeleteNodegroupCommandOutput } from "./commands/DeleteNodegroupCommand.ts";
+import { DeregisterClusterCommandInput, DeregisterClusterCommandOutput } from "./commands/DeregisterClusterCommand.ts";
 import { DescribeAddonCommandInput, DescribeAddonCommandOutput } from "./commands/DescribeAddonCommand.ts";
 import {
   DescribeAddonVersionsCommandInput,
@@ -56,6 +57,7 @@ import {
   ListTagsForResourceCommandOutput,
 } from "./commands/ListTagsForResourceCommand.ts";
 import { ListUpdatesCommandInput, ListUpdatesCommandOutput } from "./commands/ListUpdatesCommand.ts";
+import { RegisterClusterCommandInput, RegisterClusterCommandOutput } from "./commands/RegisterClusterCommand.ts";
 import { TagResourceCommandInput, TagResourceCommandOutput } from "./commands/TagResourceCommand.ts";
 import { UntagResourceCommandInput, UntagResourceCommandOutput } from "./commands/UntagResourceCommand.ts";
 import { UpdateAddonCommandInput, UpdateAddonCommandOutput } from "./commands/UpdateAddonCommand.ts";
@@ -138,6 +140,7 @@ export type ServiceInputTypes =
   | DeleteClusterCommandInput
   | DeleteFargateProfileCommandInput
   | DeleteNodegroupCommandInput
+  | DeregisterClusterCommandInput
   | DescribeAddonCommandInput
   | DescribeAddonVersionsCommandInput
   | DescribeClusterCommandInput
@@ -153,6 +156,7 @@ export type ServiceInputTypes =
   | ListNodegroupsCommandInput
   | ListTagsForResourceCommandInput
   | ListUpdatesCommandInput
+  | RegisterClusterCommandInput
   | TagResourceCommandInput
   | UntagResourceCommandInput
   | UpdateAddonCommandInput
@@ -172,6 +176,7 @@ export type ServiceOutputTypes =
   | DeleteClusterCommandOutput
   | DeleteFargateProfileCommandOutput
   | DeleteNodegroupCommandOutput
+  | DeregisterClusterCommandOutput
   | DescribeAddonCommandOutput
   | DescribeAddonVersionsCommandOutput
   | DescribeClusterCommandOutput
@@ -187,6 +192,7 @@ export type ServiceOutputTypes =
   | ListNodegroupsCommandOutput
   | ListTagsForResourceCommandOutput
   | ListUpdatesCommandOutput
+  | RegisterClusterCommandOutput
   | TagResourceCommandOutput
   | UntagResourceCommandOutput
   | UpdateAddonCommandOutput

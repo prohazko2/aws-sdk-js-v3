@@ -30,7 +30,11 @@ import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "..
 import {
   expectBoolean as __expectBoolean,
   expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
   expectString as __expectString,
+  expectUnion as __expectUnion,
+  parseEpochTimestamp as __parseEpochTimestamp,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -494,7 +498,7 @@ const deserializeAws_json1_0AttributeMap = (
     }
     return {
       ...acc,
-      [key]: deserializeAws_json1_0AttributeValue(value, context),
+      [key]: deserializeAws_json1_0AttributeValue(__expectUnion(value), context),
     };
   }, {});
 };
@@ -634,7 +638,7 @@ const deserializeAws_json1_0ListAttributeValue = (output: any, context: __SerdeC
       if (entry === null) {
         return null as any;
       }
-      return deserializeAws_json1_0AttributeValue(entry, context);
+      return deserializeAws_json1_0AttributeValue(__expectUnion(entry), context);
     });
 };
 
@@ -658,7 +662,7 @@ const deserializeAws_json1_0MapAttributeValue = (
     }
     return {
       ...acc,
-      [key]: deserializeAws_json1_0AttributeValue(value, context),
+      [key]: deserializeAws_json1_0AttributeValue(__expectUnion(value), context),
     };
   }, {});
 };
@@ -753,7 +757,7 @@ const deserializeAws_json1_0StreamDescription = (output: any, context: __SerdeCo
   return {
     CreationRequestDateTime:
       output.CreationRequestDateTime !== undefined && output.CreationRequestDateTime !== null
-        ? new Date(Math.round(output.CreationRequestDateTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreationRequestDateTime)))
         : undefined,
     KeySchema:
       output.KeySchema !== undefined && output.KeySchema !== null
@@ -787,7 +791,7 @@ const deserializeAws_json1_0StreamRecord = (output: any, context: __SerdeContext
   return {
     ApproximateCreationDateTime:
       output.ApproximateCreationDateTime !== undefined && output.ApproximateCreationDateTime !== null
-        ? new Date(Math.round(output.ApproximateCreationDateTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.ApproximateCreationDateTime)))
         : undefined,
     Keys:
       output.Keys !== undefined && output.Keys !== null

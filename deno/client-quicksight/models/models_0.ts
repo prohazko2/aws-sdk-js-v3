@@ -155,6 +155,19 @@ export namespace AmazonElasticsearchParameters {
   });
 }
 
+export interface AmazonOpenSearchParameters {
+  Domain: string | undefined;
+}
+
+export namespace AmazonOpenSearchParameters {
+  /**
+   * @internal
+   */
+  export const filterSensitiveLog = (obj: AmazonOpenSearchParameters): any => ({
+    ...obj,
+  });
+}
+
 export enum AnalysisErrorType {
   ACCESS_DENIED = "ACCESS_DENIED",
   COLUMN_GEOGRAPHIC_ROLE_MISMATCH = "COLUMN_GEOGRAPHIC_ROLE_MISMATCH",
@@ -3294,6 +3307,7 @@ export namespace TwitterParameters {
  */
 export type DataSourceParameters =
   | DataSourceParameters.AmazonElasticsearchParametersMember
+  | DataSourceParameters.AmazonOpenSearchParametersMember
   | DataSourceParameters.AthenaParametersMember
   | DataSourceParameters.AuroraParametersMember
   | DataSourceParameters.AuroraPostgreSqlParametersMember
@@ -3340,6 +3354,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3367,6 +3382,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3394,6 +3410,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3421,6 +3438,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3448,6 +3466,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3475,6 +3494,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3502,6 +3522,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3529,6 +3550,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3556,6 +3578,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3583,6 +3606,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3610,6 +3634,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3637,6 +3662,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3664,6 +3690,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3691,6 +3718,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3718,6 +3746,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3745,6 +3774,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3772,6 +3802,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3799,6 +3830,7 @@ export namespace DataSourceParameters {
     SqlServerParameters: SqlServerParameters;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3826,6 +3858,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters: TeradataParameters;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown?: never;
   }
 
@@ -3853,6 +3886,32 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters: TwitterParameters;
+    AmazonOpenSearchParameters?: never;
+    $unknown?: never;
+  }
+
+  export interface AmazonOpenSearchParametersMember {
+    AmazonElasticsearchParameters?: never;
+    AthenaParameters?: never;
+    AuroraParameters?: never;
+    AuroraPostgreSqlParameters?: never;
+    AwsIotAnalyticsParameters?: never;
+    JiraParameters?: never;
+    MariaDbParameters?: never;
+    MySqlParameters?: never;
+    OracleParameters?: never;
+    PostgreSqlParameters?: never;
+    PrestoParameters?: never;
+    RdsParameters?: never;
+    RedshiftParameters?: never;
+    S3Parameters?: never;
+    ServiceNowParameters?: never;
+    SnowflakeParameters?: never;
+    SparkParameters?: never;
+    SqlServerParameters?: never;
+    TeradataParameters?: never;
+    TwitterParameters?: never;
+    AmazonOpenSearchParameters: AmazonOpenSearchParameters;
     $unknown?: never;
   }
 
@@ -3877,6 +3936,7 @@ export namespace DataSourceParameters {
     SqlServerParameters?: never;
     TeradataParameters?: never;
     TwitterParameters?: never;
+    AmazonOpenSearchParameters?: never;
     $unknown: [string, any];
   }
 
@@ -3901,6 +3961,7 @@ export namespace DataSourceParameters {
     SqlServerParameters: (value: SqlServerParameters) => T;
     TeradataParameters: (value: TeradataParameters) => T;
     TwitterParameters: (value: TwitterParameters) => T;
+    AmazonOpenSearchParameters: (value: AmazonOpenSearchParameters) => T;
     _: (name: string, value: any) => T;
   }
 
@@ -3928,6 +3989,8 @@ export namespace DataSourceParameters {
     if (value.SqlServerParameters !== undefined) return visitor.SqlServerParameters(value.SqlServerParameters);
     if (value.TeradataParameters !== undefined) return visitor.TeradataParameters(value.TeradataParameters);
     if (value.TwitterParameters !== undefined) return visitor.TwitterParameters(value.TwitterParameters);
+    if (value.AmazonOpenSearchParameters !== undefined)
+      return visitor.AmazonOpenSearchParameters(value.AmazonOpenSearchParameters);
     return visitor._(value.$unknown[0], value.$unknown[1]);
   };
 
@@ -3979,6 +4042,10 @@ export namespace DataSourceParameters {
       return { TeradataParameters: TeradataParameters.filterSensitiveLog(obj.TeradataParameters) };
     if (obj.TwitterParameters !== undefined)
       return { TwitterParameters: TwitterParameters.filterSensitiveLog(obj.TwitterParameters) };
+    if (obj.AmazonOpenSearchParameters !== undefined)
+      return {
+        AmazonOpenSearchParameters: AmazonOpenSearchParameters.filterSensitiveLog(obj.AmazonOpenSearchParameters),
+      };
     if (obj.$unknown !== undefined) return { [obj.$unknown[0]]: "UNKNOWN" };
   };
 }
@@ -4077,6 +4144,7 @@ export namespace SslProperties {
 export enum DataSourceType {
   ADOBE_ANALYTICS = "ADOBE_ANALYTICS",
   AMAZON_ELASTICSEARCH = "AMAZON_ELASTICSEARCH",
+  AMAZON_OPENSEARCH = "AMAZON_OPENSEARCH",
   ATHENA = "ATHENA",
   AURORA = "AURORA",
   AURORA_POSTGRESQL = "AURORA_POSTGRESQL",
@@ -9345,8 +9413,4 @@ export enum EmbeddingIdentityType {
   ANONYMOUS = "ANONYMOUS",
   IAM = "IAM",
   QUICKSIGHT = "QUICKSIGHT",
-}
-
-export enum FolderFilterAttribute {
-  PARENT_FOLDER_ARN = "PARENT_FOLDER_ARN",
 }

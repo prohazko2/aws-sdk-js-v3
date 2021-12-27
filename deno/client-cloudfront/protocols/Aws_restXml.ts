@@ -488,6 +488,7 @@ import {
   getArrayIfSingleItem as __getArrayIfSingleItem,
   getValueFromTextNode as __getValueFromTextNode,
   parseBoolean as __parseBoolean,
+  parseRfc3339DateTime as __parseRfc3339DateTime,
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
 } from "../../smithy-client/mod.ts";
@@ -3435,7 +3436,7 @@ export const deserializeAws_restXmlCreateCachePolicyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CachePolicy = deserializeAws_restXmlCachePolicy(data, context);
   return Promise.resolve(contents);
 };
@@ -3552,7 +3553,7 @@ export const deserializeAws_restXmlCreateCloudFrontOriginAccessIdentityCommand =
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CloudFrontOriginAccessIdentity = deserializeAws_restXmlCloudFrontOriginAccessIdentity(data, context);
   return Promise.resolve(contents);
 };
@@ -3645,7 +3646,7 @@ export const deserializeAws_restXmlCreateDistributionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.Distribution = deserializeAws_restXmlDistribution(data, context);
   return Promise.resolve(contents);
 };
@@ -4163,7 +4164,7 @@ export const deserializeAws_restXmlCreateDistributionWithTagsCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.Distribution = deserializeAws_restXmlDistribution(data, context);
   return Promise.resolve(contents);
 };
@@ -4689,7 +4690,7 @@ export const deserializeAws_restXmlCreateFieldLevelEncryptionConfigCommand = asy
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryption = deserializeAws_restXmlFieldLevelEncryption(data, context);
   return Promise.resolve(contents);
 };
@@ -4806,7 +4807,7 @@ export const deserializeAws_restXmlCreateFieldLevelEncryptionProfileCommand = as
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryptionProfile = deserializeAws_restXmlFieldLevelEncryptionProfile(data, context);
   return Promise.resolve(contents);
 };
@@ -4923,7 +4924,7 @@ export const deserializeAws_restXmlCreateFunctionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FunctionSummary = deserializeAws_restXmlFunctionSummary(data, context);
   return Promise.resolve(contents);
 };
@@ -5012,7 +5013,7 @@ export const deserializeAws_restXmlCreateInvalidationCommand = async (
   if (output.headers["location"] !== undefined) {
     contents.Location = output.headers["location"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.Invalidation = deserializeAws_restXmlInvalidation(data, context);
   return Promise.resolve(contents);
 };
@@ -5121,7 +5122,7 @@ export const deserializeAws_restXmlCreateKeyGroupCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.KeyGroup = deserializeAws_restXmlKeyGroup(data, context);
   return Promise.resolve(contents);
 };
@@ -5198,7 +5199,7 @@ export const deserializeAws_restXmlCreateMonitoringSubscriptionCommand = async (
     $metadata: deserializeMetadata(output),
     MonitoringSubscription: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.MonitoringSubscription = deserializeAws_restXmlMonitoringSubscription(data, context);
   return Promise.resolve(contents);
 };
@@ -5275,7 +5276,7 @@ export const deserializeAws_restXmlCreateOriginRequestPolicyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.OriginRequestPolicy = deserializeAws_restXmlOriginRequestPolicy(data, context);
   return Promise.resolve(contents);
 };
@@ -5392,7 +5393,7 @@ export const deserializeAws_restXmlCreatePublicKeyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.PublicKey = deserializeAws_restXmlPublicKey(data, context);
   return Promise.resolve(contents);
 };
@@ -5548,7 +5549,7 @@ export const deserializeAws_restXmlCreateStreamingDistributionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.StreamingDistribution = deserializeAws_restXmlStreamingDistribution(data, context);
   return Promise.resolve(contents);
 };
@@ -5697,7 +5698,7 @@ export const deserializeAws_restXmlCreateStreamingDistributionWithTagsCommand = 
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.StreamingDistribution = deserializeAws_restXmlStreamingDistribution(data, context);
   return Promise.resolve(contents);
 };
@@ -6830,7 +6831,7 @@ export const deserializeAws_restXmlDescribeFunctionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FunctionSummary = deserializeAws_restXmlFunctionSummary(data, context);
   return Promise.resolve(contents);
 };
@@ -6895,7 +6896,7 @@ export const deserializeAws_restXmlGetCachePolicyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CachePolicy = deserializeAws_restXmlCachePolicy(data, context);
   return Promise.resolve(contents);
 };
@@ -6960,7 +6961,7 @@ export const deserializeAws_restXmlGetCachePolicyConfigCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CachePolicyConfig = deserializeAws_restXmlCachePolicyConfig(data, context);
   return Promise.resolve(contents);
 };
@@ -7025,7 +7026,7 @@ export const deserializeAws_restXmlGetCloudFrontOriginAccessIdentityCommand = as
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CloudFrontOriginAccessIdentity = deserializeAws_restXmlCloudFrontOriginAccessIdentity(data, context);
   return Promise.resolve(contents);
 };
@@ -7090,7 +7091,7 @@ export const deserializeAws_restXmlGetCloudFrontOriginAccessIdentityConfigComman
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CloudFrontOriginAccessIdentityConfig = deserializeAws_restXmlCloudFrontOriginAccessIdentityConfig(
     data,
     context
@@ -7158,7 +7159,7 @@ export const deserializeAws_restXmlGetDistributionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.Distribution = deserializeAws_restXmlDistribution(data, context);
   return Promise.resolve(contents);
 };
@@ -7223,7 +7224,7 @@ export const deserializeAws_restXmlGetDistributionConfigCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.DistributionConfig = deserializeAws_restXmlDistributionConfig(data, context);
   return Promise.resolve(contents);
 };
@@ -7288,7 +7289,7 @@ export const deserializeAws_restXmlGetFieldLevelEncryptionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryption = deserializeAws_restXmlFieldLevelEncryption(data, context);
   return Promise.resolve(contents);
 };
@@ -7353,7 +7354,7 @@ export const deserializeAws_restXmlGetFieldLevelEncryptionConfigCommand = async 
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryptionConfig = deserializeAws_restXmlFieldLevelEncryptionConfig(data, context);
   return Promise.resolve(contents);
 };
@@ -7418,7 +7419,7 @@ export const deserializeAws_restXmlGetFieldLevelEncryptionProfileCommand = async
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryptionProfile = deserializeAws_restXmlFieldLevelEncryptionProfile(data, context);
   return Promise.resolve(contents);
 };
@@ -7483,7 +7484,7 @@ export const deserializeAws_restXmlGetFieldLevelEncryptionProfileConfigCommand =
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryptionProfileConfig = deserializeAws_restXmlFieldLevelEncryptionProfileConfig(data, context);
   return Promise.resolve(contents);
 };
@@ -7613,7 +7614,7 @@ export const deserializeAws_restXmlGetInvalidationCommand = async (
     $metadata: deserializeMetadata(output),
     Invalidation: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.Invalidation = deserializeAws_restXmlInvalidation(data, context);
   return Promise.resolve(contents);
 };
@@ -7686,7 +7687,7 @@ export const deserializeAws_restXmlGetKeyGroupCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.KeyGroup = deserializeAws_restXmlKeyGroup(data, context);
   return Promise.resolve(contents);
 };
@@ -7743,7 +7744,7 @@ export const deserializeAws_restXmlGetKeyGroupConfigCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.KeyGroupConfig = deserializeAws_restXmlKeyGroupConfig(data, context);
   return Promise.resolve(contents);
 };
@@ -7796,7 +7797,7 @@ export const deserializeAws_restXmlGetMonitoringSubscriptionCommand = async (
     $metadata: deserializeMetadata(output),
     MonitoringSubscription: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.MonitoringSubscription = deserializeAws_restXmlMonitoringSubscription(data, context);
   return Promise.resolve(contents);
 };
@@ -7869,7 +7870,7 @@ export const deserializeAws_restXmlGetOriginRequestPolicyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.OriginRequestPolicy = deserializeAws_restXmlOriginRequestPolicy(data, context);
   return Promise.resolve(contents);
 };
@@ -7934,7 +7935,7 @@ export const deserializeAws_restXmlGetOriginRequestPolicyConfigCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.OriginRequestPolicyConfig = deserializeAws_restXmlOriginRequestPolicyConfig(data, context);
   return Promise.resolve(contents);
 };
@@ -7999,7 +8000,7 @@ export const deserializeAws_restXmlGetPublicKeyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.PublicKey = deserializeAws_restXmlPublicKey(data, context);
   return Promise.resolve(contents);
 };
@@ -8064,7 +8065,7 @@ export const deserializeAws_restXmlGetPublicKeyConfigCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.PublicKeyConfig = deserializeAws_restXmlPublicKeyConfig(data, context);
   return Promise.resolve(contents);
 };
@@ -8200,7 +8201,7 @@ export const deserializeAws_restXmlGetStreamingDistributionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.StreamingDistribution = deserializeAws_restXmlStreamingDistribution(data, context);
   return Promise.resolve(contents);
 };
@@ -8265,7 +8266,7 @@ export const deserializeAws_restXmlGetStreamingDistributionConfigCommand = async
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.StreamingDistributionConfig = deserializeAws_restXmlStreamingDistributionConfig(data, context);
   return Promise.resolve(contents);
 };
@@ -8326,7 +8327,7 @@ export const deserializeAws_restXmlListCachePoliciesCommand = async (
     $metadata: deserializeMetadata(output),
     CachePolicyList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CachePolicyList = deserializeAws_restXmlCachePolicyList(data, context);
   return Promise.resolve(contents);
 };
@@ -8395,7 +8396,7 @@ export const deserializeAws_restXmlListCloudFrontOriginAccessIdentitiesCommand =
     $metadata: deserializeMetadata(output),
     CloudFrontOriginAccessIdentityList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CloudFrontOriginAccessIdentityList = deserializeAws_restXmlCloudFrontOriginAccessIdentityList(data, context);
   return Promise.resolve(contents);
 };
@@ -8448,7 +8449,7 @@ export const deserializeAws_restXmlListConflictingAliasesCommand = async (
     $metadata: deserializeMetadata(output),
     ConflictingAliasesList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.ConflictingAliasesList = deserializeAws_restXmlConflictingAliasesList(data, context);
   return Promise.resolve(contents);
 };
@@ -8509,7 +8510,7 @@ export const deserializeAws_restXmlListDistributionsCommand = async (
     $metadata: deserializeMetadata(output),
     DistributionList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.DistributionList = deserializeAws_restXmlDistributionList(data, context);
   return Promise.resolve(contents);
 };
@@ -8562,7 +8563,7 @@ export const deserializeAws_restXmlListDistributionsByCachePolicyIdCommand = asy
     $metadata: deserializeMetadata(output),
     DistributionIdList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.DistributionIdList = deserializeAws_restXmlDistributionIdList(data, context);
   return Promise.resolve(contents);
 };
@@ -8631,7 +8632,7 @@ export const deserializeAws_restXmlListDistributionsByKeyGroupCommand = async (
     $metadata: deserializeMetadata(output),
     DistributionIdList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.DistributionIdList = deserializeAws_restXmlDistributionIdList(data, context);
   return Promise.resolve(contents);
 };
@@ -8692,7 +8693,7 @@ export const deserializeAws_restXmlListDistributionsByOriginRequestPolicyIdComma
     $metadata: deserializeMetadata(output),
     DistributionIdList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.DistributionIdList = deserializeAws_restXmlDistributionIdList(data, context);
   return Promise.resolve(contents);
 };
@@ -8761,7 +8762,7 @@ export const deserializeAws_restXmlListDistributionsByRealtimeLogConfigCommand =
     $metadata: deserializeMetadata(output),
     DistributionList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.DistributionList = deserializeAws_restXmlDistributionList(data, context);
   return Promise.resolve(contents);
 };
@@ -8814,7 +8815,7 @@ export const deserializeAws_restXmlListDistributionsByWebACLIdCommand = async (
     $metadata: deserializeMetadata(output),
     DistributionList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.DistributionList = deserializeAws_restXmlDistributionList(data, context);
   return Promise.resolve(contents);
 };
@@ -8875,7 +8876,7 @@ export const deserializeAws_restXmlListFieldLevelEncryptionConfigsCommand = asyn
     $metadata: deserializeMetadata(output),
     FieldLevelEncryptionList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryptionList = deserializeAws_restXmlFieldLevelEncryptionList(data, context);
   return Promise.resolve(contents);
 };
@@ -8928,7 +8929,7 @@ export const deserializeAws_restXmlListFieldLevelEncryptionProfilesCommand = asy
     $metadata: deserializeMetadata(output),
     FieldLevelEncryptionProfileList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryptionProfileList = deserializeAws_restXmlFieldLevelEncryptionProfileList(data, context);
   return Promise.resolve(contents);
 };
@@ -8981,7 +8982,7 @@ export const deserializeAws_restXmlListFunctionsCommand = async (
     $metadata: deserializeMetadata(output),
     FunctionList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FunctionList = deserializeAws_restXmlFunctionList(data, context);
   return Promise.resolve(contents);
 };
@@ -9042,7 +9043,7 @@ export const deserializeAws_restXmlListInvalidationsCommand = async (
     $metadata: deserializeMetadata(output),
     InvalidationList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.InvalidationList = deserializeAws_restXmlInvalidationList(data, context);
   return Promise.resolve(contents);
 };
@@ -9111,7 +9112,7 @@ export const deserializeAws_restXmlListKeyGroupsCommand = async (
     $metadata: deserializeMetadata(output),
     KeyGroupList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.KeyGroupList = deserializeAws_restXmlKeyGroupList(data, context);
   return Promise.resolve(contents);
 };
@@ -9164,7 +9165,7 @@ export const deserializeAws_restXmlListOriginRequestPoliciesCommand = async (
     $metadata: deserializeMetadata(output),
     OriginRequestPolicyList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.OriginRequestPolicyList = deserializeAws_restXmlOriginRequestPolicyList(data, context);
   return Promise.resolve(contents);
 };
@@ -9233,7 +9234,7 @@ export const deserializeAws_restXmlListPublicKeysCommand = async (
     $metadata: deserializeMetadata(output),
     PublicKeyList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.PublicKeyList = deserializeAws_restXmlPublicKeyList(data, context);
   return Promise.resolve(contents);
 };
@@ -9286,7 +9287,7 @@ export const deserializeAws_restXmlListRealtimeLogConfigsCommand = async (
     $metadata: deserializeMetadata(output),
     RealtimeLogConfigs: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.RealtimeLogConfigs = deserializeAws_restXmlRealtimeLogConfigs(data, context);
   return Promise.resolve(contents);
 };
@@ -9355,7 +9356,7 @@ export const deserializeAws_restXmlListStreamingDistributionsCommand = async (
     $metadata: deserializeMetadata(output),
     StreamingDistributionList: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.StreamingDistributionList = deserializeAws_restXmlStreamingDistributionList(data, context);
   return Promise.resolve(contents);
 };
@@ -9408,7 +9409,7 @@ export const deserializeAws_restXmlListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.Tags = deserializeAws_restXmlTags(data, context);
   return Promise.resolve(contents);
 };
@@ -9485,7 +9486,7 @@ export const deserializeAws_restXmlPublishFunctionCommand = async (
     $metadata: deserializeMetadata(output),
     FunctionSummary: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FunctionSummary = deserializeAws_restXmlFunctionSummary(data, context);
   return Promise.resolve(contents);
 };
@@ -9645,7 +9646,7 @@ export const deserializeAws_restXmlTestFunctionCommand = async (
     $metadata: deserializeMetadata(output),
     TestResult: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.TestResult = deserializeAws_restXmlTestResult(data, context);
   return Promise.resolve(contents);
 };
@@ -9809,7 +9810,7 @@ export const deserializeAws_restXmlUpdateCachePolicyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CachePolicy = deserializeAws_restXmlCachePolicy(data, context);
   return Promise.resolve(contents);
 };
@@ -9946,7 +9947,7 @@ export const deserializeAws_restXmlUpdateCloudFrontOriginAccessIdentityCommand =
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.CloudFrontOriginAccessIdentity = deserializeAws_restXmlCloudFrontOriginAccessIdentity(data, context);
   return Promise.resolve(contents);
 };
@@ -10059,7 +10060,7 @@ export const deserializeAws_restXmlUpdateDistributionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.Distribution = deserializeAws_restXmlDistribution(data, context);
   return Promise.resolve(contents);
 };
@@ -10573,7 +10574,7 @@ export const deserializeAws_restXmlUpdateFieldLevelEncryptionConfigCommand = asy
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryption = deserializeAws_restXmlFieldLevelEncryption(data, context);
   return Promise.resolve(contents);
 };
@@ -10710,7 +10711,7 @@ export const deserializeAws_restXmlUpdateFieldLevelEncryptionProfileCommand = as
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FieldLevelEncryptionProfile = deserializeAws_restXmlFieldLevelEncryptionProfile(data, context);
   return Promise.resolve(contents);
 };
@@ -10855,7 +10856,7 @@ export const deserializeAws_restXmlUpdateFunctionCommand = async (
   if (output.headers["ettag"] !== undefined) {
     contents.ETag = output.headers["ettag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.FunctionSummary = deserializeAws_restXmlFunctionSummary(data, context);
   return Promise.resolve(contents);
 };
@@ -10952,7 +10953,7 @@ export const deserializeAws_restXmlUpdateKeyGroupCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.KeyGroup = deserializeAws_restXmlKeyGroup(data, context);
   return Promise.resolve(contents);
 };
@@ -11049,7 +11050,7 @@ export const deserializeAws_restXmlUpdateOriginRequestPolicyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.OriginRequestPolicy = deserializeAws_restXmlOriginRequestPolicy(data, context);
   return Promise.resolve(contents);
 };
@@ -11186,7 +11187,7 @@ export const deserializeAws_restXmlUpdatePublicKeyCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.PublicKey = deserializeAws_restXmlPublicKey(data, context);
   return Promise.resolve(contents);
 };
@@ -11362,7 +11363,7 @@ export const deserializeAws_restXmlUpdateStreamingDistributionCommand = async (
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.StreamingDistribution = deserializeAws_restXmlStreamingDistribution(data, context);
   return Promise.resolve(contents);
 };
@@ -15854,7 +15855,7 @@ const deserializeAws_restXmlCachePolicy = (output: any, context: __SerdeContext)
     contents.Id = __expectString(output["Id"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["CachePolicyConfig"] !== undefined) {
     contents.CachePolicyConfig = deserializeAws_restXmlCachePolicyConfig(output["CachePolicyConfig"], context);
@@ -16482,7 +16483,7 @@ const deserializeAws_restXmlDistribution = (output: any, context: __SerdeContext
     contents.Status = __expectString(output["Status"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["InProgressInvalidationBatches"] !== undefined) {
     contents.InProgressInvalidationBatches = __strictParseInt32(output["InProgressInvalidationBatches"]) as number;
@@ -16704,7 +16705,7 @@ const deserializeAws_restXmlDistributionSummary = (output: any, context: __Serde
     contents.Status = __expectString(output["Status"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["DomainName"] !== undefined) {
     contents.DomainName = __expectString(output["DomainName"]);
@@ -16858,7 +16859,7 @@ const deserializeAws_restXmlFieldLevelEncryption = (output: any, context: __Serd
     contents.Id = __expectString(output["Id"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["FieldLevelEncryptionConfig"] !== undefined) {
     contents.FieldLevelEncryptionConfig = deserializeAws_restXmlFieldLevelEncryptionConfig(
@@ -16944,7 +16945,7 @@ const deserializeAws_restXmlFieldLevelEncryptionProfile = (
     contents.Id = __expectString(output["Id"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["FieldLevelEncryptionProfileConfig"] !== undefined) {
     contents.FieldLevelEncryptionProfileConfig = deserializeAws_restXmlFieldLevelEncryptionProfileConfig(
@@ -17026,7 +17027,7 @@ const deserializeAws_restXmlFieldLevelEncryptionProfileSummary = (
     contents.Id = __expectString(output["Id"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["Name"] !== undefined) {
     contents.Name = __expectString(output["Name"]);
@@ -17069,7 +17070,7 @@ const deserializeAws_restXmlFieldLevelEncryptionSummary = (
     contents.Id = __expectString(output["Id"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["Comment"] !== undefined) {
     contents.Comment = __expectString(output["Comment"]);
@@ -17279,10 +17280,10 @@ const deserializeAws_restXmlFunctionMetadata = (output: any, context: __SerdeCon
     contents.Stage = __expectString(output["Stage"]);
   }
   if (output["CreatedTime"] !== undefined) {
-    contents.CreatedTime = new Date(output["CreatedTime"]);
+    contents.CreatedTime = __expectNonNull(__parseRfc3339DateTime(output["CreatedTime"]));
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   return contents;
 };
@@ -17383,7 +17384,7 @@ const deserializeAws_restXmlInvalidation = (output: any, context: __SerdeContext
     contents.Status = __expectString(output["Status"]);
   }
   if (output["CreateTime"] !== undefined) {
-    contents.CreateTime = new Date(output["CreateTime"]);
+    contents.CreateTime = __expectNonNull(__parseRfc3339DateTime(output["CreateTime"]));
   }
   if (output["InvalidationBatch"] !== undefined) {
     contents.InvalidationBatch = deserializeAws_restXmlInvalidationBatch(output["InvalidationBatch"], context);
@@ -17451,7 +17452,7 @@ const deserializeAws_restXmlInvalidationSummary = (output: any, context: __Serde
     contents.Id = __expectString(output["Id"]);
   }
   if (output["CreateTime"] !== undefined) {
-    contents.CreateTime = new Date(output["CreateTime"]);
+    contents.CreateTime = __expectNonNull(__parseRfc3339DateTime(output["CreateTime"]));
   }
   if (output["Status"] !== undefined) {
     contents.Status = __expectString(output["Status"]);
@@ -17480,7 +17481,7 @@ const deserializeAws_restXmlKeyGroup = (output: any, context: __SerdeContext): K
     contents.Id = __expectString(output["Id"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["KeyGroupConfig"] !== undefined) {
     contents.KeyGroupConfig = deserializeAws_restXmlKeyGroupConfig(output["KeyGroupConfig"], context);
@@ -17934,7 +17935,7 @@ const deserializeAws_restXmlOriginRequestPolicy = (output: any, context: __Serde
     contents.Id = __expectString(output["Id"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["OriginRequestPolicyConfig"] !== undefined) {
     contents.OriginRequestPolicyConfig = deserializeAws_restXmlOriginRequestPolicyConfig(
@@ -18211,7 +18212,7 @@ const deserializeAws_restXmlPublicKey = (output: any, context: __SerdeContext): 
     contents.Id = __expectString(output["Id"]);
   }
   if (output["CreatedTime"] !== undefined) {
-    contents.CreatedTime = new Date(output["CreatedTime"]);
+    contents.CreatedTime = __expectNonNull(__parseRfc3339DateTime(output["CreatedTime"]));
   }
   if (output["PublicKeyConfig"] !== undefined) {
     contents.PublicKeyConfig = deserializeAws_restXmlPublicKeyConfig(output["PublicKeyConfig"], context);
@@ -18295,7 +18296,7 @@ const deserializeAws_restXmlPublicKeySummary = (output: any, context: __SerdeCon
     contents.Name = __expectString(output["Name"]);
   }
   if (output["CreatedTime"] !== undefined) {
-    contents.CreatedTime = new Date(output["CreatedTime"]);
+    contents.CreatedTime = __expectNonNull(__parseRfc3339DateTime(output["CreatedTime"]));
   }
   if (output["EncodedKey"] !== undefined) {
     contents.EncodedKey = __expectString(output["EncodedKey"]);
@@ -18650,7 +18651,7 @@ const deserializeAws_restXmlStreamingDistribution = (output: any, context: __Ser
     contents.Status = __expectString(output["Status"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["DomainName"] !== undefined) {
     contents.DomainName = __expectString(output["DomainName"]);
@@ -18774,7 +18775,7 @@ const deserializeAws_restXmlStreamingDistributionSummary = (
     contents.Status = __expectString(output["Status"]);
   }
   if (output["LastModifiedTime"] !== undefined) {
-    contents.LastModifiedTime = new Date(output["LastModifiedTime"]);
+    contents.LastModifiedTime = __expectNonNull(__parseRfc3339DateTime(output["LastModifiedTime"]));
   }
   if (output["DomainName"] !== undefined) {
     contents.DomainName = __expectString(output["DomainName"]);

@@ -245,9 +245,12 @@ import {
   expectInt32 as __expectInt32,
   expectLong as __expectLong,
   expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
   expectObject as __expectObject,
   expectString as __expectString,
+  expectUnion as __expectUnion,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
+  parseEpochTimestamp as __parseEpochTimestamp,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -1892,7 +1895,7 @@ export const deserializeAws_restJson1CreateGatewayRouteCommand = async (
     $metadata: deserializeMetadata(output),
     gatewayRoute: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.gatewayRoute = deserializeAws_restJson1GatewayRouteData(data, context);
   return Promise.resolve(contents);
 };
@@ -2001,7 +2004,7 @@ export const deserializeAws_restJson1CreateMeshCommand = async (
     $metadata: deserializeMetadata(output),
     mesh: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.mesh = deserializeAws_restJson1MeshData(data, context);
   return Promise.resolve(contents);
 };
@@ -2110,7 +2113,7 @@ export const deserializeAws_restJson1CreateRouteCommand = async (
     $metadata: deserializeMetadata(output),
     route: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.route = deserializeAws_restJson1RouteData(data, context);
   return Promise.resolve(contents);
 };
@@ -2219,7 +2222,7 @@ export const deserializeAws_restJson1CreateVirtualGatewayCommand = async (
     $metadata: deserializeMetadata(output),
     virtualGateway: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualGateway = deserializeAws_restJson1VirtualGatewayData(data, context);
   return Promise.resolve(contents);
 };
@@ -2328,7 +2331,7 @@ export const deserializeAws_restJson1CreateVirtualNodeCommand = async (
     $metadata: deserializeMetadata(output),
     virtualNode: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualNode = deserializeAws_restJson1VirtualNodeData(data, context);
   return Promise.resolve(contents);
 };
@@ -2437,7 +2440,7 @@ export const deserializeAws_restJson1CreateVirtualRouterCommand = async (
     $metadata: deserializeMetadata(output),
     virtualRouter: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualRouter = deserializeAws_restJson1VirtualRouterData(data, context);
   return Promise.resolve(contents);
 };
@@ -2546,7 +2549,7 @@ export const deserializeAws_restJson1CreateVirtualServiceCommand = async (
     $metadata: deserializeMetadata(output),
     virtualService: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualService = deserializeAws_restJson1VirtualServiceData(data, context);
   return Promise.resolve(contents);
 };
@@ -2655,7 +2658,7 @@ export const deserializeAws_restJson1DeleteGatewayRouteCommand = async (
     $metadata: deserializeMetadata(output),
     gatewayRoute: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.gatewayRoute = deserializeAws_restJson1GatewayRouteData(data, context);
   return Promise.resolve(contents);
 };
@@ -2756,7 +2759,7 @@ export const deserializeAws_restJson1DeleteMeshCommand = async (
     $metadata: deserializeMetadata(output),
     mesh: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.mesh = deserializeAws_restJson1MeshData(data, context);
   return Promise.resolve(contents);
 };
@@ -2857,7 +2860,7 @@ export const deserializeAws_restJson1DeleteRouteCommand = async (
     $metadata: deserializeMetadata(output),
     route: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.route = deserializeAws_restJson1RouteData(data, context);
   return Promise.resolve(contents);
 };
@@ -2958,7 +2961,7 @@ export const deserializeAws_restJson1DeleteVirtualGatewayCommand = async (
     $metadata: deserializeMetadata(output),
     virtualGateway: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualGateway = deserializeAws_restJson1VirtualGatewayData(data, context);
   return Promise.resolve(contents);
 };
@@ -3059,7 +3062,7 @@ export const deserializeAws_restJson1DeleteVirtualNodeCommand = async (
     $metadata: deserializeMetadata(output),
     virtualNode: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualNode = deserializeAws_restJson1VirtualNodeData(data, context);
   return Promise.resolve(contents);
 };
@@ -3160,7 +3163,7 @@ export const deserializeAws_restJson1DeleteVirtualRouterCommand = async (
     $metadata: deserializeMetadata(output),
     virtualRouter: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualRouter = deserializeAws_restJson1VirtualRouterData(data, context);
   return Promise.resolve(contents);
 };
@@ -3261,7 +3264,7 @@ export const deserializeAws_restJson1DeleteVirtualServiceCommand = async (
     $metadata: deserializeMetadata(output),
     virtualService: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualService = deserializeAws_restJson1VirtualServiceData(data, context);
   return Promise.resolve(contents);
 };
@@ -3362,7 +3365,7 @@ export const deserializeAws_restJson1DescribeGatewayRouteCommand = async (
     $metadata: deserializeMetadata(output),
     gatewayRoute: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.gatewayRoute = deserializeAws_restJson1GatewayRouteData(data, context);
   return Promise.resolve(contents);
 };
@@ -3455,7 +3458,7 @@ export const deserializeAws_restJson1DescribeMeshCommand = async (
     $metadata: deserializeMetadata(output),
     mesh: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.mesh = deserializeAws_restJson1MeshData(data, context);
   return Promise.resolve(contents);
 };
@@ -3548,7 +3551,7 @@ export const deserializeAws_restJson1DescribeRouteCommand = async (
     $metadata: deserializeMetadata(output),
     route: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.route = deserializeAws_restJson1RouteData(data, context);
   return Promise.resolve(contents);
 };
@@ -3641,7 +3644,7 @@ export const deserializeAws_restJson1DescribeVirtualGatewayCommand = async (
     $metadata: deserializeMetadata(output),
     virtualGateway: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualGateway = deserializeAws_restJson1VirtualGatewayData(data, context);
   return Promise.resolve(contents);
 };
@@ -3734,7 +3737,7 @@ export const deserializeAws_restJson1DescribeVirtualNodeCommand = async (
     $metadata: deserializeMetadata(output),
     virtualNode: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualNode = deserializeAws_restJson1VirtualNodeData(data, context);
   return Promise.resolve(contents);
 };
@@ -3827,7 +3830,7 @@ export const deserializeAws_restJson1DescribeVirtualRouterCommand = async (
     $metadata: deserializeMetadata(output),
     virtualRouter: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualRouter = deserializeAws_restJson1VirtualRouterData(data, context);
   return Promise.resolve(contents);
 };
@@ -3920,7 +3923,7 @@ export const deserializeAws_restJson1DescribeVirtualServiceCommand = async (
     $metadata: deserializeMetadata(output),
     virtualService: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualService = deserializeAws_restJson1VirtualServiceData(data, context);
   return Promise.resolve(contents);
 };
@@ -4995,7 +4998,7 @@ export const deserializeAws_restJson1UpdateGatewayRouteCommand = async (
     $metadata: deserializeMetadata(output),
     gatewayRoute: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.gatewayRoute = deserializeAws_restJson1GatewayRouteData(data, context);
   return Promise.resolve(contents);
 };
@@ -5104,7 +5107,7 @@ export const deserializeAws_restJson1UpdateMeshCommand = async (
     $metadata: deserializeMetadata(output),
     mesh: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.mesh = deserializeAws_restJson1MeshData(data, context);
   return Promise.resolve(contents);
 };
@@ -5205,7 +5208,7 @@ export const deserializeAws_restJson1UpdateRouteCommand = async (
     $metadata: deserializeMetadata(output),
     route: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.route = deserializeAws_restJson1RouteData(data, context);
   return Promise.resolve(contents);
 };
@@ -5314,7 +5317,7 @@ export const deserializeAws_restJson1UpdateVirtualGatewayCommand = async (
     $metadata: deserializeMetadata(output),
     virtualGateway: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualGateway = deserializeAws_restJson1VirtualGatewayData(data, context);
   return Promise.resolve(contents);
 };
@@ -5423,7 +5426,7 @@ export const deserializeAws_restJson1UpdateVirtualNodeCommand = async (
     $metadata: deserializeMetadata(output),
     virtualNode: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualNode = deserializeAws_restJson1VirtualNodeData(data, context);
   return Promise.resolve(contents);
 };
@@ -5532,7 +5535,7 @@ export const deserializeAws_restJson1UpdateVirtualRouterCommand = async (
     $metadata: deserializeMetadata(output),
     virtualRouter: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualRouter = deserializeAws_restJson1VirtualRouterData(data, context);
   return Promise.resolve(contents);
 };
@@ -5641,7 +5644,7 @@ export const deserializeAws_restJson1UpdateVirtualServiceCommand = async (
     $metadata: deserializeMetadata(output),
     virtualService: undefined,
   };
-  const data: object | undefined = __expectObject(await parseBody(output.body, context));
+  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
   contents.virtualService = deserializeAws_restJson1VirtualServiceData(data, context);
   return Promise.resolve(contents);
 };
@@ -7493,7 +7496,7 @@ const deserializeAws_restJson1Backends = (output: any, context: __SerdeContext):
       if (entry === null) {
         return null as any;
       }
-      return deserializeAws_restJson1Backend(entry, context);
+      return deserializeAws_restJson1Backend(__expectUnion(entry), context);
     });
 };
 
@@ -7521,7 +7524,7 @@ const deserializeAws_restJson1ClientPolicyTls = (output: any, context: __SerdeCo
   return {
     certificate:
       output.certificate !== undefined && output.certificate !== null
-        ? deserializeAws_restJson1ClientTlsCertificate(output.certificate, context)
+        ? deserializeAws_restJson1ClientTlsCertificate(__expectUnion(output.certificate), context)
         : undefined,
     enforce: __expectBoolean(output.enforce),
     ports:
@@ -7630,12 +7633,12 @@ const deserializeAws_restJson1GatewayRouteRef = (output: any, context: __SerdeCo
     arn: __expectString(output.arn),
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     gatewayRouteName: __expectString(output.gatewayRouteName),
     lastUpdatedAt:
       output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
-        ? new Date(Math.round(output.lastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.lastUpdatedAt)))
         : undefined,
     meshName: __expectString(output.meshName),
     meshOwner: __expectString(output.meshOwner),
@@ -7738,7 +7741,7 @@ const deserializeAws_restJson1GrpcGatewayRouteMetadata = (
     invert: __expectBoolean(output.invert),
     match:
       output.match !== undefined && output.match !== null
-        ? deserializeAws_restJson1GrpcMetadataMatchMethod(output.match, context)
+        ? deserializeAws_restJson1GrpcMetadataMatchMethod(__expectUnion(output.match), context)
         : undefined,
     name: __expectString(output.name),
   } as any;
@@ -7876,7 +7879,7 @@ const deserializeAws_restJson1GrpcRouteMetadata = (output: any, context: __Serde
     invert: __expectBoolean(output.invert),
     match:
       output.match !== undefined && output.match !== null
-        ? deserializeAws_restJson1GrpcRouteMetadataMatchMethod(output.match, context)
+        ? deserializeAws_restJson1GrpcRouteMetadataMatchMethod(__expectUnion(output.match), context)
         : undefined,
     name: __expectString(output.name),
   } as any;
@@ -8000,7 +8003,7 @@ const deserializeAws_restJson1HttpGatewayRouteHeader = (
     invert: __expectBoolean(output.invert),
     match:
       output.match !== undefined && output.match !== null
-        ? deserializeAws_restJson1HeaderMatchMethod(output.match, context)
+        ? deserializeAws_restJson1HeaderMatchMethod(__expectUnion(output.match), context)
         : undefined,
     name: __expectString(output.name),
   } as any;
@@ -8174,7 +8177,7 @@ const deserializeAws_restJson1HttpRouteHeader = (output: any, context: __SerdeCo
     invert: __expectBoolean(output.invert),
     match:
       output.match !== undefined && output.match !== null
-        ? deserializeAws_restJson1HeaderMatchMethod(output.match, context)
+        ? deserializeAws_restJson1HeaderMatchMethod(__expectUnion(output.match), context)
         : undefined,
     name: __expectString(output.name),
   } as any;
@@ -8228,7 +8231,7 @@ const deserializeAws_restJson1Listener = (output: any, context: __SerdeContext):
   return {
     connectionPool:
       output.connectionPool !== undefined && output.connectionPool !== null
-        ? deserializeAws_restJson1VirtualNodeConnectionPool(output.connectionPool, context)
+        ? deserializeAws_restJson1VirtualNodeConnectionPool(__expectUnion(output.connectionPool), context)
         : undefined,
     healthCheck:
       output.healthCheck !== undefined && output.healthCheck !== null
@@ -8244,7 +8247,7 @@ const deserializeAws_restJson1Listener = (output: any, context: __SerdeContext):
         : undefined,
     timeout:
       output.timeout !== undefined && output.timeout !== null
-        ? deserializeAws_restJson1ListenerTimeout(output.timeout, context)
+        ? deserializeAws_restJson1ListenerTimeout(__expectUnion(output.timeout), context)
         : undefined,
     tls:
       output.tls !== undefined && output.tls !== null
@@ -8292,7 +8295,7 @@ const deserializeAws_restJson1ListenerTls = (output: any, context: __SerdeContex
   return {
     certificate:
       output.certificate !== undefined && output.certificate !== null
-        ? deserializeAws_restJson1ListenerTlsCertificate(output.certificate, context)
+        ? deserializeAws_restJson1ListenerTlsCertificate(__expectUnion(output.certificate), context)
         : undefined,
     mode: __expectString(output.mode),
     validation:
@@ -8363,7 +8366,7 @@ const deserializeAws_restJson1ListenerTlsValidationContext = (
         : undefined,
     trust:
       output.trust !== undefined && output.trust !== null
-        ? deserializeAws_restJson1ListenerTlsValidationContextTrust(output.trust, context)
+        ? deserializeAws_restJson1ListenerTlsValidationContextTrust(__expectUnion(output.trust), context)
         : undefined,
   } as any;
 };
@@ -8389,7 +8392,7 @@ const deserializeAws_restJson1Logging = (output: any, context: __SerdeContext): 
   return {
     accessLog:
       output.accessLog !== undefined && output.accessLog !== null
-        ? deserializeAws_restJson1AccessLog(output.accessLog, context)
+        ? deserializeAws_restJson1AccessLog(__expectUnion(output.accessLog), context)
         : undefined,
   } as any;
 };
@@ -8435,11 +8438,11 @@ const deserializeAws_restJson1MeshRef = (output: any, context: __SerdeContext): 
     arn: __expectString(output.arn),
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     lastUpdatedAt:
       output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
-        ? new Date(Math.round(output.lastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.lastUpdatedAt)))
         : undefined,
     meshName: __expectString(output.meshName),
     meshOwner: __expectString(output.meshOwner),
@@ -8486,13 +8489,20 @@ const deserializeAws_restJson1PortMapping = (output: any, context: __SerdeContex
 };
 
 const deserializeAws_restJson1PortSet = (output: any, context: __SerdeContext): number[] => {
+  const uniqueValues = new Set<any>();
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
       if (entry === null) {
         return null as any;
       }
-      return __expectInt32(entry) as any;
+      const parsedEntry = __expectInt32(entry) as any;
+      if (uniqueValues.has(parsedEntry)) {
+        throw new TypeError('All elements of the set "com.amazonaws.appmesh#PortSet" must be unique.');
+      } else {
+        uniqueValues.add(parsedEntry);
+        return parsedEntry;
+      }
     });
 };
 
@@ -8507,11 +8517,11 @@ const deserializeAws_restJson1ResourceMetadata = (output: any, context: __SerdeC
     arn: __expectString(output.arn),
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     lastUpdatedAt:
       output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
-        ? new Date(Math.round(output.lastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.lastUpdatedAt)))
         : undefined,
     meshOwner: __expectString(output.meshOwner),
     resourceOwner: __expectString(output.resourceOwner),
@@ -8556,11 +8566,11 @@ const deserializeAws_restJson1RouteRef = (output: any, context: __SerdeContext):
     arn: __expectString(output.arn),
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     lastUpdatedAt:
       output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
-        ? new Date(Math.round(output.lastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.lastUpdatedAt)))
         : undefined,
     meshName: __expectString(output.meshName),
     meshOwner: __expectString(output.meshOwner),
@@ -8719,7 +8729,7 @@ const deserializeAws_restJson1TlsValidationContext = (output: any, context: __Se
         : undefined,
     trust:
       output.trust !== undefined && output.trust !== null
-        ? deserializeAws_restJson1TlsValidationContextTrust(output.trust, context)
+        ? deserializeAws_restJson1TlsValidationContextTrust(__expectUnion(output.trust), context)
         : undefined,
   } as any;
 };
@@ -8833,7 +8843,7 @@ const deserializeAws_restJson1VirtualGatewayClientPolicyTls = (
   return {
     certificate:
       output.certificate !== undefined && output.certificate !== null
-        ? deserializeAws_restJson1VirtualGatewayClientTlsCertificate(output.certificate, context)
+        ? deserializeAws_restJson1VirtualGatewayClientTlsCertificate(__expectUnion(output.certificate), context)
         : undefined,
     enforce: __expectBoolean(output.enforce),
     ports:
@@ -8975,7 +8985,7 @@ const deserializeAws_restJson1VirtualGatewayListener = (
   return {
     connectionPool:
       output.connectionPool !== undefined && output.connectionPool !== null
-        ? deserializeAws_restJson1VirtualGatewayConnectionPool(output.connectionPool, context)
+        ? deserializeAws_restJson1VirtualGatewayConnectionPool(__expectUnion(output.connectionPool), context)
         : undefined,
     healthCheck:
       output.healthCheck !== undefined && output.healthCheck !== null
@@ -9013,7 +9023,7 @@ const deserializeAws_restJson1VirtualGatewayListenerTls = (
   return {
     certificate:
       output.certificate !== undefined && output.certificate !== null
-        ? deserializeAws_restJson1VirtualGatewayListenerTlsCertificate(output.certificate, context)
+        ? deserializeAws_restJson1VirtualGatewayListenerTlsCertificate(__expectUnion(output.certificate), context)
         : undefined,
     mode: __expectString(output.mode),
     validation:
@@ -9084,7 +9094,7 @@ const deserializeAws_restJson1VirtualGatewayListenerTlsValidationContext = (
         : undefined,
     trust:
       output.trust !== undefined && output.trust !== null
-        ? deserializeAws_restJson1VirtualGatewayListenerTlsValidationContextTrust(output.trust, context)
+        ? deserializeAws_restJson1VirtualGatewayListenerTlsValidationContextTrust(__expectUnion(output.trust), context)
         : undefined,
   } as any;
 };
@@ -9110,7 +9120,7 @@ const deserializeAws_restJson1VirtualGatewayLogging = (output: any, context: __S
   return {
     accessLog:
       output.accessLog !== undefined && output.accessLog !== null
-        ? deserializeAws_restJson1VirtualGatewayAccessLog(output.accessLog, context)
+        ? deserializeAws_restJson1VirtualGatewayAccessLog(__expectUnion(output.accessLog), context)
         : undefined,
   } as any;
 };
@@ -9130,11 +9140,11 @@ const deserializeAws_restJson1VirtualGatewayRef = (output: any, context: __Serde
     arn: __expectString(output.arn),
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     lastUpdatedAt:
       output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
-        ? new Date(Math.round(output.lastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.lastUpdatedAt)))
         : undefined,
     meshName: __expectString(output.meshName),
     meshOwner: __expectString(output.meshOwner),
@@ -9178,7 +9188,7 @@ const deserializeAws_restJson1VirtualGatewayTlsValidationContext = (
         : undefined,
     trust:
       output.trust !== undefined && output.trust !== null
-        ? deserializeAws_restJson1VirtualGatewayTlsValidationContextTrust(output.trust, context)
+        ? deserializeAws_restJson1VirtualGatewayTlsValidationContextTrust(__expectUnion(output.trust), context)
         : undefined,
   } as any;
 };
@@ -9325,11 +9335,11 @@ const deserializeAws_restJson1VirtualNodeRef = (output: any, context: __SerdeCon
     arn: __expectString(output.arn),
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     lastUpdatedAt:
       output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
-        ? new Date(Math.round(output.lastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.lastUpdatedAt)))
         : undefined,
     meshName: __expectString(output.meshName),
     meshOwner: __expectString(output.meshOwner),
@@ -9368,7 +9378,7 @@ const deserializeAws_restJson1VirtualNodeSpec = (output: any, context: __SerdeCo
         : undefined,
     serviceDiscovery:
       output.serviceDiscovery !== undefined && output.serviceDiscovery !== null
-        ? deserializeAws_restJson1ServiceDiscovery(output.serviceDiscovery, context)
+        ? deserializeAws_restJson1ServiceDiscovery(__expectUnion(output.serviceDiscovery), context)
         : undefined,
   } as any;
 };
@@ -9446,11 +9456,11 @@ const deserializeAws_restJson1VirtualRouterRef = (output: any, context: __SerdeC
     arn: __expectString(output.arn),
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     lastUpdatedAt:
       output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
-        ? new Date(Math.round(output.lastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.lastUpdatedAt)))
         : undefined,
     meshName: __expectString(output.meshName),
     meshOwner: __expectString(output.meshOwner),
@@ -9546,11 +9556,11 @@ const deserializeAws_restJson1VirtualServiceRef = (output: any, context: __Serde
     arn: __expectString(output.arn),
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     lastUpdatedAt:
       output.lastUpdatedAt !== undefined && output.lastUpdatedAt !== null
-        ? new Date(Math.round(output.lastUpdatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.lastUpdatedAt)))
         : undefined,
     meshName: __expectString(output.meshName),
     meshOwner: __expectString(output.meshOwner),
@@ -9564,7 +9574,7 @@ const deserializeAws_restJson1VirtualServiceSpec = (output: any, context: __Serd
   return {
     provider:
       output.provider !== undefined && output.provider !== null
-        ? deserializeAws_restJson1VirtualServiceProvider(output.provider, context)
+        ? deserializeAws_restJson1VirtualServiceProvider(__expectUnion(output.provider), context)
         : undefined,
   } as any;
 };

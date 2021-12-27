@@ -1,5 +1,6 @@
 import { SageMakerClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../SageMakerClient.ts";
-import { DescribeTrainingJobRequest, DescribeTrainingJobResponse } from "../models/models_1.ts";
+import { DescribeTrainingJobRequest } from "../models/models_1.ts";
+import { DescribeTrainingJobResponse } from "../models/models_2.ts";
 import {
   deserializeAws_json1_1DescribeTrainingJobCommand,
   serializeAws_json1_1DescribeTrainingJobCommand,

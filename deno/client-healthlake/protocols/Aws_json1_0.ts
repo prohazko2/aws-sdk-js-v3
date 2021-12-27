@@ -75,7 +75,13 @@ import {
   ValidationException,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectString as __expectString } from "../../smithy-client/mod.ts";
+import {
+  expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
+  expectString as __expectString,
+  expectUnion as __expectUnion,
+  parseEpochTimestamp as __parseEpochTimestamp,
+} from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   HeaderBag as __HeaderBag,
@@ -1631,7 +1637,7 @@ const deserializeAws_json1_0DatastoreProperties = (output: any, context: __Serde
   return {
     CreatedAt:
       output.CreatedAt !== undefined && output.CreatedAt !== null
-        ? new Date(Math.round(output.CreatedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.CreatedAt)))
         : undefined,
     DatastoreArn: __expectString(output.DatastoreArn),
     DatastoreEndpoint: __expectString(output.DatastoreEndpoint),
@@ -1714,18 +1720,20 @@ const deserializeAws_json1_0ExportJobProperties = (output: any, context: __Serde
     DataAccessRoleArn: __expectString(output.DataAccessRoleArn),
     DatastoreId: __expectString(output.DatastoreId),
     EndTime:
-      output.EndTime !== undefined && output.EndTime !== null ? new Date(Math.round(output.EndTime * 1000)) : undefined,
+      output.EndTime !== undefined && output.EndTime !== null
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.EndTime)))
+        : undefined,
     JobId: __expectString(output.JobId),
     JobName: __expectString(output.JobName),
     JobStatus: __expectString(output.JobStatus),
     Message: __expectString(output.Message),
     OutputDataConfig:
       output.OutputDataConfig !== undefined && output.OutputDataConfig !== null
-        ? deserializeAws_json1_0OutputDataConfig(output.OutputDataConfig, context)
+        ? deserializeAws_json1_0OutputDataConfig(__expectUnion(output.OutputDataConfig), context)
         : undefined,
     SubmitTime:
       output.SubmitTime !== undefined && output.SubmitTime !== null
-        ? new Date(Math.round(output.SubmitTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.SubmitTime)))
         : undefined,
   } as any;
 };
@@ -1746,22 +1754,24 @@ const deserializeAws_json1_0ImportJobProperties = (output: any, context: __Serde
     DataAccessRoleArn: __expectString(output.DataAccessRoleArn),
     DatastoreId: __expectString(output.DatastoreId),
     EndTime:
-      output.EndTime !== undefined && output.EndTime !== null ? new Date(Math.round(output.EndTime * 1000)) : undefined,
+      output.EndTime !== undefined && output.EndTime !== null
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.EndTime)))
+        : undefined,
     InputDataConfig:
       output.InputDataConfig !== undefined && output.InputDataConfig !== null
-        ? deserializeAws_json1_0InputDataConfig(output.InputDataConfig, context)
+        ? deserializeAws_json1_0InputDataConfig(__expectUnion(output.InputDataConfig), context)
         : undefined,
     JobId: __expectString(output.JobId),
     JobName: __expectString(output.JobName),
     JobOutputDataConfig:
       output.JobOutputDataConfig !== undefined && output.JobOutputDataConfig !== null
-        ? deserializeAws_json1_0OutputDataConfig(output.JobOutputDataConfig, context)
+        ? deserializeAws_json1_0OutputDataConfig(__expectUnion(output.JobOutputDataConfig), context)
         : undefined,
     JobStatus: __expectString(output.JobStatus),
     Message: __expectString(output.Message),
     SubmitTime:
       output.SubmitTime !== undefined && output.SubmitTime !== null
-        ? new Date(Math.round(output.SubmitTime * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.SubmitTime)))
         : undefined,
   } as any;
 };

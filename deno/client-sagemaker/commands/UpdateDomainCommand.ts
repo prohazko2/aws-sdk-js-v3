@@ -1,5 +1,5 @@
 import { SageMakerClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../SageMakerClient.ts";
-import { UpdateDomainRequest, UpdateDomainResponse } from "../models/models_2.ts";
+import { UpdateDomainRequest, UpdateDomainResponse } from "../models/models_3.ts";
 import {
   deserializeAws_json1_1UpdateDomainCommand,
   serializeAws_json1_1UpdateDomainCommand,

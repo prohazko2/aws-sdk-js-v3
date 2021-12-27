@@ -13,8 +13,12 @@ import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "..
 import {
   expectBoolean as __expectBoolean,
   expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
   expectString as __expectString,
+  expectUnion as __expectUnion,
   limitedParseDouble as __limitedParseDouble,
+  parseEpochTimestamp as __parseEpochTimestamp,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -198,12 +202,12 @@ const deserializeAws_json1_1Entitlement = (output: any, context: __SerdeContext)
     Dimension: __expectString(output.Dimension),
     ExpirationDate:
       output.ExpirationDate !== undefined && output.ExpirationDate !== null
-        ? new Date(Math.round(output.ExpirationDate * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.ExpirationDate)))
         : undefined,
     ProductCode: __expectString(output.ProductCode),
     Value:
       output.Value !== undefined && output.Value !== null
-        ? deserializeAws_json1_1EntitlementValue(output.Value, context)
+        ? deserializeAws_json1_1EntitlementValue(__expectUnion(output.Value), context)
         : undefined,
   } as any;
 };

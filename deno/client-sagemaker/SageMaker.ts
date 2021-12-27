@@ -185,6 +185,11 @@ import {
   CreateProjectCommandOutput,
 } from "./commands/CreateProjectCommand.ts";
 import {
+  CreateStudioLifecycleConfigCommand,
+  CreateStudioLifecycleConfigCommandInput,
+  CreateStudioLifecycleConfigCommandOutput,
+} from "./commands/CreateStudioLifecycleConfigCommand.ts";
+import {
   CreateTrainingJobCommand,
   CreateTrainingJobCommandInput,
   CreateTrainingJobCommandOutput,
@@ -358,6 +363,11 @@ import {
   DeleteProjectCommandInput,
   DeleteProjectCommandOutput,
 } from "./commands/DeleteProjectCommand.ts";
+import {
+  DeleteStudioLifecycleConfigCommand,
+  DeleteStudioLifecycleConfigCommandInput,
+  DeleteStudioLifecycleConfigCommandOutput,
+} from "./commands/DeleteStudioLifecycleConfigCommand.ts";
 import { DeleteTagsCommand, DeleteTagsCommandInput, DeleteTagsCommandOutput } from "./commands/DeleteTagsCommand.ts";
 import { DeleteTrialCommand, DeleteTrialCommandInput, DeleteTrialCommandOutput } from "./commands/DeleteTrialCommand.ts";
 import {
@@ -571,6 +581,11 @@ import {
   DescribeProjectCommandInput,
   DescribeProjectCommandOutput,
 } from "./commands/DescribeProjectCommand.ts";
+import {
+  DescribeStudioLifecycleConfigCommand,
+  DescribeStudioLifecycleConfigCommandInput,
+  DescribeStudioLifecycleConfigCommandOutput,
+} from "./commands/DescribeStudioLifecycleConfigCommand.ts";
 import {
   DescribeSubscribedWorkteamCommand,
   DescribeSubscribedWorkteamCommandInput,
@@ -837,6 +852,11 @@ import {
   ListProjectsCommandInput,
   ListProjectsCommandOutput,
 } from "./commands/ListProjectsCommand.ts";
+import {
+  ListStudioLifecycleConfigsCommand,
+  ListStudioLifecycleConfigsCommandInput,
+  ListStudioLifecycleConfigsCommandOutput,
+} from "./commands/ListStudioLifecycleConfigsCommand.ts";
 import {
   ListSubscribedWorkteamsCommand,
   ListSubscribedWorkteamsCommandInput,
@@ -1234,13 +1254,6 @@ export class SageMaker extends SageMakerClient {
    *         Generally, an action involves at least one input or output artifact. For more information, see
    *         <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html">Amazon SageMaker
    *           ML Lineage Tracking</a>.</p>
-   *          <note>
-   *             <p>
-   *                <code>CreateAction</code> can only be invoked from within an SageMaker managed
-   *           environment. This includes SageMaker training jobs, processing jobs, transform jobs, and SageMaker
-   *           notebooks. A call to <code>CreateAction</code> from outside one of these
-   *           environments results in an error.</p>
-   *          </note>
    */
   public createAction(
     args: CreateActionCommandInput,
@@ -1370,13 +1383,6 @@ export class SageMaker extends SageMakerClient {
    *         the ECR registry path of an image. For more information, see
    *         <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html">Amazon SageMaker
    *           ML Lineage Tracking</a>.</p>
-   *          <note>
-   *             <p>
-   *                <code>CreateArtifact</code> can only be invoked from within an SageMaker managed
-   *           environment. This includes SageMaker training jobs, processing jobs, transform jobs, and SageMaker
-   *           notebooks. A call to <code>CreateArtifact</code> from outside one of these
-   *           environments results in an error.</p>
-   *          </note>
    */
   public createArtifact(
     args: CreateArtifactCommandInput,
@@ -1549,13 +1555,6 @@ export class SageMaker extends SageMakerClient {
    *         an endpoint and a model package. For more information, see
    *         <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html">Amazon SageMaker
    *           ML Lineage Tracking</a>.</p>
-   *          <note>
-   *             <p>
-   *                <code>CreateContext</code> can only be invoked from within an SageMaker managed
-   *           environment. This includes SageMaker training jobs, processing jobs, transform jobs, and SageMaker
-   *           notebooks. A call to <code>CreateContext</code> from outside one of these
-   *           environments results in an error.</p>
-   *          </note>
    */
   public createContext(
     args: CreateContextCommandInput,
@@ -1884,11 +1883,6 @@ export class SageMaker extends SageMakerClient {
    *             you want to host two models, A and B, and you assign traffic weight 2 for model A and 1
    *             for model B. Amazon SageMaker distributes two-thirds of the traffic to Model A, and one-third to
    *             model B. </p>
-   *         <p>For an example that calls this method when deploying a model to Amazon SageMaker hosting services,
-   *             see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto">Deploy the
-   *                 Model to Amazon SageMaker Hosting Services (Amazon Web Services SDK for Python (Boto
-   *             3)).</a>
-   *          </p>
    *         <note>
    *             <p>When you call <a>CreateEndpoint</a>, a load call is made to DynamoDB to
    *                 verify that your endpoint configuration exists. When you read data from a DynamoDB
@@ -2817,6 +2811,38 @@ export class SageMaker extends SageMakerClient {
     cb?: (err: any, data?: CreateProjectCommandOutput) => void
   ): Promise<CreateProjectCommandOutput> | void {
     const command = new CreateProjectCommand(args);
+    if (typeof optionsOrCb === "function") {
+      this.send(command, optionsOrCb);
+    } else if (typeof cb === "function") {
+      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+      this.send(command, optionsOrCb || {}, cb);
+    } else {
+      return this.send(command, optionsOrCb);
+    }
+  }
+
+  /**
+   * <p>Creates a new Studio Lifecycle Configuration.</p>
+   */
+  public createStudioLifecycleConfig(
+    args: CreateStudioLifecycleConfigCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<CreateStudioLifecycleConfigCommandOutput>;
+  public createStudioLifecycleConfig(
+    args: CreateStudioLifecycleConfigCommandInput,
+    cb: (err: any, data?: CreateStudioLifecycleConfigCommandOutput) => void
+  ): void;
+  public createStudioLifecycleConfig(
+    args: CreateStudioLifecycleConfigCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: CreateStudioLifecycleConfigCommandOutput) => void
+  ): void;
+  public createStudioLifecycleConfig(
+    args: CreateStudioLifecycleConfigCommandInput,
+    optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: CreateStudioLifecycleConfigCommandOutput) => void),
+    cb?: (err: any, data?: CreateStudioLifecycleConfigCommandOutput) => void
+  ): Promise<CreateStudioLifecycleConfigCommandOutput> | void {
+    const command = new CreateStudioLifecycleConfigCommand(args);
     if (typeof optionsOrCb === "function") {
       this.send(command, optionsOrCb);
     } else if (typeof cb === "function") {
@@ -4205,6 +4231,38 @@ export class SageMaker extends SageMakerClient {
     cb?: (err: any, data?: DeleteProjectCommandOutput) => void
   ): Promise<DeleteProjectCommandOutput> | void {
     const command = new DeleteProjectCommand(args);
+    if (typeof optionsOrCb === "function") {
+      this.send(command, optionsOrCb);
+    } else if (typeof cb === "function") {
+      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+      this.send(command, optionsOrCb || {}, cb);
+    } else {
+      return this.send(command, optionsOrCb);
+    }
+  }
+
+  /**
+   * <p>Deletes the Studio Lifecycle Configuration. In order to delete the Lifecycle Configuration, there must be no running apps using the Lifecycle Configuration. You must also remove the Lifecycle Configuration from UserSettings in all Domains and UserProfiles.</p>
+   */
+  public deleteStudioLifecycleConfig(
+    args: DeleteStudioLifecycleConfigCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DeleteStudioLifecycleConfigCommandOutput>;
+  public deleteStudioLifecycleConfig(
+    args: DeleteStudioLifecycleConfigCommandInput,
+    cb: (err: any, data?: DeleteStudioLifecycleConfigCommandOutput) => void
+  ): void;
+  public deleteStudioLifecycleConfig(
+    args: DeleteStudioLifecycleConfigCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DeleteStudioLifecycleConfigCommandOutput) => void
+  ): void;
+  public deleteStudioLifecycleConfig(
+    args: DeleteStudioLifecycleConfigCommandInput,
+    optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteStudioLifecycleConfigCommandOutput) => void),
+    cb?: (err: any, data?: DeleteStudioLifecycleConfigCommandOutput) => void
+  ): Promise<DeleteStudioLifecycleConfigCommandOutput> | void {
+    const command = new DeleteStudioLifecycleConfigCommand(args);
     if (typeof optionsOrCb === "function") {
       this.send(command, optionsOrCb);
     } else if (typeof cb === "function") {
@@ -5673,6 +5731,38 @@ export class SageMaker extends SageMakerClient {
     cb?: (err: any, data?: DescribeProjectCommandOutput) => void
   ): Promise<DescribeProjectCommandOutput> | void {
     const command = new DescribeProjectCommand(args);
+    if (typeof optionsOrCb === "function") {
+      this.send(command, optionsOrCb);
+    } else if (typeof cb === "function") {
+      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+      this.send(command, optionsOrCb || {}, cb);
+    } else {
+      return this.send(command, optionsOrCb);
+    }
+  }
+
+  /**
+   * <p>Describes the Studio Lifecycle Configuration.</p>
+   */
+  public describeStudioLifecycleConfig(
+    args: DescribeStudioLifecycleConfigCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<DescribeStudioLifecycleConfigCommandOutput>;
+  public describeStudioLifecycleConfig(
+    args: DescribeStudioLifecycleConfigCommandInput,
+    cb: (err: any, data?: DescribeStudioLifecycleConfigCommandOutput) => void
+  ): void;
+  public describeStudioLifecycleConfig(
+    args: DescribeStudioLifecycleConfigCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: DescribeStudioLifecycleConfigCommandOutput) => void
+  ): void;
+  public describeStudioLifecycleConfig(
+    args: DescribeStudioLifecycleConfigCommandInput,
+    optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DescribeStudioLifecycleConfigCommandOutput) => void),
+    cb?: (err: any, data?: DescribeStudioLifecycleConfigCommandOutput) => void
+  ): Promise<DescribeStudioLifecycleConfigCommandOutput> | void {
+    const command = new DescribeStudioLifecycleConfigCommand(args);
     if (typeof optionsOrCb === "function") {
       this.send(command, optionsOrCb);
     } else if (typeof cb === "function") {
@@ -7534,6 +7624,38 @@ export class SageMaker extends SageMakerClient {
     cb?: (err: any, data?: ListProjectsCommandOutput) => void
   ): Promise<ListProjectsCommandOutput> | void {
     const command = new ListProjectsCommand(args);
+    if (typeof optionsOrCb === "function") {
+      this.send(command, optionsOrCb);
+    } else if (typeof cb === "function") {
+      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+      this.send(command, optionsOrCb || {}, cb);
+    } else {
+      return this.send(command, optionsOrCb);
+    }
+  }
+
+  /**
+   * <p>Lists the Studio Lifecycle Configurations in your Amazon Web Services Account.</p>
+   */
+  public listStudioLifecycleConfigs(
+    args: ListStudioLifecycleConfigsCommandInput,
+    options?: __HttpHandlerOptions
+  ): Promise<ListStudioLifecycleConfigsCommandOutput>;
+  public listStudioLifecycleConfigs(
+    args: ListStudioLifecycleConfigsCommandInput,
+    cb: (err: any, data?: ListStudioLifecycleConfigsCommandOutput) => void
+  ): void;
+  public listStudioLifecycleConfigs(
+    args: ListStudioLifecycleConfigsCommandInput,
+    options: __HttpHandlerOptions,
+    cb: (err: any, data?: ListStudioLifecycleConfigsCommandOutput) => void
+  ): void;
+  public listStudioLifecycleConfigs(
+    args: ListStudioLifecycleConfigsCommandInput,
+    optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListStudioLifecycleConfigsCommandOutput) => void),
+    cb?: (err: any, data?: ListStudioLifecycleConfigsCommandOutput) => void
+  ): Promise<ListStudioLifecycleConfigsCommandOutput> | void {
+    const command = new ListStudioLifecycleConfigsCommand(args);
     if (typeof optionsOrCb === "function") {
       this.send(command, optionsOrCb);
     } else if (typeof cb === "function") {

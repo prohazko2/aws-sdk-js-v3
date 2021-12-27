@@ -61,9 +61,12 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
   expectObject as __expectObject,
   expectString as __expectString,
+  expectUnion as __expectUnion,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
+  parseEpochTimestamp as __parseEpochTimestamp,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -1962,7 +1965,7 @@ const deserializeAws_restJson1ContainerProvider = (output: any, context: __Serde
     id: __expectString(output.id),
     info:
       output.info !== undefined && output.info !== null
-        ? deserializeAws_restJson1ContainerInfo(output.info, context)
+        ? deserializeAws_restJson1ContainerInfo(__expectUnion(output.info), context)
         : undefined,
     type: __expectString(output.type),
   } as any;
@@ -1984,7 +1987,7 @@ const deserializeAws_restJson1Endpoint = (output: any, context: __SerdeContext):
         : undefined,
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     executionRoleArn: __expectString(output.executionRoleArn),
     failureReason: __expectString(output.failureReason),
@@ -2049,14 +2052,14 @@ const deserializeAws_restJson1JobRun = (output: any, context: __SerdeContext): J
         : undefined,
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     createdBy: __expectString(output.createdBy),
     executionRoleArn: __expectString(output.executionRoleArn),
     failureReason: __expectString(output.failureReason),
     finishedAt:
       output.finishedAt !== undefined && output.finishedAt !== null
-        ? new Date(Math.round(output.finishedAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.finishedAt)))
         : undefined,
     id: __expectString(output.id),
     jobDriver:
@@ -2170,7 +2173,7 @@ const deserializeAws_restJson1VirtualCluster = (output: any, context: __SerdeCon
         : undefined,
     createdAt:
       output.createdAt !== undefined && output.createdAt !== null
-        ? new Date(Math.round(output.createdAt * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.createdAt)))
         : undefined,
     id: __expectString(output.id),
     name: __expectString(output.name),

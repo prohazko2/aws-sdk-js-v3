@@ -1,5 +1,6 @@
 export * from "./OutpostsClient.ts";
 export * from "./Outposts.ts";
+export * from "./commands/CreateOrderCommand.ts";
 export * from "./commands/CreateOutpostCommand.ts";
 export * from "./commands/DeleteOutpostCommand.ts";
 export * from "./commands/DeleteSiteCommand.ts";

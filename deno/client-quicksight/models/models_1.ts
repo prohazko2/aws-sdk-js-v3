@@ -22,7 +22,6 @@ import {
   EmbeddingIdentityType,
   FieldFolder,
   FilterOperator,
-  FolderFilterAttribute,
   FolderType,
   Group,
   GroupMember,
@@ -49,6 +48,10 @@ import {
 } from "./models_0.ts";
 import { SENSITIVE_STRING } from "../../smithy-client/mod.ts";
 import { MetadataBearer as $MetadataBearer, SmithyException as __SmithyException } from "../../types/mod.ts";
+
+export enum FolderFilterAttribute {
+  PARENT_FOLDER_ARN = "PARENT_FOLDER_ARN",
+}
 
 /**
  * <p>An object that consists of the member Amazon Resource Name (ARN) and member ID.</p>

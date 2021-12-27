@@ -133,7 +133,12 @@ import {
   UpdateResourceResponse,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectString as __expectString } from "../../smithy-client/mod.ts";
+import {
+  expectNonNull as __expectNonNull,
+  expectNumber as __expectNumber,
+  expectString as __expectString,
+  parseEpochTimestamp as __parseEpochTimestamp,
+} from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   HeaderBag as __HeaderBag,
@@ -3633,7 +3638,7 @@ const deserializeAws_json1_1ResourceInfo = (output: any, context: __SerdeContext
   return {
     LastModified:
       output.LastModified !== undefined && output.LastModified !== null
-        ? new Date(Math.round(output.LastModified * 1000))
+        ? __expectNonNull(__parseEpochTimestamp(__expectNumber(output.LastModified)))
         : undefined,
     ResourceArn: __expectString(output.ResourceArn),
     RoleArn: __expectString(output.RoleArn),

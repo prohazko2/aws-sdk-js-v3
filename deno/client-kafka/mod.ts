@@ -37,5 +37,6 @@ export * from "./commands/UpdateClusterConfigurationCommand.ts";
 export * from "./commands/UpdateClusterKafkaVersionCommand.ts";
 export * from "./commands/UpdateConfigurationCommand.ts";
 export * from "./commands/UpdateMonitoringCommand.ts";
+export * from "./commands/UpdateSecurityCommand.ts";
 export * from "./pagination/Interfaces.ts";
 export * from "./models/index.ts";

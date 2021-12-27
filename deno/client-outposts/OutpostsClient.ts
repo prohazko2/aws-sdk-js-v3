@@ -1,3 +1,4 @@
+import { CreateOrderCommandInput, CreateOrderCommandOutput } from "./commands/CreateOrderCommand.ts";
 import { CreateOutpostCommandInput, CreateOutpostCommandOutput } from "./commands/CreateOutpostCommand.ts";
 import { DeleteOutpostCommandInput, DeleteOutpostCommandOutput } from "./commands/DeleteOutpostCommand.ts";
 import { DeleteSiteCommandInput, DeleteSiteCommandOutput } from "./commands/DeleteSiteCommand.ts";
@@ -67,6 +68,7 @@ import {
 } from "../types/mod.ts";
 
 export type ServiceInputTypes =
+  | CreateOrderCommandInput
   | CreateOutpostCommandInput
   | DeleteOutpostCommandInput
   | DeleteSiteCommandInput
@@ -79,6 +81,7 @@ export type ServiceInputTypes =
   | UntagResourceCommandInput;
 
 export type ServiceOutputTypes =
+  | CreateOrderCommandOutput
   | CreateOutpostCommandOutput
   | DeleteOutpostCommandOutput
   | DeleteSiteCommandOutput

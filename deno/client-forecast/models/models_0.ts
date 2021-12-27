@@ -1510,6 +1510,14 @@ export namespace InputDataConfig {
   });
 }
 
+export enum OptimizationMetric {
+  AverageWeightedQuantileLoss = "AverageWeightedQuantileLoss",
+  MAPE = "MAPE",
+  MASE = "MASE",
+  RMSE = "RMSE",
+  WAPE = "WAPE",
+}
+
 export interface CreatePredictorRequest {
   /**
    * <p>A name for the predictor.</p>
@@ -1589,7 +1597,12 @@ export interface CreatePredictorRequest {
   PerformAutoML?: boolean;
 
   /**
-   * <p>Used to overide the default AutoML strategy, which is to optimize predictor accuracy.
+   * <note>
+   *             <p> The <code>LatencyOptimized</code> AutoML override strategy is only available in private beta.
+   *                 Contact AWS Support or your account manager to learn more about access privileges.
+   *             </p>
+   *         </note>
+   *         <p>Used to overide the default AutoML strategy, which is to optimize predictor accuracy.
    *             To apply an AutoML strategy that minimizes training time, use
    *                 <code>LatencyOptimized</code>.</p>
    *         <p>This parameter is only valid for predictors trained using AutoML.</p>
@@ -1686,6 +1699,11 @@ export interface CreatePredictorRequest {
    *          </ul>
    */
   Tags?: Tag[];
+
+  /**
+   * <p>The accuracy metric used to optimize the predictor.</p>
+   */
+  OptimizationMetric?: OptimizationMetric | string;
 }
 
 export namespace CreatePredictorRequest {
@@ -2786,7 +2804,12 @@ export interface DescribePredictorResponse {
   PerformAutoML?: boolean;
 
   /**
-   * <p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code>
+   * <note>
+   *             <p> The <code>LatencyOptimized</code> AutoML override strategy is only available in private beta.
+   *                 Contact AWS Support or your account manager to learn more about access privileges.
+   *             </p>
+   *         </note>
+   *         <p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code>
    *             is specified, the AutoML strategy optimizes predictor accuracy.</p>
    *         <p>This parameter is only valid for predictors trained using AutoML.</p>
    */
@@ -2924,6 +2947,11 @@ export interface DescribePredictorResponse {
    *          </ul>
    */
   LastModificationTime?: Date;
+
+  /**
+   * <p>The accuracy metric used to optimize the predictor.</p>
+   */
+  OptimizationMetric?: OptimizationMetric | string;
 }
 
 export namespace DescribePredictorResponse {
@@ -3072,32 +3100,34 @@ export enum EvaluationType {
 }
 
 /**
- * <p>
- *       Provides detailed error metrics to evaluate the performance of a predictor. This object is
- *       part of the <a>Metrics</a> object.
- *     </p>
+ * <p> Provides detailed error metrics to evaluate the performance of a predictor. This object
+ *       is part of the <a>Metrics</a> object. </p>
  */
 export interface ErrorMetric {
   /**
-   * <p>
-   *       The Forecast type used to compute WAPE and RMSE.
-   *     </p>
+   * <p> The Forecast type used to compute WAPE, MAPE, MASE, and RMSE. </p>
    */
   ForecastType?: string;
 
   /**
-   * <p>
-   *       The weighted absolute percentage error (WAPE).
-   *     </p>
+   * <p> The weighted absolute percentage error (WAPE). </p>
    */
   WAPE?: number;
 
   /**
-   * <p>
-   *       The root-mean-square error (RMSE).
-   *     </p>
+   * <p> The root-mean-square error (RMSE). </p>
    */
   RMSE?: number;
+
+  /**
+   * <p>The Mean Absolute Scaled Error (MASE)</p>
+   */
+  MASE?: number;
+
+  /**
+   * <p>The Mean Absolute Percentage Error (MAPE)</p>
+   */
+  MAPE?: number;
 }
 
 export namespace ErrorMetric {
@@ -3110,14 +3140,13 @@ export namespace ErrorMetric {
 }
 
 /**
- * <p>The weighted loss value for a quantile. This object is part of the
- *       <a>Metrics</a> object.</p>
+ * <p>The weighted loss value for a quantile. This object is part of the <a>Metrics</a> object.</p>
  */
 export interface WeightedQuantileLoss {
   /**
    * <p>The quantile. Quantiles divide a probability distribution into regions of equal
-   *       probability. For example, if the distribution was divided into 5 regions of equal
-   *       probability, the quantiles would be 0.2, 0.4, 0.6, and 0.8.</p>
+   *       probability. For example, if the distribution was divided into 5 regions of equal probability,
+   *       the quantiles would be 0.2, 0.4, 0.6, and 0.8.</p>
    */
   Quantile?: number;
 
@@ -3138,8 +3167,8 @@ export namespace WeightedQuantileLoss {
 }
 
 /**
- * <p>Provides metrics that are used to evaluate the performance of a predictor. This object
- *       is part of the <a>WindowSummary</a> object.</p>
+ * <p>Provides metrics that are used to evaluate the performance of a predictor. This object is
+ *       part of the <a>WindowSummary</a> object.</p>
  */
 export interface Metrics {
   /**
@@ -3156,12 +3185,16 @@ export interface Metrics {
   WeightedQuantileLosses?: WeightedQuantileLoss[];
 
   /**
-   * <p>
-   *       Provides detailed error metrics on forecast type, root-mean square-error (RMSE), and weighted
-   *       average percentage error (WAPE).
-   *     </p>
+   * <p> Provides detailed error metrics for each forecast type. Metrics include root-mean
+   *       square-error (RMSE), mean absolute percentage error (MAPE), mean absolute scaled error (MASE),
+   *       and weighted average percentage error (WAPE). </p>
    */
   ErrorMetrics?: ErrorMetric[];
+
+  /**
+   * <p>The average value of all weighted quantile losses.</p>
+   */
+  AverageWeightedQuantileLoss?: number;
 }
 
 export namespace Metrics {
@@ -3174,11 +3207,10 @@ export namespace Metrics {
 }
 
 /**
- * <p>The metrics for a time range within the evaluation portion of a dataset. This object
- *       is part of the <a>EvaluationResult</a> object.</p>
- *          <p>The <code>TestWindowStart</code> and <code>TestWindowEnd</code> parameters are
- *       determined by the <code>BackTestWindowOffset</code> parameter of the
- *       <a>EvaluationParameters</a> object.</p>
+ * <p>The metrics for a time range within the evaluation portion of a dataset. This object is
+ *       part of the <a>EvaluationResult</a> object.</p>
+ *          <p>The <code>TestWindowStart</code> and <code>TestWindowEnd</code> parameters are determined
+ *       by the <code>BackTestWindowOffset</code> parameter of the <a>EvaluationParameters</a> object.</p>
  */
 export interface WindowSummary {
   /**
@@ -3227,8 +3259,7 @@ export namespace WindowSummary {
 }
 
 /**
- * <p>The results of evaluating an algorithm. Returned as part of the
- *       <a>GetAccuracyMetrics</a> response.</p>
+ * <p>The results of evaluating an algorithm. Returned as part of the <a>GetAccuracyMetrics</a> response.</p>
  */
 export interface EvaluationResult {
   /**
@@ -3238,8 +3269,8 @@ export interface EvaluationResult {
 
   /**
    * <p>The array of test windows used for evaluating the algorithm. The
-   *       <code>NumberOfBacktestWindows</code> from the <a>EvaluationParameters</a>
-   *       object determines the number of windows in the array.</p>
+   *         <code>NumberOfBacktestWindows</code> from the <a>EvaluationParameters</a> object
+   *       determines the number of windows in the array.</p>
    */
   TestWindows?: WindowSummary[];
 }
@@ -3260,11 +3291,21 @@ export interface GetAccuracyMetricsResponse {
   PredictorEvaluationResults?: EvaluationResult[];
 
   /**
-   * <p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code>
+   * <note>
+   *             <p> The <code>LatencyOptimized</code> AutoML override strategy is only available in private beta.
+   *                 Contact AWS Support or your account manager to learn more about access privileges.
+   *             </p>
+   *         </note>
+   *         <p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code>
    *             is specified, the AutoML strategy optimizes predictor accuracy.</p>
    *         <p>This parameter is only valid for predictors trained using AutoML.</p>
    */
   AutoMLOverrideStrategy?: AutoMLOverrideStrategy | string;
+
+  /**
+   * <p>The accuracy metric used to optimize the predictor.</p>
+   */
+  OptimizationMetric?: OptimizationMetric | string;
 }
 
 export namespace GetAccuracyMetricsResponse {
