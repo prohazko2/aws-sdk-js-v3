@@ -12,10 +12,12 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectInt as __expectInt,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  strictParseInt as __strictParseInt,
+  strictParseLong as __strictParseLong,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -289,7 +291,7 @@ export const deserializeAws_restJson1DescribeObjectCommand = async (
     contents.ContentType = output.headers["content-type"];
   }
   if (output.headers["content-length"] !== undefined) {
-    contents.ContentLength = __strictParseInt(output.headers["content-length"]);
+    contents.ContentLength = __strictParseLong(output.headers["content-length"]);
   }
   if (output.headers["cache-control"] !== undefined) {
     contents.CacheControl = output.headers["cache-control"];
@@ -379,7 +381,7 @@ export const deserializeAws_restJson1GetObjectCommand = async (
     contents.ContentRange = output.headers["content-range"];
   }
   if (output.headers["content-length"] !== undefined) {
-    contents.ContentLength = __strictParseInt(output.headers["content-length"]);
+    contents.ContentLength = __strictParseLong(output.headers["content-length"]);
   }
   if (output.headers["content-type"] !== undefined) {
     contents.ContentType = output.headers["content-type"];
@@ -471,7 +473,7 @@ export const deserializeAws_restJson1ListItemsCommand = async (
     Items: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Items !== undefined && data.Items !== null) {
     contents.Items = deserializeAws_restJson1ItemList(data.Items, context);
   }
@@ -539,7 +541,7 @@ export const deserializeAws_restJson1PutObjectCommand = async (
     ETag: undefined,
     StorageClass: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ContentSHA256 !== undefined && data.ContentSHA256 !== null) {
     contents.ContentSHA256 = __expectString(data.ContentSHA256);
   }
@@ -667,7 +669,7 @@ const deserializeAws_restJson1RequestedRangeNotSatisfiableExceptionResponse = as
 
 const deserializeAws_restJson1Item = (output: any, context: __SerdeContext): Item => {
   return {
-    ContentLength: __expectInt(output.ContentLength),
+    ContentLength: __expectLong(output.ContentLength),
     ContentType: __expectString(output.ContentType),
     ETag: __expectString(output.ETag),
     LastModified:

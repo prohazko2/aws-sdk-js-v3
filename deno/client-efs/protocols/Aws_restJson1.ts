@@ -112,10 +112,13 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
   serializeFloat as __serializeFloat,
 } from "../../smithy-client/mod.ts";
 import {
@@ -1013,7 +1016,7 @@ export const deserializeAws_restJson1CreateAccessPointCommand = async (
     RootDirectory: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccessPointArn !== undefined && data.AccessPointArn !== null) {
     contents.AccessPointArn = __expectString(data.AccessPointArn);
   }
@@ -1151,7 +1154,7 @@ export const deserializeAws_restJson1CreateFileSystemCommand = async (
     Tags: undefined,
     ThroughputMode: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AvailabilityZoneId !== undefined && data.AvailabilityZoneId !== null) {
     contents.AvailabilityZoneId = __expectString(data.AvailabilityZoneId);
   }
@@ -1183,7 +1186,7 @@ export const deserializeAws_restJson1CreateFileSystemCommand = async (
     contents.Name = __expectString(data.Name);
   }
   if (data.NumberOfMountTargets !== undefined && data.NumberOfMountTargets !== null) {
-    contents.NumberOfMountTargets = __expectInt(data.NumberOfMountTargets);
+    contents.NumberOfMountTargets = __expectInt32(data.NumberOfMountTargets);
   }
   if (data.OwnerId !== undefined && data.OwnerId !== null) {
     contents.OwnerId = __expectString(data.OwnerId);
@@ -1192,7 +1195,7 @@ export const deserializeAws_restJson1CreateFileSystemCommand = async (
     contents.PerformanceMode = __expectString(data.PerformanceMode);
   }
   if (data.ProvisionedThroughputInMibps !== undefined && data.ProvisionedThroughputInMibps !== null) {
-    contents.ProvisionedThroughputInMibps = __limitedParseFloat(data.ProvisionedThroughputInMibps);
+    contents.ProvisionedThroughputInMibps = __limitedParseDouble(data.ProvisionedThroughputInMibps);
   }
   if (data.SizeInBytes !== undefined && data.SizeInBytes !== null) {
     contents.SizeInBytes = deserializeAws_restJson1FileSystemSize(data.SizeInBytes, context);
@@ -1311,7 +1314,7 @@ export const deserializeAws_restJson1CreateMountTargetCommand = async (
     SubnetId: undefined,
     VpcId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AvailabilityZoneId !== undefined && data.AvailabilityZoneId !== null) {
     contents.AvailabilityZoneId = __expectString(data.AvailabilityZoneId);
   }
@@ -1908,7 +1911,7 @@ export const deserializeAws_restJson1DescribeAccessPointsCommand = async (
     AccessPoints: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccessPoints !== undefined && data.AccessPoints !== null) {
     contents.AccessPoints = deserializeAws_restJson1AccessPointDescriptions(data.AccessPoints, context);
   }
@@ -1991,7 +1994,7 @@ export const deserializeAws_restJson1DescribeAccountPreferencesCommand = async (
     NextToken: undefined,
     ResourceIdPreference: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -2049,7 +2052,7 @@ export const deserializeAws_restJson1DescribeBackupPolicyCommand = async (
     $metadata: deserializeMetadata(output),
     BackupPolicy: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPolicy !== undefined && data.BackupPolicy !== null) {
     contents.BackupPolicy = deserializeAws_restJson1BackupPolicy(data.BackupPolicy, context);
   }
@@ -2137,7 +2140,7 @@ export const deserializeAws_restJson1DescribeFileSystemPolicyCommand = async (
     FileSystemId: undefined,
     Policy: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FileSystemId !== undefined && data.FileSystemId !== null) {
     contents.FileSystemId = __expectString(data.FileSystemId);
   }
@@ -2213,7 +2216,7 @@ export const deserializeAws_restJson1DescribeFileSystemsCommand = async (
     Marker: undefined,
     NextMarker: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FileSystems !== undefined && data.FileSystems !== null) {
     contents.FileSystems = deserializeAws_restJson1FileSystemDescriptions(data.FileSystems, context);
   }
@@ -2290,7 +2293,7 @@ export const deserializeAws_restJson1DescribeLifecycleConfigurationCommand = asy
     $metadata: deserializeMetadata(output),
     LifecyclePolicies: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.LifecyclePolicies !== undefined && data.LifecyclePolicies !== null) {
     contents.LifecyclePolicies = deserializeAws_restJson1LifecyclePolicies(data.LifecyclePolicies, context);
   }
@@ -2363,7 +2366,7 @@ export const deserializeAws_restJson1DescribeMountTargetsCommand = async (
     MountTargets: undefined,
     NextMarker: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Marker !== undefined && data.Marker !== null) {
     contents.Marker = __expectString(data.Marker);
   }
@@ -2456,7 +2459,7 @@ export const deserializeAws_restJson1DescribeMountTargetSecurityGroupsCommand = 
     $metadata: deserializeMetadata(output),
     SecurityGroups: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.SecurityGroups !== undefined && data.SecurityGroups !== null) {
     contents.SecurityGroups = deserializeAws_restJson1SecurityGroups(data.SecurityGroups, context);
   }
@@ -2537,7 +2540,7 @@ export const deserializeAws_restJson1DescribeTagsCommand = async (
     NextMarker: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Marker !== undefined && data.Marker !== null) {
     contents.Marker = __expectString(data.Marker);
   }
@@ -2615,7 +2618,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     NextToken: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -2788,7 +2791,7 @@ export const deserializeAws_restJson1PutAccountPreferencesCommand = async (
     $metadata: deserializeMetadata(output),
     ResourceIdPreference: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ResourceIdPreference !== undefined && data.ResourceIdPreference !== null) {
     contents.ResourceIdPreference = deserializeAws_restJson1ResourceIdPreference(data.ResourceIdPreference, context);
   }
@@ -2843,7 +2846,7 @@ export const deserializeAws_restJson1PutBackupPolicyCommand = async (
     $metadata: deserializeMetadata(output),
     BackupPolicy: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPolicy !== undefined && data.BackupPolicy !== null) {
     contents.BackupPolicy = deserializeAws_restJson1BackupPolicy(data.BackupPolicy, context);
   }
@@ -2931,7 +2934,7 @@ export const deserializeAws_restJson1PutFileSystemPolicyCommand = async (
     FileSystemId: undefined,
     Policy: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FileSystemId !== undefined && data.FileSystemId !== null) {
     contents.FileSystemId = __expectString(data.FileSystemId);
   }
@@ -3013,7 +3016,7 @@ export const deserializeAws_restJson1PutLifecycleConfigurationCommand = async (
     $metadata: deserializeMetadata(output),
     LifecyclePolicies: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.LifecyclePolicies !== undefined && data.LifecyclePolicies !== null) {
     contents.LifecyclePolicies = deserializeAws_restJson1LifecyclePolicies(data.LifecyclePolicies, context);
   }
@@ -3258,7 +3261,7 @@ export const deserializeAws_restJson1UpdateFileSystemCommand = async (
     Tags: undefined,
     ThroughputMode: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AvailabilityZoneId !== undefined && data.AvailabilityZoneId !== null) {
     contents.AvailabilityZoneId = __expectString(data.AvailabilityZoneId);
   }
@@ -3290,7 +3293,7 @@ export const deserializeAws_restJson1UpdateFileSystemCommand = async (
     contents.Name = __expectString(data.Name);
   }
   if (data.NumberOfMountTargets !== undefined && data.NumberOfMountTargets !== null) {
-    contents.NumberOfMountTargets = __expectInt(data.NumberOfMountTargets);
+    contents.NumberOfMountTargets = __expectInt32(data.NumberOfMountTargets);
   }
   if (data.OwnerId !== undefined && data.OwnerId !== null) {
     contents.OwnerId = __expectString(data.OwnerId);
@@ -3299,7 +3302,7 @@ export const deserializeAws_restJson1UpdateFileSystemCommand = async (
     contents.PerformanceMode = __expectString(data.PerformanceMode);
   }
   if (data.ProvisionedThroughputInMibps !== undefined && data.ProvisionedThroughputInMibps !== null) {
-    contents.ProvisionedThroughputInMibps = __limitedParseFloat(data.ProvisionedThroughputInMibps);
+    contents.ProvisionedThroughputInMibps = __limitedParseDouble(data.ProvisionedThroughputInMibps);
   }
   if (data.SizeInBytes !== undefined && data.SizeInBytes !== null) {
     contents.SizeInBytes = deserializeAws_restJson1FileSystemSize(data.SizeInBytes, context);
@@ -4023,6 +4026,10 @@ const serializeAws_restJson1LifecyclePolicy = (input: LifecyclePolicy, context: 
   return {
     ...(input.TransitionToIA !== undefined &&
       input.TransitionToIA !== null && { TransitionToIA: input.TransitionToIA }),
+    ...(input.TransitionToPrimaryStorageClass !== undefined &&
+      input.TransitionToPrimaryStorageClass !== null && {
+        TransitionToPrimaryStorageClass: input.TransitionToPrimaryStorageClass,
+      }),
   };
 };
 
@@ -4145,8 +4152,8 @@ const deserializeAws_restJson1BackupPolicy = (output: any, context: __SerdeConte
 
 const deserializeAws_restJson1CreationInfo = (output: any, context: __SerdeContext): CreationInfo => {
   return {
-    OwnerGid: __expectInt(output.OwnerGid),
-    OwnerUid: __expectInt(output.OwnerUid),
+    OwnerGid: __expectLong(output.OwnerGid),
+    OwnerUid: __expectLong(output.OwnerUid),
     Permissions: __expectString(output.Permissions),
   } as any;
 };
@@ -4166,10 +4173,10 @@ const deserializeAws_restJson1FileSystemDescription = (output: any, context: __S
     KmsKeyId: __expectString(output.KmsKeyId),
     LifeCycleState: __expectString(output.LifeCycleState),
     Name: __expectString(output.Name),
-    NumberOfMountTargets: __expectInt(output.NumberOfMountTargets),
+    NumberOfMountTargets: __expectInt32(output.NumberOfMountTargets),
     OwnerId: __expectString(output.OwnerId),
     PerformanceMode: __expectString(output.PerformanceMode),
-    ProvisionedThroughputInMibps: __limitedParseFloat(output.ProvisionedThroughputInMibps),
+    ProvisionedThroughputInMibps: __limitedParseDouble(output.ProvisionedThroughputInMibps),
     SizeInBytes:
       output.SizeInBytes !== undefined && output.SizeInBytes !== null
         ? deserializeAws_restJson1FileSystemSize(output.SizeInBytes, context)
@@ -4202,9 +4209,9 @@ const deserializeAws_restJson1FileSystemSize = (output: any, context: __SerdeCon
       output.Timestamp !== undefined && output.Timestamp !== null
         ? new Date(Math.round(output.Timestamp * 1000))
         : undefined,
-    Value: __expectInt(output.Value),
-    ValueInIA: __expectInt(output.ValueInIA),
-    ValueInStandard: __expectInt(output.ValueInStandard),
+    Value: __expectLong(output.Value),
+    ValueInIA: __expectLong(output.ValueInIA),
+    ValueInStandard: __expectLong(output.ValueInStandard),
   } as any;
 };
 
@@ -4222,6 +4229,7 @@ const deserializeAws_restJson1LifecyclePolicies = (output: any, context: __Serde
 const deserializeAws_restJson1LifecyclePolicy = (output: any, context: __SerdeContext): LifecyclePolicy => {
   return {
     TransitionToIA: __expectString(output.TransitionToIA),
+    TransitionToPrimaryStorageClass: __expectString(output.TransitionToPrimaryStorageClass),
   } as any;
 };
 
@@ -4259,12 +4267,12 @@ const deserializeAws_restJson1MountTargetDescriptions = (
 
 const deserializeAws_restJson1PosixUser = (output: any, context: __SerdeContext): PosixUser => {
   return {
-    Gid: __expectInt(output.Gid),
+    Gid: __expectLong(output.Gid),
     SecondaryGids:
       output.SecondaryGids !== undefined && output.SecondaryGids !== null
         ? deserializeAws_restJson1SecondaryGids(output.SecondaryGids, context)
         : undefined,
-    Uid: __expectInt(output.Uid),
+    Uid: __expectLong(output.Uid),
   } as any;
 };
 
@@ -4306,7 +4314,7 @@ const deserializeAws_restJson1SecondaryGids = (output: any, context: __SerdeCont
       if (entry === null) {
         return null as any;
       }
-      return __expectInt(entry) as any;
+      return __expectLong(entry) as any;
     });
 };
 

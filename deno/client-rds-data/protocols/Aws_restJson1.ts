@@ -33,9 +33,13 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
+  limitedParseFloat32 as __limitedParseFloat32,
   serializeFloat as __serializeFloat,
 } from "../../smithy-client/mod.ts";
 import {
@@ -238,7 +242,7 @@ export const deserializeAws_restJson1BatchExecuteStatementCommand = async (
     $metadata: deserializeMetadata(output),
     updateResults: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.updateResults !== undefined && data.updateResults !== null) {
     contents.updateResults = deserializeAws_restJson1UpdateResults(data.updateResults, context);
   }
@@ -325,7 +329,7 @@ export const deserializeAws_restJson1BeginTransactionCommand = async (
     $metadata: deserializeMetadata(output),
     transactionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.transactionId !== undefined && data.transactionId !== null) {
     contents.transactionId = __expectString(data.transactionId);
   }
@@ -412,7 +416,7 @@ export const deserializeAws_restJson1CommitTransactionCommand = async (
     $metadata: deserializeMetadata(output),
     transactionStatus: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.transactionStatus !== undefined && data.transactionStatus !== null) {
     contents.transactionStatus = __expectString(data.transactionStatus);
   }
@@ -507,7 +511,7 @@ export const deserializeAws_restJson1ExecuteSqlCommand = async (
     $metadata: deserializeMetadata(output),
     sqlStatementResults: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.sqlStatementResults !== undefined && data.sqlStatementResults !== null) {
     contents.sqlStatementResults = deserializeAws_restJson1SqlStatementResults(data.sqlStatementResults, context);
   }
@@ -589,7 +593,7 @@ export const deserializeAws_restJson1ExecuteStatementCommand = async (
     numberOfRecordsUpdated: undefined,
     records: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.columnMetadata !== undefined && data.columnMetadata !== null) {
     contents.columnMetadata = deserializeAws_restJson1Metadata(data.columnMetadata, context);
   }
@@ -597,7 +601,7 @@ export const deserializeAws_restJson1ExecuteStatementCommand = async (
     contents.generatedFields = deserializeAws_restJson1FieldList(data.generatedFields, context);
   }
   if (data.numberOfRecordsUpdated !== undefined && data.numberOfRecordsUpdated !== null) {
-    contents.numberOfRecordsUpdated = __expectInt(data.numberOfRecordsUpdated);
+    contents.numberOfRecordsUpdated = __expectLong(data.numberOfRecordsUpdated);
   }
   if (data.records !== undefined && data.records !== null) {
     contents.records = deserializeAws_restJson1SqlRecords(data.records, context);
@@ -685,7 +689,7 @@ export const deserializeAws_restJson1RollbackTransactionCommand = async (
     $metadata: deserializeMetadata(output),
     transactionStatus: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.transactionStatus !== undefined && data.transactionStatus !== null) {
     contents.transactionStatus = __expectString(data.transactionStatus);
   }
@@ -859,7 +863,7 @@ const deserializeAws_restJson1StatementTimeoutExceptionResponse = async (
   };
   const data: any = parsedOutput.body;
   if (data.dbConnectionId !== undefined && data.dbConnectionId !== null) {
-    contents.dbConnectionId = __expectInt(data.dbConnectionId);
+    contents.dbConnectionId = __expectLong(data.dbConnectionId);
   }
   if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
@@ -1048,19 +1052,19 @@ const deserializeAws_restJson1BooleanArray = (output: any, context: __SerdeConte
 
 const deserializeAws_restJson1ColumnMetadata = (output: any, context: __SerdeContext): ColumnMetadata => {
   return {
-    arrayBaseColumnType: __expectInt(output.arrayBaseColumnType),
+    arrayBaseColumnType: __expectInt32(output.arrayBaseColumnType),
     isAutoIncrement: __expectBoolean(output.isAutoIncrement),
     isCaseSensitive: __expectBoolean(output.isCaseSensitive),
     isCurrency: __expectBoolean(output.isCurrency),
     isSigned: __expectBoolean(output.isSigned),
     label: __expectString(output.label),
     name: __expectString(output.name),
-    nullable: __expectInt(output.nullable),
-    precision: __expectInt(output.precision),
-    scale: __expectInt(output.scale),
+    nullable: __expectInt32(output.nullable),
+    precision: __expectInt32(output.precision),
+    scale: __expectInt32(output.scale),
     schemaName: __expectString(output.schemaName),
     tableName: __expectString(output.tableName),
-    type: __expectInt(output.type),
+    type: __expectInt32(output.type),
     typeName: __expectString(output.typeName),
   } as any;
 };
@@ -1072,7 +1076,7 @@ const deserializeAws_restJson1DoubleArray = (output: any, context: __SerdeContex
       if (entry === null) {
         return null as any;
       }
-      return __limitedParseFloat(entry) as any;
+      return __limitedParseDouble(entry) as any;
     });
 };
 
@@ -1090,14 +1094,14 @@ const deserializeAws_restJson1Field = (output: any, context: __SerdeContext): Fi
   if (__expectBoolean(output.booleanValue) !== undefined) {
     return { booleanValue: __expectBoolean(output.booleanValue) as any };
   }
-  if (__limitedParseFloat(output.doubleValue) !== undefined) {
-    return { doubleValue: __limitedParseFloat(output.doubleValue) as any };
+  if (__limitedParseDouble(output.doubleValue) !== undefined) {
+    return { doubleValue: __limitedParseDouble(output.doubleValue) as any };
   }
   if (__expectBoolean(output.isNull) !== undefined) {
     return { isNull: __expectBoolean(output.isNull) as any };
   }
-  if (__expectInt(output.longValue) !== undefined) {
-    return { longValue: __expectInt(output.longValue) as any };
+  if (__expectLong(output.longValue) !== undefined) {
+    return { longValue: __expectLong(output.longValue) as any };
   }
   if (__expectString(output.stringValue) !== undefined) {
     return { stringValue: __expectString(output.stringValue) as any };
@@ -1123,7 +1127,7 @@ const deserializeAws_restJson1LongArray = (output: any, context: __SerdeContext)
       if (entry === null) {
         return null as any;
       }
-      return __expectInt(entry) as any;
+      return __expectLong(entry) as any;
     });
 };
 
@@ -1173,7 +1177,7 @@ const deserializeAws_restJson1ResultFrame = (output: any, context: __SerdeContex
 
 const deserializeAws_restJson1ResultSetMetadata = (output: any, context: __SerdeContext): ResultSetMetadata => {
   return {
-    columnCount: __expectInt(output.columnCount),
+    columnCount: __expectLong(output.columnCount),
     columnMetadata:
       output.columnMetadata !== undefined && output.columnMetadata !== null
         ? deserializeAws_restJson1Metadata(output.columnMetadata, context)
@@ -1205,7 +1209,7 @@ const deserializeAws_restJson1SqlRecords = (output: any, context: __SerdeContext
 
 const deserializeAws_restJson1SqlStatementResult = (output: any, context: __SerdeContext): SqlStatementResult => {
   return {
-    numberOfRecordsUpdated: __expectInt(output.numberOfRecordsUpdated),
+    numberOfRecordsUpdated: __expectLong(output.numberOfRecordsUpdated),
     resultFrame:
       output.resultFrame !== undefined && output.resultFrame !== null
         ? deserializeAws_restJson1ResultFrame(output.resultFrame, context)
@@ -1270,8 +1274,8 @@ const deserializeAws_restJson1Value = (output: any, context: __SerdeContext): Va
       arrayValues: deserializeAws_restJson1ArrayValueList(output.arrayValues, context),
     };
   }
-  if (__expectInt(output.bigIntValue) !== undefined) {
-    return { bigIntValue: __expectInt(output.bigIntValue) as any };
+  if (__expectLong(output.bigIntValue) !== undefined) {
+    return { bigIntValue: __expectLong(output.bigIntValue) as any };
   }
   if (__expectBoolean(output.bitValue) !== undefined) {
     return { bitValue: __expectBoolean(output.bitValue) as any };
@@ -1281,17 +1285,17 @@ const deserializeAws_restJson1Value = (output: any, context: __SerdeContext): Va
       blobValue: context.base64Decoder(output.blobValue),
     };
   }
-  if (__limitedParseFloat(output.doubleValue) !== undefined) {
-    return { doubleValue: __limitedParseFloat(output.doubleValue) as any };
+  if (__limitedParseDouble(output.doubleValue) !== undefined) {
+    return { doubleValue: __limitedParseDouble(output.doubleValue) as any };
   }
-  if (__expectInt(output.intValue) !== undefined) {
-    return { intValue: __expectInt(output.intValue) as any };
+  if (__expectInt32(output.intValue) !== undefined) {
+    return { intValue: __expectInt32(output.intValue) as any };
   }
   if (__expectBoolean(output.isNull) !== undefined) {
     return { isNull: __expectBoolean(output.isNull) as any };
   }
-  if (__limitedParseFloat(output.realValue) !== undefined) {
-    return { realValue: __limitedParseFloat(output.realValue) as any };
+  if (__limitedParseFloat32(output.realValue) !== undefined) {
+    return { realValue: __limitedParseFloat32(output.realValue) as any };
   }
   if (__expectString(output.stringValue) !== undefined) {
     return { stringValue: __expectString(output.stringValue) as any };

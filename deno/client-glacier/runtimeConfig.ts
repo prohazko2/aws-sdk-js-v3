@@ -1,5 +1,5 @@
 import process from "https://deno.land/std@0.119.0/node/process.ts";
-const packageInfo = { version: "3.28.0" };
+const packageInfo = { version: "3.30.0" };
 
 import { bodyChecksumGenerator } from "../body-checksum-browser/mod.ts";
 import { decorateDefaultCredentialProvider } from "../client-sts/mod.ts";

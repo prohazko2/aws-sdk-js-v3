@@ -49,10 +49,12 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  strictParseInt as __strictParseInt,
+  strictParseInt32 as __strictParseInt32,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -408,7 +410,7 @@ export const deserializeAws_restJson1DescribeVoicesCommand = async (
     NextToken: undefined,
     Voices: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -475,7 +477,7 @@ export const deserializeAws_restJson1GetLexiconCommand = async (
     Lexicon: undefined,
     LexiconAttributes: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Lexicon !== undefined && data.Lexicon !== null) {
     contents.Lexicon = deserializeAws_restJson1Lexicon(data.Lexicon, context);
   }
@@ -541,7 +543,7 @@ export const deserializeAws_restJson1GetSpeechSynthesisTaskCommand = async (
     $metadata: deserializeMetadata(output),
     SynthesisTask: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.SynthesisTask !== undefined && data.SynthesisTask !== null) {
     contents.SynthesisTask = deserializeAws_restJson1SynthesisTask(data.SynthesisTask, context);
   }
@@ -613,7 +615,7 @@ export const deserializeAws_restJson1ListLexiconsCommand = async (
     Lexicons: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Lexicons !== undefined && data.Lexicons !== null) {
     contents.Lexicons = deserializeAws_restJson1LexiconDescriptionList(data.Lexicons, context);
   }
@@ -680,7 +682,7 @@ export const deserializeAws_restJson1ListSpeechSynthesisTasksCommand = async (
     NextToken: undefined,
     SynthesisTasks: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -845,7 +847,7 @@ export const deserializeAws_restJson1StartSpeechSynthesisTaskCommand = async (
     $metadata: deserializeMetadata(output),
     SynthesisTask: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.SynthesisTask !== undefined && data.SynthesisTask !== null) {
     contents.SynthesisTask = deserializeAws_restJson1SynthesisTask(data.SynthesisTask, context);
   }
@@ -994,7 +996,7 @@ export const deserializeAws_restJson1SynthesizeSpeechCommand = async (
     contents.ContentType = output.headers["content-type"];
   }
   if (output.headers["x-amzn-requestcharacters"] !== undefined) {
-    contents.RequestCharacters = __strictParseInt(output.headers["x-amzn-requestcharacters"]);
+    contents.RequestCharacters = __strictParseInt32(output.headers["x-amzn-requestcharacters"]);
   }
   const data: any = output.body;
   contents.AudioStream = data;
@@ -1518,9 +1520,9 @@ const deserializeAws_restJson1LexiconAttributes = (output: any, context: __Serde
       output.LastModified !== undefined && output.LastModified !== null
         ? new Date(Math.round(output.LastModified * 1000))
         : undefined,
-    LexemesCount: __expectInt(output.LexemesCount),
+    LexemesCount: __expectInt32(output.LexemesCount),
     LexiconArn: __expectString(output.LexiconArn),
-    Size: __expectInt(output.Size),
+    Size: __expectInt32(output.Size),
   } as any;
 };
 
@@ -1584,7 +1586,7 @@ const deserializeAws_restJson1SynthesisTask = (output: any, context: __SerdeCont
         : undefined,
     OutputFormat: __expectString(output.OutputFormat),
     OutputUri: __expectString(output.OutputUri),
-    RequestCharacters: __expectInt(output.RequestCharacters),
+    RequestCharacters: __expectInt32(output.RequestCharacters),
     SampleRate: __expectString(output.SampleRate),
     SnsTopicArn: __expectString(output.SnsTopicArn),
     SpeechMarkTypes:

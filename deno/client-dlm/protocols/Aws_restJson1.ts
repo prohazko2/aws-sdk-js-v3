@@ -51,7 +51,9 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -324,7 +326,7 @@ export const deserializeAws_restJson1CreateLifecyclePolicyCommand = async (
     $metadata: deserializeMetadata(output),
     PolicyId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.PolicyId !== undefined && data.PolicyId !== null) {
     contents.PolicyId = __expectString(data.PolicyId);
   }
@@ -462,7 +464,7 @@ export const deserializeAws_restJson1GetLifecyclePoliciesCommand = async (
     $metadata: deserializeMetadata(output),
     Policies: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Policies !== undefined && data.Policies !== null) {
     contents.Policies = deserializeAws_restJson1LifecyclePolicySummaryList(data.Policies, context);
   }
@@ -541,7 +543,7 @@ export const deserializeAws_restJson1GetLifecyclePolicyCommand = async (
     $metadata: deserializeMetadata(output),
     Policy: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Policy !== undefined && data.Policy !== null) {
     contents.Policy = deserializeAws_restJson1LifecyclePolicy(data.Policy, context);
   }
@@ -612,7 +614,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1TagMap(data.Tags, context);
   }
@@ -1413,7 +1415,7 @@ const deserializeAws_restJson1AvailabilityZoneList = (output: any, context: __Se
 const deserializeAws_restJson1CreateRule = (output: any, context: __SerdeContext): CreateRule => {
   return {
     CronExpression: __expectString(output.CronExpression),
-    Interval: __expectInt(output.Interval),
+    Interval: __expectInt32(output.Interval),
     IntervalUnit: __expectString(output.IntervalUnit),
     Location: __expectString(output.Location),
     Times:
@@ -1456,7 +1458,7 @@ const deserializeAws_restJson1CrossRegionCopyDeprecateRule = (
   context: __SerdeContext
 ): CrossRegionCopyDeprecateRule => {
   return {
-    Interval: __expectInt(output.Interval),
+    Interval: __expectInt32(output.Interval),
     IntervalUnit: __expectString(output.IntervalUnit),
   } as any;
 };
@@ -1466,7 +1468,7 @@ const deserializeAws_restJson1CrossRegionCopyRetainRule = (
   context: __SerdeContext
 ): CrossRegionCopyRetainRule => {
   return {
-    Interval: __expectInt(output.Interval),
+    Interval: __expectInt32(output.Interval),
     IntervalUnit: __expectString(output.IntervalUnit),
   } as any;
 };
@@ -1502,8 +1504,8 @@ const deserializeAws_restJson1CrossRegionCopyRules = (output: any, context: __Se
 
 const deserializeAws_restJson1DeprecateRule = (output: any, context: __SerdeContext): DeprecateRule => {
   return {
-    Count: __expectInt(output.Count),
-    Interval: __expectInt(output.Interval),
+    Count: __expectInt32(output.Count),
+    Interval: __expectInt32(output.Interval),
     IntervalUnit: __expectString(output.IntervalUnit),
   } as any;
 };
@@ -1545,8 +1547,8 @@ const deserializeAws_restJson1FastRestoreRule = (output: any, context: __SerdeCo
       output.AvailabilityZones !== undefined && output.AvailabilityZones !== null
         ? deserializeAws_restJson1AvailabilityZoneList(output.AvailabilityZones, context)
         : undefined,
-    Count: __expectInt(output.Count),
-    Interval: __expectInt(output.Interval),
+    Count: __expectInt32(output.Count),
+    Interval: __expectInt32(output.Interval),
     IntervalUnit: __expectString(output.IntervalUnit),
   } as any;
 };
@@ -1701,8 +1703,8 @@ const deserializeAws_restJson1ResourceTypeValuesList = (
 
 const deserializeAws_restJson1RetainRule = (output: any, context: __SerdeContext): RetainRule => {
   return {
-    Count: __expectInt(output.Count),
-    Interval: __expectInt(output.Interval),
+    Count: __expectInt32(output.Count),
+    Interval: __expectInt32(output.Interval),
     IntervalUnit: __expectString(output.IntervalUnit),
   } as any;
 };
@@ -1763,7 +1765,7 @@ const deserializeAws_restJson1ShareRule = (output: any, context: __SerdeContext)
       output.TargetAccounts !== undefined && output.TargetAccounts !== null
         ? deserializeAws_restJson1ShareTargetAccountList(output.TargetAccounts, context)
         : undefined,
-    UnshareInterval: __expectInt(output.UnshareInterval),
+    UnshareInterval: __expectInt32(output.UnshareInterval),
     UnshareIntervalUnit: __expectString(output.UnshareIntervalUnit),
   } as any;
 };

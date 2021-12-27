@@ -278,10 +278,13 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -1961,7 +1964,7 @@ export const deserializeAws_restJson1BatchGetCustomDataIdentifiersCommand = asyn
     customDataIdentifiers: undefined,
     notFoundIdentifierIds: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.customDataIdentifiers !== undefined && data.customDataIdentifiers !== null) {
     contents.customDataIdentifiers = deserializeAws_restJson1__listOfBatchGetCustomDataIdentifierSummary(
       data.customDataIdentifiers,
@@ -2071,7 +2074,7 @@ export const deserializeAws_restJson1CreateClassificationJobCommand = async (
     jobArn: undefined,
     jobId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.jobArn !== undefined && data.jobArn !== null) {
     contents.jobArn = __expectString(data.jobArn);
   }
@@ -2177,7 +2180,7 @@ export const deserializeAws_restJson1CreateCustomDataIdentifierCommand = async (
     $metadata: deserializeMetadata(output),
     customDataIdentifierId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.customDataIdentifierId !== undefined && data.customDataIdentifierId !== null) {
     contents.customDataIdentifierId = __expectString(data.customDataIdentifierId);
   }
@@ -2281,7 +2284,7 @@ export const deserializeAws_restJson1CreateFindingsFilterCommand = async (
     arn: undefined,
     id: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.arn = __expectString(data.arn);
   }
@@ -2387,7 +2390,7 @@ export const deserializeAws_restJson1CreateInvitationsCommand = async (
     $metadata: deserializeMetadata(output),
     unprocessedAccounts: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.unprocessedAccounts !== undefined && data.unprocessedAccounts !== null) {
     contents.unprocessedAccounts = deserializeAws_restJson1__listOfUnprocessedAccount(
       data.unprocessedAccounts,
@@ -2493,7 +2496,7 @@ export const deserializeAws_restJson1CreateMemberCommand = async (
     $metadata: deserializeMetadata(output),
     arn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.arn = __expectString(data.arn);
   }
@@ -2695,7 +2698,7 @@ export const deserializeAws_restJson1DeclineInvitationsCommand = async (
     $metadata: deserializeMetadata(output),
     unprocessedAccounts: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.unprocessedAccounts !== undefined && data.unprocessedAccounts !== null) {
     contents.unprocessedAccounts = deserializeAws_restJson1__listOfUnprocessedAccount(
       data.unprocessedAccounts,
@@ -2999,7 +3002,7 @@ export const deserializeAws_restJson1DeleteInvitationsCommand = async (
     $metadata: deserializeMetadata(output),
     unprocessedAccounts: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.unprocessedAccounts !== undefined && data.unprocessedAccounts !== null) {
     contents.unprocessedAccounts = deserializeAws_restJson1__listOfUnprocessedAccount(
       data.unprocessedAccounts,
@@ -3205,7 +3208,7 @@ export const deserializeAws_restJson1DescribeBucketsCommand = async (
     buckets: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.buckets !== undefined && data.buckets !== null) {
     contents.buckets = deserializeAws_restJson1__listOfBucketMetadata(data.buckets, context);
   }
@@ -3328,7 +3331,7 @@ export const deserializeAws_restJson1DescribeClassificationJobCommand = async (
     tags: undefined,
     userPausedDetails: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clientToken !== undefined && data.clientToken !== null) {
     contents.clientToken = __expectString(data.clientToken);
   }
@@ -3369,7 +3372,7 @@ export const deserializeAws_restJson1DescribeClassificationJobCommand = async (
     contents.s3JobDefinition = deserializeAws_restJson1S3JobDefinition(data.s3JobDefinition, context);
   }
   if (data.samplingPercentage !== undefined && data.samplingPercentage !== null) {
-    contents.samplingPercentage = __expectInt(data.samplingPercentage);
+    contents.samplingPercentage = __expectInt32(data.samplingPercentage);
   }
   if (data.scheduleFrequency !== undefined && data.scheduleFrequency !== null) {
     contents.scheduleFrequency = deserializeAws_restJson1JobScheduleFrequency(data.scheduleFrequency, context);
@@ -3483,7 +3486,7 @@ export const deserializeAws_restJson1DescribeOrganizationConfigurationCommand = 
     autoEnable: undefined,
     maxAccountLimitReached: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.autoEnable !== undefined && data.autoEnable !== null) {
     contents.autoEnable = __expectBoolean(data.autoEnable);
   }
@@ -4282,7 +4285,7 @@ export const deserializeAws_restJson1GetAdministratorAccountCommand = async (
     $metadata: deserializeMetadata(output),
     administrator: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.administrator !== undefined && data.administrator !== null) {
     contents.administrator = deserializeAws_restJson1Invitation(data.administrator, context);
   }
@@ -4397,9 +4400,9 @@ export const deserializeAws_restJson1GetBucketStatisticsCommand = async (
     unclassifiableObjectCount: undefined,
     unclassifiableObjectSizeInBytes: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.bucketCount !== undefined && data.bucketCount !== null) {
-    contents.bucketCount = __expectInt(data.bucketCount);
+    contents.bucketCount = __expectLong(data.bucketCount);
   }
   if (data.bucketCountByEffectivePermission !== undefined && data.bucketCountByEffectivePermission !== null) {
     contents.bucketCountByEffectivePermission = deserializeAws_restJson1BucketCountByEffectivePermission(
@@ -4430,22 +4433,22 @@ export const deserializeAws_restJson1GetBucketStatisticsCommand = async (
     );
   }
   if (data.classifiableObjectCount !== undefined && data.classifiableObjectCount !== null) {
-    contents.classifiableObjectCount = __expectInt(data.classifiableObjectCount);
+    contents.classifiableObjectCount = __expectLong(data.classifiableObjectCount);
   }
   if (data.classifiableSizeInBytes !== undefined && data.classifiableSizeInBytes !== null) {
-    contents.classifiableSizeInBytes = __expectInt(data.classifiableSizeInBytes);
+    contents.classifiableSizeInBytes = __expectLong(data.classifiableSizeInBytes);
   }
   if (data.lastUpdated !== undefined && data.lastUpdated !== null) {
     contents.lastUpdated = new Date(data.lastUpdated);
   }
   if (data.objectCount !== undefined && data.objectCount !== null) {
-    contents.objectCount = __expectInt(data.objectCount);
+    contents.objectCount = __expectLong(data.objectCount);
   }
   if (data.sizeInBytes !== undefined && data.sizeInBytes !== null) {
-    contents.sizeInBytes = __expectInt(data.sizeInBytes);
+    contents.sizeInBytes = __expectLong(data.sizeInBytes);
   }
   if (data.sizeInBytesCompressed !== undefined && data.sizeInBytesCompressed !== null) {
-    contents.sizeInBytesCompressed = __expectInt(data.sizeInBytesCompressed);
+    contents.sizeInBytesCompressed = __expectLong(data.sizeInBytesCompressed);
   }
   if (data.unclassifiableObjectCount !== undefined && data.unclassifiableObjectCount !== null) {
     contents.unclassifiableObjectCount = deserializeAws_restJson1ObjectLevelStatistics(
@@ -4558,7 +4561,7 @@ export const deserializeAws_restJson1GetClassificationExportConfigurationCommand
     $metadata: deserializeMetadata(output),
     configuration: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.configuration !== undefined && data.configuration !== null) {
     contents.configuration = deserializeAws_restJson1ClassificationExportConfiguration(data.configuration, context);
   }
@@ -4671,7 +4674,7 @@ export const deserializeAws_restJson1GetCustomDataIdentifierCommand = async (
     regex: undefined,
     tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.arn = __expectString(data.arn);
   }
@@ -4694,7 +4697,7 @@ export const deserializeAws_restJson1GetCustomDataIdentifierCommand = async (
     contents.keywords = deserializeAws_restJson1__listOf__string(data.keywords, context);
   }
   if (data.maximumMatchDistance !== undefined && data.maximumMatchDistance !== null) {
-    contents.maximumMatchDistance = __expectInt(data.maximumMatchDistance);
+    contents.maximumMatchDistance = __expectInt32(data.maximumMatchDistance);
   }
   if (data.name !== undefined && data.name !== null) {
     contents.name = __expectString(data.name);
@@ -4804,7 +4807,7 @@ export const deserializeAws_restJson1GetFindingsCommand = async (
     $metadata: deserializeMetadata(output),
     findings: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.findings !== undefined && data.findings !== null) {
     contents.findings = deserializeAws_restJson1__listOfFinding(data.findings, context);
   }
@@ -4914,7 +4917,7 @@ export const deserializeAws_restJson1GetFindingsFilterCommand = async (
     position: undefined,
     tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.action !== undefined && data.action !== null) {
     contents.action = __expectString(data.action);
   }
@@ -4934,7 +4937,7 @@ export const deserializeAws_restJson1GetFindingsFilterCommand = async (
     contents.name = __expectString(data.name);
   }
   if (data.position !== undefined && data.position !== null) {
-    contents.position = __expectInt(data.position);
+    contents.position = __expectInt32(data.position);
   }
   if (data.tags !== undefined && data.tags !== null) {
     contents.tags = deserializeAws_restJson1TagMap(data.tags, context);
@@ -5038,7 +5041,7 @@ export const deserializeAws_restJson1GetFindingsPublicationConfigurationCommand 
     $metadata: deserializeMetadata(output),
     securityHubConfiguration: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.securityHubConfiguration !== undefined && data.securityHubConfiguration !== null) {
     contents.securityHubConfiguration = deserializeAws_restJson1SecurityHubConfiguration(
       data.securityHubConfiguration,
@@ -5144,7 +5147,7 @@ export const deserializeAws_restJson1GetFindingStatisticsCommand = async (
     $metadata: deserializeMetadata(output),
     countsByGroup: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.countsByGroup !== undefined && data.countsByGroup !== null) {
     contents.countsByGroup = deserializeAws_restJson1__listOfGroupCount(data.countsByGroup, context);
   }
@@ -5247,9 +5250,9 @@ export const deserializeAws_restJson1GetInvitationsCountCommand = async (
     $metadata: deserializeMetadata(output),
     invitationsCount: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.invitationsCount !== undefined && data.invitationsCount !== null) {
-    contents.invitationsCount = __expectInt(data.invitationsCount);
+    contents.invitationsCount = __expectLong(data.invitationsCount);
   }
   return Promise.resolve(contents);
 };
@@ -5354,7 +5357,7 @@ export const deserializeAws_restJson1GetMacieSessionCommand = async (
     status: undefined,
     updatedAt: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.createdAt !== undefined && data.createdAt !== null) {
     contents.createdAt = new Date(data.createdAt);
   }
@@ -5469,7 +5472,7 @@ export const deserializeAws_restJson1GetMasterAccountCommand = async (
     $metadata: deserializeMetadata(output),
     master: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.master !== undefined && data.master !== null) {
     contents.master = deserializeAws_restJson1Invitation(data.master, context);
   }
@@ -5580,7 +5583,7 @@ export const deserializeAws_restJson1GetMemberCommand = async (
     tags: undefined,
     updatedAt: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.accountId !== undefined && data.accountId !== null) {
     contents.accountId = __expectString(data.accountId);
   }
@@ -5709,7 +5712,7 @@ export const deserializeAws_restJson1GetUsageStatisticsCommand = async (
     records: undefined,
     timeRange: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -5819,7 +5822,7 @@ export const deserializeAws_restJson1GetUsageTotalsCommand = async (
     timeRange: undefined,
     usageTotals: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.timeRange !== undefined && data.timeRange !== null) {
     contents.timeRange = __expectString(data.timeRange);
   }
@@ -5926,7 +5929,7 @@ export const deserializeAws_restJson1ListClassificationJobsCommand = async (
     items: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.items !== undefined && data.items !== null) {
     contents.items = deserializeAws_restJson1__listOfJobSummary(data.items, context);
   }
@@ -6033,7 +6036,7 @@ export const deserializeAws_restJson1ListCustomDataIdentifiersCommand = async (
     items: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.items !== undefined && data.items !== null) {
     contents.items = deserializeAws_restJson1__listOfCustomDataIdentifierSummary(data.items, context);
   }
@@ -6140,7 +6143,7 @@ export const deserializeAws_restJson1ListFindingsCommand = async (
     findingIds: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.findingIds !== undefined && data.findingIds !== null) {
     contents.findingIds = deserializeAws_restJson1__listOf__string(data.findingIds, context);
   }
@@ -6247,7 +6250,7 @@ export const deserializeAws_restJson1ListFindingsFiltersCommand = async (
     findingsFilterListItems: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.findingsFilterListItems !== undefined && data.findingsFilterListItems !== null) {
     contents.findingsFilterListItems = deserializeAws_restJson1__listOfFindingsFilterListItem(
       data.findingsFilterListItems,
@@ -6357,7 +6360,7 @@ export const deserializeAws_restJson1ListInvitationsCommand = async (
     invitations: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.invitations !== undefined && data.invitations !== null) {
     contents.invitations = deserializeAws_restJson1__listOfInvitation(data.invitations, context);
   }
@@ -6464,7 +6467,7 @@ export const deserializeAws_restJson1ListMembersCommand = async (
     members: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.members !== undefined && data.members !== null) {
     contents.members = deserializeAws_restJson1__listOfMember(data.members, context);
   }
@@ -6571,7 +6574,7 @@ export const deserializeAws_restJson1ListOrganizationAdminAccountsCommand = asyn
     adminAccounts: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.adminAccounts !== undefined && data.adminAccounts !== null) {
     contents.adminAccounts = deserializeAws_restJson1__listOfAdminAccount(data.adminAccounts, context);
   }
@@ -6677,7 +6680,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.tags !== undefined && data.tags !== null) {
     contents.tags = deserializeAws_restJson1TagMap(data.tags, context);
   }
@@ -6724,7 +6727,7 @@ export const deserializeAws_restJson1PutClassificationExportConfigurationCommand
     $metadata: deserializeMetadata(output),
     configuration: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.configuration !== undefined && data.configuration !== null) {
     contents.configuration = deserializeAws_restJson1ClassificationExportConfiguration(data.configuration, context);
   }
@@ -6927,7 +6930,7 @@ export const deserializeAws_restJson1SearchResourcesCommand = async (
     matchingResources: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.matchingResources !== undefined && data.matchingResources !== null) {
     contents.matchingResources = deserializeAws_restJson1__listOfMatchingResource(data.matchingResources, context);
   }
@@ -7076,9 +7079,9 @@ export const deserializeAws_restJson1TestCustomDataIdentifierCommand = async (
     $metadata: deserializeMetadata(output),
     matchCount: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.matchCount !== undefined && data.matchCount !== null) {
-    contents.matchCount = __expectInt(data.matchCount);
+    contents.matchCount = __expectInt32(data.matchCount);
   }
   return Promise.resolve(contents);
 };
@@ -7322,7 +7325,7 @@ export const deserializeAws_restJson1UpdateFindingsFilterCommand = async (
     arn: undefined,
     id: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.arn = __expectString(data.arn);
   }
@@ -8771,10 +8774,10 @@ const deserializeAws_restJson1BucketCountByEffectivePermission = (
   context: __SerdeContext
 ): BucketCountByEffectivePermission => {
   return {
-    publiclyAccessible: __expectInt(output.publiclyAccessible),
-    publiclyReadable: __expectInt(output.publiclyReadable),
-    publiclyWritable: __expectInt(output.publiclyWritable),
-    unknown: __expectInt(output.unknown),
+    publiclyAccessible: __expectLong(output.publiclyAccessible),
+    publiclyReadable: __expectLong(output.publiclyReadable),
+    publiclyWritable: __expectLong(output.publiclyWritable),
+    unknown: __expectLong(output.unknown),
   } as any;
 };
 
@@ -8783,10 +8786,10 @@ const deserializeAws_restJson1BucketCountByEncryptionType = (
   context: __SerdeContext
 ): BucketCountByEncryptionType => {
   return {
-    kmsManaged: __expectInt(output.kmsManaged),
-    s3Managed: __expectInt(output.s3Managed),
-    unencrypted: __expectInt(output.unencrypted),
-    unknown: __expectInt(output.unknown),
+    kmsManaged: __expectLong(output.kmsManaged),
+    s3Managed: __expectLong(output.s3Managed),
+    unencrypted: __expectLong(output.unencrypted),
+    unknown: __expectLong(output.unknown),
   } as any;
 };
 
@@ -8795,10 +8798,10 @@ const deserializeAws_restJson1BucketCountBySharedAccessType = (
   context: __SerdeContext
 ): BucketCountBySharedAccessType => {
   return {
-    external: __expectInt(output.external),
-    internal: __expectInt(output.internal),
-    notShared: __expectInt(output.notShared),
-    unknown: __expectInt(output.unknown),
+    external: __expectLong(output.external),
+    internal: __expectLong(output.internal),
+    notShared: __expectLong(output.notShared),
+    unknown: __expectLong(output.unknown),
   } as any;
 };
 
@@ -8807,9 +8810,9 @@ const deserializeAws_restJson1BucketCountPolicyAllowsUnencryptedObjectUploads = 
   context: __SerdeContext
 ): BucketCountPolicyAllowsUnencryptedObjectUploads => {
   return {
-    allowsUnencryptedObjectUploads: __expectInt(output.allowsUnencryptedObjectUploads),
-    deniesUnencryptedObjectUploads: __expectInt(output.deniesUnencryptedObjectUploads),
-    unknown: __expectInt(output.unknown),
+    allowsUnencryptedObjectUploads: __expectLong(output.allowsUnencryptedObjectUploads),
+    deniesUnencryptedObjectUploads: __expectLong(output.deniesUnencryptedObjectUploads),
+    unknown: __expectLong(output.unknown),
   } as any;
 };
 
@@ -8843,15 +8846,15 @@ const deserializeAws_restJson1BucketMetadata = (output: any, context: __SerdeCon
         ? new Date(output.bucketCreatedAt)
         : undefined,
     bucketName: __expectString(output.bucketName),
-    classifiableObjectCount: __expectInt(output.classifiableObjectCount),
-    classifiableSizeInBytes: __expectInt(output.classifiableSizeInBytes),
+    classifiableObjectCount: __expectLong(output.classifiableObjectCount),
+    classifiableSizeInBytes: __expectLong(output.classifiableSizeInBytes),
     jobDetails:
       output.jobDetails !== undefined && output.jobDetails !== null
         ? deserializeAws_restJson1JobDetails(output.jobDetails, context)
         : undefined,
     lastUpdated:
       output.lastUpdated !== undefined && output.lastUpdated !== null ? new Date(output.lastUpdated) : undefined,
-    objectCount: __expectInt(output.objectCount),
+    objectCount: __expectLong(output.objectCount),
     objectCountByEncryptionType:
       output.objectCountByEncryptionType !== undefined && output.objectCountByEncryptionType !== null
         ? deserializeAws_restJson1ObjectCountByEncryptionType(output.objectCountByEncryptionType, context)
@@ -8870,8 +8873,8 @@ const deserializeAws_restJson1BucketMetadata = (output: any, context: __SerdeCon
         ? deserializeAws_restJson1BucketServerSideEncryption(output.serverSideEncryption, context)
         : undefined,
     sharedAccess: __expectString(output.sharedAccess),
-    sizeInBytes: __expectInt(output.sizeInBytes),
-    sizeInBytesCompressed: __expectInt(output.sizeInBytesCompressed),
+    sizeInBytes: __expectLong(output.sizeInBytes),
+    sizeInBytesCompressed: __expectLong(output.sizeInBytesCompressed),
     tags:
       output.tags !== undefined && output.tags !== null
         ? deserializeAws_restJson1__listOfKeyValuePair(output.tags, context)
@@ -8934,9 +8937,9 @@ const deserializeAws_restJson1BucketServerSideEncryption = (
 const deserializeAws_restJson1Cell = (output: any, context: __SerdeContext): Cell => {
   return {
     cellReference: __expectString(output.cellReference),
-    column: __expectInt(output.column),
+    column: __expectLong(output.column),
     columnName: __expectString(output.columnName),
-    row: __expectInt(output.row),
+    row: __expectLong(output.row),
   } as any;
 };
 
@@ -8987,7 +8990,7 @@ const deserializeAws_restJson1ClassificationResult = (output: any, context: __Se
       output.sensitiveData !== undefined && output.sensitiveData !== null
         ? deserializeAws_restJson1SensitiveData(output.sensitiveData, context)
         : undefined,
-    sizeClassified: __expectInt(output.sizeClassified),
+    sizeClassified: __expectLong(output.sizeClassified),
     status:
       output.status !== undefined && output.status !== null
         ? deserializeAws_restJson1ClassificationResultStatus(output.status, context)
@@ -9058,10 +9061,10 @@ const deserializeAws_restJson1CriterionAdditionalProperties = (
       output.eqExactMatch !== undefined && output.eqExactMatch !== null
         ? deserializeAws_restJson1__listOf__string(output.eqExactMatch, context)
         : undefined,
-    gt: __expectInt(output.gt),
-    gte: __expectInt(output.gte),
-    lt: __expectInt(output.lt),
-    lte: __expectInt(output.lte),
+    gt: __expectLong(output.gt),
+    gte: __expectLong(output.gte),
+    lt: __expectLong(output.lt),
+    lte: __expectLong(output.lte),
     neq:
       output.neq !== undefined && output.neq !== null
         ? deserializeAws_restJson1__listOf__string(output.neq, context)
@@ -9075,7 +9078,7 @@ const deserializeAws_restJson1CustomDataIdentifiers = (output: any, context: __S
       output.detections !== undefined && output.detections !== null
         ? deserializeAws_restJson1CustomDetections(output.detections, context)
         : undefined,
-    totalCount: __expectInt(output.totalCount),
+    totalCount: __expectLong(output.totalCount),
   } as any;
 };
 
@@ -9095,7 +9098,7 @@ const deserializeAws_restJson1CustomDataIdentifierSummary = (
 const deserializeAws_restJson1CustomDetection = (output: any, context: __SerdeContext): CustomDetection => {
   return {
     arn: __expectString(output.arn),
-    count: __expectInt(output.count),
+    count: __expectLong(output.count),
     name: __expectString(output.name),
     occurrences:
       output.occurrences !== undefined && output.occurrences !== null
@@ -9121,7 +9124,7 @@ const deserializeAws_restJson1DailySchedule = (output: any, context: __SerdeCont
 
 const deserializeAws_restJson1DefaultDetection = (output: any, context: __SerdeContext): DefaultDetection => {
   return {
-    count: __expectInt(output.count),
+    count: __expectLong(output.count),
     occurrences:
       output.occurrences !== undefined && output.occurrences !== null
         ? deserializeAws_restJson1Occurrences(output.occurrences, context)
@@ -9169,7 +9172,7 @@ const deserializeAws_restJson1Finding = (output: any, context: __SerdeContext): 
       output.classificationDetails !== undefined && output.classificationDetails !== null
         ? deserializeAws_restJson1ClassificationDetails(output.classificationDetails, context)
         : undefined,
-    count: __expectInt(output.count),
+    count: __expectLong(output.count),
     createdAt: output.createdAt !== undefined && output.createdAt !== null ? new Date(output.createdAt) : undefined,
     description: __expectString(output.description),
     id: __expectString(output.id),
@@ -9249,7 +9252,7 @@ const deserializeAws_restJson1FindingsFilterListItem = (
 
 const deserializeAws_restJson1GroupCount = (output: any, context: __SerdeContext): GroupCount => {
   return {
-    count: __expectInt(output.count),
+    count: __expectLong(output.count),
     groupKey: __expectString(output.groupKey),
   } as any;
 };
@@ -9309,8 +9312,8 @@ const deserializeAws_restJson1IpCountry = (output: any, context: __SerdeContext)
 
 const deserializeAws_restJson1IpGeoLocation = (output: any, context: __SerdeContext): IpGeoLocation => {
   return {
-    lat: __limitedParseFloat(output.lat),
-    lon: __limitedParseFloat(output.lon),
+    lat: __limitedParseDouble(output.lat),
+    lon: __limitedParseDouble(output.lon),
   } as any;
 };
 
@@ -9428,19 +9431,19 @@ const deserializeAws_restJson1MatchingBucket = (output: any, context: __SerdeCon
   return {
     accountId: __expectString(output.accountId),
     bucketName: __expectString(output.bucketName),
-    classifiableObjectCount: __expectInt(output.classifiableObjectCount),
-    classifiableSizeInBytes: __expectInt(output.classifiableSizeInBytes),
+    classifiableObjectCount: __expectLong(output.classifiableObjectCount),
+    classifiableSizeInBytes: __expectLong(output.classifiableSizeInBytes),
     jobDetails:
       output.jobDetails !== undefined && output.jobDetails !== null
         ? deserializeAws_restJson1JobDetails(output.jobDetails, context)
         : undefined,
-    objectCount: __expectInt(output.objectCount),
+    objectCount: __expectLong(output.objectCount),
     objectCountByEncryptionType:
       output.objectCountByEncryptionType !== undefined && output.objectCountByEncryptionType !== null
         ? deserializeAws_restJson1ObjectCountByEncryptionType(output.objectCountByEncryptionType, context)
         : undefined,
-    sizeInBytes: __expectInt(output.sizeInBytes),
-    sizeInBytesCompressed: __expectInt(output.sizeInBytesCompressed),
+    sizeInBytes: __expectLong(output.sizeInBytes),
+    sizeInBytesCompressed: __expectLong(output.sizeInBytesCompressed),
     unclassifiableObjectCount:
       output.unclassifiableObjectCount !== undefined && output.unclassifiableObjectCount !== null
         ? deserializeAws_restJson1ObjectLevelStatistics(output.unclassifiableObjectCount, context)
@@ -9480,7 +9483,7 @@ const deserializeAws_restJson1Member = (output: any, context: __SerdeContext): M
 
 const deserializeAws_restJson1MonthlySchedule = (output: any, context: __SerdeContext): MonthlySchedule => {
   return {
-    dayOfMonth: __expectInt(output.dayOfMonth),
+    dayOfMonth: __expectInt32(output.dayOfMonth),
   } as any;
 };
 
@@ -9489,19 +9492,19 @@ const deserializeAws_restJson1ObjectCountByEncryptionType = (
   context: __SerdeContext
 ): ObjectCountByEncryptionType => {
   return {
-    customerManaged: __expectInt(output.customerManaged),
-    kmsManaged: __expectInt(output.kmsManaged),
-    s3Managed: __expectInt(output.s3Managed),
-    unencrypted: __expectInt(output.unencrypted),
-    unknown: __expectInt(output.unknown),
+    customerManaged: __expectLong(output.customerManaged),
+    kmsManaged: __expectLong(output.kmsManaged),
+    s3Managed: __expectLong(output.s3Managed),
+    unencrypted: __expectLong(output.unencrypted),
+    unknown: __expectLong(output.unknown),
   } as any;
 };
 
 const deserializeAws_restJson1ObjectLevelStatistics = (output: any, context: __SerdeContext): ObjectLevelStatistics => {
   return {
-    fileType: __expectInt(output.fileType),
-    storageClass: __expectInt(output.storageClass),
-    total: __expectInt(output.total),
+    fileType: __expectLong(output.fileType),
+    storageClass: __expectLong(output.storageClass),
+    total: __expectLong(output.total),
   } as any;
 };
 
@@ -9540,7 +9543,7 @@ const deserializeAws_restJson1Page = (output: any, context: __SerdeContext): Pag
       output.offsetRange !== undefined && output.offsetRange !== null
         ? deserializeAws_restJson1Range(output.offsetRange, context)
         : undefined,
-    pageNumber: __expectInt(output.pageNumber),
+    pageNumber: __expectLong(output.pageNumber),
   } as any;
 };
 
@@ -9570,9 +9573,9 @@ const deserializeAws_restJson1PolicyDetails = (output: any, context: __SerdeCont
 
 const deserializeAws_restJson1Range = (output: any, context: __SerdeContext): Range => {
   return {
-    end: __expectInt(output.end),
-    start: __expectInt(output.start),
-    startColumn: __expectInt(output.startColumn),
+    end: __expectLong(output.end),
+    start: __expectLong(output.start),
+    startColumn: __expectLong(output.startColumn),
   } as any;
 };
 
@@ -9590,7 +9593,7 @@ const deserializeAws_restJson1Ranges = (output: any, context: __SerdeContext): R
 const deserializeAws_restJson1_Record = (output: any, context: __SerdeContext): _Record => {
   return {
     jsonPath: __expectString(output.jsonPath),
-    recordIndex: __expectInt(output.recordIndex),
+    recordIndex: __expectLong(output.recordIndex),
   } as any;
 };
 
@@ -9729,7 +9732,7 @@ const deserializeAws_restJson1S3Object = (output: any, context: __SerdeContext):
       output.serverSideEncryption !== undefined && output.serverSideEncryption !== null
         ? deserializeAws_restJson1ServerSideEncryption(output.serverSideEncryption, context)
         : undefined,
-    size: __expectInt(output.size),
+    size: __expectLong(output.size),
     storageClass: __expectString(output.storageClass),
     tags:
       output.tags !== undefined && output.tags !== null
@@ -9780,7 +9783,7 @@ const deserializeAws_restJson1SensitiveDataItem = (output: any, context: __Serde
       output.detections !== undefined && output.detections !== null
         ? deserializeAws_restJson1DefaultDetections(output.detections, context)
         : undefined,
-    totalCount: __expectInt(output.totalCount),
+    totalCount: __expectLong(output.totalCount),
   } as any;
 };
 
@@ -9795,7 +9798,7 @@ const deserializeAws_restJson1ServiceLimit = (output: any, context: __SerdeConte
   return {
     isServiceLimited: __expectBoolean(output.isServiceLimited),
     unit: __expectString(output.unit),
-    value: __expectInt(output.value),
+    value: __expectLong(output.value),
   } as any;
 };
 
@@ -9836,7 +9839,7 @@ const deserializeAws_restJson1SessionIssuer = (output: any, context: __SerdeCont
 const deserializeAws_restJson1Severity = (output: any, context: __SerdeContext): Severity => {
   return {
     description: __expectString(output.description),
-    score: __expectInt(output.score),
+    score: __expectLong(output.score),
   } as any;
 };
 
@@ -9864,8 +9867,8 @@ const deserializeAws_restJson1SimpleScopeTerm = (output: any, context: __SerdeCo
 
 const deserializeAws_restJson1Statistics = (output: any, context: __SerdeContext): Statistics => {
   return {
-    approximateNumberOfObjectsToProcess: __limitedParseFloat(output.approximateNumberOfObjectsToProcess),
-    numberOfRuns: __limitedParseFloat(output.numberOfRuns),
+    approximateNumberOfObjectsToProcess: __limitedParseDouble(output.approximateNumberOfObjectsToProcess),
+    numberOfRuns: __limitedParseDouble(output.numberOfRuns),
   } as any;
 };
 

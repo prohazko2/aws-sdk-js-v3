@@ -50,7 +50,12 @@ import {
   ValidationException,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectInt as __expectInt, expectString as __expectString } from "../../smithy-client/mod.ts";
+import {
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
+  expectString as __expectString,
+} from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   MetadataBearer as __MetadataBearer,
@@ -388,7 +393,7 @@ export const deserializeAws_restJson1CreateSavingsPlanCommand = async (
     $metadata: deserializeMetadata(output),
     savingsPlanId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.savingsPlanId !== undefined && data.savingsPlanId !== null) {
     contents.savingsPlanId = __expectString(data.savingsPlanId);
   }
@@ -544,7 +549,7 @@ export const deserializeAws_restJson1DescribeSavingsPlanRatesCommand = async (
     savingsPlanId: undefined,
     searchResults: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -614,7 +619,7 @@ export const deserializeAws_restJson1DescribeSavingsPlansCommand = async (
     nextToken: undefined,
     savingsPlans: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -681,7 +686,7 @@ export const deserializeAws_restJson1DescribeSavingsPlansOfferingRatesCommand = 
     nextToken: undefined,
     searchResults: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -748,7 +753,7 @@ export const deserializeAws_restJson1DescribeSavingsPlansOfferingsCommand = asyn
     nextToken: undefined,
     searchResults: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -814,7 +819,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.tags !== undefined && data.tags !== null) {
     contents.tags = deserializeAws_restJson1TagMap(data.tags, context);
   }
@@ -1417,7 +1422,7 @@ const deserializeAws_restJson1ParentSavingsPlanOffering = (
 ): ParentSavingsPlanOffering => {
   return {
     currency: __expectString(output.currency),
-    durationSeconds: __expectInt(output.durationSeconds),
+    durationSeconds: __expectLong(output.durationSeconds),
     offeringId: __expectString(output.offeringId),
     paymentOption: __expectString(output.paymentOption),
     planDescription: __expectString(output.planDescription),
@@ -1449,7 +1454,7 @@ const deserializeAws_restJson1SavingsPlan = (output: any, context: __SerdeContex
       output.tags !== undefined && output.tags !== null
         ? deserializeAws_restJson1TagMap(output.tags, context)
         : undefined,
-    termDurationInSeconds: __expectInt(output.termDurationInSeconds),
+    termDurationInSeconds: __expectLong(output.termDurationInSeconds),
     upfrontPaymentAmount: __expectString(output.upfrontPaymentAmount),
   } as any;
 };
@@ -1469,7 +1474,7 @@ const deserializeAws_restJson1SavingsPlanOffering = (output: any, context: __Ser
   return {
     currency: __expectString(output.currency),
     description: __expectString(output.description),
-    durationSeconds: __expectInt(output.durationSeconds),
+    durationSeconds: __expectLong(output.durationSeconds),
     offeringId: __expectString(output.offeringId),
     operation: __expectString(output.operation),
     paymentOption: __expectString(output.paymentOption),

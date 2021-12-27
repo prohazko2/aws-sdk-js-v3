@@ -24,7 +24,7 @@ import {
   ThrottlingException,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectInt as __expectInt, expectString as __expectString } from "../../smithy-client/mod.ts";
+import { expectInt32 as __expectInt32, expectString as __expectString } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   HeaderBag as __HeaderBag,
@@ -566,7 +566,7 @@ const deserializeAws_json1_1Target = (output: any, context: __SerdeContext): Tar
 const deserializeAws_json1_1ThrottlingException = (output: any, context: __SerdeContext): ThrottlingException => {
   return {
     Message: __expectString(output.Message),
-    RetryAfterSeconds: __expectInt(output.RetryAfterSeconds),
+    RetryAfterSeconds: __expectInt32(output.RetryAfterSeconds),
   } as any;
 };
 

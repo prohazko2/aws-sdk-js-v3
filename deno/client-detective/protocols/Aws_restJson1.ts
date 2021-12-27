@@ -35,10 +35,12 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectInt as __expectInt,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -530,7 +532,7 @@ export const deserializeAws_restJson1CreateGraphCommand = async (
     $metadata: deserializeMetadata(output),
     GraphArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.GraphArn !== undefined && data.GraphArn !== null) {
     contents.GraphArn = __expectString(data.GraphArn);
   }
@@ -602,7 +604,7 @@ export const deserializeAws_restJson1CreateMembersCommand = async (
     Members: undefined,
     UnprocessedAccounts: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Members !== undefined && data.Members !== null) {
     contents.Members = deserializeAws_restJson1MemberDetailList(data.Members, context);
   }
@@ -752,7 +754,7 @@ export const deserializeAws_restJson1DeleteMembersCommand = async (
     AccountIds: undefined,
     UnprocessedAccounts: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccountIds !== undefined && data.AccountIds !== null) {
     contents.AccountIds = deserializeAws_restJson1AccountIdList(data.AccountIds, context);
   }
@@ -910,7 +912,7 @@ export const deserializeAws_restJson1GetMembersCommand = async (
     MemberDetails: undefined,
     UnprocessedAccounts: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.MemberDetails !== undefined && data.MemberDetails !== null) {
     contents.MemberDetails = deserializeAws_restJson1MemberDetailList(data.MemberDetails, context);
   }
@@ -985,7 +987,7 @@ export const deserializeAws_restJson1ListGraphsCommand = async (
     GraphList: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.GraphList !== undefined && data.GraphList !== null) {
     contents.GraphList = deserializeAws_restJson1GraphList(data.GraphList, context);
   }
@@ -1052,7 +1054,7 @@ export const deserializeAws_restJson1ListInvitationsCommand = async (
     Invitations: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Invitations !== undefined && data.Invitations !== null) {
     contents.Invitations = deserializeAws_restJson1MemberDetailList(data.Invitations, context);
   }
@@ -1119,7 +1121,7 @@ export const deserializeAws_restJson1ListMembersCommand = async (
     MemberDetails: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.MemberDetails !== undefined && data.MemberDetails !== null) {
     contents.MemberDetails = deserializeAws_restJson1MemberDetailList(data.MemberDetails, context);
   }
@@ -1193,7 +1195,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1TagMap(data.Tags, context);
   }
@@ -1711,7 +1713,7 @@ const deserializeAws_restJson1MemberDetail = (output: any, context: __SerdeConte
     InvitedTime:
       output.InvitedTime !== undefined && output.InvitedTime !== null ? new Date(output.InvitedTime) : undefined,
     MasterId: __expectString(output.MasterId),
-    PercentOfGraphUtilization: __limitedParseFloat(output.PercentOfGraphUtilization),
+    PercentOfGraphUtilization: __limitedParseDouble(output.PercentOfGraphUtilization),
     PercentOfGraphUtilizationUpdatedTime:
       output.PercentOfGraphUtilizationUpdatedTime !== undefined && output.PercentOfGraphUtilizationUpdatedTime !== null
         ? new Date(output.PercentOfGraphUtilizationUpdatedTime)
@@ -1719,7 +1721,7 @@ const deserializeAws_restJson1MemberDetail = (output: any, context: __SerdeConte
     Status: __expectString(output.Status),
     UpdatedTime:
       output.UpdatedTime !== undefined && output.UpdatedTime !== null ? new Date(output.UpdatedTime) : undefined,
-    VolumeUsageInBytes: __expectInt(output.VolumeUsageInBytes),
+    VolumeUsageInBytes: __expectLong(output.VolumeUsageInBytes),
     VolumeUsageUpdatedTime:
       output.VolumeUsageUpdatedTime !== undefined && output.VolumeUsageUpdatedTime !== null
         ? new Date(output.VolumeUsageUpdatedTime)

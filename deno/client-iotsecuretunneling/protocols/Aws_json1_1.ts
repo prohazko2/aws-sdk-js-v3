@@ -33,7 +33,7 @@ import {
   UntagResourceResponse,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectInt as __expectInt, expectString as __expectString } from "../../smithy-client/mod.ts";
+import { expectInt32 as __expectInt32, expectString as __expectString } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   HeaderBag as __HeaderBag,
@@ -763,7 +763,7 @@ const deserializeAws_json1_1TagResourceResponse = (output: any, context: __Serde
 
 const deserializeAws_json1_1TimeoutConfig = (output: any, context: __SerdeContext): TimeoutConfig => {
   return {
-    maxLifetimeTimeoutMinutes: __expectInt(output.maxLifetimeTimeoutMinutes),
+    maxLifetimeTimeoutMinutes: __expectInt32(output.maxLifetimeTimeoutMinutes),
   } as any;
 };
 

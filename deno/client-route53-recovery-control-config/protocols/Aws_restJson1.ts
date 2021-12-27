@@ -63,7 +63,9 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -667,7 +669,7 @@ export const deserializeAws_restJson1CreateClusterCommand = async (
     $metadata: deserializeMetadata(output),
     Cluster: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Cluster !== undefined && data.Cluster !== null) {
     contents.Cluster = deserializeAws_restJson1Cluster(data.Cluster, context);
   }
@@ -770,7 +772,7 @@ export const deserializeAws_restJson1CreateControlPanelCommand = async (
     $metadata: deserializeMetadata(output),
     ControlPanel: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ControlPanel !== undefined && data.ControlPanel !== null) {
     contents.ControlPanel = deserializeAws_restJson1ControlPanel(data.ControlPanel, context);
   }
@@ -873,7 +875,7 @@ export const deserializeAws_restJson1CreateRoutingControlCommand = async (
     $metadata: deserializeMetadata(output),
     RoutingControl: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RoutingControl !== undefined && data.RoutingControl !== null) {
     contents.RoutingControl = deserializeAws_restJson1RoutingControl(data.RoutingControl, context);
   }
@@ -977,7 +979,7 @@ export const deserializeAws_restJson1CreateSafetyRuleCommand = async (
     AssertionRule: undefined,
     GatingRule: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AssertionRule !== undefined && data.AssertionRule !== null) {
     contents.AssertionRule = deserializeAws_restJson1AssertionRule(data.AssertionRule, context);
   }
@@ -1383,7 +1385,7 @@ export const deserializeAws_restJson1DescribeClusterCommand = async (
     $metadata: deserializeMetadata(output),
     Cluster: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Cluster !== undefined && data.Cluster !== null) {
     contents.Cluster = deserializeAws_restJson1Cluster(data.Cluster, context);
   }
@@ -1478,7 +1480,7 @@ export const deserializeAws_restJson1DescribeControlPanelCommand = async (
     $metadata: deserializeMetadata(output),
     ControlPanel: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ControlPanel !== undefined && data.ControlPanel !== null) {
     contents.ControlPanel = deserializeAws_restJson1ControlPanel(data.ControlPanel, context);
   }
@@ -1573,7 +1575,7 @@ export const deserializeAws_restJson1DescribeRoutingControlCommand = async (
     $metadata: deserializeMetadata(output),
     RoutingControl: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RoutingControl !== undefined && data.RoutingControl !== null) {
     contents.RoutingControl = deserializeAws_restJson1RoutingControl(data.RoutingControl, context);
   }
@@ -1669,7 +1671,7 @@ export const deserializeAws_restJson1DescribeSafetyRuleCommand = async (
     AssertionRule: undefined,
     GatingRule: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AssertionRule !== undefined && data.AssertionRule !== null) {
     contents.AssertionRule = deserializeAws_restJson1AssertionRule(data.AssertionRule, context);
   }
@@ -1736,7 +1738,7 @@ export const deserializeAws_restJson1ListAssociatedRoute53HealthChecksCommand = 
     HealthCheckIds: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.HealthCheckIds !== undefined && data.HealthCheckIds !== null) {
     contents.HealthCheckIds = deserializeAws_restJson1__listOf__string(data.HealthCheckIds, context);
   }
@@ -1811,7 +1813,7 @@ export const deserializeAws_restJson1ListClustersCommand = async (
     Clusters: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Clusters !== undefined && data.Clusters !== null) {
     contents.Clusters = deserializeAws_restJson1__listOfCluster(data.Clusters, context);
   }
@@ -1902,7 +1904,7 @@ export const deserializeAws_restJson1ListControlPanelsCommand = async (
     ControlPanels: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ControlPanels !== undefined && data.ControlPanels !== null) {
     contents.ControlPanels = deserializeAws_restJson1__listOfControlPanel(data.ControlPanels, context);
   }
@@ -1993,7 +1995,7 @@ export const deserializeAws_restJson1ListRoutingControlsCommand = async (
     NextToken: undefined,
     RoutingControls: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -2084,7 +2086,7 @@ export const deserializeAws_restJson1ListSafetyRulesCommand = async (
     NextToken: undefined,
     SafetyRules: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -2174,7 +2176,7 @@ export const deserializeAws_restJson1UpdateControlPanelCommand = async (
     $metadata: deserializeMetadata(output),
     ControlPanel: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ControlPanel !== undefined && data.ControlPanel !== null) {
     contents.ControlPanel = deserializeAws_restJson1ControlPanel(data.ControlPanel, context);
   }
@@ -2269,7 +2271,7 @@ export const deserializeAws_restJson1UpdateRoutingControlCommand = async (
     $metadata: deserializeMetadata(output),
     RoutingControl: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RoutingControl !== undefined && data.RoutingControl !== null) {
     contents.RoutingControl = deserializeAws_restJson1RoutingControl(data.RoutingControl, context);
   }
@@ -2365,7 +2367,7 @@ export const deserializeAws_restJson1UpdateSafetyRuleCommand = async (
     AssertionRule: undefined,
     GatingRule: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AssertionRule !== undefined && data.AssertionRule !== null) {
     contents.AssertionRule = deserializeAws_restJson1AssertionRule(data.AssertionRule, context);
   }
@@ -2696,7 +2698,7 @@ const deserializeAws_restJson1AssertionRule = (output: any, context: __SerdeCont
         : undefined,
     SafetyRuleArn: __expectString(output.SafetyRuleArn),
     Status: __expectString(output.Status),
-    WaitPeriodMs: __expectInt(output.WaitPeriodMs),
+    WaitPeriodMs: __expectInt32(output.WaitPeriodMs),
   } as any;
 };
 
@@ -2725,7 +2727,7 @@ const deserializeAws_restJson1ControlPanel = (output: any, context: __SerdeConte
     ControlPanelArn: __expectString(output.ControlPanelArn),
     DefaultControlPanel: __expectBoolean(output.DefaultControlPanel),
     Name: __expectString(output.Name),
-    RoutingControlCount: __expectInt(output.RoutingControlCount),
+    RoutingControlCount: __expectInt32(output.RoutingControlCount),
     Status: __expectString(output.Status),
   } as any;
 };
@@ -2748,7 +2750,7 @@ const deserializeAws_restJson1GatingRule = (output: any, context: __SerdeContext
       output.TargetControls !== undefined && output.TargetControls !== null
         ? deserializeAws_restJson1__listOf__string(output.TargetControls, context)
         : undefined,
-    WaitPeriodMs: __expectInt(output.WaitPeriodMs),
+    WaitPeriodMs: __expectInt32(output.WaitPeriodMs),
   } as any;
 };
 
@@ -2777,7 +2779,7 @@ const deserializeAws_restJson1Rule = (output: any, context: __SerdeContext): Rul
 const deserializeAws_restJson1RuleConfig = (output: any, context: __SerdeContext): RuleConfig => {
   return {
     Inverted: __expectBoolean(output.Inverted),
-    Threshold: __expectInt(output.Threshold),
+    Threshold: __expectInt32(output.Threshold),
     Type: __expectString(output.Type),
   } as any;
 };

@@ -5,7 +5,12 @@ import {
 import { SendHeartbeatCommandInput, SendHeartbeatCommandOutput } from "../commands/SendHeartbeatCommand.ts";
 import { EdgeMetric, InternalServiceException, Model } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectString as __expectString, serializeFloat as __serializeFloat } from "../../smithy-client/mod.ts";
+import {
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
+  expectString as __expectString,
+  serializeFloat as __serializeFloat,
+} from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   MetadataBearer as __MetadataBearer,
@@ -83,7 +88,7 @@ export const deserializeAws_restJson1GetDeviceRegistrationCommand = async (
     CacheTTL: undefined,
     DeviceRegistration: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CacheTTL !== undefined && data.CacheTTL !== null) {
     contents.CacheTTL = __expectString(data.CacheTTL);
   }

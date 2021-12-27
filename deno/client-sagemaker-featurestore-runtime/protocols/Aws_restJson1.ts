@@ -15,6 +15,8 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -173,7 +175,7 @@ export const deserializeAws_restJson1BatchGetRecordCommand = async (
     Records: undefined,
     UnprocessedIdentifiers: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Errors !== undefined && data.Errors !== null) {
     contents.Errors = deserializeAws_restJson1BatchGetRecordErrors(data.Errors, context);
   }
@@ -336,7 +338,7 @@ export const deserializeAws_restJson1GetRecordCommand = async (
     $metadata: deserializeMetadata(output),
     Record: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Record !== undefined && data.Record !== null) {
     contents.Record = deserializeAws_restJson1Record(data.Record, context);
   }

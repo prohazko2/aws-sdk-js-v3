@@ -5,6 +5,10 @@ import {
 } from "./commands/CreateAccessPointForObjectLambdaCommand.ts";
 import { CreateBucketCommandInput, CreateBucketCommandOutput } from "./commands/CreateBucketCommand.ts";
 import { CreateJobCommandInput, CreateJobCommandOutput } from "./commands/CreateJobCommand.ts";
+import {
+  CreateMultiRegionAccessPointCommandInput,
+  CreateMultiRegionAccessPointCommandOutput,
+} from "./commands/CreateMultiRegionAccessPointCommand.ts";
 import { DeleteAccessPointCommandInput, DeleteAccessPointCommandOutput } from "./commands/DeleteAccessPointCommand.ts";
 import {
   DeleteAccessPointForObjectLambdaCommandInput,
@@ -30,6 +34,10 @@ import {
 } from "./commands/DeleteBucketTaggingCommand.ts";
 import { DeleteJobTaggingCommandInput, DeleteJobTaggingCommandOutput } from "./commands/DeleteJobTaggingCommand.ts";
 import {
+  DeleteMultiRegionAccessPointCommandInput,
+  DeleteMultiRegionAccessPointCommandOutput,
+} from "./commands/DeleteMultiRegionAccessPointCommand.ts";
+import {
   DeletePublicAccessBlockCommandInput,
   DeletePublicAccessBlockCommandOutput,
 } from "./commands/DeletePublicAccessBlockCommand.ts";
@@ -42,6 +50,10 @@ import {
   DeleteStorageLensConfigurationTaggingCommandOutput,
 } from "./commands/DeleteStorageLensConfigurationTaggingCommand.ts";
 import { DescribeJobCommandInput, DescribeJobCommandOutput } from "./commands/DescribeJobCommand.ts";
+import {
+  DescribeMultiRegionAccessPointOperationCommandInput,
+  DescribeMultiRegionAccessPointOperationCommandOutput,
+} from "./commands/DescribeMultiRegionAccessPointOperationCommand.ts";
 import { GetAccessPointCommandInput, GetAccessPointCommandOutput } from "./commands/GetAccessPointCommand.ts";
 import {
   GetAccessPointConfigurationForObjectLambdaCommandInput,
@@ -76,6 +88,18 @@ import { GetBucketPolicyCommandInput, GetBucketPolicyCommandOutput } from "./com
 import { GetBucketTaggingCommandInput, GetBucketTaggingCommandOutput } from "./commands/GetBucketTaggingCommand.ts";
 import { GetJobTaggingCommandInput, GetJobTaggingCommandOutput } from "./commands/GetJobTaggingCommand.ts";
 import {
+  GetMultiRegionAccessPointCommandInput,
+  GetMultiRegionAccessPointCommandOutput,
+} from "./commands/GetMultiRegionAccessPointCommand.ts";
+import {
+  GetMultiRegionAccessPointPolicyCommandInput,
+  GetMultiRegionAccessPointPolicyCommandOutput,
+} from "./commands/GetMultiRegionAccessPointPolicyCommand.ts";
+import {
+  GetMultiRegionAccessPointPolicyStatusCommandInput,
+  GetMultiRegionAccessPointPolicyStatusCommandOutput,
+} from "./commands/GetMultiRegionAccessPointPolicyStatusCommand.ts";
+import {
   GetPublicAccessBlockCommandInput,
   GetPublicAccessBlockCommandOutput,
 } from "./commands/GetPublicAccessBlockCommand.ts";
@@ -93,6 +117,10 @@ import {
   ListAccessPointsForObjectLambdaCommandOutput,
 } from "./commands/ListAccessPointsForObjectLambdaCommand.ts";
 import { ListJobsCommandInput, ListJobsCommandOutput } from "./commands/ListJobsCommand.ts";
+import {
+  ListMultiRegionAccessPointsCommandInput,
+  ListMultiRegionAccessPointsCommandOutput,
+} from "./commands/ListMultiRegionAccessPointsCommand.ts";
 import {
   ListRegionalBucketsCommandInput,
   ListRegionalBucketsCommandOutput,
@@ -120,6 +148,10 @@ import {
 import { PutBucketPolicyCommandInput, PutBucketPolicyCommandOutput } from "./commands/PutBucketPolicyCommand.ts";
 import { PutBucketTaggingCommandInput, PutBucketTaggingCommandOutput } from "./commands/PutBucketTaggingCommand.ts";
 import { PutJobTaggingCommandInput, PutJobTaggingCommandOutput } from "./commands/PutJobTaggingCommand.ts";
+import {
+  PutMultiRegionAccessPointPolicyCommandInput,
+  PutMultiRegionAccessPointPolicyCommandOutput,
+} from "./commands/PutMultiRegionAccessPointPolicyCommand.ts";
 import {
   PutPublicAccessBlockCommandInput,
   PutPublicAccessBlockCommandOutput,
@@ -198,6 +230,7 @@ export type ServiceInputTypes =
   | CreateAccessPointForObjectLambdaCommandInput
   | CreateBucketCommandInput
   | CreateJobCommandInput
+  | CreateMultiRegionAccessPointCommandInput
   | DeleteAccessPointCommandInput
   | DeleteAccessPointForObjectLambdaCommandInput
   | DeleteAccessPointPolicyCommandInput
@@ -207,10 +240,12 @@ export type ServiceInputTypes =
   | DeleteBucketPolicyCommandInput
   | DeleteBucketTaggingCommandInput
   | DeleteJobTaggingCommandInput
+  | DeleteMultiRegionAccessPointCommandInput
   | DeletePublicAccessBlockCommandInput
   | DeleteStorageLensConfigurationCommandInput
   | DeleteStorageLensConfigurationTaggingCommandInput
   | DescribeJobCommandInput
+  | DescribeMultiRegionAccessPointOperationCommandInput
   | GetAccessPointCommandInput
   | GetAccessPointConfigurationForObjectLambdaCommandInput
   | GetAccessPointForObjectLambdaCommandInput
@@ -223,12 +258,16 @@ export type ServiceInputTypes =
   | GetBucketPolicyCommandInput
   | GetBucketTaggingCommandInput
   | GetJobTaggingCommandInput
+  | GetMultiRegionAccessPointCommandInput
+  | GetMultiRegionAccessPointPolicyCommandInput
+  | GetMultiRegionAccessPointPolicyStatusCommandInput
   | GetPublicAccessBlockCommandInput
   | GetStorageLensConfigurationCommandInput
   | GetStorageLensConfigurationTaggingCommandInput
   | ListAccessPointsCommandInput
   | ListAccessPointsForObjectLambdaCommandInput
   | ListJobsCommandInput
+  | ListMultiRegionAccessPointsCommandInput
   | ListRegionalBucketsCommandInput
   | ListStorageLensConfigurationsCommandInput
   | PutAccessPointConfigurationForObjectLambdaCommandInput
@@ -238,6 +277,7 @@ export type ServiceInputTypes =
   | PutBucketPolicyCommandInput
   | PutBucketTaggingCommandInput
   | PutJobTaggingCommandInput
+  | PutMultiRegionAccessPointPolicyCommandInput
   | PutPublicAccessBlockCommandInput
   | PutStorageLensConfigurationCommandInput
   | PutStorageLensConfigurationTaggingCommandInput
@@ -249,6 +289,7 @@ export type ServiceOutputTypes =
   | CreateAccessPointForObjectLambdaCommandOutput
   | CreateBucketCommandOutput
   | CreateJobCommandOutput
+  | CreateMultiRegionAccessPointCommandOutput
   | DeleteAccessPointCommandOutput
   | DeleteAccessPointForObjectLambdaCommandOutput
   | DeleteAccessPointPolicyCommandOutput
@@ -258,10 +299,12 @@ export type ServiceOutputTypes =
   | DeleteBucketPolicyCommandOutput
   | DeleteBucketTaggingCommandOutput
   | DeleteJobTaggingCommandOutput
+  | DeleteMultiRegionAccessPointCommandOutput
   | DeletePublicAccessBlockCommandOutput
   | DeleteStorageLensConfigurationCommandOutput
   | DeleteStorageLensConfigurationTaggingCommandOutput
   | DescribeJobCommandOutput
+  | DescribeMultiRegionAccessPointOperationCommandOutput
   | GetAccessPointCommandOutput
   | GetAccessPointConfigurationForObjectLambdaCommandOutput
   | GetAccessPointForObjectLambdaCommandOutput
@@ -274,12 +317,16 @@ export type ServiceOutputTypes =
   | GetBucketPolicyCommandOutput
   | GetBucketTaggingCommandOutput
   | GetJobTaggingCommandOutput
+  | GetMultiRegionAccessPointCommandOutput
+  | GetMultiRegionAccessPointPolicyCommandOutput
+  | GetMultiRegionAccessPointPolicyStatusCommandOutput
   | GetPublicAccessBlockCommandOutput
   | GetStorageLensConfigurationCommandOutput
   | GetStorageLensConfigurationTaggingCommandOutput
   | ListAccessPointsCommandOutput
   | ListAccessPointsForObjectLambdaCommandOutput
   | ListJobsCommandOutput
+  | ListMultiRegionAccessPointsCommandOutput
   | ListRegionalBucketsCommandOutput
   | ListStorageLensConfigurationsCommandOutput
   | PutAccessPointConfigurationForObjectLambdaCommandOutput
@@ -289,6 +336,7 @@ export type ServiceOutputTypes =
   | PutBucketPolicyCommandOutput
   | PutBucketTaggingCommandOutput
   | PutJobTaggingCommandOutput
+  | PutMultiRegionAccessPointPolicyCommandOutput
   | PutPublicAccessBlockCommandOutput
   | PutStorageLensConfigurationCommandOutput
   | PutStorageLensConfigurationTaggingCommandOutput

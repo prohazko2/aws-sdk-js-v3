@@ -102,7 +102,10 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -1415,7 +1418,7 @@ export const deserializeAws_restJson1BatchDeleteRecipeVersionCommand = async (
     Errors: undefined,
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Errors !== undefined && data.Errors !== null) {
     contents.Errors = deserializeAws_restJson1RecipeErrorList(data.Errors, context);
   }
@@ -1489,7 +1492,7 @@ export const deserializeAws_restJson1CreateDatasetCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -1568,7 +1571,7 @@ export const deserializeAws_restJson1CreateProfileJobCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -1655,7 +1658,7 @@ export const deserializeAws_restJson1CreateProjectCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -1734,7 +1737,7 @@ export const deserializeAws_restJson1CreateRecipeCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -1805,7 +1808,7 @@ export const deserializeAws_restJson1CreateRecipeJobCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -1892,7 +1895,7 @@ export const deserializeAws_restJson1CreateScheduleCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -1963,7 +1966,7 @@ export const deserializeAws_restJson1DeleteDatasetCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -2034,7 +2037,7 @@ export const deserializeAws_restJson1DeleteJobCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -2105,7 +2108,7 @@ export const deserializeAws_restJson1DeleteProjectCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -2177,7 +2180,7 @@ export const deserializeAws_restJson1DeleteRecipeVersionCommand = async (
     Name: undefined,
     RecipeVersion: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -2251,7 +2254,7 @@ export const deserializeAws_restJson1DeleteScheduleCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -2325,7 +2328,7 @@ export const deserializeAws_restJson1DescribeDatasetCommand = async (
     Source: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CreateDate !== undefined && data.CreateDate !== null) {
     contents.CreateDate = new Date(Math.round(data.CreateDate * 1000));
   }
@@ -2443,7 +2446,7 @@ export const deserializeAws_restJson1DescribeJobCommand = async (
     Timeout: undefined,
     Type: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CreateDate !== undefined && data.CreateDate !== null) {
     contents.CreateDate = new Date(Math.round(data.CreateDate * 1000));
   }
@@ -2478,10 +2481,10 @@ export const deserializeAws_restJson1DescribeJobCommand = async (
     contents.LogSubscription = __expectString(data.LogSubscription);
   }
   if (data.MaxCapacity !== undefined && data.MaxCapacity !== null) {
-    contents.MaxCapacity = __expectInt(data.MaxCapacity);
+    contents.MaxCapacity = __expectInt32(data.MaxCapacity);
   }
   if (data.MaxRetries !== undefined && data.MaxRetries !== null) {
-    contents.MaxRetries = __expectInt(data.MaxRetries);
+    contents.MaxRetries = __expectInt32(data.MaxRetries);
   }
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
@@ -2508,7 +2511,7 @@ export const deserializeAws_restJson1DescribeJobCommand = async (
     contents.Tags = deserializeAws_restJson1TagMap(data.Tags, context);
   }
   if (data.Timeout !== undefined && data.Timeout !== null) {
-    contents.Timeout = __expectInt(data.Timeout);
+    contents.Timeout = __expectInt32(data.Timeout);
   }
   if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
@@ -2589,9 +2592,9 @@ export const deserializeAws_restJson1DescribeJobRunCommand = async (
     StartedOn: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Attempt !== undefined && data.Attempt !== null) {
-    contents.Attempt = __expectInt(data.Attempt);
+    contents.Attempt = __expectInt32(data.Attempt);
   }
   if (data.CompletedOn !== undefined && data.CompletedOn !== null) {
     contents.CompletedOn = new Date(Math.round(data.CompletedOn * 1000));
@@ -2609,7 +2612,7 @@ export const deserializeAws_restJson1DescribeJobRunCommand = async (
     contents.ErrorMessage = __expectString(data.ErrorMessage);
   }
   if (data.ExecutionTime !== undefined && data.ExecutionTime !== null) {
-    contents.ExecutionTime = __expectInt(data.ExecutionTime);
+    contents.ExecutionTime = __expectInt32(data.ExecutionTime);
   }
   if (data.JobName !== undefined && data.JobName !== null) {
     contents.JobName = __expectString(data.JobName);
@@ -2716,7 +2719,7 @@ export const deserializeAws_restJson1DescribeProjectCommand = async (
     SessionStatus: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CreateDate !== undefined && data.CreateDate !== null) {
     contents.CreateDate = new Date(Math.round(data.CreateDate * 1000));
   }
@@ -2830,7 +2833,7 @@ export const deserializeAws_restJson1DescribeRecipeCommand = async (
     Steps: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CreateDate !== undefined && data.CreateDate !== null) {
     contents.CreateDate = new Date(Math.round(data.CreateDate * 1000));
   }
@@ -2937,7 +2940,7 @@ export const deserializeAws_restJson1DescribeScheduleCommand = async (
     ResourceArn: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CreateDate !== undefined && data.CreateDate !== null) {
     contents.CreateDate = new Date(Math.round(data.CreateDate * 1000));
   }
@@ -3025,7 +3028,7 @@ export const deserializeAws_restJson1ListDatasetsCommand = async (
     Datasets: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Datasets !== undefined && data.Datasets !== null) {
     contents.Datasets = deserializeAws_restJson1DatasetList(data.Datasets, context);
   }
@@ -3084,7 +3087,7 @@ export const deserializeAws_restJson1ListJobRunsCommand = async (
     JobRuns: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.JobRuns !== undefined && data.JobRuns !== null) {
     contents.JobRuns = deserializeAws_restJson1JobRunList(data.JobRuns, context);
   }
@@ -3151,7 +3154,7 @@ export const deserializeAws_restJson1ListJobsCommand = async (
     Jobs: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Jobs !== undefined && data.Jobs !== null) {
     contents.Jobs = deserializeAws_restJson1JobList(data.Jobs, context);
   }
@@ -3210,7 +3213,7 @@ export const deserializeAws_restJson1ListProjectsCommand = async (
     NextToken: undefined,
     Projects: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -3269,7 +3272,7 @@ export const deserializeAws_restJson1ListRecipesCommand = async (
     NextToken: undefined,
     Recipes: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -3328,7 +3331,7 @@ export const deserializeAws_restJson1ListRecipeVersionsCommand = async (
     NextToken: undefined,
     Recipes: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -3387,7 +3390,7 @@ export const deserializeAws_restJson1ListSchedulesCommand = async (
     NextToken: undefined,
     Schedules: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -3445,7 +3448,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1TagMap(data.Tags, context);
   }
@@ -3516,7 +3519,7 @@ export const deserializeAws_restJson1PublishRecipeCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -3589,9 +3592,9 @@ export const deserializeAws_restJson1SendProjectSessionActionCommand = async (
     Name: undefined,
     Result: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ActionId !== undefined && data.ActionId !== null) {
-    contents.ActionId = __expectInt(data.ActionId);
+    contents.ActionId = __expectInt32(data.ActionId);
   }
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
@@ -3666,7 +3669,7 @@ export const deserializeAws_restJson1StartJobRunCommand = async (
     $metadata: deserializeMetadata(output),
     RunId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RunId !== undefined && data.RunId !== null) {
     contents.RunId = __expectString(data.RunId);
   }
@@ -3746,7 +3749,7 @@ export const deserializeAws_restJson1StartProjectSessionCommand = async (
     ClientSessionId: undefined,
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ClientSessionId !== undefined && data.ClientSessionId !== null) {
     contents.ClientSessionId = __expectString(data.ClientSessionId);
   }
@@ -3828,7 +3831,7 @@ export const deserializeAws_restJson1StopJobRunCommand = async (
     $metadata: deserializeMetadata(output),
     RunId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RunId !== undefined && data.RunId !== null) {
     contents.RunId = __expectString(data.RunId);
   }
@@ -4025,7 +4028,7 @@ export const deserializeAws_restJson1UpdateDatasetCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -4096,7 +4099,7 @@ export const deserializeAws_restJson1UpdateProfileJobCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -4168,7 +4171,7 @@ export const deserializeAws_restJson1UpdateProjectCommand = async (
     LastModifiedDate: undefined,
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.LastModifiedDate !== undefined && data.LastModifiedDate !== null) {
     contents.LastModifiedDate = new Date(Math.round(data.LastModifiedDate * 1000));
   }
@@ -4234,7 +4237,7 @@ export const deserializeAws_restJson1UpdateRecipeCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -4297,7 +4300,7 @@ export const deserializeAws_restJson1UpdateRecipeJobCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -4368,7 +4371,7 @@ export const deserializeAws_restJson1UpdateScheduleCommand = async (
     $metadata: deserializeMetadata(output),
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Name !== undefined && data.Name !== null) {
     contents.Name = __expectString(data.Name);
   }
@@ -5373,7 +5376,7 @@ const deserializeAws_restJson1ExcelOptions = (output: any, context: __SerdeConte
 
 const deserializeAws_restJson1FilesLimit = (output: any, context: __SerdeContext): FilesLimit => {
   return {
-    MaxFiles: __expectInt(output.MaxFiles),
+    MaxFiles: __expectInt32(output.MaxFiles),
     Order: __expectString(output.Order),
     OrderedBy: __expectString(output.OrderedBy),
   } as any;
@@ -5452,8 +5455,8 @@ const deserializeAws_restJson1Job = (output: any, context: __SerdeContext): Job 
         ? new Date(Math.round(output.LastModifiedDate * 1000))
         : undefined,
     LogSubscription: __expectString(output.LogSubscription),
-    MaxCapacity: __expectInt(output.MaxCapacity),
-    MaxRetries: __expectInt(output.MaxRetries),
+    MaxCapacity: __expectInt32(output.MaxCapacity),
+    MaxRetries: __expectInt32(output.MaxRetries),
     Name: __expectString(output.Name),
     Outputs:
       output.Outputs !== undefined && output.Outputs !== null
@@ -5470,7 +5473,7 @@ const deserializeAws_restJson1Job = (output: any, context: __SerdeContext): Job 
       output.Tags !== undefined && output.Tags !== null
         ? deserializeAws_restJson1TagMap(output.Tags, context)
         : undefined,
-    Timeout: __expectInt(output.Timeout),
+    Timeout: __expectInt32(output.Timeout),
     Type: __expectString(output.Type),
   } as any;
 };
@@ -5499,7 +5502,7 @@ const deserializeAws_restJson1JobNameList = (output: any, context: __SerdeContex
 
 const deserializeAws_restJson1JobRun = (output: any, context: __SerdeContext): JobRun => {
   return {
-    Attempt: __expectInt(output.Attempt),
+    Attempt: __expectInt32(output.Attempt),
     CompletedOn:
       output.CompletedOn !== undefined && output.CompletedOn !== null
         ? new Date(Math.round(output.CompletedOn * 1000))
@@ -5514,7 +5517,7 @@ const deserializeAws_restJson1JobRun = (output: any, context: __SerdeContext): J
         : undefined,
     DatasetName: __expectString(output.DatasetName),
     ErrorMessage: __expectString(output.ErrorMessage),
-    ExecutionTime: __expectInt(output.ExecutionTime),
+    ExecutionTime: __expectInt32(output.ExecutionTime),
     JobName: __expectString(output.JobName),
     JobSample:
       output.JobSample !== undefined && output.JobSample !== null
@@ -5554,7 +5557,7 @@ const deserializeAws_restJson1JobRunList = (output: any, context: __SerdeContext
 const deserializeAws_restJson1JobSample = (output: any, context: __SerdeContext): JobSample => {
   return {
     Mode: __expectString(output.Mode),
-    Size: __expectInt(output.Size),
+    Size: __expectLong(output.Size),
   } as any;
 };
 
@@ -5835,7 +5838,7 @@ const deserializeAws_restJson1S3TableOutputOptions = (output: any, context: __Se
 
 const deserializeAws_restJson1Sample = (output: any, context: __SerdeContext): Sample => {
   return {
-    Size: __expectInt(output.Size),
+    Size: __expectInt32(output.Size),
     Type: __expectString(output.Type),
   } as any;
 };
@@ -5885,7 +5888,7 @@ const deserializeAws_restJson1SheetIndexList = (output: any, context: __SerdeCon
       if (entry === null) {
         return null as any;
       }
-      return __expectInt(entry) as any;
+      return __expectInt32(entry) as any;
     });
 };
 

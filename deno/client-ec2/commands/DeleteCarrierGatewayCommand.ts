@@ -1,5 +1,6 @@
 import { EC2ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../EC2Client.ts";
-import { DeleteCarrierGatewayRequest, DeleteCarrierGatewayResult } from "../models/models_1.ts";
+import { DeleteCarrierGatewayRequest } from "../models/models_1.ts";
+import { DeleteCarrierGatewayResult } from "../models/models_2.ts";
 import {
   deserializeAws_ec2DeleteCarrierGatewayCommand,
   serializeAws_ec2DeleteCarrierGatewayCommand,

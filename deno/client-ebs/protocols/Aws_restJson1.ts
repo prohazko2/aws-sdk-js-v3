@@ -19,10 +19,13 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  strictParseInt as __strictParseInt,
+  strictParseInt32 as __strictParseInt32,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -278,7 +281,7 @@ export const deserializeAws_restJson1CompleteSnapshotCommand = async (
     $metadata: deserializeMetadata(output),
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Status !== undefined && data.Status !== null) {
     contents.Status = __expectString(data.Status);
   }
@@ -377,7 +380,7 @@ export const deserializeAws_restJson1GetSnapshotBlockCommand = async (
     DataLength: undefined,
   };
   if (output.headers["x-amz-data-length"] !== undefined) {
-    contents.DataLength = __strictParseInt(output.headers["x-amz-data-length"]);
+    contents.DataLength = __strictParseInt32(output.headers["x-amz-data-length"]);
   }
   if (output.headers["x-amz-checksum"] !== undefined) {
     contents.Checksum = output.headers["x-amz-checksum"];
@@ -482,9 +485,9 @@ export const deserializeAws_restJson1ListChangedBlocksCommand = async (
     NextToken: undefined,
     VolumeSize: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BlockSize !== undefined && data.BlockSize !== null) {
-    contents.BlockSize = __expectInt(data.BlockSize);
+    contents.BlockSize = __expectInt32(data.BlockSize);
   }
   if (data.ChangedBlocks !== undefined && data.ChangedBlocks !== null) {
     contents.ChangedBlocks = deserializeAws_restJson1ChangedBlocks(data.ChangedBlocks, context);
@@ -496,7 +499,7 @@ export const deserializeAws_restJson1ListChangedBlocksCommand = async (
     contents.NextToken = __expectString(data.NextToken);
   }
   if (data.VolumeSize !== undefined && data.VolumeSize !== null) {
-    contents.VolumeSize = __expectInt(data.VolumeSize);
+    contents.VolumeSize = __expectLong(data.VolumeSize);
   }
   return Promise.resolve(contents);
 };
@@ -593,9 +596,9 @@ export const deserializeAws_restJson1ListSnapshotBlocksCommand = async (
     NextToken: undefined,
     VolumeSize: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BlockSize !== undefined && data.BlockSize !== null) {
-    contents.BlockSize = __expectInt(data.BlockSize);
+    contents.BlockSize = __expectInt32(data.BlockSize);
   }
   if (data.Blocks !== undefined && data.Blocks !== null) {
     contents.Blocks = deserializeAws_restJson1Blocks(data.Blocks, context);
@@ -607,7 +610,7 @@ export const deserializeAws_restJson1ListSnapshotBlocksCommand = async (
     contents.NextToken = __expectString(data.NextToken);
   }
   if (data.VolumeSize !== undefined && data.VolumeSize !== null) {
-    contents.VolumeSize = __expectInt(data.VolumeSize);
+    contents.VolumeSize = __expectLong(data.VolumeSize);
   }
   return Promise.resolve(contents);
 };
@@ -808,9 +811,9 @@ export const deserializeAws_restJson1StartSnapshotCommand = async (
     Tags: undefined,
     VolumeSize: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BlockSize !== undefined && data.BlockSize !== null) {
-    contents.BlockSize = __expectInt(data.BlockSize);
+    contents.BlockSize = __expectInt32(data.BlockSize);
   }
   if (data.Description !== undefined && data.Description !== null) {
     contents.Description = __expectString(data.Description);
@@ -837,7 +840,7 @@ export const deserializeAws_restJson1StartSnapshotCommand = async (
     contents.Tags = deserializeAws_restJson1Tags(data.Tags, context);
   }
   if (data.VolumeSize !== undefined && data.VolumeSize !== null) {
-    contents.VolumeSize = __expectInt(data.VolumeSize);
+    contents.VolumeSize = __expectLong(data.VolumeSize);
   }
   return Promise.resolve(contents);
 };
@@ -1111,7 +1114,7 @@ const serializeAws_restJson1Tags = (input: Tag[], context: __SerdeContext): any 
 
 const deserializeAws_restJson1Block = (output: any, context: __SerdeContext): Block => {
   return {
-    BlockIndex: __expectInt(output.BlockIndex),
+    BlockIndex: __expectInt32(output.BlockIndex),
     BlockToken: __expectString(output.BlockToken),
   } as any;
 };
@@ -1129,7 +1132,7 @@ const deserializeAws_restJson1Blocks = (output: any, context: __SerdeContext): B
 
 const deserializeAws_restJson1ChangedBlock = (output: any, context: __SerdeContext): ChangedBlock => {
   return {
-    BlockIndex: __expectInt(output.BlockIndex),
+    BlockIndex: __expectInt32(output.BlockIndex),
     FirstBlockToken: __expectString(output.FirstBlockToken),
     SecondBlockToken: __expectString(output.SecondBlockToken),
   } as any;

@@ -21,9 +21,11 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  strictParseInt as __strictParseInt,
+  strictParseInt32 as __strictParseInt32,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -194,7 +196,7 @@ export const deserializeAws_restJson1CreateWorkspaceCommand = async (
     status: undefined,
     workspaceId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.arn = __expectString(data.arn);
   }
@@ -378,7 +380,7 @@ export const deserializeAws_restJson1DescribeWorkspaceCommand = async (
     $metadata: deserializeMetadata(output),
     workspace: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.workspace !== undefined && data.workspace !== null) {
     contents.workspace = deserializeAws_restJson1WorkspaceDescription(data.workspace, context);
   }
@@ -466,7 +468,7 @@ export const deserializeAws_restJson1ListWorkspacesCommand = async (
     nextToken: undefined,
     workspaces: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -691,7 +693,7 @@ const deserializeAws_restJson1InternalServerExceptionResponse = async (
     retryAfterSeconds: undefined,
   };
   if (parsedOutput.headers["retry-after"] !== undefined) {
-    contents.retryAfterSeconds = __strictParseInt(parsedOutput.headers["retry-after"]);
+    contents.retryAfterSeconds = __strictParseInt32(parsedOutput.headers["retry-after"]);
   }
   const data: any = parsedOutput.body;
   if (data.message !== undefined && data.message !== null) {
@@ -773,7 +775,7 @@ const deserializeAws_restJson1ThrottlingExceptionResponse = async (
     serviceCode: undefined,
   };
   if (parsedOutput.headers["retry-after"] !== undefined) {
-    contents.retryAfterSeconds = __strictParseInt(parsedOutput.headers["retry-after"]);
+    contents.retryAfterSeconds = __strictParseInt32(parsedOutput.headers["retry-after"]);
   }
   const data: any = parsedOutput.body;
   if (data.message !== undefined && data.message !== null) {

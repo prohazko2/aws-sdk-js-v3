@@ -1,5 +1,5 @@
 import process from "https://deno.land/std@0.119.0/node/process.ts";
-const packageInfo = { version: "3.28.0" };
+const packageInfo = { version: "3.30.0" };
 
 import { decorateDefaultCredentialProvider } from "./defaultStsRoleAssumers.ts";
 import { NODE_REGION_CONFIG_FILE_OPTIONS, NODE_REGION_CONFIG_OPTIONS } from "../config-resolver/mod.ts";

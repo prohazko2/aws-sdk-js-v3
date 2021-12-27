@@ -195,7 +195,10 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -2281,7 +2284,7 @@ export const deserializeAws_restJson1CreateBackupPlanCommand = async (
     CreationDate: undefined,
     VersionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AdvancedBackupSettings !== undefined && data.AdvancedBackupSettings !== null) {
     contents.AdvancedBackupSettings = deserializeAws_restJson1AdvancedBackupSettings(
       data.AdvancedBackupSettings,
@@ -2385,7 +2388,7 @@ export const deserializeAws_restJson1CreateBackupSelectionCommand = async (
     CreationDate: undefined,
     SelectionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlanId !== undefined && data.BackupPlanId !== null) {
     contents.BackupPlanId = __expectString(data.BackupPlanId);
   }
@@ -2480,7 +2483,7 @@ export const deserializeAws_restJson1CreateBackupVaultCommand = async (
     BackupVaultName: undefined,
     CreationDate: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
@@ -2574,7 +2577,7 @@ export const deserializeAws_restJson1CreateFrameworkCommand = async (
     FrameworkArn: undefined,
     FrameworkName: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FrameworkArn !== undefined && data.FrameworkArn !== null) {
     contents.FrameworkArn = __expectString(data.FrameworkArn);
   }
@@ -2665,7 +2668,7 @@ export const deserializeAws_restJson1CreateReportPlanCommand = async (
     ReportPlanArn: undefined,
     ReportPlanName: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ReportPlanArn !== undefined && data.ReportPlanArn !== null) {
     contents.ReportPlanArn = __expectString(data.ReportPlanArn);
   }
@@ -2758,7 +2761,7 @@ export const deserializeAws_restJson1DeleteBackupPlanCommand = async (
     DeletionDate: undefined,
     VersionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlanArn !== undefined && data.BackupPlanArn !== null) {
     contents.BackupPlanArn = __expectString(data.BackupPlanArn);
   }
@@ -3438,7 +3441,7 @@ export const deserializeAws_restJson1DescribeBackupJobCommand = async (
     State: undefined,
     StatusMessage: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccountId !== undefined && data.AccountId !== null) {
     contents.AccountId = __expectString(data.AccountId);
   }
@@ -3449,7 +3452,7 @@ export const deserializeAws_restJson1DescribeBackupJobCommand = async (
     contents.BackupOptions = deserializeAws_restJson1BackupOptions(data.BackupOptions, context);
   }
   if (data.BackupSizeInBytes !== undefined && data.BackupSizeInBytes !== null) {
-    contents.BackupSizeInBytes = __expectInt(data.BackupSizeInBytes);
+    contents.BackupSizeInBytes = __expectLong(data.BackupSizeInBytes);
   }
   if (data.BackupType !== undefined && data.BackupType !== null) {
     contents.BackupType = __expectString(data.BackupType);
@@ -3461,7 +3464,7 @@ export const deserializeAws_restJson1DescribeBackupJobCommand = async (
     contents.BackupVaultName = __expectString(data.BackupVaultName);
   }
   if (data.BytesTransferred !== undefined && data.BytesTransferred !== null) {
-    contents.BytesTransferred = __expectInt(data.BytesTransferred);
+    contents.BytesTransferred = __expectLong(data.BytesTransferred);
   }
   if (data.CompletionDate !== undefined && data.CompletionDate !== null) {
     contents.CompletionDate = new Date(Math.round(data.CompletionDate * 1000));
@@ -3587,7 +3590,7 @@ export const deserializeAws_restJson1DescribeBackupVaultCommand = async (
     EncryptionKeyArn: undefined,
     NumberOfRecoveryPoints: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
@@ -3604,7 +3607,7 @@ export const deserializeAws_restJson1DescribeBackupVaultCommand = async (
     contents.EncryptionKeyArn = __expectString(data.EncryptionKeyArn);
   }
   if (data.NumberOfRecoveryPoints !== undefined && data.NumberOfRecoveryPoints !== null) {
-    contents.NumberOfRecoveryPoints = __expectInt(data.NumberOfRecoveryPoints);
+    contents.NumberOfRecoveryPoints = __expectLong(data.NumberOfRecoveryPoints);
   }
   return Promise.resolve(contents);
 };
@@ -3681,7 +3684,7 @@ export const deserializeAws_restJson1DescribeCopyJobCommand = async (
     $metadata: deserializeMetadata(output),
     CopyJob: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CopyJob !== undefined && data.CopyJob !== null) {
     contents.CopyJob = deserializeAws_restJson1CopyJob(data.CopyJob, context);
   }
@@ -3767,7 +3770,7 @@ export const deserializeAws_restJson1DescribeFrameworkCommand = async (
     FrameworkStatus: undefined,
     IdempotencyToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CreationTime !== undefined && data.CreationTime !== null) {
     contents.CreationTime = new Date(Math.round(data.CreationTime * 1000));
   }
@@ -3868,7 +3871,7 @@ export const deserializeAws_restJson1DescribeGlobalSettingsCommand = async (
     GlobalSettings: undefined,
     LastUpdateTime: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.GlobalSettings !== undefined && data.GlobalSettings !== null) {
     contents.GlobalSettings = deserializeAws_restJson1GlobalSettings(data.GlobalSettings, context);
   }
@@ -3936,7 +3939,7 @@ export const deserializeAws_restJson1DescribeProtectedResourceCommand = async (
     ResourceArn: undefined,
     ResourceType: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.LastBackupTime !== undefined && data.LastBackupTime !== null) {
     contents.LastBackupTime = new Date(Math.round(data.LastBackupTime * 1000));
   }
@@ -4039,9 +4042,9 @@ export const deserializeAws_restJson1DescribeRecoveryPointCommand = async (
     StatusMessage: undefined,
     StorageClass: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupSizeInBytes !== undefined && data.BackupSizeInBytes !== null) {
-    contents.BackupSizeInBytes = __expectInt(data.BackupSizeInBytes);
+    contents.BackupSizeInBytes = __expectLong(data.BackupSizeInBytes);
   }
   if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
@@ -4172,7 +4175,7 @@ export const deserializeAws_restJson1DescribeRegionSettingsCommand = async (
     $metadata: deserializeMetadata(output),
     ResourceTypeOptInPreference: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ResourceTypeOptInPreference !== undefined && data.ResourceTypeOptInPreference !== null) {
     contents.ResourceTypeOptInPreference = deserializeAws_restJson1ResourceTypeOptInPreference(
       data.ResourceTypeOptInPreference,
@@ -4230,7 +4233,7 @@ export const deserializeAws_restJson1DescribeReportJobCommand = async (
     $metadata: deserializeMetadata(output),
     ReportJob: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ReportJob !== undefined && data.ReportJob !== null) {
     contents.ReportJob = deserializeAws_restJson1ReportJob(data.ReportJob, context);
   }
@@ -4301,7 +4304,7 @@ export const deserializeAws_restJson1DescribeReportPlanCommand = async (
     $metadata: deserializeMetadata(output),
     ReportPlan: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ReportPlan !== undefined && data.ReportPlan !== null) {
     contents.ReportPlan = deserializeAws_restJson1ReportPlan(data.ReportPlan, context);
   }
@@ -4392,12 +4395,12 @@ export const deserializeAws_restJson1DescribeRestoreJobCommand = async (
     Status: undefined,
     StatusMessage: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccountId !== undefined && data.AccountId !== null) {
     contents.AccountId = __expectString(data.AccountId);
   }
   if (data.BackupSizeInBytes !== undefined && data.BackupSizeInBytes !== null) {
-    contents.BackupSizeInBytes = __expectInt(data.BackupSizeInBytes);
+    contents.BackupSizeInBytes = __expectLong(data.BackupSizeInBytes);
   }
   if (data.CompletionDate !== undefined && data.CompletionDate !== null) {
     contents.CompletionDate = new Date(Math.round(data.CompletionDate * 1000));
@@ -4409,7 +4412,7 @@ export const deserializeAws_restJson1DescribeRestoreJobCommand = async (
     contents.CreationDate = new Date(Math.round(data.CreationDate * 1000));
   }
   if (data.ExpectedCompletionTimeMinutes !== undefined && data.ExpectedCompletionTimeMinutes !== null) {
-    contents.ExpectedCompletionTimeMinutes = __expectInt(data.ExpectedCompletionTimeMinutes);
+    contents.ExpectedCompletionTimeMinutes = __expectLong(data.ExpectedCompletionTimeMinutes);
   }
   if (data.IamRoleArn !== undefined && data.IamRoleArn !== null) {
     contents.IamRoleArn = __expectString(data.IamRoleArn);
@@ -4606,7 +4609,7 @@ export const deserializeAws_restJson1ExportBackupPlanTemplateCommand = async (
     $metadata: deserializeMetadata(output),
     BackupPlanTemplateJson: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlanTemplateJson !== undefined && data.BackupPlanTemplateJson !== null) {
     contents.BackupPlanTemplateJson = __expectString(data.BackupPlanTemplateJson);
   }
@@ -4693,7 +4696,7 @@ export const deserializeAws_restJson1GetBackupPlanCommand = async (
     LastExecutionDate: undefined,
     VersionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AdvancedBackupSettings !== undefined && data.AdvancedBackupSettings !== null) {
     contents.AdvancedBackupSettings = deserializeAws_restJson1AdvancedBackupSettings(
       data.AdvancedBackupSettings,
@@ -4799,7 +4802,7 @@ export const deserializeAws_restJson1GetBackupPlanFromJSONCommand = async (
     $metadata: deserializeMetadata(output),
     BackupPlan: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlan !== undefined && data.BackupPlan !== null) {
     contents.BackupPlan = deserializeAws_restJson1BackupPlan(data.BackupPlan, context);
   }
@@ -4886,7 +4889,7 @@ export const deserializeAws_restJson1GetBackupPlanFromTemplateCommand = async (
     $metadata: deserializeMetadata(output),
     BackupPlanDocument: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlanDocument !== undefined && data.BackupPlanDocument !== null) {
     contents.BackupPlanDocument = deserializeAws_restJson1BackupPlan(data.BackupPlanDocument, context);
   }
@@ -4969,7 +4972,7 @@ export const deserializeAws_restJson1GetBackupSelectionCommand = async (
     CreatorRequestId: undefined,
     SelectionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlanId !== undefined && data.BackupPlanId !== null) {
     contents.BackupPlanId = __expectString(data.BackupPlanId);
   }
@@ -5062,7 +5065,7 @@ export const deserializeAws_restJson1GetBackupVaultAccessPolicyCommand = async (
     BackupVaultName: undefined,
     Policy: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
@@ -5150,7 +5153,7 @@ export const deserializeAws_restJson1GetBackupVaultNotificationsCommand = async 
     BackupVaultName: undefined,
     SNSTopicArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
@@ -5240,7 +5243,7 @@ export const deserializeAws_restJson1GetRecoveryPointRestoreMetadataCommand = as
     RecoveryPointArn: undefined,
     RestoreMetadata: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
@@ -5325,7 +5328,7 @@ export const deserializeAws_restJson1GetSupportedResourceTypesCommand = async (
     $metadata: deserializeMetadata(output),
     ResourceTypes: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ResourceTypes !== undefined && data.ResourceTypes !== null) {
     contents.ResourceTypes = deserializeAws_restJson1ResourceTypes(data.ResourceTypes, context);
   }
@@ -5381,7 +5384,7 @@ export const deserializeAws_restJson1ListBackupJobsCommand = async (
     BackupJobs: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupJobs !== undefined && data.BackupJobs !== null) {
     contents.BackupJobs = deserializeAws_restJson1BackupJobsList(data.BackupJobs, context);
   }
@@ -5448,7 +5451,7 @@ export const deserializeAws_restJson1ListBackupPlansCommand = async (
     BackupPlansList: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlansList !== undefined && data.BackupPlansList !== null) {
     contents.BackupPlansList = deserializeAws_restJson1BackupPlansList(data.BackupPlansList, context);
   }
@@ -5531,7 +5534,7 @@ export const deserializeAws_restJson1ListBackupPlanTemplatesCommand = async (
     BackupPlanTemplatesList: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlanTemplatesList !== undefined && data.BackupPlanTemplatesList !== null) {
     contents.BackupPlanTemplatesList = deserializeAws_restJson1BackupPlanTemplatesList(
       data.BackupPlanTemplatesList,
@@ -5617,7 +5620,7 @@ export const deserializeAws_restJson1ListBackupPlanVersionsCommand = async (
     BackupPlanVersionsList: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupPlanVersionsList !== undefined && data.BackupPlanVersionsList !== null) {
     contents.BackupPlanVersionsList = deserializeAws_restJson1BackupPlanVersionsList(
       data.BackupPlanVersionsList,
@@ -5703,7 +5706,7 @@ export const deserializeAws_restJson1ListBackupSelectionsCommand = async (
     BackupSelectionsList: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupSelectionsList !== undefined && data.BackupSelectionsList !== null) {
     contents.BackupSelectionsList = deserializeAws_restJson1BackupSelectionsList(data.BackupSelectionsList, context);
   }
@@ -5786,7 +5789,7 @@ export const deserializeAws_restJson1ListBackupVaultsCommand = async (
     BackupVaultList: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupVaultList !== undefined && data.BackupVaultList !== null) {
     contents.BackupVaultList = deserializeAws_restJson1BackupVaultList(data.BackupVaultList, context);
   }
@@ -5869,7 +5872,7 @@ export const deserializeAws_restJson1ListCopyJobsCommand = async (
     CopyJobs: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CopyJobs !== undefined && data.CopyJobs !== null) {
     contents.CopyJobs = deserializeAws_restJson1CopyJobsList(data.CopyJobs, context);
   }
@@ -5936,7 +5939,7 @@ export const deserializeAws_restJson1ListFrameworksCommand = async (
     Frameworks: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Frameworks !== undefined && data.Frameworks !== null) {
     contents.Frameworks = deserializeAws_restJson1FrameworkList(data.Frameworks, context);
   }
@@ -6003,7 +6006,7 @@ export const deserializeAws_restJson1ListProtectedResourcesCommand = async (
     NextToken: undefined,
     Results: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6070,7 +6073,7 @@ export const deserializeAws_restJson1ListRecoveryPointsByBackupVaultCommand = as
     NextToken: undefined,
     RecoveryPoints: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6153,7 +6156,7 @@ export const deserializeAws_restJson1ListRecoveryPointsByResourceCommand = async
     NextToken: undefined,
     RecoveryPoints: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6236,7 +6239,7 @@ export const deserializeAws_restJson1ListReportJobsCommand = async (
     NextToken: undefined,
     ReportJobs: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6303,7 +6306,7 @@ export const deserializeAws_restJson1ListReportPlansCommand = async (
     NextToken: undefined,
     ReportPlans: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6370,7 +6373,7 @@ export const deserializeAws_restJson1ListRestoreJobsCommand = async (
     NextToken: undefined,
     RestoreJobs: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6453,7 +6456,7 @@ export const deserializeAws_restJson1ListTagsCommand = async (
     NextToken: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6687,7 +6690,7 @@ export const deserializeAws_restJson1StartBackupJobCommand = async (
     CreationDate: undefined,
     RecoveryPointArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupJobId !== undefined && data.BackupJobId !== null) {
     contents.BackupJobId = __expectString(data.BackupJobId);
   }
@@ -6789,7 +6792,7 @@ export const deserializeAws_restJson1StartCopyJobCommand = async (
     CopyJobId: undefined,
     CreationDate: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CopyJobId !== undefined && data.CopyJobId !== null) {
     contents.CopyJobId = __expectString(data.CopyJobId);
   }
@@ -6887,7 +6890,7 @@ export const deserializeAws_restJson1StartReportJobCommand = async (
     $metadata: deserializeMetadata(output),
     ReportJobId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ReportJobId !== undefined && data.ReportJobId !== null) {
     contents.ReportJobId = __expectString(data.ReportJobId);
   }
@@ -6966,7 +6969,7 @@ export const deserializeAws_restJson1StartRestoreJobCommand = async (
     $metadata: deserializeMetadata(output),
     RestoreJobId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RestoreJobId !== undefined && data.RestoreJobId !== null) {
     contents.RestoreJobId = __expectString(data.RestoreJobId);
   }
@@ -7290,7 +7293,7 @@ export const deserializeAws_restJson1UpdateBackupPlanCommand = async (
     CreationDate: undefined,
     VersionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AdvancedBackupSettings !== undefined && data.AdvancedBackupSettings !== null) {
     contents.AdvancedBackupSettings = deserializeAws_restJson1AdvancedBackupSettings(
       data.AdvancedBackupSettings,
@@ -7386,7 +7389,7 @@ export const deserializeAws_restJson1UpdateFrameworkCommand = async (
     FrameworkArn: undefined,
     FrameworkName: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CreationTime !== undefined && data.CreationTime !== null) {
     contents.CreationTime = new Date(Math.round(data.CreationTime * 1000));
   }
@@ -7565,7 +7568,7 @@ export const deserializeAws_restJson1UpdateRecoveryPointLifecycleCommand = async
     Lifecycle: undefined,
     RecoveryPointArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
@@ -7722,7 +7725,7 @@ export const deserializeAws_restJson1UpdateReportPlanCommand = async (
     ReportPlanArn: undefined,
     ReportPlanName: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CreationTime !== undefined && data.CreationTime !== null) {
     contents.CreationTime = new Date(Math.round(data.CreationTime * 1000));
   }
@@ -8480,11 +8483,11 @@ const deserializeAws_restJson1BackupJob = (output: any, context: __SerdeContext)
       output.BackupOptions !== undefined && output.BackupOptions !== null
         ? deserializeAws_restJson1BackupOptions(output.BackupOptions, context)
         : undefined,
-    BackupSizeInBytes: __expectInt(output.BackupSizeInBytes),
+    BackupSizeInBytes: __expectLong(output.BackupSizeInBytes),
     BackupType: __expectString(output.BackupType),
     BackupVaultArn: __expectString(output.BackupVaultArn),
     BackupVaultName: __expectString(output.BackupVaultName),
-    BytesTransferred: __expectInt(output.BytesTransferred),
+    BytesTransferred: __expectLong(output.BytesTransferred),
     CompletionDate:
       output.CompletionDate !== undefined && output.CompletionDate !== null
         ? new Date(Math.round(output.CompletionDate * 1000))
@@ -8627,7 +8630,7 @@ const deserializeAws_restJson1BackupPlanVersionsList = (
 
 const deserializeAws_restJson1BackupRule = (output: any, context: __SerdeContext): BackupRule => {
   return {
-    CompletionWindowMinutes: __expectInt(output.CompletionWindowMinutes),
+    CompletionWindowMinutes: __expectLong(output.CompletionWindowMinutes),
     CopyActions:
       output.CopyActions !== undefined && output.CopyActions !== null
         ? deserializeAws_restJson1CopyActions(output.CopyActions, context)
@@ -8644,7 +8647,7 @@ const deserializeAws_restJson1BackupRule = (output: any, context: __SerdeContext
     RuleId: __expectString(output.RuleId),
     RuleName: __expectString(output.RuleName),
     ScheduleExpression: __expectString(output.ScheduleExpression),
-    StartWindowMinutes: __expectInt(output.StartWindowMinutes),
+    StartWindowMinutes: __expectLong(output.StartWindowMinutes),
     TargetBackupVaultName: __expectString(output.TargetBackupVaultName),
   } as any;
 };
@@ -8741,7 +8744,7 @@ const deserializeAws_restJson1BackupVaultListMember = (output: any, context: __S
         : undefined,
     CreatorRequestId: __expectString(output.CreatorRequestId),
     EncryptionKeyArn: __expectString(output.EncryptionKeyArn),
-    NumberOfRecoveryPoints: __expectInt(output.NumberOfRecoveryPoints),
+    NumberOfRecoveryPoints: __expectLong(output.NumberOfRecoveryPoints),
   } as any;
 };
 
@@ -8839,7 +8842,7 @@ const deserializeAws_restJson1CopyActions = (output: any, context: __SerdeContex
 const deserializeAws_restJson1CopyJob = (output: any, context: __SerdeContext): CopyJob => {
   return {
     AccountId: __expectString(output.AccountId),
-    BackupSizeInBytes: __expectInt(output.BackupSizeInBytes),
+    BackupSizeInBytes: __expectLong(output.BackupSizeInBytes),
     CompletionDate:
       output.CompletionDate !== undefined && output.CompletionDate !== null
         ? new Date(Math.round(output.CompletionDate * 1000))
@@ -8897,7 +8900,7 @@ const deserializeAws_restJson1Framework = (output: any, context: __SerdeContext)
     FrameworkArn: __expectString(output.FrameworkArn),
     FrameworkDescription: __expectString(output.FrameworkDescription),
     FrameworkName: __expectString(output.FrameworkName),
-    NumberOfControls: __expectInt(output.NumberOfControls),
+    NumberOfControls: __expectInt32(output.NumberOfControls),
   } as any;
 };
 
@@ -8951,8 +8954,8 @@ const deserializeAws_restJson1GlobalSettings = (output: any, context: __SerdeCon
 
 const deserializeAws_restJson1Lifecycle = (output: any, context: __SerdeContext): Lifecycle => {
   return {
-    DeleteAfterDays: __expectInt(output.DeleteAfterDays),
-    MoveToColdStorageAfterDays: __expectInt(output.MoveToColdStorageAfterDays),
+    DeleteAfterDays: __expectLong(output.DeleteAfterDays),
+    MoveToColdStorageAfterDays: __expectLong(output.MoveToColdStorageAfterDays),
   } as any;
 };
 
@@ -9006,7 +9009,7 @@ const deserializeAws_restJson1RecoveryPointByBackupVault = (
   context: __SerdeContext
 ): RecoveryPointByBackupVault => {
   return {
-    BackupSizeInBytes: __expectInt(output.BackupSizeInBytes),
+    BackupSizeInBytes: __expectLong(output.BackupSizeInBytes),
     BackupVaultArn: __expectString(output.BackupVaultArn),
     BackupVaultName: __expectString(output.BackupVaultName),
     CalculatedLifecycle:
@@ -9064,7 +9067,7 @@ const deserializeAws_restJson1RecoveryPointByResource = (
   context: __SerdeContext
 ): RecoveryPointByResource => {
   return {
-    BackupSizeBytes: __expectInt(output.BackupSizeBytes),
+    BackupSizeBytes: __expectLong(output.BackupSizeBytes),
     BackupVaultName: __expectString(output.BackupVaultName),
     CreationDate:
       output.CreationDate !== undefined && output.CreationDate !== null
@@ -9262,7 +9265,7 @@ const deserializeAws_restJson1RestoreJobsList = (output: any, context: __SerdeCo
 const deserializeAws_restJson1RestoreJobsListMember = (output: any, context: __SerdeContext): RestoreJobsListMember => {
   return {
     AccountId: __expectString(output.AccountId),
-    BackupSizeInBytes: __expectInt(output.BackupSizeInBytes),
+    BackupSizeInBytes: __expectLong(output.BackupSizeInBytes),
     CompletionDate:
       output.CompletionDate !== undefined && output.CompletionDate !== null
         ? new Date(Math.round(output.CompletionDate * 1000))
@@ -9272,7 +9275,7 @@ const deserializeAws_restJson1RestoreJobsListMember = (output: any, context: __S
       output.CreationDate !== undefined && output.CreationDate !== null
         ? new Date(Math.round(output.CreationDate * 1000))
         : undefined,
-    ExpectedCompletionTimeMinutes: __expectInt(output.ExpectedCompletionTimeMinutes),
+    ExpectedCompletionTimeMinutes: __expectLong(output.ExpectedCompletionTimeMinutes),
     IamRoleArn: __expectString(output.IamRoleArn),
     PercentDone: __expectString(output.PercentDone),
     RecoveryPointArn: __expectString(output.RecoveryPointArn),

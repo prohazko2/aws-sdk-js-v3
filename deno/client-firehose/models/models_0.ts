@@ -172,9 +172,10 @@ export interface DeliveryStreamEncryptionConfigurationInput {
 
   /**
    * <p>Indicates the type of customer master key (CMK) to use for encryption. The default
-   *          setting is <code>AWS_OWNED_CMK</code>. For more information about CMKs, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys">Customer Master Keys (CMKs)</a>. When you invoke <a>CreateDeliveryStream</a> or <a>StartDeliveryStreamEncryption</a> with
-   *             <code>KeyType</code> set to CUSTOMER_MANAGED_CMK, Kinesis Data Firehose invokes the
-   *          Amazon KMS operation <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html">CreateGrant</a> to create a grant that allows the Kinesis Data Firehose service to
+   *          setting is <code>AWS_OWNED_CMK</code>. For more information about CMKs, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys">Customer
+   *             Master Keys (CMKs)</a>. When you invoke <a>CreateDeliveryStream</a> or
+   *             <a>StartDeliveryStreamEncryption</a> with <code>KeyType</code> set to
+   *          CUSTOMER_MANAGED_CMK, Kinesis Data Firehose invokes the Amazon KMS operation <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html">CreateGrant</a> to create a grant that allows the Kinesis Data Firehose service to
    *          use the customer managed CMK to perform encryption and decryption. Kinesis Data Firehose
    *          manages that grant. </p>
    *          <p>When you invoke <a>StartDeliveryStreamEncryption</a> to change the CMK for a
@@ -186,8 +187,9 @@ export interface DeliveryStreamEncryptionConfigurationInput {
    *             <code>LimitExceededException</code>. </p>
    *          <important>
    *             <p>To encrypt your delivery stream, use symmetric CMKs. Kinesis Data Firehose doesn't
-   *             support asymmetric CMKs. For information about symmetric and asymmetric CMKs, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-concepts.html">About Symmetric and Asymmetric CMKs</a> in the AWS Key Management Service
-   *             developer guide.</p>
+   *             support asymmetric CMKs. For information about symmetric and asymmetric CMKs, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-concepts.html">About
+   *                Symmetric and Asymmetric CMKs</a> in the AWS Key Management Service developer
+   *             guide.</p>
    *          </important>
    */
   KeyType: KeyType | string | undefined;
@@ -239,9 +241,13 @@ export type ElasticsearchIndexRotationPeriod = "NoRotation" | "OneDay" | "OneHou
 export enum ProcessorParameterName {
   BUFFER_INTERVAL_IN_SECONDS = "BufferIntervalInSeconds",
   BUFFER_SIZE_IN_MB = "BufferSizeInMBs",
+  Delimiter = "Delimiter",
+  JSON_PARSING_ENGINE = "JsonParsingEngine",
   LAMBDA_ARN = "LambdaArn",
   LAMBDA_NUMBER_OF_RETRIES = "NumberOfRetries",
+  METADATA_EXTRACTION_QUERY = "MetadataExtractionQuery",
   ROLE_ARN = "RoleArn",
+  SUB_RECORD_TYPE = "SubRecordType",
 }
 
 /**
@@ -268,7 +274,7 @@ export namespace ProcessorParameter {
   });
 }
 
-export type ProcessorType = "Lambda";
+export type ProcessorType = "AppendDelimiterToRecord" | "Lambda" | "MetadataExtraction" | "RecordDeAggregation";
 
 /**
  * <p>Describes a data processor.</p>
@@ -397,28 +403,29 @@ export namespace EncryptionConfiguration {
 export interface S3DestinationConfiguration {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN: string | undefined;
 
   /**
-   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    */
   BucketARN: string | undefined;
 
   /**
    * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered Amazon S3
-   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   Prefix?: string;
 
   /**
    * <p>A prefix that Kinesis Data Firehose evaluates and adds to failed records before writing
    *          them to S3. This prefix appears immediately following the bucket name. For information
-   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   ErrorOutputPrefix?: string;
 
@@ -474,7 +481,8 @@ export interface VpcConfiguration {
    *          scale up the number of ENIs to match throughput, ensure that you have sufficient quota. To
    *          help you calculate the quota you need, assume that Kinesis Data Firehose can create up to
    *          three ENIs for this delivery stream for each of the subnets specified here. For more
-   *          information about ENI quota, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-enis">Network Interfaces </a> in the Amazon VPC Quotas topic.</p>
+   *          information about ENI quota, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-enis">Network Interfaces
+   *          </a> in the Amazon VPC Quotas topic.</p>
    */
   SubnetIds: string[] | undefined;
 
@@ -539,7 +547,8 @@ export interface VpcConfiguration {
    *          group. Also ensure that the Amazon ES domain's security group allows HTTPS traffic from the
    *          security groups specified here. If you use the same security group for both your delivery
    *          stream and the Amazon ES domain, make sure the security group inbound rule allows HTTPS
-   *          traffic. For more information about security group rules, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules">Security group rules</a> in the Amazon VPC documentation.</p>
+   *          traffic. For more information about security group rules, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules">Security group
+   *             rules</a> in the Amazon VPC documentation.</p>
    */
   SecurityGroupIds: string[] | undefined;
 }
@@ -561,8 +570,8 @@ export interface ElasticsearchDestinationConfiguration {
    * <p>The Amazon Resource Name (ARN) of the IAM role to be assumed by Kinesis Data Firehose
    *          for calling the Amazon ES Configuration API and for indexing documents. For more
    *          information, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Grant Kinesis Data
-   *             Firehose Access to an Amazon S3 Destination</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             Firehose Access to an Amazon S3 Destination</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    */
   RoleARN: string | undefined;
 
@@ -1005,6 +1014,11 @@ export interface SchemaConfiguration {
    * <p>The role that Kinesis Data Firehose can use to access AWS Glue. This role must be in
    *          the same account you use for Kinesis Data Firehose. Cross-account roles aren't
    *          allowed.</p>
+   *          <important>
+   *             <p>If the <code>SchemaConfiguration</code> request parameter is used as part of invoking
+   *             the <code>CreateDeliveryStream</code> API, then the <code>RoleARN</code> property is
+   *             required and its value must be specified.</p>
+   *          </important>
    */
   RoleARN?: string;
 
@@ -1017,12 +1031,22 @@ export interface SchemaConfiguration {
   /**
    * <p>Specifies the name of the AWS Glue database that contains the schema for the output
    *          data.</p>
+   *          <important>
+   *             <p>If the <code>SchemaConfiguration</code> request parameter is used as part of invoking
+   *             the <code>CreateDeliveryStream</code> API, then the <code>DatabaseName</code> property
+   *             is required and its value must be specified.</p>
+   *          </important>
    */
   DatabaseName?: string;
 
   /**
    * <p>Specifies the AWS Glue table that contains the column information that constitutes your
    *          data schema.</p>
+   *          <important>
+   *             <p>If the <code>SchemaConfiguration</code> request parameter is used as part of invoking
+   *             the <code>CreateDeliveryStream</code> API, then the <code>TableName</code> property is
+   *             required and its value must be specified.</p>
+   *          </important>
    */
   TableName?: string;
 
@@ -1054,7 +1078,8 @@ export namespace SchemaConfiguration {
  *          the Parquet or ORC format before writing it to Amazon S3. Kinesis Data Firehose uses the
  *          serializer and deserializer that you specify, in addition to the column information from
  *          the AWS Glue table, to deserialize your input data from JSON and then serialize it to the
- *          Parquet or ORC format. For more information, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html">Kinesis Data Firehose Record Format Conversion</a>.</p>
+ *          Parquet or ORC format. For more information, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html">Kinesis Data Firehose Record
+ *             Format Conversion</a>.</p>
  */
 export interface DataFormatConversionConfiguration {
   /**
@@ -1093,6 +1118,56 @@ export namespace DataFormatConversionConfiguration {
   });
 }
 
+/**
+ * <p> The retry behavior in case Kinesis Data Firehose is unable to deliver data to an Amazon
+ *          S3 prefix.</p>
+ */
+export interface RetryOptions {
+  /**
+   * <p>The period of time during which Kinesis Data Firehose retries to deliver data to the
+   *          specified Amazon S3 prefix.</p>
+   */
+  DurationInSeconds?: number;
+}
+
+export namespace RetryOptions {
+  /**
+   * @internal
+   */
+  export const filterSensitiveLog = (obj: RetryOptions): any => ({
+    ...obj,
+  });
+}
+
+/**
+ * <p>The configuration of the dynamic partitioning mechanism that creates smaller data sets
+ *          from the streaming data by partitioning it based on partition keys. Currently, dynamic
+ *          partitioning is only supported for Amazon S3 destinations. For more information, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html">https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html</a>
+ *          </p>
+ */
+export interface DynamicPartitioningConfiguration {
+  /**
+   * <p>The retry behavior in case Kinesis Data Firehose is unable to deliver data to an Amazon
+   *          S3 prefix.</p>
+   */
+  RetryOptions?: RetryOptions;
+
+  /**
+   * <p>Specifies that the dynamic partitioning is enabled for this Kinesis Data Firehose
+   *          delivery stream.</p>
+   */
+  Enabled?: boolean;
+}
+
+export namespace DynamicPartitioningConfiguration {
+  /**
+   * @internal
+   */
+  export const filterSensitiveLog = (obj: DynamicPartitioningConfiguration): any => ({
+    ...obj,
+  });
+}
+
 export type S3BackupMode = "Disabled" | "Enabled";
 
 /**
@@ -1101,28 +1176,29 @@ export type S3BackupMode = "Disabled" | "Enabled";
 export interface ExtendedS3DestinationConfiguration {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN: string | undefined;
 
   /**
-   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    */
   BucketARN: string | undefined;
 
   /**
    * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered Amazon S3
-   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   Prefix?: string;
 
   /**
    * <p>A prefix that Kinesis Data Firehose evaluates and adds to failed records before writing
    *          them to S3. This prefix appears immediately following the bucket name. For information
-   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   ErrorOutputPrefix?: string;
 
@@ -1170,6 +1246,14 @@ export interface ExtendedS3DestinationConfiguration {
    *          the Parquet or ORC format before writing it to Amazon S3.</p>
    */
   DataFormatConversionConfiguration?: DataFormatConversionConfiguration;
+
+  /**
+   * <p>The configuration of the dynamic partitioning mechanism that creates smaller data sets
+   *          from the streaming data by partitioning it based on partition keys. Currently, dynamic
+   *          partitioning is only supported for Amazon S3 destinations. For more information, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html">https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html</a>
+   *          </p>
+   */
+  DynamicPartitioningConfiguration?: DynamicPartitioningConfiguration;
 }
 
 export namespace ExtendedS3DestinationConfiguration {
@@ -1221,6 +1305,11 @@ export namespace HttpEndpointBufferingHints {
 export interface HttpEndpointConfiguration {
   /**
    * <p>The URL of the HTTP endpoint selected as the destination.</p>
+   *          <important>
+   *             <p>If you choose an HTTP endpoint as your destination, review and follow the
+   *             instructions in the <a href="https://docs.aws.amazon.com/firehose/latest/dev/httpdeliveryrequestresponse.html">Appendix - HTTP Endpoint
+   *                Delivery Request and Response Specifications</a>.</p>
+   *          </important>
    */
   Url: string | undefined;
 
@@ -1410,13 +1499,15 @@ export namespace HttpEndpointDestinationConfiguration {
  */
 export interface KinesisStreamSourceConfiguration {
   /**
-   * <p>The ARN of the source Kinesis data stream. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams">Amazon Kinesis Data Streams ARN Format</a>.</p>
+   * <p>The ARN of the source Kinesis data stream. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams">Amazon
+   *             Kinesis Data Streams ARN Format</a>.</p>
    */
   KinesisStreamARN: string | undefined;
 
   /**
    * <p>The ARN of the role that provides access to the source Kinesis data stream. For more
-   *          information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS Identity and Access Management (IAM) ARN Format</a>.</p>
+   *          information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS Identity and
+   *             Access Management (IAM) ARN Format</a>.</p>
    */
   RoleARN: string | undefined;
 }
@@ -1462,7 +1553,8 @@ export type RedshiftS3BackupMode = "Disabled" | "Enabled";
 export interface RedshiftDestinationConfiguration {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN: string | undefined;
 
@@ -1739,8 +1831,8 @@ export interface CreateDeliveryStreamInput {
    * <p>A set of tags to assign to the delivery stream. A tag is a key-value pair that you can
    *          define and assign to AWS resources. Tags are metadata. For example, you can add friendly
    *          names and descriptions or other types of information that can help you distinguish the
-   *          delivery stream. For more information about tags, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using Cost Allocation Tags</a> in the AWS Billing and Cost Management User
-   *          Guide.</p>
+   *          delivery stream. For more information about tags, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using Cost Allocation
+   *             Tags</a> in the AWS Billing and Cost Management User Guide.</p>
    *
    *          <p>You can specify up to 50 tags when creating a delivery stream.</p>
    */
@@ -1878,9 +1970,10 @@ export interface DeleteDeliveryStreamInput {
    * <p>Set this to true if you want to delete the delivery stream even if Kinesis Data Firehose
    *          is unable to retire the grant for the CMK. Kinesis Data Firehose might be unable to retire
    *          the grant due to a customer error, such as when the CMK or the grant are in an invalid
-   *          state. If you force deletion, you can then use the <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html">RevokeGrant</a> operation to revoke the grant you gave to Kinesis Data Firehose. If
-   *          a failure to retire the grant happens due to an AWS KMS issue, Kinesis Data Firehose keeps
-   *          retrying the delete operation.</p>
+   *          state. If you force deletion, you can then use the <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html">RevokeGrant</a> operation to
+   *          revoke the grant you gave to Kinesis Data Firehose. If a failure to retire the grant
+   *          happens due to an AWS KMS issue, Kinesis Data Firehose keeps retrying the delete
+   *          operation.</p>
    *          <p>The default value is false.</p>
    */
   AllowForceDelete?: boolean;
@@ -1996,7 +2089,8 @@ export interface DeliveryStreamEncryptionConfiguration {
 
   /**
    * <p>Indicates the type of customer master key (CMK) that is used for encryption. The default
-   *          setting is <code>AWS_OWNED_CMK</code>. For more information about CMKs, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys">Customer Master Keys (CMKs)</a>.</p>
+   *          setting is <code>AWS_OWNED_CMK</code>. For more information about CMKs, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys">Customer
+   *             Master Keys (CMKs)</a>.</p>
    */
   KeyType?: KeyType | string;
 
@@ -2039,28 +2133,29 @@ export enum DeliveryStreamStatus {
 export interface S3DestinationDescription {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN: string | undefined;
 
   /**
-   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    */
   BucketARN: string | undefined;
 
   /**
    * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered Amazon S3
-   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   Prefix?: string;
 
   /**
    * <p>A prefix that Kinesis Data Firehose evaluates and adds to failed records before writing
    *          them to S3. This prefix appears immediately following the bucket name. For information
-   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   ErrorOutputPrefix?: string;
 
@@ -2112,7 +2207,8 @@ export interface VpcConfigurationDescription {
    *          scale up the number of ENIs to match throughput, ensure that you have sufficient quota. To
    *          help you calculate the quota you need, assume that Kinesis Data Firehose can create up to
    *          three ENIs for this delivery stream for each of the subnets specified here. For more
-   *          information about ENI quota, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-enis">Network Interfaces </a> in the Amazon VPC Quotas topic.</p>
+   *          information about ENI quota, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-enis">Network Interfaces
+   *          </a> in the Amazon VPC Quotas topic.</p>
    */
   SubnetIds: string[] | undefined;
 
@@ -2177,7 +2273,8 @@ export interface VpcConfigurationDescription {
    *          that the Amazon ES domain's security group allows HTTPS traffic from the security groups
    *          specified here. If you use the same security group for both your delivery stream and the
    *          Amazon ES domain, make sure the security group inbound rule allows HTTPS traffic. For more
-   *          information about security group rules, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules">Security group rules</a> in the Amazon VPC documentation.</p>
+   *          information about security group rules, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules">Security group
+   *             rules</a> in the Amazon VPC documentation.</p>
    */
   SecurityGroupIds: string[] | undefined;
 
@@ -2202,7 +2299,8 @@ export namespace VpcConfigurationDescription {
 export interface ElasticsearchDestinationDescription {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN?: string;
 
@@ -2289,28 +2387,29 @@ export namespace ElasticsearchDestinationDescription {
 export interface ExtendedS3DestinationDescription {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN: string | undefined;
 
   /**
-   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    */
   BucketARN: string | undefined;
 
   /**
    * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered Amazon S3
-   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   Prefix?: string;
 
   /**
    * <p>A prefix that Kinesis Data Firehose evaluates and adds to failed records before writing
    *          them to S3. This prefix appears immediately following the bucket name. For information
-   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   ErrorOutputPrefix?: string;
 
@@ -2356,6 +2455,14 @@ export interface ExtendedS3DestinationDescription {
    *          the Parquet or ORC format before writing it to Amazon S3.</p>
    */
   DataFormatConversionConfiguration?: DataFormatConversionConfiguration;
+
+  /**
+   * <p>The configuration of the dynamic partitioning mechanism that creates smaller data sets
+   *          from the streaming data by partitioning it based on partition keys. Currently, dynamic
+   *          partitioning is only supported for Amazon S3 destinations. For more information, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html">https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html</a>
+   *          </p>
+   */
+  DynamicPartitioningConfiguration?: DynamicPartitioningConfiguration;
 }
 
 export namespace ExtendedS3DestinationDescription {
@@ -2474,7 +2581,8 @@ export namespace HttpEndpointDestinationDescription {
 export interface RedshiftDestinationDescription {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN: string | undefined;
 
@@ -2670,13 +2778,15 @@ export namespace DestinationDescription {
 export interface KinesisStreamSourceDescription {
   /**
    * <p>The Amazon Resource Name (ARN) of the source Kinesis data stream. For more
-   *          information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams">Amazon Kinesis Data Streams ARN Format</a>.</p>
+   *          information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams">Amazon
+   *             Kinesis Data Streams ARN Format</a>.</p>
    */
   KinesisStreamARN?: string;
 
   /**
    * <p>The ARN of the role used by the source Kinesis data stream. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS Identity and Access Management (IAM) ARN Format</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS Identity and
+   *             Access Management (IAM) ARN Format</a>.</p>
    */
   RoleARN?: string;
 
@@ -2728,7 +2838,8 @@ export interface DeliveryStreamDescription {
 
   /**
    * <p>The Amazon Resource Name (ARN) of the delivery stream. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   DeliveryStreamARN: string | undefined;
 
@@ -2869,28 +2980,29 @@ export namespace DescribeDeliveryStreamOutput {
 export interface S3DestinationUpdate {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN?: string;
 
   /**
-   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    */
   BucketARN?: string;
 
   /**
    * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered Amazon S3
-   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   Prefix?: string;
 
   /**
    * <p>A prefix that Kinesis Data Firehose evaluates and adds to failed records before writing
    *          them to S3. This prefix appears immediately following the bucket name. For information
-   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   ErrorOutputPrefix?: string;
 
@@ -2938,8 +3050,8 @@ export interface ElasticsearchDestinationUpdate {
    * <p>The Amazon Resource Name (ARN) of the IAM role to be assumed by Kinesis Data Firehose
    *          for calling the Amazon ES Configuration API and for indexing documents. For more
    *          information, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Grant Kinesis Data
-   *             Firehose Access to an Amazon S3 Destination</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             Firehose Access to an Amazon S3 Destination</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    */
   RoleARN?: string;
 
@@ -2947,8 +3059,8 @@ export interface ElasticsearchDestinationUpdate {
    * <p>The ARN of the Amazon ES domain. The IAM role must have permissions
    *             for <code>DescribeElasticsearchDomain</code>, <code>DescribeElasticsearchDomains</code>,
    *          and <code>DescribeElasticsearchDomainConfig</code> after assuming the IAM role specified in
-   *             <code>RoleARN</code>. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <code>RoleARN</code>. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    *
    *          <p>Specify either <code>ClusterEndpoint</code> or <code>DomainARN</code>.</p>
    */
@@ -3028,28 +3140,29 @@ export namespace ElasticsearchDestinationUpdate {
 export interface ExtendedS3DestinationUpdate {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN?: string;
 
   /**
-   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   * <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and
+   *             AWS Service Namespaces</a>.</p>
    */
   BucketARN?: string;
 
   /**
    * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered Amazon S3
-   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          files. You can also specify a custom prefix, as described in <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   Prefix?: string;
 
   /**
    * <p>A prefix that Kinesis Data Firehose evaluates and adds to failed records before writing
    *          them to S3. This prefix appears immediately following the bucket name. For information
-   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes
-   *             for Amazon S3 Objects</a>.</p>
+   *          about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom Prefixes for Amazon S3
+   *          Objects</a>.</p>
    */
   ErrorOutputPrefix?: string;
 
@@ -3096,6 +3209,14 @@ export interface ExtendedS3DestinationUpdate {
    *          the Parquet or ORC format before writing it to Amazon S3.</p>
    */
   DataFormatConversionConfiguration?: DataFormatConversionConfiguration;
+
+  /**
+   * <p>The configuration of the dynamic partitioning mechanism that creates smaller data sets
+   *          from the streaming data by partitioning it based on partition keys. Currently, dynamic
+   *          partitioning is only supported for Amazon S3 destinations. For more information, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html">https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html</a>
+   *          </p>
+   */
+  DynamicPartitioningConfiguration?: DynamicPartitioningConfiguration;
 }
 
 export namespace ExtendedS3DestinationUpdate {
@@ -3605,7 +3726,8 @@ export namespace HttpEndpointDestinationUpdate {
 export interface RedshiftDestinationUpdate {
   /**
    * <p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see
-   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
+   *             <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+   *             Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
    */
   RoleARN?: string;
 

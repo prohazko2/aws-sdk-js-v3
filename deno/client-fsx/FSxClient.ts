@@ -17,8 +17,22 @@ import {
   CreateFileSystemFromBackupCommandInput,
   CreateFileSystemFromBackupCommandOutput,
 } from "./commands/CreateFileSystemFromBackupCommand.ts";
+import {
+  CreateStorageVirtualMachineCommandInput,
+  CreateStorageVirtualMachineCommandOutput,
+} from "./commands/CreateStorageVirtualMachineCommand.ts";
+import { CreateVolumeCommandInput, CreateVolumeCommandOutput } from "./commands/CreateVolumeCommand.ts";
+import {
+  CreateVolumeFromBackupCommandInput,
+  CreateVolumeFromBackupCommandOutput,
+} from "./commands/CreateVolumeFromBackupCommand.ts";
 import { DeleteBackupCommandInput, DeleteBackupCommandOutput } from "./commands/DeleteBackupCommand.ts";
 import { DeleteFileSystemCommandInput, DeleteFileSystemCommandOutput } from "./commands/DeleteFileSystemCommand.ts";
+import {
+  DeleteStorageVirtualMachineCommandInput,
+  DeleteStorageVirtualMachineCommandOutput,
+} from "./commands/DeleteStorageVirtualMachineCommand.ts";
+import { DeleteVolumeCommandInput, DeleteVolumeCommandOutput } from "./commands/DeleteVolumeCommand.ts";
 import { DescribeBackupsCommandInput, DescribeBackupsCommandOutput } from "./commands/DescribeBackupsCommand.ts";
 import {
   DescribeDataRepositoryTasksCommandInput,
@@ -33,6 +47,11 @@ import {
   DescribeFileSystemsCommandOutput,
 } from "./commands/DescribeFileSystemsCommand.ts";
 import {
+  DescribeStorageVirtualMachinesCommandInput,
+  DescribeStorageVirtualMachinesCommandOutput,
+} from "./commands/DescribeStorageVirtualMachinesCommand.ts";
+import { DescribeVolumesCommandInput, DescribeVolumesCommandOutput } from "./commands/DescribeVolumesCommand.ts";
+import {
   DisassociateFileSystemAliasesCommandInput,
   DisassociateFileSystemAliasesCommandOutput,
 } from "./commands/DisassociateFileSystemAliasesCommand.ts";
@@ -43,6 +62,11 @@ import {
 import { TagResourceCommandInput, TagResourceCommandOutput } from "./commands/TagResourceCommand.ts";
 import { UntagResourceCommandInput, UntagResourceCommandOutput } from "./commands/UntagResourceCommand.ts";
 import { UpdateFileSystemCommandInput, UpdateFileSystemCommandOutput } from "./commands/UpdateFileSystemCommand.ts";
+import {
+  UpdateStorageVirtualMachineCommandInput,
+  UpdateStorageVirtualMachineCommandOutput,
+} from "./commands/UpdateStorageVirtualMachineCommand.ts";
+import { UpdateVolumeCommandInput, UpdateVolumeCommandOutput } from "./commands/UpdateVolumeCommand.ts";
 import { getRuntimeConfig as __getRuntimeConfig } from "./runtimeConfig.ts";
 import {
   EndpointsInputConfig,
@@ -103,17 +127,26 @@ export type ServiceInputTypes =
   | CreateDataRepositoryTaskCommandInput
   | CreateFileSystemCommandInput
   | CreateFileSystemFromBackupCommandInput
+  | CreateStorageVirtualMachineCommandInput
+  | CreateVolumeCommandInput
+  | CreateVolumeFromBackupCommandInput
   | DeleteBackupCommandInput
   | DeleteFileSystemCommandInput
+  | DeleteStorageVirtualMachineCommandInput
+  | DeleteVolumeCommandInput
   | DescribeBackupsCommandInput
   | DescribeDataRepositoryTasksCommandInput
   | DescribeFileSystemAliasesCommandInput
   | DescribeFileSystemsCommandInput
+  | DescribeStorageVirtualMachinesCommandInput
+  | DescribeVolumesCommandInput
   | DisassociateFileSystemAliasesCommandInput
   | ListTagsForResourceCommandInput
   | TagResourceCommandInput
   | UntagResourceCommandInput
-  | UpdateFileSystemCommandInput;
+  | UpdateFileSystemCommandInput
+  | UpdateStorageVirtualMachineCommandInput
+  | UpdateVolumeCommandInput;
 
 export type ServiceOutputTypes =
   | AssociateFileSystemAliasesCommandOutput
@@ -123,17 +156,26 @@ export type ServiceOutputTypes =
   | CreateDataRepositoryTaskCommandOutput
   | CreateFileSystemCommandOutput
   | CreateFileSystemFromBackupCommandOutput
+  | CreateStorageVirtualMachineCommandOutput
+  | CreateVolumeCommandOutput
+  | CreateVolumeFromBackupCommandOutput
   | DeleteBackupCommandOutput
   | DeleteFileSystemCommandOutput
+  | DeleteStorageVirtualMachineCommandOutput
+  | DeleteVolumeCommandOutput
   | DescribeBackupsCommandOutput
   | DescribeDataRepositoryTasksCommandOutput
   | DescribeFileSystemAliasesCommandOutput
   | DescribeFileSystemsCommandOutput
+  | DescribeStorageVirtualMachinesCommandOutput
+  | DescribeVolumesCommandOutput
   | DisassociateFileSystemAliasesCommandOutput
   | ListTagsForResourceCommandOutput
   | TagResourceCommandOutput
   | UntagResourceCommandOutput
-  | UpdateFileSystemCommandOutput;
+  | UpdateFileSystemCommandOutput
+  | UpdateStorageVirtualMachineCommandOutput
+  | UpdateVolumeCommandOutput;
 
 export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__HttpHandlerOptions>> {
   /**

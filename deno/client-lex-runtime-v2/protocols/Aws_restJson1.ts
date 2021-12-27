@@ -44,10 +44,12 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
 } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
@@ -462,7 +464,7 @@ export const deserializeAws_restJson1DeleteSessionCommand = async (
     localeId: undefined,
     sessionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.botAliasId !== undefined && data.botAliasId !== null) {
     contents.botAliasId = __expectString(data.botAliasId);
   }
@@ -569,7 +571,7 @@ export const deserializeAws_restJson1GetSessionCommand = async (
     sessionId: undefined,
     sessionState: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.interpretations !== undefined && data.interpretations !== null) {
     contents.interpretations = deserializeAws_restJson1Interpretations(data.interpretations, context);
   }
@@ -798,7 +800,7 @@ export const deserializeAws_restJson1RecognizeTextCommand = async (
     sessionId: undefined,
     sessionState: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.interpretations !== undefined && data.interpretations !== null) {
     contents.interpretations = deserializeAws_restJson1Interpretations(data.interpretations, context);
   }
@@ -1964,8 +1966,8 @@ const deserializeAws_restJson1ActiveContextTimeToLive = (
   context: __SerdeContext
 ): ActiveContextTimeToLive => {
   return {
-    timeToLiveInSeconds: __expectInt(output.timeToLiveInSeconds),
-    turnsToLive: __expectInt(output.turnsToLive),
+    timeToLiveInSeconds: __expectInt32(output.timeToLiveInSeconds),
+    turnsToLive: __expectInt32(output.turnsToLive),
   } as any;
 };
 
@@ -2006,7 +2008,7 @@ const deserializeAws_restJson1ButtonsList = (output: any, context: __SerdeContex
 
 const deserializeAws_restJson1ConfidenceScore = (output: any, context: __SerdeContext): ConfidenceScore => {
   return {
-    score: __limitedParseFloat(output.score),
+    score: __limitedParseDouble(output.score),
   } as any;
 };
 
@@ -2173,10 +2175,10 @@ const deserializeAws_restJson1SentimentResponse = (output: any, context: __Serde
 
 const deserializeAws_restJson1SentimentScore = (output: any, context: __SerdeContext): SentimentScore => {
   return {
-    mixed: __limitedParseFloat(output.mixed),
-    negative: __limitedParseFloat(output.negative),
-    neutral: __limitedParseFloat(output.neutral),
-    positive: __limitedParseFloat(output.positive),
+    mixed: __limitedParseDouble(output.mixed),
+    negative: __limitedParseDouble(output.negative),
+    neutral: __limitedParseDouble(output.neutral),
+    positive: __limitedParseDouble(output.positive),
   } as any;
 };
 

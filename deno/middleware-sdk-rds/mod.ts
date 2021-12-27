@@ -14,7 +14,6 @@ import {
   Provider,
 } from "../types/mod.ts";
 import { formatUrl } from "../util-format-url/mod.ts";
-import { escapeUri } from "../util-uri-escape/mod.ts";
 
 const regARN = /arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?/;
 
@@ -23,6 +22,7 @@ const sourceIds: string[] = [
   "SourceDBInstanceIdentifier",
   "ReplicationSourceIdentifier",
   "SourceDBClusterSnapshotIdentifier",
+  "SourceDBInstanceArn",
 ];
 
 const sourceIdToCommandKeyMap: { [key: string]: string } = {
@@ -30,6 +30,7 @@ const sourceIdToCommandKeyMap: { [key: string]: string } = {
   SourceDBInstanceIdentifier: "CreateDBInstanceReadReplica",
   ReplicationSourceIdentifier: "CreateDBCluster",
   SourceDBClusterSnapshotIdentifier: "CopyDBClusterSnapshot",
+  SourceDBInstanceArn: "StartDBInstanceAutomatedBackupsReplication",
 };
 
 const version = "2014-10-31";
@@ -94,7 +95,7 @@ export function crossRegionPresignedUrlMiddleware(options: PreviouslyResolved): 
           ...args,
           input: {
             ...args.input,
-            PreSignedUrl: escapeUri(formatUrl(presignedRequest)),
+            PreSignedUrl: formatUrl(presignedRequest),
           },
         };
       }

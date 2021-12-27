@@ -1,5 +1,5 @@
 import { IoTClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../IoTClient.ts";
-import { DeleteTopicRuleRequest } from "../models/models_0.ts";
+import { DeleteTopicRuleRequest } from "../models/models_1.ts";
 import {
   deserializeAws_restJson1DeleteTopicRuleCommand,
   serializeAws_restJson1DeleteTopicRuleCommand,
@@ -22,6 +22,7 @@ export interface DeleteTopicRuleCommandOutput extends __MetadataBearer {}
 
 /**
  * <p>Deletes the rule.</p>
+ *          <p>Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DeleteTopicRule</a> action.</p>
  * @example
  * Use a bare-bones client and the command you need to make an API call.
  * ```javascript

@@ -19,7 +19,13 @@ import {
   UnsupportedGrantTypeException,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectInt as __expectInt, expectString as __expectString } from "../../smithy-client/mod.ts";
+import {
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
+  expectString as __expectString,
+} from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   MetadataBearer as __MetadataBearer,
@@ -128,12 +134,12 @@ export const deserializeAws_restJson1CreateTokenCommand = async (
     refreshToken: undefined,
     tokenType: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.accessToken !== undefined && data.accessToken !== null) {
     contents.accessToken = __expectString(data.accessToken);
   }
   if (data.expiresIn !== undefined && data.expiresIn !== null) {
-    contents.expiresIn = __expectInt(data.expiresIn);
+    contents.expiresIn = __expectInt32(data.expiresIn);
   }
   if (data.idToken !== undefined && data.idToken !== null) {
     contents.idToken = __expectString(data.idToken);
@@ -280,7 +286,7 @@ export const deserializeAws_restJson1RegisterClientCommand = async (
     clientSecretExpiresAt: undefined,
     tokenEndpoint: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.authorizationEndpoint !== undefined && data.authorizationEndpoint !== null) {
     contents.authorizationEndpoint = __expectString(data.authorizationEndpoint);
   }
@@ -288,13 +294,13 @@ export const deserializeAws_restJson1RegisterClientCommand = async (
     contents.clientId = __expectString(data.clientId);
   }
   if (data.clientIdIssuedAt !== undefined && data.clientIdIssuedAt !== null) {
-    contents.clientIdIssuedAt = __expectInt(data.clientIdIssuedAt);
+    contents.clientIdIssuedAt = __expectLong(data.clientIdIssuedAt);
   }
   if (data.clientSecret !== undefined && data.clientSecret !== null) {
     contents.clientSecret = __expectString(data.clientSecret);
   }
   if (data.clientSecretExpiresAt !== undefined && data.clientSecretExpiresAt !== null) {
-    contents.clientSecretExpiresAt = __expectInt(data.clientSecretExpiresAt);
+    contents.clientSecretExpiresAt = __expectLong(data.clientSecretExpiresAt);
   }
   if (data.tokenEndpoint !== undefined && data.tokenEndpoint !== null) {
     contents.tokenEndpoint = __expectString(data.tokenEndpoint);
@@ -379,15 +385,15 @@ export const deserializeAws_restJson1StartDeviceAuthorizationCommand = async (
     verificationUri: undefined,
     verificationUriComplete: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.deviceCode !== undefined && data.deviceCode !== null) {
     contents.deviceCode = __expectString(data.deviceCode);
   }
   if (data.expiresIn !== undefined && data.expiresIn !== null) {
-    contents.expiresIn = __expectInt(data.expiresIn);
+    contents.expiresIn = __expectInt32(data.expiresIn);
   }
   if (data.interval !== undefined && data.interval !== null) {
-    contents.interval = __expectInt(data.interval);
+    contents.interval = __expectInt32(data.interval);
   }
   if (data.userCode !== undefined && data.userCode !== null) {
     contents.userCode = __expectString(data.userCode);

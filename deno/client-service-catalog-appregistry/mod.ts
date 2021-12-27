@@ -9,6 +9,7 @@ export * from "./commands/DeleteAttributeGroupCommand.ts";
 export * from "./commands/DisassociateAttributeGroupCommand.ts";
 export * from "./commands/DisassociateResourceCommand.ts";
 export * from "./commands/GetApplicationCommand.ts";
+export * from "./commands/GetAssociatedResourceCommand.ts";
 export * from "./commands/GetAttributeGroupCommand.ts";
 export * from "./commands/ListApplicationsCommand.ts";
 export * from "./pagination/ListApplicationsPaginator.ts";

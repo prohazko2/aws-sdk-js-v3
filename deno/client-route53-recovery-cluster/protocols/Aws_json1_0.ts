@@ -28,7 +28,7 @@ import {
   ValidationExceptionField,
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
-import { expectInt as __expectInt, expectString as __expectString } from "../../smithy-client/mod.ts";
+import { expectInt32 as __expectInt32, expectString as __expectString } from "../../smithy-client/mod.ts";
 import {
   Endpoint as __Endpoint,
   HeaderBag as __HeaderBag,
@@ -582,7 +582,7 @@ const deserializeAws_json1_0InternalServerException = (
 ): InternalServerException => {
   return {
     message: __expectString(output.message),
-    retryAfterSeconds: __expectInt(output.retryAfterSeconds),
+    retryAfterSeconds: __expectInt32(output.retryAfterSeconds),
   } as any;
 };
 
@@ -600,7 +600,7 @@ const deserializeAws_json1_0ResourceNotFoundException = (
 const deserializeAws_json1_0ThrottlingException = (output: any, context: __SerdeContext): ThrottlingException => {
   return {
     message: __expectString(output.message),
-    retryAfterSeconds: __expectInt(output.retryAfterSeconds),
+    retryAfterSeconds: __expectInt32(output.retryAfterSeconds),
   } as any;
 };
 

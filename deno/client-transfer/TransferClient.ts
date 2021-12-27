@@ -1,19 +1,24 @@
 import { CreateAccessCommandInput, CreateAccessCommandOutput } from "./commands/CreateAccessCommand.ts";
 import { CreateServerCommandInput, CreateServerCommandOutput } from "./commands/CreateServerCommand.ts";
 import { CreateUserCommandInput, CreateUserCommandOutput } from "./commands/CreateUserCommand.ts";
+import { CreateWorkflowCommandInput, CreateWorkflowCommandOutput } from "./commands/CreateWorkflowCommand.ts";
 import { DeleteAccessCommandInput, DeleteAccessCommandOutput } from "./commands/DeleteAccessCommand.ts";
 import { DeleteServerCommandInput, DeleteServerCommandOutput } from "./commands/DeleteServerCommand.ts";
 import { DeleteSshPublicKeyCommandInput, DeleteSshPublicKeyCommandOutput } from "./commands/DeleteSshPublicKeyCommand.ts";
 import { DeleteUserCommandInput, DeleteUserCommandOutput } from "./commands/DeleteUserCommand.ts";
+import { DeleteWorkflowCommandInput, DeleteWorkflowCommandOutput } from "./commands/DeleteWorkflowCommand.ts";
 import { DescribeAccessCommandInput, DescribeAccessCommandOutput } from "./commands/DescribeAccessCommand.ts";
+import { DescribeExecutionCommandInput, DescribeExecutionCommandOutput } from "./commands/DescribeExecutionCommand.ts";
 import {
   DescribeSecurityPolicyCommandInput,
   DescribeSecurityPolicyCommandOutput,
 } from "./commands/DescribeSecurityPolicyCommand.ts";
 import { DescribeServerCommandInput, DescribeServerCommandOutput } from "./commands/DescribeServerCommand.ts";
 import { DescribeUserCommandInput, DescribeUserCommandOutput } from "./commands/DescribeUserCommand.ts";
+import { DescribeWorkflowCommandInput, DescribeWorkflowCommandOutput } from "./commands/DescribeWorkflowCommand.ts";
 import { ImportSshPublicKeyCommandInput, ImportSshPublicKeyCommandOutput } from "./commands/ImportSshPublicKeyCommand.ts";
 import { ListAccessesCommandInput, ListAccessesCommandOutput } from "./commands/ListAccessesCommand.ts";
+import { ListExecutionsCommandInput, ListExecutionsCommandOutput } from "./commands/ListExecutionsCommand.ts";
 import {
   ListSecurityPoliciesCommandInput,
   ListSecurityPoliciesCommandOutput,
@@ -24,6 +29,11 @@ import {
   ListTagsForResourceCommandOutput,
 } from "./commands/ListTagsForResourceCommand.ts";
 import { ListUsersCommandInput, ListUsersCommandOutput } from "./commands/ListUsersCommand.ts";
+import { ListWorkflowsCommandInput, ListWorkflowsCommandOutput } from "./commands/ListWorkflowsCommand.ts";
+import {
+  SendWorkflowStepStateCommandInput,
+  SendWorkflowStepStateCommandOutput,
+} from "./commands/SendWorkflowStepStateCommand.ts";
 import { StartServerCommandInput, StartServerCommandOutput } from "./commands/StartServerCommand.ts";
 import { StopServerCommandInput, StopServerCommandOutput } from "./commands/StopServerCommand.ts";
 import { TagResourceCommandInput, TagResourceCommandOutput } from "./commands/TagResourceCommand.ts";
@@ -91,20 +101,27 @@ export type ServiceInputTypes =
   | CreateAccessCommandInput
   | CreateServerCommandInput
   | CreateUserCommandInput
+  | CreateWorkflowCommandInput
   | DeleteAccessCommandInput
   | DeleteServerCommandInput
   | DeleteSshPublicKeyCommandInput
   | DeleteUserCommandInput
+  | DeleteWorkflowCommandInput
   | DescribeAccessCommandInput
+  | DescribeExecutionCommandInput
   | DescribeSecurityPolicyCommandInput
   | DescribeServerCommandInput
   | DescribeUserCommandInput
+  | DescribeWorkflowCommandInput
   | ImportSshPublicKeyCommandInput
   | ListAccessesCommandInput
+  | ListExecutionsCommandInput
   | ListSecurityPoliciesCommandInput
   | ListServersCommandInput
   | ListTagsForResourceCommandInput
   | ListUsersCommandInput
+  | ListWorkflowsCommandInput
+  | SendWorkflowStepStateCommandInput
   | StartServerCommandInput
   | StopServerCommandInput
   | TagResourceCommandInput
@@ -118,20 +135,27 @@ export type ServiceOutputTypes =
   | CreateAccessCommandOutput
   | CreateServerCommandOutput
   | CreateUserCommandOutput
+  | CreateWorkflowCommandOutput
   | DeleteAccessCommandOutput
   | DeleteServerCommandOutput
   | DeleteSshPublicKeyCommandOutput
   | DeleteUserCommandOutput
+  | DeleteWorkflowCommandOutput
   | DescribeAccessCommandOutput
+  | DescribeExecutionCommandOutput
   | DescribeSecurityPolicyCommandOutput
   | DescribeServerCommandOutput
   | DescribeUserCommandOutput
+  | DescribeWorkflowCommandOutput
   | ImportSshPublicKeyCommandOutput
   | ListAccessesCommandOutput
+  | ListExecutionsCommandOutput
   | ListSecurityPoliciesCommandOutput
   | ListServersCommandOutput
   | ListTagsForResourceCommandOutput
   | ListUsersCommandOutput
+  | ListWorkflowsCommandOutput
+  | SendWorkflowStepStateCommandOutput
   | StartServerCommandOutput
   | StopServerCommandOutput
   | TagResourceCommandOutput

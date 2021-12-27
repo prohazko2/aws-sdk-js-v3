@@ -77,7 +77,10 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -540,7 +543,7 @@ export const deserializeAws_restJson1AssociateRepositoryCommand = async (
     RepositoryAssociation: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RepositoryAssociation !== undefined && data.RepositoryAssociation !== null) {
     contents.RepositoryAssociation = deserializeAws_restJson1RepositoryAssociation(data.RepositoryAssociation, context);
   }
@@ -630,7 +633,7 @@ export const deserializeAws_restJson1CreateCodeReviewCommand = async (
     $metadata: deserializeMetadata(output),
     CodeReview: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CodeReview !== undefined && data.CodeReview !== null) {
     contents.CodeReview = deserializeAws_restJson1CodeReview(data.CodeReview, context);
   }
@@ -725,7 +728,7 @@ export const deserializeAws_restJson1DescribeCodeReviewCommand = async (
     $metadata: deserializeMetadata(output),
     CodeReview: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CodeReview !== undefined && data.CodeReview !== null) {
     contents.CodeReview = deserializeAws_restJson1CodeReview(data.CodeReview, context);
   }
@@ -812,7 +815,7 @@ export const deserializeAws_restJson1DescribeRecommendationFeedbackCommand = asy
     $metadata: deserializeMetadata(output),
     RecommendationFeedback: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RecommendationFeedback !== undefined && data.RecommendationFeedback !== null) {
     contents.RecommendationFeedback = deserializeAws_restJson1RecommendationFeedback(
       data.RecommendationFeedback,
@@ -903,7 +906,7 @@ export const deserializeAws_restJson1DescribeRepositoryAssociationCommand = asyn
     RepositoryAssociation: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RepositoryAssociation !== undefined && data.RepositoryAssociation !== null) {
     contents.RepositoryAssociation = deserializeAws_restJson1RepositoryAssociation(data.RepositoryAssociation, context);
   }
@@ -994,7 +997,7 @@ export const deserializeAws_restJson1DisassociateRepositoryCommand = async (
     RepositoryAssociation: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RepositoryAssociation !== undefined && data.RepositoryAssociation !== null) {
     contents.RepositoryAssociation = deserializeAws_restJson1RepositoryAssociation(data.RepositoryAssociation, context);
   }
@@ -1093,7 +1096,7 @@ export const deserializeAws_restJson1ListCodeReviewsCommand = async (
     CodeReviewSummaries: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CodeReviewSummaries !== undefined && data.CodeReviewSummaries !== null) {
     contents.CodeReviewSummaries = deserializeAws_restJson1CodeReviewSummaries(data.CodeReviewSummaries, context);
   }
@@ -1176,7 +1179,7 @@ export const deserializeAws_restJson1ListRecommendationFeedbackCommand = async (
     NextToken: undefined,
     RecommendationFeedbackSummaries: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -1270,7 +1273,7 @@ export const deserializeAws_restJson1ListRecommendationsCommand = async (
     NextToken: undefined,
     RecommendationSummaries: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -1364,7 +1367,7 @@ export const deserializeAws_restJson1ListRepositoryAssociationsCommand = async (
     NextToken: undefined,
     RepositoryAssociationSummaries: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -1441,7 +1444,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1TagMap(data.Tags, context);
   }
@@ -2183,15 +2186,15 @@ const deserializeAws_restJson1KMSKeyDetails = (output: any, context: __SerdeCont
 
 const deserializeAws_restJson1Metrics = (output: any, context: __SerdeContext): Metrics => {
   return {
-    FindingsCount: __expectInt(output.FindingsCount),
-    MeteredLinesOfCodeCount: __expectInt(output.MeteredLinesOfCodeCount),
+    FindingsCount: __expectLong(output.FindingsCount),
+    MeteredLinesOfCodeCount: __expectLong(output.MeteredLinesOfCodeCount),
   } as any;
 };
 
 const deserializeAws_restJson1MetricsSummary = (output: any, context: __SerdeContext): MetricsSummary => {
   return {
-    FindingsCount: __expectInt(output.FindingsCount),
-    MeteredLinesOfCodeCount: __expectInt(output.MeteredLinesOfCodeCount),
+    FindingsCount: __expectLong(output.FindingsCount),
+    MeteredLinesOfCodeCount: __expectLong(output.MeteredLinesOfCodeCount),
   } as any;
 };
 
@@ -2274,11 +2277,11 @@ const deserializeAws_restJson1RecommendationSummaries = (
 const deserializeAws_restJson1RecommendationSummary = (output: any, context: __SerdeContext): RecommendationSummary => {
   return {
     Description: __expectString(output.Description),
-    EndLine: __expectInt(output.EndLine),
+    EndLine: __expectInt32(output.EndLine),
     FilePath: __expectString(output.FilePath),
     RecommendationCategory: __expectString(output.RecommendationCategory),
     RecommendationId: __expectString(output.RecommendationId),
-    StartLine: __expectInt(output.StartLine),
+    StartLine: __expectInt32(output.StartLine),
   } as any;
 };
 

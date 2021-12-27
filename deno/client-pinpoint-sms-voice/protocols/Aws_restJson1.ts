@@ -48,6 +48,8 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
   expectBoolean as __expectBoolean,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -664,7 +666,7 @@ export const deserializeAws_restJson1GetConfigurationSetEventDestinationsCommand
     $metadata: deserializeMetadata(output),
     EventDestinations: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.EventDestinations !== undefined && data.EventDestinations !== null) {
     contents.EventDestinations = deserializeAws_restJson1EventDestinations(data.EventDestinations, context);
   }
@@ -744,7 +746,7 @@ export const deserializeAws_restJson1ListConfigurationSetsCommand = async (
     ConfigurationSets: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ConfigurationSets !== undefined && data.ConfigurationSets !== null) {
     contents.ConfigurationSets = deserializeAws_restJson1ConfigurationSets(data.ConfigurationSets, context);
   }
@@ -818,7 +820,7 @@ export const deserializeAws_restJson1SendVoiceMessageCommand = async (
     $metadata: deserializeMetadata(output),
     MessageId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.MessageId !== undefined && data.MessageId !== null) {
     contents.MessageId = __expectString(data.MessageId);
   }

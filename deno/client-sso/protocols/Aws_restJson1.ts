@@ -13,7 +13,9 @@ import {
 } from "../models/models_0.ts";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "../../protocol-http/mod.ts";
 import {
-  expectInt as __expectInt,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "../../smithy-client/mod.ts";
@@ -136,7 +138,7 @@ export const deserializeAws_restJson1GetRoleCredentialsCommand = async (
     $metadata: deserializeMetadata(output),
     roleCredentials: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.roleCredentials !== undefined && data.roleCredentials !== null) {
     contents.roleCredentials = deserializeAws_restJson1RoleCredentials(data.roleCredentials, context);
   }
@@ -216,7 +218,7 @@ export const deserializeAws_restJson1ListAccountRolesCommand = async (
     nextToken: undefined,
     roleList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -299,7 +301,7 @@ export const deserializeAws_restJson1ListAccountsCommand = async (
     accountList: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.accountList !== undefined && data.accountList !== null) {
     contents.accountList = deserializeAws_restJson1AccountListType(data.accountList, context);
   }
@@ -527,7 +529,7 @@ const deserializeAws_restJson1AccountListType = (output: any, context: __SerdeCo
 const deserializeAws_restJson1RoleCredentials = (output: any, context: __SerdeContext): RoleCredentials => {
   return {
     accessKeyId: __expectString(output.accessKeyId),
-    expiration: __expectInt(output.expiration),
+    expiration: __expectLong(output.expiration),
     secretAccessKey: __expectString(output.secretAccessKey),
     sessionToken: __expectString(output.sessionToken),
   } as any;

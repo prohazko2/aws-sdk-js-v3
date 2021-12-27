@@ -77,6 +77,7 @@ export * from "./commands/PublishTypeCommand.ts";
 export * from "./commands/RecordHandlerProgressCommand.ts";
 export * from "./commands/RegisterPublisherCommand.ts";
 export * from "./commands/RegisterTypeCommand.ts";
+export * from "./commands/RollbackStackCommand.ts";
 export * from "./commands/SetStackPolicyCommand.ts";
 export * from "./commands/SetTypeConfigurationCommand.ts";
 export * from "./commands/SetTypeDefaultVersionCommand.ts";
