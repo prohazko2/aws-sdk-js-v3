@@ -33,7 +33,7 @@ export interface AllQueryStringTypesInput {
   queryTimestampList?: Date[];
   queryEnum?: FooEnum | string;
   queryEnumList?: (FooEnum | string)[];
-  queryParamsMapOfStrings?: { [key: string]: string };
+  queryParamsMapOfStringList?: { [key: string]: string[] };
 }
 
 export namespace AllQueryStringTypesInput {
@@ -242,6 +242,19 @@ export namespace InvalidGreeting {
    * @internal
    */
   export const filterSensitiveLog = (obj: InvalidGreeting): any => ({
+    ...obj,
+  });
+}
+
+export interface HttpChecksumRequiredInputOutput {
+  foo?: string;
+}
+
+export namespace HttpChecksumRequiredInputOutput {
+  /**
+   * @internal
+   */
+  export const filterSensitiveLog = (obj: HttpChecksumRequiredInputOutput): any => ({
     ...obj,
   });
 }
