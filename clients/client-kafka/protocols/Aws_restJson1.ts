@@ -131,10 +131,13 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -1166,7 +1169,7 @@ export const deserializeAws_restJson1BatchAssociateScramSecretCommand = async (
     ClusterArn: undefined,
     UnprocessedScramSecrets: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -1276,7 +1279,7 @@ export const deserializeAws_restJson1BatchDisassociateScramSecretCommand = async
     ClusterArn: undefined,
     UnprocessedScramSecrets: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -1387,7 +1390,7 @@ export const deserializeAws_restJson1CreateClusterCommand = async (
     ClusterName: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -1500,7 +1503,7 @@ export const deserializeAws_restJson1CreateConfigurationCommand = async (
     Name: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
@@ -1616,7 +1619,7 @@ export const deserializeAws_restJson1DeleteClusterCommand = async (
     ClusterArn: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -1699,7 +1702,7 @@ export const deserializeAws_restJson1DeleteConfigurationCommand = async (
     Arn: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
@@ -1781,7 +1784,7 @@ export const deserializeAws_restJson1DescribeClusterCommand = async (
     $metadata: deserializeMetadata(output),
     ClusterInfo: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterInfo !== undefined && data.clusterInfo !== null) {
     contents.ClusterInfo = deserializeAws_restJson1ClusterInfo(data.clusterInfo, context);
   }
@@ -1868,7 +1871,7 @@ export const deserializeAws_restJson1DescribeClusterOperationCommand = async (
     $metadata: deserializeMetadata(output),
     ClusterOperationInfo: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterOperationInfo !== undefined && data.clusterOperationInfo !== null) {
     contents.ClusterOperationInfo = deserializeAws_restJson1ClusterOperationInfo(data.clusterOperationInfo, context);
   }
@@ -1961,7 +1964,7 @@ export const deserializeAws_restJson1DescribeConfigurationCommand = async (
     Name: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
@@ -2078,7 +2081,7 @@ export const deserializeAws_restJson1DescribeConfigurationRevisionCommand = asyn
     Revision: undefined,
     ServerProperties: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
@@ -2089,7 +2092,7 @@ export const deserializeAws_restJson1DescribeConfigurationRevisionCommand = asyn
     contents.Description = __expectString(data.description);
   }
   if (data.revision !== undefined && data.revision !== null) {
-    contents.Revision = __expectInt(data.revision);
+    contents.Revision = __expectLong(data.revision);
   }
   if (data.serverProperties !== undefined && data.serverProperties !== null) {
     contents.ServerProperties = context.base64Decoder(data.serverProperties);
@@ -2188,7 +2191,7 @@ export const deserializeAws_restJson1GetBootstrapBrokersCommand = async (
     BootstrapBrokerStringSaslScram: undefined,
     BootstrapBrokerStringTls: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.bootstrapBrokerString !== undefined && data.bootstrapBrokerString !== null) {
     contents.BootstrapBrokerString = __expectString(data.bootstrapBrokerString);
   }
@@ -2284,7 +2287,7 @@ export const deserializeAws_restJson1GetCompatibleKafkaVersionsCommand = async (
     $metadata: deserializeMetadata(output),
     CompatibleKafkaVersions: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.compatibleKafkaVersions !== undefined && data.compatibleKafkaVersions !== null) {
     contents.CompatibleKafkaVersions = deserializeAws_restJson1__listOfCompatibleKafkaVersion(
       data.compatibleKafkaVersions,
@@ -2391,7 +2394,7 @@ export const deserializeAws_restJson1ListClusterOperationsCommand = async (
     ClusterOperationInfoList: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterOperationInfoList !== undefined && data.clusterOperationInfoList !== null) {
     contents.ClusterOperationInfoList = deserializeAws_restJson1__listOfClusterOperationInfo(
       data.clusterOperationInfoList,
@@ -2477,7 +2480,7 @@ export const deserializeAws_restJson1ListClustersCommand = async (
     ClusterInfoList: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterInfoList !== undefined && data.clusterInfoList !== null) {
     contents.ClusterInfoList = deserializeAws_restJson1__listOfClusterInfo(data.clusterInfoList, context);
   }
@@ -2560,7 +2563,7 @@ export const deserializeAws_restJson1ListConfigurationRevisionsCommand = async (
     NextToken: undefined,
     Revisions: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.NextToken = __expectString(data.nextToken);
   }
@@ -2659,7 +2662,7 @@ export const deserializeAws_restJson1ListConfigurationsCommand = async (
     Configurations: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.configurations !== undefined && data.configurations !== null) {
     contents.Configurations = deserializeAws_restJson1__listOfConfiguration(data.configurations, context);
   }
@@ -2750,7 +2753,7 @@ export const deserializeAws_restJson1ListKafkaVersionsCommand = async (
     KafkaVersions: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.kafkaVersions !== undefined && data.kafkaVersions !== null) {
     contents.KafkaVersions = deserializeAws_restJson1__listOfKafkaVersion(data.kafkaVersions, context);
   }
@@ -2833,7 +2836,7 @@ export const deserializeAws_restJson1ListNodesCommand = async (
     NextToken: undefined,
     NodeInfoList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.NextToken = __expectString(data.nextToken);
   }
@@ -2916,7 +2919,7 @@ export const deserializeAws_restJson1ListScramSecretsCommand = async (
     NextToken: undefined,
     SecretArnList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.NextToken = __expectString(data.nextToken);
   }
@@ -3022,7 +3025,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1__mapOf__string(data.tags, context);
   }
@@ -3094,7 +3097,7 @@ export const deserializeAws_restJson1RebootBrokerCommand = async (
     ClusterArn: undefined,
     ClusterOperationArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -3335,7 +3338,7 @@ export const deserializeAws_restJson1UpdateBrokerCountCommand = async (
     ClusterArn: undefined,
     ClusterOperationArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -3426,7 +3429,7 @@ export const deserializeAws_restJson1UpdateBrokerStorageCommand = async (
     ClusterArn: undefined,
     ClusterOperationArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -3517,7 +3520,7 @@ export const deserializeAws_restJson1UpdateBrokerTypeCommand = async (
     ClusterArn: undefined,
     ClusterOperationArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -3624,7 +3627,7 @@ export const deserializeAws_restJson1UpdateClusterConfigurationCommand = async (
     ClusterArn: undefined,
     ClusterOperationArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -3723,7 +3726,7 @@ export const deserializeAws_restJson1UpdateClusterKafkaVersionCommand = async (
     ClusterArn: undefined,
     ClusterOperationArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -3830,7 +3833,7 @@ export const deserializeAws_restJson1UpdateConfigurationCommand = async (
     Arn: undefined,
     LatestRevision: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
@@ -3929,7 +3932,7 @@ export const deserializeAws_restJson1UpdateMonitoringCommand = async (
     ClusterArn: undefined,
     ClusterOperationArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.clusterArn !== undefined && data.clusterArn !== null) {
     contents.ClusterArn = __expectString(data.clusterArn);
   }
@@ -4552,7 +4555,7 @@ const deserializeAws_restJson1__mapOf__string = (output: any, context: __SerdeCo
 const deserializeAws_restJson1BrokerEBSVolumeInfo = (output: any, context: __SerdeContext): BrokerEBSVolumeInfo => {
   return {
     KafkaBrokerNodeId: __expectString(output.kafkaBrokerNodeId),
-    VolumeSizeGB: __expectInt(output.volumeSizeGB),
+    VolumeSizeGB: __expectInt32(output.volumeSizeGB),
   } as any;
 };
 
@@ -4592,7 +4595,7 @@ const deserializeAws_restJson1BrokerNodeGroupInfo = (output: any, context: __Ser
 const deserializeAws_restJson1BrokerNodeInfo = (output: any, context: __SerdeContext): BrokerNodeInfo => {
   return {
     AttachedENIId: __expectString(output.attachedENIId),
-    BrokerId: __limitedParseFloat(output.brokerId),
+    BrokerId: __limitedParseDouble(output.brokerId),
     ClientSubnet: __expectString(output.clientSubnet),
     ClientVpcIpAddress: __expectString(output.clientVpcIpAddress),
     CurrentBrokerSoftwareInfo:
@@ -4609,7 +4612,7 @@ const deserializeAws_restJson1BrokerNodeInfo = (output: any, context: __SerdeCon
 const deserializeAws_restJson1BrokerSoftwareInfo = (output: any, context: __SerdeContext): BrokerSoftwareInfo => {
   return {
     ConfigurationArn: __expectString(output.configurationArn),
-    ConfigurationRevision: __expectInt(output.configurationRevision),
+    ConfigurationRevision: __expectLong(output.configurationRevision),
     KafkaVersion: __expectString(output.kafkaVersion),
   } as any;
 };
@@ -4660,7 +4663,7 @@ const deserializeAws_restJson1ClusterInfo = (output: any, context: __SerdeContex
       output.loggingInfo !== undefined && output.loggingInfo !== null
         ? deserializeAws_restJson1LoggingInfo(output.loggingInfo, context)
         : undefined,
-    NumberOfBrokerNodes: __expectInt(output.numberOfBrokerNodes),
+    NumberOfBrokerNodes: __expectInt32(output.numberOfBrokerNodes),
     OpenMonitoring:
       output.openMonitoring !== undefined && output.openMonitoring !== null
         ? deserializeAws_restJson1OpenMonitoring(output.openMonitoring, context)
@@ -4762,7 +4765,7 @@ const deserializeAws_restJson1Configuration = (output: any, context: __SerdeCont
 const deserializeAws_restJson1ConfigurationInfo = (output: any, context: __SerdeContext): ConfigurationInfo => {
   return {
     Arn: __expectString(output.arn),
-    Revision: __expectInt(output.revision),
+    Revision: __expectLong(output.revision),
   } as any;
 };
 
@@ -4771,13 +4774,13 @@ const deserializeAws_restJson1ConfigurationRevision = (output: any, context: __S
     CreationTime:
       output.creationTime !== undefined && output.creationTime !== null ? new Date(output.creationTime) : undefined,
     Description: __expectString(output.description),
-    Revision: __expectInt(output.revision),
+    Revision: __expectLong(output.revision),
   } as any;
 };
 
 const deserializeAws_restJson1EBSStorageInfo = (output: any, context: __SerdeContext): EBSStorageInfo => {
   return {
-    VolumeSize: __expectInt(output.volumeSize),
+    VolumeSize: __expectInt32(output.volumeSize),
   } as any;
 };
 
@@ -4866,7 +4869,7 @@ const deserializeAws_restJson1MutableClusterInfo = (output: any, context: __Serd
       output.loggingInfo !== undefined && output.loggingInfo !== null
         ? deserializeAws_restJson1LoggingInfo(output.loggingInfo, context)
         : undefined,
-    NumberOfBrokerNodes: __expectInt(output.numberOfBrokerNodes),
+    NumberOfBrokerNodes: __expectInt32(output.numberOfBrokerNodes),
     OpenMonitoring:
       output.openMonitoring !== undefined && output.openMonitoring !== null
         ? deserializeAws_restJson1OpenMonitoring(output.openMonitoring, context)
@@ -4987,7 +4990,7 @@ const deserializeAws_restJson1ZookeeperNodeInfo = (output: any, context: __Serde
       output.endpoints !== undefined && output.endpoints !== null
         ? deserializeAws_restJson1__listOf__string(output.endpoints, context)
         : undefined,
-    ZookeeperId: __limitedParseFloat(output.zookeeperId),
+    ZookeeperId: __limitedParseDouble(output.zookeeperId),
     ZookeeperVersion: __expectString(output.zookeeperVersion),
   } as any;
 };

@@ -6,7 +6,9 @@ import { InvokeEndpointCommandInput, InvokeEndpointCommandOutput } from "../comm
 import { InternalFailure, ModelError, ServiceUnavailable, ValidationError } from "../models/models_0";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "@aws-sdk/smithy-client";
@@ -208,7 +210,7 @@ export const deserializeAws_restJson1InvokeEndpointAsyncCommand = async (
   if (output.headers["x-amzn-sagemaker-outputlocation"] !== undefined) {
     contents.OutputLocation = output.headers["x-amzn-sagemaker-outputlocation"];
   }
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.InferenceId !== undefined && data.InferenceId !== null) {
     contents.InferenceId = __expectString(data.InferenceId);
   }
@@ -309,7 +311,7 @@ const deserializeAws_restJson1ModelErrorResponse = async (
     contents.OriginalMessage = __expectString(data.OriginalMessage);
   }
   if (data.OriginalStatusCode !== undefined && data.OriginalStatusCode !== null) {
-    contents.OriginalStatusCode = __expectInt(data.OriginalStatusCode);
+    contents.OriginalStatusCode = __expectInt32(data.OriginalStatusCode);
   }
   return contents;
 };

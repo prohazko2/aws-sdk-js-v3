@@ -48,7 +48,10 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "@aws-sdk/smithy-client";
@@ -488,7 +491,7 @@ export const deserializeAws_restJson1CreateCanaryCommand = async (
     $metadata: deserializeMetadata(output),
     Canary: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Canary !== undefined && data.Canary !== null) {
     contents.Canary = deserializeAws_restJson1Canary(data.Canary, context);
   }
@@ -627,7 +630,7 @@ export const deserializeAws_restJson1DescribeCanariesCommand = async (
     Canaries: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Canaries !== undefined && data.Canaries !== null) {
     contents.Canaries = deserializeAws_restJson1Canaries(data.Canaries, context);
   }
@@ -694,7 +697,7 @@ export const deserializeAws_restJson1DescribeCanariesLastRunCommand = async (
     CanariesLastRun: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CanariesLastRun !== undefined && data.CanariesLastRun !== null) {
     contents.CanariesLastRun = deserializeAws_restJson1CanariesLastRun(data.CanariesLastRun, context);
   }
@@ -761,7 +764,7 @@ export const deserializeAws_restJson1DescribeRuntimeVersionsCommand = async (
     NextToken: undefined,
     RuntimeVersions: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -827,7 +830,7 @@ export const deserializeAws_restJson1GetCanaryCommand = async (
     $metadata: deserializeMetadata(output),
     Canary: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Canary !== undefined && data.Canary !== null) {
     contents.Canary = deserializeAws_restJson1Canary(data.Canary, context);
   }
@@ -891,7 +894,7 @@ export const deserializeAws_restJson1GetCanaryRunsCommand = async (
     CanaryRuns: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CanaryRuns !== undefined && data.CanaryRuns !== null) {
     contents.CanaryRuns = deserializeAws_restJson1CanaryRuns(data.CanaryRuns, context);
   }
@@ -965,7 +968,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1TagMap(data.Tags, context);
   }
@@ -1650,7 +1653,7 @@ const deserializeAws_restJson1Canary = (output: any, context: __SerdeContext): C
         : undefined,
     EngineArn: __expectString(output.EngineArn),
     ExecutionRoleArn: __expectString(output.ExecutionRoleArn),
-    FailureRetentionPeriodInDays: __expectInt(output.FailureRetentionPeriodInDays),
+    FailureRetentionPeriodInDays: __expectInt32(output.FailureRetentionPeriodInDays),
     Id: __expectString(output.Id),
     Name: __expectString(output.Name),
     RunConfig:
@@ -1666,7 +1669,7 @@ const deserializeAws_restJson1Canary = (output: any, context: __SerdeContext): C
       output.Status !== undefined && output.Status !== null
         ? deserializeAws_restJson1CanaryStatus(output.Status, context)
         : undefined,
-    SuccessRetentionPeriodInDays: __expectInt(output.SuccessRetentionPeriodInDays),
+    SuccessRetentionPeriodInDays: __expectInt32(output.SuccessRetentionPeriodInDays),
     Tags:
       output.Tags !== undefined && output.Tags !== null
         ? deserializeAws_restJson1TagMap(output.Tags, context)
@@ -1722,8 +1725,8 @@ const deserializeAws_restJson1CanaryRun = (output: any, context: __SerdeContext)
 const deserializeAws_restJson1CanaryRunConfigOutput = (output: any, context: __SerdeContext): CanaryRunConfigOutput => {
   return {
     ActiveTracing: __expectBoolean(output.ActiveTracing),
-    MemoryInMB: __expectInt(output.MemoryInMB),
-    TimeoutInSeconds: __expectInt(output.TimeoutInSeconds),
+    MemoryInMB: __expectInt32(output.MemoryInMB),
+    TimeoutInSeconds: __expectInt32(output.TimeoutInSeconds),
   } as any;
 };
 
@@ -1759,7 +1762,7 @@ const deserializeAws_restJson1CanaryRunTimeline = (output: any, context: __Serde
 
 const deserializeAws_restJson1CanaryScheduleOutput = (output: any, context: __SerdeContext): CanaryScheduleOutput => {
   return {
-    DurationInSeconds: __expectInt(output.DurationInSeconds),
+    DurationInSeconds: __expectLong(output.DurationInSeconds),
     Expression: __expectString(output.Expression),
   } as any;
 };

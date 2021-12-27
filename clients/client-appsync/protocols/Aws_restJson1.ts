@@ -96,7 +96,10 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "@aws-sdk/smithy-client";
@@ -1764,7 +1767,7 @@ export const deserializeAws_restJson1CreateApiCacheCommand = async (
     $metadata: deserializeMetadata(output),
     apiCache: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.apiCache !== undefined && data.apiCache !== null) {
     contents.apiCache = deserializeAws_restJson1ApiCache(data.apiCache, context);
   }
@@ -1851,7 +1854,7 @@ export const deserializeAws_restJson1CreateApiKeyCommand = async (
     $metadata: deserializeMetadata(output),
     apiKey: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.apiKey !== undefined && data.apiKey !== null) {
     contents.apiKey = deserializeAws_restJson1ApiKey(data.apiKey, context);
   }
@@ -1954,7 +1957,7 @@ export const deserializeAws_restJson1CreateDataSourceCommand = async (
     $metadata: deserializeMetadata(output),
     dataSource: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.dataSource !== undefined && data.dataSource !== null) {
     contents.dataSource = deserializeAws_restJson1DataSource(data.dataSource, context);
   }
@@ -2041,7 +2044,7 @@ export const deserializeAws_restJson1CreateFunctionCommand = async (
     $metadata: deserializeMetadata(output),
     functionConfiguration: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.functionConfiguration !== undefined && data.functionConfiguration !== null) {
     contents.functionConfiguration = deserializeAws_restJson1FunctionConfiguration(data.functionConfiguration, context);
   }
@@ -2120,7 +2123,7 @@ export const deserializeAws_restJson1CreateGraphqlApiCommand = async (
     $metadata: deserializeMetadata(output),
     graphqlApi: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.graphqlApi !== undefined && data.graphqlApi !== null) {
     contents.graphqlApi = deserializeAws_restJson1GraphqlApi(data.graphqlApi, context);
   }
@@ -2215,7 +2218,7 @@ export const deserializeAws_restJson1CreateResolverCommand = async (
     $metadata: deserializeMetadata(output),
     resolver: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.resolver !== undefined && data.resolver !== null) {
     contents.resolver = deserializeAws_restJson1Resolver(data.resolver, context);
   }
@@ -2294,7 +2297,7 @@ export const deserializeAws_restJson1CreateTypeCommand = async (
     $metadata: deserializeMetadata(output),
     type: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.type !== undefined && data.type !== null) {
     contents.type = deserializeAws_restJson1Type(data.type, context);
   }
@@ -3029,7 +3032,7 @@ export const deserializeAws_restJson1GetApiCacheCommand = async (
     $metadata: deserializeMetadata(output),
     apiCache: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.apiCache !== undefined && data.apiCache !== null) {
     contents.apiCache = deserializeAws_restJson1ApiCache(data.apiCache, context);
   }
@@ -3116,7 +3119,7 @@ export const deserializeAws_restJson1GetDataSourceCommand = async (
     $metadata: deserializeMetadata(output),
     dataSource: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.dataSource !== undefined && data.dataSource !== null) {
     contents.dataSource = deserializeAws_restJson1DataSource(data.dataSource, context);
   }
@@ -3203,7 +3206,7 @@ export const deserializeAws_restJson1GetFunctionCommand = async (
     $metadata: deserializeMetadata(output),
     functionConfiguration: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.functionConfiguration !== undefined && data.functionConfiguration !== null) {
     contents.functionConfiguration = deserializeAws_restJson1FunctionConfiguration(data.functionConfiguration, context);
   }
@@ -3274,7 +3277,7 @@ export const deserializeAws_restJson1GetGraphqlApiCommand = async (
     $metadata: deserializeMetadata(output),
     graphqlApi: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.graphqlApi !== undefined && data.graphqlApi !== null) {
     contents.graphqlApi = deserializeAws_restJson1GraphqlApi(data.graphqlApi, context);
   }
@@ -3438,7 +3441,7 @@ export const deserializeAws_restJson1GetResolverCommand = async (
     $metadata: deserializeMetadata(output),
     resolver: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.resolver !== undefined && data.resolver !== null) {
     contents.resolver = deserializeAws_restJson1Resolver(data.resolver, context);
   }
@@ -3510,7 +3513,7 @@ export const deserializeAws_restJson1GetSchemaCreationStatusCommand = async (
     details: undefined,
     status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.details !== undefined && data.details !== null) {
     contents.details = __expectString(data.details);
   }
@@ -3592,7 +3595,7 @@ export const deserializeAws_restJson1GetTypeCommand = async (
     $metadata: deserializeMetadata(output),
     type: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.type !== undefined && data.type !== null) {
     contents.type = deserializeAws_restJson1Type(data.type, context);
   }
@@ -3680,7 +3683,7 @@ export const deserializeAws_restJson1ListApiKeysCommand = async (
     apiKeys: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.apiKeys !== undefined && data.apiKeys !== null) {
     contents.apiKeys = deserializeAws_restJson1ApiKeys(data.apiKeys, context);
   }
@@ -3763,7 +3766,7 @@ export const deserializeAws_restJson1ListDataSourcesCommand = async (
     dataSources: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.dataSources !== undefined && data.dataSources !== null) {
     contents.dataSources = deserializeAws_restJson1DataSources(data.dataSources, context);
   }
@@ -3846,7 +3849,7 @@ export const deserializeAws_restJson1ListFunctionsCommand = async (
     functions: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.functions !== undefined && data.functions !== null) {
     contents.functions = deserializeAws_restJson1Functions(data.functions, context);
   }
@@ -3929,7 +3932,7 @@ export const deserializeAws_restJson1ListGraphqlApisCommand = async (
     graphqlApis: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.graphqlApis !== undefined && data.graphqlApis !== null) {
     contents.graphqlApis = deserializeAws_restJson1GraphqlApis(data.graphqlApis, context);
   }
@@ -4004,7 +4007,7 @@ export const deserializeAws_restJson1ListResolversCommand = async (
     nextToken: undefined,
     resolvers: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -4087,7 +4090,7 @@ export const deserializeAws_restJson1ListResolversByFunctionCommand = async (
     nextToken: undefined,
     resolvers: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -4169,7 +4172,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.tags !== undefined && data.tags !== null) {
     contents.tags = deserializeAws_restJson1TagMap(data.tags, context);
   }
@@ -4265,7 +4268,7 @@ export const deserializeAws_restJson1ListTypesCommand = async (
     nextToken: undefined,
     types: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -4355,7 +4358,7 @@ export const deserializeAws_restJson1StartSchemaCreationCommand = async (
     $metadata: deserializeMetadata(output),
     status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.status !== undefined && data.status !== null) {
     contents.status = __expectString(data.status);
   }
@@ -4624,7 +4627,7 @@ export const deserializeAws_restJson1UpdateApiCacheCommand = async (
     $metadata: deserializeMetadata(output),
     apiCache: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.apiCache !== undefined && data.apiCache !== null) {
     contents.apiCache = deserializeAws_restJson1ApiCache(data.apiCache, context);
   }
@@ -4711,7 +4714,7 @@ export const deserializeAws_restJson1UpdateApiKeyCommand = async (
     $metadata: deserializeMetadata(output),
     apiKey: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.apiKey !== undefined && data.apiKey !== null) {
     contents.apiKey = deserializeAws_restJson1ApiKey(data.apiKey, context);
   }
@@ -4806,7 +4809,7 @@ export const deserializeAws_restJson1UpdateDataSourceCommand = async (
     $metadata: deserializeMetadata(output),
     dataSource: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.dataSource !== undefined && data.dataSource !== null) {
     contents.dataSource = deserializeAws_restJson1DataSource(data.dataSource, context);
   }
@@ -4893,7 +4896,7 @@ export const deserializeAws_restJson1UpdateFunctionCommand = async (
     $metadata: deserializeMetadata(output),
     functionConfiguration: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.functionConfiguration !== undefined && data.functionConfiguration !== null) {
     contents.functionConfiguration = deserializeAws_restJson1FunctionConfiguration(data.functionConfiguration, context);
   }
@@ -4972,7 +4975,7 @@ export const deserializeAws_restJson1UpdateGraphqlApiCommand = async (
     $metadata: deserializeMetadata(output),
     graphqlApi: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.graphqlApi !== undefined && data.graphqlApi !== null) {
     contents.graphqlApi = deserializeAws_restJson1GraphqlApi(data.graphqlApi, context);
   }
@@ -5067,7 +5070,7 @@ export const deserializeAws_restJson1UpdateResolverCommand = async (
     $metadata: deserializeMetadata(output),
     resolver: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.resolver !== undefined && data.resolver !== null) {
     contents.resolver = deserializeAws_restJson1Resolver(data.resolver, context);
   }
@@ -5146,7 +5149,7 @@ export const deserializeAws_restJson1UpdateTypeCommand = async (
     $metadata: deserializeMetadata(output),
     type: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.type !== undefined && data.type !== null) {
     contents.type = deserializeAws_restJson1Type(data.type, context);
   }
@@ -5712,16 +5715,16 @@ const deserializeAws_restJson1ApiCache = (output: any, context: __SerdeContext):
     atRestEncryptionEnabled: __expectBoolean(output.atRestEncryptionEnabled),
     status: __expectString(output.status),
     transitEncryptionEnabled: __expectBoolean(output.transitEncryptionEnabled),
-    ttl: __expectInt(output.ttl),
+    ttl: __expectLong(output.ttl),
     type: __expectString(output.type),
   } as any;
 };
 
 const deserializeAws_restJson1ApiKey = (output: any, context: __SerdeContext): ApiKey => {
   return {
-    deletes: __expectInt(output.deletes),
+    deletes: __expectLong(output.deletes),
     description: __expectString(output.description),
-    expires: __expectInt(output.expires),
+    expires: __expectLong(output.expires),
     id: __expectString(output.id),
   } as any;
 };
@@ -5760,7 +5763,7 @@ const deserializeAws_restJson1CachingConfig = (output: any, context: __SerdeCont
       output.cachingKeys !== undefined && output.cachingKeys !== null
         ? deserializeAws_restJson1CachingKeys(output.cachingKeys, context)
         : undefined,
-    ttl: __expectInt(output.ttl),
+    ttl: __expectLong(output.ttl),
   } as any;
 };
 
@@ -5826,9 +5829,9 @@ const deserializeAws_restJson1DataSources = (output: any, context: __SerdeContex
 
 const deserializeAws_restJson1DeltaSyncConfig = (output: any, context: __SerdeContext): DeltaSyncConfig => {
   return {
-    baseTableTTL: __expectInt(output.baseTableTTL),
+    baseTableTTL: __expectLong(output.baseTableTTL),
     deltaSyncTableName: __expectString(output.deltaSyncTableName),
-    deltaSyncTableTTL: __expectInt(output.deltaSyncTableTTL),
+    deltaSyncTableTTL: __expectLong(output.deltaSyncTableTTL),
   } as any;
 };
 
@@ -5962,7 +5965,7 @@ const deserializeAws_restJson1LambdaAuthorizerConfig = (
   context: __SerdeContext
 ): LambdaAuthorizerConfig => {
   return {
-    authorizerResultTtlInSeconds: __expectInt(output.authorizerResultTtlInSeconds),
+    authorizerResultTtlInSeconds: __expectInt32(output.authorizerResultTtlInSeconds),
     authorizerUri: __expectString(output.authorizerUri),
     identityValidationExpression: __expectString(output.identityValidationExpression),
   } as any;
@@ -6011,9 +6014,9 @@ const deserializeAws_restJson1MapOfStringToString = (
 
 const deserializeAws_restJson1OpenIDConnectConfig = (output: any, context: __SerdeContext): OpenIDConnectConfig => {
   return {
-    authTTL: __expectInt(output.authTTL),
+    authTTL: __expectLong(output.authTTL),
     clientId: __expectString(output.clientId),
-    iatTTL: __expectInt(output.iatTTL),
+    iatTTL: __expectLong(output.iatTTL),
     issuer: __expectString(output.issuer),
   } as any;
 };

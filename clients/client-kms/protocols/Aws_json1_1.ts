@@ -224,7 +224,7 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
   expectString as __expectString,
 } from "@aws-sdk/smithy-client";
 import {
@@ -6076,6 +6076,7 @@ const serializeAws_json1_1CreateKeyRequest = (input: CreateKeyRequest, context: 
     ...(input.CustomerMasterKeySpec !== undefined &&
       input.CustomerMasterKeySpec !== null && { CustomerMasterKeySpec: input.CustomerMasterKeySpec }),
     ...(input.Description !== undefined && input.Description !== null && { Description: input.Description }),
+    ...(input.KeySpec !== undefined && input.KeySpec !== null && { KeySpec: input.KeySpec }),
     ...(input.KeyUsage !== undefined && input.KeyUsage !== null && { KeyUsage: input.KeyUsage }),
     ...(input.MultiRegion !== undefined && input.MultiRegion !== null && { MultiRegion: input.MultiRegion }),
     ...(input.Origin !== undefined && input.Origin !== null && { Origin: input.Origin }),
@@ -7035,6 +7036,7 @@ const deserializeAws_json1_1GetPublicKeyResponse = (output: any, context: __Serd
         ? deserializeAws_json1_1EncryptionAlgorithmSpecList(output.EncryptionAlgorithms, context)
         : undefined,
     KeyId: __expectString(output.KeyId),
+    KeySpec: __expectString(output.KeySpec),
     KeyUsage: __expectString(output.KeyUsage),
     PublicKey:
       output.PublicKey !== undefined && output.PublicKey !== null ? context.base64Decoder(output.PublicKey) : undefined,
@@ -7245,6 +7247,7 @@ const deserializeAws_json1_1KeyMetadata = (output: any, context: __SerdeContext)
     ExpirationModel: __expectString(output.ExpirationModel),
     KeyId: __expectString(output.KeyId),
     KeyManager: __expectString(output.KeyManager),
+    KeySpec: __expectString(output.KeySpec),
     KeyState: __expectString(output.KeyState),
     KeyUsage: __expectString(output.KeyUsage),
     MultiRegion: __expectBoolean(output.MultiRegion),
@@ -7253,7 +7256,7 @@ const deserializeAws_json1_1KeyMetadata = (output: any, context: __SerdeContext)
         ? deserializeAws_json1_1MultiRegionConfiguration(output.MultiRegionConfiguration, context)
         : undefined,
     Origin: __expectString(output.Origin),
-    PendingDeletionWindowInDays: __expectInt(output.PendingDeletionWindowInDays),
+    PendingDeletionWindowInDays: __expectInt32(output.PendingDeletionWindowInDays),
     SigningAlgorithms:
       output.SigningAlgorithms !== undefined && output.SigningAlgorithms !== null
         ? deserializeAws_json1_1SigningAlgorithmSpecList(output.SigningAlgorithms, context)
@@ -7462,7 +7465,7 @@ const deserializeAws_json1_1ScheduleKeyDeletionResponse = (
         : undefined,
     KeyId: __expectString(output.KeyId),
     KeyState: __expectString(output.KeyState),
-    PendingWindowInDays: __expectInt(output.PendingWindowInDays),
+    PendingWindowInDays: __expectInt32(output.PendingWindowInDays),
   } as any;
 };
 

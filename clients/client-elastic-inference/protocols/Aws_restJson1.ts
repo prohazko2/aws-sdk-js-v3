@@ -30,7 +30,9 @@ import {
 } from "../models/models_0";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "@aws-sdk/smithy-client";
@@ -229,7 +231,7 @@ export const deserializeAws_restJson1DescribeAcceleratorOfferingsCommand = async
     $metadata: deserializeMetadata(output),
     acceleratorTypeOfferings: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.acceleratorTypeOfferings !== undefined && data.acceleratorTypeOfferings !== null) {
     contents.acceleratorTypeOfferings = deserializeAws_restJson1AcceleratorTypeOfferingList(
       data.acceleratorTypeOfferings,
@@ -304,7 +306,7 @@ export const deserializeAws_restJson1DescribeAcceleratorsCommand = async (
     acceleratorSet: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.acceleratorSet !== undefined && data.acceleratorSet !== null) {
     contents.acceleratorSet = deserializeAws_restJson1ElasticInferenceAcceleratorSet(data.acceleratorSet, context);
   }
@@ -378,7 +380,7 @@ export const deserializeAws_restJson1DescribeAcceleratorTypesCommand = async (
     $metadata: deserializeMetadata(output),
     acceleratorTypes: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.acceleratorTypes !== undefined && data.acceleratorTypes !== null) {
     contents.acceleratorTypes = deserializeAws_restJson1AcceleratorTypeList(data.acceleratorTypes, context);
   }
@@ -433,7 +435,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.tags !== undefined && data.tags !== null) {
     contents.tags = deserializeAws_restJson1TagMap(data.tags, context);
   }
@@ -834,13 +836,13 @@ const deserializeAws_restJson1ElasticInferenceAcceleratorSet = (
 const deserializeAws_restJson1KeyValuePair = (output: any, context: __SerdeContext): KeyValuePair => {
   return {
     key: __expectString(output.key),
-    value: __expectInt(output.value),
+    value: __expectInt32(output.value),
   } as any;
 };
 
 const deserializeAws_restJson1MemoryInfo = (output: any, context: __SerdeContext): MemoryInfo => {
   return {
-    sizeInMiB: __expectInt(output.sizeInMiB),
+    sizeInMiB: __expectInt32(output.sizeInMiB),
   } as any;
 };
 

@@ -117,6 +117,7 @@ import {
   LockoutPreventedException,
   MalformedCSRException,
   MalformedCertificateException,
+  OcspConfiguration,
   OtherName,
   Permission,
   PermissionAlreadyExistsException,
@@ -141,7 +142,7 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
   expectString as __expectString,
 } from "@aws-sdk/smithy-client";
 import {
@@ -3058,6 +3059,14 @@ const serializeAws_json1_1ListTagsRequest = (input: ListTagsRequest, context: __
   };
 };
 
+const serializeAws_json1_1OcspConfiguration = (input: OcspConfiguration, context: __SerdeContext): any => {
+  return {
+    ...(input.Enabled !== undefined && input.Enabled !== null && { Enabled: input.Enabled }),
+    ...(input.OcspCustomCname !== undefined &&
+      input.OcspCustomCname !== null && { OcspCustomCname: input.OcspCustomCname }),
+  };
+};
+
 const serializeAws_json1_1OtherName = (input: OtherName, context: __SerdeContext): any => {
   return {
     ...(input.TypeId !== undefined && input.TypeId !== null && { TypeId: input.TypeId }),
@@ -3123,6 +3132,10 @@ const serializeAws_json1_1RevocationConfiguration = (input: RevocationConfigurat
     ...(input.CrlConfiguration !== undefined &&
       input.CrlConfiguration !== null && {
         CrlConfiguration: serializeAws_json1_1CrlConfiguration(input.CrlConfiguration, context),
+      }),
+    ...(input.OcspConfiguration !== undefined &&
+      input.OcspConfiguration !== null && {
+        OcspConfiguration: serializeAws_json1_1OcspConfiguration(input.OcspConfiguration, context),
       }),
   };
 };
@@ -3374,7 +3387,7 @@ const deserializeAws_json1_1CrlConfiguration = (output: any, context: __SerdeCon
   return {
     CustomCname: __expectString(output.CustomCname),
     Enabled: __expectBoolean(output.Enabled),
-    ExpirationInDays: __expectInt(output.ExpirationInDays),
+    ExpirationInDays: __expectInt32(output.ExpirationInDays),
     S3BucketName: __expectString(output.S3BucketName),
     S3ObjectAcl: __expectString(output.S3ObjectAcl),
   } as any;
@@ -3618,6 +3631,13 @@ const deserializeAws_json1_1MalformedCSRException = (output: any, context: __Ser
   } as any;
 };
 
+const deserializeAws_json1_1OcspConfiguration = (output: any, context: __SerdeContext): OcspConfiguration => {
+  return {
+    Enabled: __expectBoolean(output.Enabled),
+    OcspCustomCname: __expectString(output.OcspCustomCname),
+  } as any;
+};
+
 const deserializeAws_json1_1OtherName = (output: any, context: __SerdeContext): OtherName => {
   return {
     TypeId: __expectString(output.TypeId),
@@ -3703,6 +3723,10 @@ const deserializeAws_json1_1RevocationConfiguration = (
     CrlConfiguration:
       output.CrlConfiguration !== undefined && output.CrlConfiguration !== null
         ? deserializeAws_json1_1CrlConfiguration(output.CrlConfiguration, context)
+        : undefined,
+    OcspConfiguration:
+      output.OcspConfiguration !== undefined && output.OcspConfiguration !== null
+        ? deserializeAws_json1_1OcspConfiguration(output.OcspConfiguration, context)
         : undefined,
   } as any;
 };

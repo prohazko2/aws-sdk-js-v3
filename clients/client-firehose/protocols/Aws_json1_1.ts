@@ -51,6 +51,7 @@ import {
   DescribeDeliveryStreamOutput,
   Deserializer,
   DestinationDescription,
+  DynamicPartitioningConfiguration,
   ElasticsearchBufferingHints,
   ElasticsearchDestinationConfiguration,
   ElasticsearchDestinationDescription,
@@ -100,6 +101,7 @@ import {
   RedshiftRetryOptions,
   ResourceInUseException,
   ResourceNotFoundException,
+  RetryOptions,
   S3DestinationConfiguration,
   S3DestinationDescription,
   S3DestinationUpdate,
@@ -129,9 +131,9 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
   expectString as __expectString,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
   serializeFloat as __serializeFloat,
 } from "@aws-sdk/smithy-client";
 import {
@@ -1453,6 +1455,17 @@ const serializeAws_json1_1Deserializer = (input: Deserializer, context: __SerdeC
   };
 };
 
+const serializeAws_json1_1DynamicPartitioningConfiguration = (
+  input: DynamicPartitioningConfiguration,
+  context: __SerdeContext
+): any => {
+  return {
+    ...(input.Enabled !== undefined && input.Enabled !== null && { Enabled: input.Enabled }),
+    ...(input.RetryOptions !== undefined &&
+      input.RetryOptions !== null && { RetryOptions: serializeAws_json1_1RetryOptions(input.RetryOptions, context) }),
+  };
+};
+
 const serializeAws_json1_1ElasticsearchBufferingHints = (
   input: ElasticsearchBufferingHints,
   context: __SerdeContext
@@ -1583,6 +1596,13 @@ const serializeAws_json1_1ExtendedS3DestinationConfiguration = (
           context
         ),
       }),
+    ...(input.DynamicPartitioningConfiguration !== undefined &&
+      input.DynamicPartitioningConfiguration !== null && {
+        DynamicPartitioningConfiguration: serializeAws_json1_1DynamicPartitioningConfiguration(
+          input.DynamicPartitioningConfiguration,
+          context
+        ),
+      }),
     ...(input.EncryptionConfiguration !== undefined &&
       input.EncryptionConfiguration !== null && {
         EncryptionConfiguration: serializeAws_json1_1EncryptionConfiguration(input.EncryptionConfiguration, context),
@@ -1623,6 +1643,13 @@ const serializeAws_json1_1ExtendedS3DestinationUpdate = (
       input.DataFormatConversionConfiguration !== null && {
         DataFormatConversionConfiguration: serializeAws_json1_1DataFormatConversionConfiguration(
           input.DataFormatConversionConfiguration,
+          context
+        ),
+      }),
+    ...(input.DynamicPartitioningConfiguration !== undefined &&
+      input.DynamicPartitioningConfiguration !== null && {
+        DynamicPartitioningConfiguration: serializeAws_json1_1DynamicPartitioningConfiguration(
+          input.DynamicPartitioningConfiguration,
           context
         ),
       }),
@@ -2109,6 +2136,13 @@ const serializeAws_json1_1RedshiftRetryOptions = (input: RedshiftRetryOptions, c
   };
 };
 
+const serializeAws_json1_1RetryOptions = (input: RetryOptions, context: __SerdeContext): any => {
+  return {
+    ...(input.DurationInSeconds !== undefined &&
+      input.DurationInSeconds !== null && { DurationInSeconds: input.DurationInSeconds }),
+  };
+};
+
 const serializeAws_json1_1S3DestinationConfiguration = (
   input: S3DestinationConfiguration,
   context: __SerdeContext
@@ -2409,8 +2443,8 @@ const serializeAws_json1_1VpcConfiguration = (input: VpcConfiguration, context: 
 
 const deserializeAws_json1_1BufferingHints = (output: any, context: __SerdeContext): BufferingHints => {
   return {
-    IntervalInSeconds: __expectInt(output.IntervalInSeconds),
-    SizeInMBs: __expectInt(output.SizeInMBs),
+    IntervalInSeconds: __expectInt32(output.IntervalInSeconds),
+    SizeInMBs: __expectInt32(output.SizeInMBs),
   } as any;
 };
 
@@ -2631,13 +2665,26 @@ const deserializeAws_json1_1DestinationDescriptionList = (
     });
 };
 
+const deserializeAws_json1_1DynamicPartitioningConfiguration = (
+  output: any,
+  context: __SerdeContext
+): DynamicPartitioningConfiguration => {
+  return {
+    Enabled: __expectBoolean(output.Enabled),
+    RetryOptions:
+      output.RetryOptions !== undefined && output.RetryOptions !== null
+        ? deserializeAws_json1_1RetryOptions(output.RetryOptions, context)
+        : undefined,
+  } as any;
+};
+
 const deserializeAws_json1_1ElasticsearchBufferingHints = (
   output: any,
   context: __SerdeContext
 ): ElasticsearchBufferingHints => {
   return {
-    IntervalInSeconds: __expectInt(output.IntervalInSeconds),
-    SizeInMBs: __expectInt(output.SizeInMBs),
+    IntervalInSeconds: __expectInt32(output.IntervalInSeconds),
+    SizeInMBs: __expectInt32(output.SizeInMBs),
   } as any;
 };
 
@@ -2685,7 +2732,7 @@ const deserializeAws_json1_1ElasticsearchRetryOptions = (
   context: __SerdeContext
 ): ElasticsearchRetryOptions => {
   return {
-    DurationInSeconds: __expectInt(output.DurationInSeconds),
+    DurationInSeconds: __expectInt32(output.DurationInSeconds),
   } as any;
 };
 
@@ -2720,6 +2767,10 @@ const deserializeAws_json1_1ExtendedS3DestinationDescription = (
     DataFormatConversionConfiguration:
       output.DataFormatConversionConfiguration !== undefined && output.DataFormatConversionConfiguration !== null
         ? deserializeAws_json1_1DataFormatConversionConfiguration(output.DataFormatConversionConfiguration, context)
+        : undefined,
+    DynamicPartitioningConfiguration:
+      output.DynamicPartitioningConfiguration !== undefined && output.DynamicPartitioningConfiguration !== null
+        ? deserializeAws_json1_1DynamicPartitioningConfiguration(output.DynamicPartitioningConfiguration, context)
         : undefined,
     EncryptionConfiguration:
       output.EncryptionConfiguration !== undefined && output.EncryptionConfiguration !== null
@@ -2761,8 +2812,8 @@ const deserializeAws_json1_1HttpEndpointBufferingHints = (
   context: __SerdeContext
 ): HttpEndpointBufferingHints => {
   return {
-    IntervalInSeconds: __expectInt(output.IntervalInSeconds),
-    SizeInMBs: __expectInt(output.SizeInMBs),
+    IntervalInSeconds: __expectInt32(output.IntervalInSeconds),
+    SizeInMBs: __expectInt32(output.SizeInMBs),
   } as any;
 };
 
@@ -2856,7 +2907,7 @@ const deserializeAws_json1_1HttpEndpointRetryOptions = (
   context: __SerdeContext
 ): HttpEndpointRetryOptions => {
   return {
-    DurationInSeconds: __expectInt(output.DurationInSeconds),
+    DurationInSeconds: __expectInt32(output.DurationInSeconds),
   } as any;
 };
 
@@ -2992,19 +3043,19 @@ const deserializeAws_json1_1OpenXJsonSerDe = (output: any, context: __SerdeConte
 
 const deserializeAws_json1_1OrcSerDe = (output: any, context: __SerdeContext): OrcSerDe => {
   return {
-    BlockSizeBytes: __expectInt(output.BlockSizeBytes),
+    BlockSizeBytes: __expectInt32(output.BlockSizeBytes),
     BloomFilterColumns:
       output.BloomFilterColumns !== undefined && output.BloomFilterColumns !== null
         ? deserializeAws_json1_1ListOfNonEmptyStringsWithoutWhitespace(output.BloomFilterColumns, context)
         : undefined,
-    BloomFilterFalsePositiveProbability: __limitedParseFloat(output.BloomFilterFalsePositiveProbability),
+    BloomFilterFalsePositiveProbability: __limitedParseDouble(output.BloomFilterFalsePositiveProbability),
     Compression: __expectString(output.Compression),
-    DictionaryKeyThreshold: __limitedParseFloat(output.DictionaryKeyThreshold),
+    DictionaryKeyThreshold: __limitedParseDouble(output.DictionaryKeyThreshold),
     EnablePadding: __expectBoolean(output.EnablePadding),
     FormatVersion: __expectString(output.FormatVersion),
-    PaddingTolerance: __limitedParseFloat(output.PaddingTolerance),
-    RowIndexStride: __expectInt(output.RowIndexStride),
-    StripeSizeBytes: __expectInt(output.StripeSizeBytes),
+    PaddingTolerance: __limitedParseDouble(output.PaddingTolerance),
+    RowIndexStride: __expectInt32(output.RowIndexStride),
+    StripeSizeBytes: __expectInt32(output.StripeSizeBytes),
   } as any;
 };
 
@@ -3022,11 +3073,11 @@ const deserializeAws_json1_1OutputFormatConfiguration = (
 
 const deserializeAws_json1_1ParquetSerDe = (output: any, context: __SerdeContext): ParquetSerDe => {
   return {
-    BlockSizeBytes: __expectInt(output.BlockSizeBytes),
+    BlockSizeBytes: __expectInt32(output.BlockSizeBytes),
     Compression: __expectString(output.Compression),
     EnableDictionaryCompression: __expectBoolean(output.EnableDictionaryCompression),
-    MaxPaddingBytes: __expectInt(output.MaxPaddingBytes),
-    PageSizeBytes: __expectInt(output.PageSizeBytes),
+    MaxPaddingBytes: __expectInt32(output.MaxPaddingBytes),
+    PageSizeBytes: __expectInt32(output.PageSizeBytes),
     WriterVersion: __expectString(output.WriterVersion),
   } as any;
 };
@@ -3086,7 +3137,7 @@ const deserializeAws_json1_1ProcessorParameterList = (output: any, context: __Se
 const deserializeAws_json1_1PutRecordBatchOutput = (output: any, context: __SerdeContext): PutRecordBatchOutput => {
   return {
     Encrypted: __expectBoolean(output.Encrypted),
-    FailedPutCount: __expectInt(output.FailedPutCount),
+    FailedPutCount: __expectInt32(output.FailedPutCount),
     RequestResponses:
       output.RequestResponses !== undefined && output.RequestResponses !== null
         ? deserializeAws_json1_1PutRecordBatchResponseEntryList(output.RequestResponses, context)
@@ -3164,7 +3215,7 @@ const deserializeAws_json1_1RedshiftDestinationDescription = (
 
 const deserializeAws_json1_1RedshiftRetryOptions = (output: any, context: __SerdeContext): RedshiftRetryOptions => {
   return {
-    DurationInSeconds: __expectInt(output.DurationInSeconds),
+    DurationInSeconds: __expectInt32(output.DurationInSeconds),
   } as any;
 };
 
@@ -3180,6 +3231,12 @@ const deserializeAws_json1_1ResourceNotFoundException = (
 ): ResourceNotFoundException => {
   return {
     message: __expectString(output.message),
+  } as any;
+};
+
+const deserializeAws_json1_1RetryOptions = (output: any, context: __SerdeContext): RetryOptions => {
+  return {
+    DurationInSeconds: __expectInt32(output.DurationInSeconds),
   } as any;
 };
 
@@ -3270,7 +3327,7 @@ const deserializeAws_json1_1SplunkDestinationDescription = (
       output.CloudWatchLoggingOptions !== undefined && output.CloudWatchLoggingOptions !== null
         ? deserializeAws_json1_1CloudWatchLoggingOptions(output.CloudWatchLoggingOptions, context)
         : undefined,
-    HECAcknowledgmentTimeoutInSeconds: __expectInt(output.HECAcknowledgmentTimeoutInSeconds),
+    HECAcknowledgmentTimeoutInSeconds: __expectInt32(output.HECAcknowledgmentTimeoutInSeconds),
     HECEndpoint: __expectString(output.HECEndpoint),
     HECEndpointType: __expectString(output.HECEndpointType),
     HECToken: __expectString(output.HECToken),
@@ -3292,7 +3349,7 @@ const deserializeAws_json1_1SplunkDestinationDescription = (
 
 const deserializeAws_json1_1SplunkRetryOptions = (output: any, context: __SerdeContext): SplunkRetryOptions => {
   return {
-    DurationInSeconds: __expectInt(output.DurationInSeconds),
+    DurationInSeconds: __expectInt32(output.DurationInSeconds),
   } as any;
 };
 

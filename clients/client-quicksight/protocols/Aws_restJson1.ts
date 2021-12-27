@@ -275,6 +275,7 @@ import {
   ColumnLevelPermissionRule,
   ColumnSchema,
   ColumnTag,
+  ColumnTagName,
   ConcurrentUpdatingException,
   ConflictException,
   CreateColumnsOperation,
@@ -295,6 +296,7 @@ import {
   DataSetReference,
   DataSetSchema,
   DataSetSummary,
+  DataSetUsageConfiguration,
   DataSource,
   DataSourceCredentials,
   DataSourceErrorInfo,
@@ -308,8 +310,6 @@ import {
   FilterOperation,
   Folder,
   FolderMember,
-  FolderSearchFilter,
-  FolderSummary,
   GeoSpatialColumnGroup,
   Group,
   GroupMember,
@@ -330,7 +330,6 @@ import {
   ManifestFileLocation,
   MarginStyle,
   MariaDbParameters,
-  MemberIdArnPair,
   MySqlParameters,
   NamespaceError,
   NamespaceInfoV2,
@@ -387,14 +386,18 @@ import {
   TwitterParameters,
   UIColorPalette,
   UnsupportedUserEditionException,
+  UntagColumnOperation,
   UploadSettings,
   User,
   VpcConnectionProperties,
   _Parameters,
 } from "../models/models_0";
 import {
+  FolderSearchFilter,
+  FolderSummary,
   IAMPolicyAssignmentSummary,
   IdentityTypeNotSupportedException,
+  MemberIdArnPair,
   QuickSightUserNotFoundException,
   RegisteredUserDashboardEmbeddingConfiguration,
   RegisteredUserEmbeddingExperienceConfiguration,
@@ -410,7 +413,10 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
   serializeFloat as __serializeFloat,
@@ -667,6 +673,13 @@ export const serializeAws_restJson1CreateDataSetCommand = async (
         ),
       }),
     ...(input.DataSetId !== undefined && input.DataSetId !== null && { DataSetId: input.DataSetId }),
+    ...(input.DataSetUsageConfiguration !== undefined &&
+      input.DataSetUsageConfiguration !== null && {
+        DataSetUsageConfiguration: serializeAws_restJson1DataSetUsageConfiguration(
+          input.DataSetUsageConfiguration,
+          context
+        ),
+      }),
     ...(input.FieldFolders !== undefined &&
       input.FieldFolders !== null && {
         FieldFolders: serializeAws_restJson1FieldFolderMap(input.FieldFolders, context),
@@ -4844,6 +4857,13 @@ export const serializeAws_restJson1UpdateDataSetCommand = async (
           context
         ),
       }),
+    ...(input.DataSetUsageConfiguration !== undefined &&
+      input.DataSetUsageConfiguration !== null && {
+        DataSetUsageConfiguration: serializeAws_restJson1DataSetUsageConfiguration(
+          input.DataSetUsageConfiguration,
+          context
+        ),
+      }),
     ...(input.FieldFolders !== undefined &&
       input.FieldFolders !== null && {
         FieldFolders: serializeAws_restJson1FieldFolderMap(input.FieldFolders, context),
@@ -5641,7 +5661,7 @@ export const deserializeAws_restJson1CancelIngestionCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -5750,7 +5770,7 @@ export const deserializeAws_restJson1CreateAccountCustomizationCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccountCustomization !== undefined && data.AccountCustomization !== null) {
     contents.AccountCustomization = deserializeAws_restJson1AccountCustomization(data.AccountCustomization, context);
   }
@@ -5872,7 +5892,7 @@ export const deserializeAws_restJson1CreateAnalysisCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AnalysisId !== undefined && data.AnalysisId !== null) {
     contents.AnalysisId = __expectString(data.AnalysisId);
   }
@@ -5992,7 +6012,7 @@ export const deserializeAws_restJson1CreateDashboardCommand = async (
     Status: undefined,
     VersionArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -6115,7 +6135,7 @@ export const deserializeAws_restJson1CreateDataSetCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -6253,7 +6273,7 @@ export const deserializeAws_restJson1CreateDataSourceCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -6379,7 +6399,7 @@ export const deserializeAws_restJson1CreateFolderCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -6509,7 +6529,7 @@ export const deserializeAws_restJson1CreateFolderMembershipCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FolderMember !== undefined && data.FolderMember !== null) {
     contents.FolderMember = deserializeAws_restJson1FolderMember(data.FolderMember, context);
   }
@@ -6517,7 +6537,7 @@ export const deserializeAws_restJson1CreateFolderMembershipCommand = async (
     contents.RequestId = __expectString(data.RequestId);
   }
   if (data.Status !== undefined && data.Status !== null) {
-    contents.Status = __expectInt(data.Status);
+    contents.Status = __expectInt32(data.Status);
   }
   return Promise.resolve(contents);
 };
@@ -6628,7 +6648,7 @@ export const deserializeAws_restJson1CreateGroupCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Group !== undefined && data.Group !== null) {
     contents.Group = deserializeAws_restJson1Group(data.Group, context);
   }
@@ -6755,7 +6775,7 @@ export const deserializeAws_restJson1CreateGroupMembershipCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.GroupMember !== undefined && data.GroupMember !== null) {
     contents.GroupMember = deserializeAws_restJson1GroupMember(data.GroupMember, context);
   }
@@ -6870,7 +6890,7 @@ export const deserializeAws_restJson1CreateIAMPolicyAssignmentCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AssignmentId !== undefined && data.AssignmentId !== null) {
     contents.AssignmentId = __expectString(data.AssignmentId);
   }
@@ -6995,7 +7015,7 @@ export const deserializeAws_restJson1CreateIngestionCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -7116,7 +7136,7 @@ export const deserializeAws_restJson1CreateNamespaceCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -7266,7 +7286,7 @@ export const deserializeAws_restJson1CreateTemplateCommand = async (
     TemplateId: undefined,
     VersionArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -7402,7 +7422,7 @@ export const deserializeAws_restJson1CreateTemplateAliasCommand = async (
     Status: undefined,
     TemplateAlias: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -7516,7 +7536,7 @@ export const deserializeAws_restJson1CreateThemeCommand = async (
     ThemeId: undefined,
     VersionArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -7644,7 +7664,7 @@ export const deserializeAws_restJson1CreateThemeAliasCommand = async (
     Status: undefined,
     ThemeAlias: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -7762,7 +7782,7 @@ export const deserializeAws_restJson1DeleteAccountCustomizationCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -7864,7 +7884,7 @@ export const deserializeAws_restJson1DeleteAnalysisCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AnalysisId !== undefined && data.AnalysisId !== null) {
     contents.AnalysisId = __expectString(data.AnalysisId);
   }
@@ -7974,7 +7994,7 @@ export const deserializeAws_restJson1DeleteDashboardCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -8081,7 +8101,7 @@ export const deserializeAws_restJson1DeleteDataSetCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -8180,7 +8200,7 @@ export const deserializeAws_restJson1DeleteDataSourceCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -8279,7 +8299,7 @@ export const deserializeAws_restJson1DeleteFolderCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -8400,12 +8420,12 @@ export const deserializeAws_restJson1DeleteFolderMembershipCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
   if (data.Status !== undefined && data.Status !== null) {
-    contents.Status = __expectInt(data.Status);
+    contents.Status = __expectInt32(data.Status);
   }
   return Promise.resolve(contents);
 };
@@ -8499,7 +8519,7 @@ export const deserializeAws_restJson1DeleteGroupCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -8606,7 +8626,7 @@ export const deserializeAws_restJson1DeleteGroupMembershipCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -8714,7 +8734,7 @@ export const deserializeAws_restJson1DeleteIAMPolicyAssignmentCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AssignmentName !== undefined && data.AssignmentName !== null) {
     contents.AssignmentName = __expectString(data.AssignmentName);
   }
@@ -8824,7 +8844,7 @@ export const deserializeAws_restJson1DeleteNamespaceCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -8933,7 +8953,7 @@ export const deserializeAws_restJson1DeleteTemplateCommand = async (
     Status: undefined,
     TemplateId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -9049,7 +9069,7 @@ export const deserializeAws_restJson1DeleteTemplateAliasCommand = async (
     Status: undefined,
     TemplateId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AliasName !== undefined && data.AliasName !== null) {
     contents.AliasName = __expectString(data.AliasName);
   }
@@ -9151,7 +9171,7 @@ export const deserializeAws_restJson1DeleteThemeCommand = async (
     Status: undefined,
     ThemeId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -9267,7 +9287,7 @@ export const deserializeAws_restJson1DeleteThemeAliasCommand = async (
     Status: undefined,
     ThemeId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AliasName !== undefined && data.AliasName !== null) {
     contents.AliasName = __expectString(data.AliasName);
   }
@@ -9375,7 +9395,7 @@ export const deserializeAws_restJson1DeleteUserCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -9482,7 +9502,7 @@ export const deserializeAws_restJson1DeleteUserByPrincipalIdCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -9593,7 +9613,7 @@ export const deserializeAws_restJson1DescribeAccountCustomizationCommand = async
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccountCustomization !== undefined && data.AccountCustomization !== null) {
     contents.AccountCustomization = deserializeAws_restJson1AccountCustomization(data.AccountCustomization, context);
   }
@@ -9705,7 +9725,7 @@ export const deserializeAws_restJson1DescribeAccountSettingsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccountSettings !== undefined && data.AccountSettings !== null) {
     contents.AccountSettings = deserializeAws_restJson1AccountSettings(data.AccountSettings, context);
   }
@@ -9808,7 +9828,7 @@ export const deserializeAws_restJson1DescribeAnalysisCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Analysis !== undefined && data.Analysis !== null) {
     contents.Analysis = deserializeAws_restJson1Analysis(data.Analysis, context);
   }
@@ -9913,7 +9933,7 @@ export const deserializeAws_restJson1DescribeAnalysisPermissionsCommand = async 
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AnalysisArn !== undefined && data.AnalysisArn !== null) {
     contents.AnalysisArn = __expectString(data.AnalysisArn);
   }
@@ -10014,7 +10034,7 @@ export const deserializeAws_restJson1DescribeDashboardCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Dashboard !== undefined && data.Dashboard !== null) {
     contents.Dashboard = deserializeAws_restJson1Dashboard(data.Dashboard, context);
   }
@@ -10119,7 +10139,7 @@ export const deserializeAws_restJson1DescribeDashboardPermissionsCommand = async
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DashboardArn !== undefined && data.DashboardArn !== null) {
     contents.DashboardArn = __expectString(data.DashboardArn);
   }
@@ -10220,7 +10240,7 @@ export const deserializeAws_restJson1DescribeDataSetCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DataSet !== undefined && data.DataSet !== null) {
     contents.DataSet = deserializeAws_restJson1DataSet(data.DataSet, context);
   }
@@ -10317,7 +10337,7 @@ export const deserializeAws_restJson1DescribeDataSetPermissionsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DataSetArn !== undefined && data.DataSetArn !== null) {
     contents.DataSetArn = __expectString(data.DataSetArn);
   }
@@ -10418,7 +10438,7 @@ export const deserializeAws_restJson1DescribeDataSourceCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DataSource !== undefined && data.DataSource !== null) {
     contents.DataSource = deserializeAws_restJson1DataSource(data.DataSource, context);
   }
@@ -10515,7 +10535,7 @@ export const deserializeAws_restJson1DescribeDataSourcePermissionsCommand = asyn
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DataSourceArn !== undefined && data.DataSourceArn !== null) {
     contents.DataSourceArn = __expectString(data.DataSourceArn);
   }
@@ -10616,7 +10636,7 @@ export const deserializeAws_restJson1DescribeFolderCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Folder !== undefined && data.Folder !== null) {
     contents.Folder = deserializeAws_restJson1Folder(data.Folder, context);
   }
@@ -10721,7 +10741,7 @@ export const deserializeAws_restJson1DescribeFolderPermissionsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -10832,7 +10852,7 @@ export const deserializeAws_restJson1DescribeFolderResolvedPermissionsCommand = 
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -10941,7 +10961,7 @@ export const deserializeAws_restJson1DescribeGroupCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Group !== undefined && data.Group !== null) {
     contents.Group = deserializeAws_restJson1Group(data.Group, context);
   }
@@ -11052,7 +11072,7 @@ export const deserializeAws_restJson1DescribeIAMPolicyAssignmentCommand = async 
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.IAMPolicyAssignment !== undefined && data.IAMPolicyAssignment !== null) {
     contents.IAMPolicyAssignment = deserializeAws_restJson1IAMPolicyAssignment(data.IAMPolicyAssignment, context);
   }
@@ -11155,7 +11175,7 @@ export const deserializeAws_restJson1DescribeIngestionCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Ingestion !== undefined && data.Ingestion !== null) {
     contents.Ingestion = deserializeAws_restJson1Ingestion(data.Ingestion, context);
   }
@@ -11258,7 +11278,7 @@ export const deserializeAws_restJson1DescribeNamespaceCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Namespace !== undefined && data.Namespace !== null) {
     contents.Namespace = deserializeAws_restJson1NamespaceInfoV2(data.Namespace, context);
   }
@@ -11361,7 +11381,7 @@ export const deserializeAws_restJson1DescribeTemplateCommand = async (
     Status: undefined,
     Template: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -11480,7 +11500,7 @@ export const deserializeAws_restJson1DescribeTemplateAliasCommand = async (
     Status: undefined,
     TemplateAlias: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -11569,7 +11589,7 @@ export const deserializeAws_restJson1DescribeTemplatePermissionsCommand = async 
     TemplateArn: undefined,
     TemplateId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Permissions !== undefined && data.Permissions !== null) {
     contents.Permissions = deserializeAws_restJson1ResourcePermissionList(data.Permissions, context);
   }
@@ -11678,7 +11698,7 @@ export const deserializeAws_restJson1DescribeThemeCommand = async (
     Status: undefined,
     Theme: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -11789,7 +11809,7 @@ export const deserializeAws_restJson1DescribeThemeAliasCommand = async (
     Status: undefined,
     ThemeAlias: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -11894,7 +11914,7 @@ export const deserializeAws_restJson1DescribeThemePermissionsCommand = async (
     ThemeArn: undefined,
     ThemeId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Permissions !== undefined && data.Permissions !== null) {
     contents.Permissions = deserializeAws_restJson1ResourcePermissionList(data.Permissions, context);
   }
@@ -12003,7 +12023,7 @@ export const deserializeAws_restJson1DescribeUserCommand = async (
     Status: undefined,
     User: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -12114,7 +12134,7 @@ export const deserializeAws_restJson1GenerateEmbedUrlForAnonymousUserCommand = a
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.EmbedUrl !== undefined && data.EmbedUrl !== null) {
     contents.EmbedUrl = __expectString(data.EmbedUrl);
   }
@@ -12233,7 +12253,7 @@ export const deserializeAws_restJson1GenerateEmbedUrlForRegisteredUserCommand = 
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.EmbedUrl !== undefined && data.EmbedUrl !== null) {
     contents.EmbedUrl = __expectString(data.EmbedUrl);
   }
@@ -12360,7 +12380,7 @@ export const deserializeAws_restJson1GetDashboardEmbedUrlCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.EmbedUrl !== undefined && data.EmbedUrl !== null) {
     contents.EmbedUrl = __expectString(data.EmbedUrl);
   }
@@ -12511,7 +12531,7 @@ export const deserializeAws_restJson1GetSessionEmbedUrlCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.EmbedUrl !== undefined && data.EmbedUrl !== null) {
     contents.EmbedUrl = __expectString(data.EmbedUrl);
   }
@@ -12639,7 +12659,7 @@ export const deserializeAws_restJson1ListAnalysesCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AnalysisSummaryList !== undefined && data.AnalysisSummaryList !== null) {
     contents.AnalysisSummaryList = deserializeAws_restJson1AnalysisSummaryList(data.AnalysisSummaryList, context);
   }
@@ -12730,7 +12750,7 @@ export const deserializeAws_restJson1ListDashboardsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DashboardSummaryList !== undefined && data.DashboardSummaryList !== null) {
     contents.DashboardSummaryList = deserializeAws_restJson1DashboardSummaryList(data.DashboardSummaryList, context);
   }
@@ -12821,7 +12841,7 @@ export const deserializeAws_restJson1ListDashboardVersionsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DashboardVersionSummaryList !== undefined && data.DashboardVersionSummaryList !== null) {
     contents.DashboardVersionSummaryList = deserializeAws_restJson1DashboardVersionSummaryList(
       data.DashboardVersionSummaryList,
@@ -12931,7 +12951,7 @@ export const deserializeAws_restJson1ListDataSetsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DataSetSummaries !== undefined && data.DataSetSummaries !== null) {
     contents.DataSetSummaries = deserializeAws_restJson1DataSetSummaryList(data.DataSetSummaries, context);
   }
@@ -13030,7 +13050,7 @@ export const deserializeAws_restJson1ListDataSourcesCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DataSources !== undefined && data.DataSources !== null) {
     contents.DataSources = deserializeAws_restJson1DataSourceList(data.DataSources, context);
   }
@@ -13129,7 +13149,7 @@ export const deserializeAws_restJson1ListFolderMembersCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FolderMemberList !== undefined && data.FolderMemberList !== null) {
     contents.FolderMemberList = deserializeAws_restJson1FolderMemberList(data.FolderMemberList, context);
   }
@@ -13244,7 +13264,7 @@ export const deserializeAws_restJson1ListFoldersCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FolderSummaryList !== undefined && data.FolderSummaryList !== null) {
     contents.FolderSummaryList = deserializeAws_restJson1FolderSummaryList(data.FolderSummaryList, context);
   }
@@ -13359,7 +13379,7 @@ export const deserializeAws_restJson1ListGroupMembershipsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.GroupMemberList !== undefined && data.GroupMemberList !== null) {
     contents.GroupMemberList = deserializeAws_restJson1GroupMemberList(data.GroupMemberList, context);
   }
@@ -13482,7 +13502,7 @@ export const deserializeAws_restJson1ListGroupsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.GroupList !== undefined && data.GroupList !== null) {
     contents.GroupList = deserializeAws_restJson1GroupList(data.GroupList, context);
   }
@@ -13605,7 +13625,7 @@ export const deserializeAws_restJson1ListIAMPolicyAssignmentsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.IAMPolicyAssignments !== undefined && data.IAMPolicyAssignments !== null) {
     contents.IAMPolicyAssignments = deserializeAws_restJson1IAMPolicyAssignmentSummaryList(
       data.IAMPolicyAssignments,
@@ -13715,7 +13735,7 @@ export const deserializeAws_restJson1ListIAMPolicyAssignmentsForUserCommand = as
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ActiveAssignments !== undefined && data.ActiveAssignments !== null) {
     contents.ActiveAssignments = deserializeAws_restJson1ActiveIAMPolicyAssignmentList(data.ActiveAssignments, context);
   }
@@ -13830,7 +13850,7 @@ export const deserializeAws_restJson1ListIngestionsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Ingestions !== undefined && data.Ingestions !== null) {
     contents.Ingestions = deserializeAws_restJson1Ingestions(data.Ingestions, context);
   }
@@ -13945,7 +13965,7 @@ export const deserializeAws_restJson1ListNamespacesCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Namespaces !== undefined && data.Namespaces !== null) {
     contents.Namespaces = deserializeAws_restJson1Namespaces(data.Namespaces, context);
   }
@@ -14067,7 +14087,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     Status: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -14163,7 +14183,7 @@ export const deserializeAws_restJson1ListTemplateAliasesCommand = async (
     Status: undefined,
     TemplateAliasList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -14262,7 +14282,7 @@ export const deserializeAws_restJson1ListTemplatesCommand = async (
     Status: undefined,
     TemplateSummaryList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -14369,7 +14389,7 @@ export const deserializeAws_restJson1ListTemplateVersionsCommand = async (
     Status: undefined,
     TemplateVersionSummaryList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -14479,7 +14499,7 @@ export const deserializeAws_restJson1ListThemeAliasesCommand = async (
     Status: undefined,
     ThemeAliasList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -14594,7 +14614,7 @@ export const deserializeAws_restJson1ListThemesCommand = async (
     Status: undefined,
     ThemeSummaryList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -14709,7 +14729,7 @@ export const deserializeAws_restJson1ListThemeVersionsCommand = async (
     Status: undefined,
     ThemeVersionSummaryList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -14827,7 +14847,7 @@ export const deserializeAws_restJson1ListUserGroupsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.GroupList !== undefined && data.GroupList !== null) {
     contents.GroupList = deserializeAws_restJson1GroupList(data.GroupList, context);
   }
@@ -14942,7 +14962,7 @@ export const deserializeAws_restJson1ListUsersCommand = async (
     Status: undefined,
     UserList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -15065,7 +15085,7 @@ export const deserializeAws_restJson1RegisterUserCommand = async (
     User: undefined,
     UserInvitationUrl: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -15196,7 +15216,7 @@ export const deserializeAws_restJson1RestoreAnalysisCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AnalysisId !== undefined && data.AnalysisId !== null) {
     contents.AnalysisId = __expectString(data.AnalysisId);
   }
@@ -15303,7 +15323,7 @@ export const deserializeAws_restJson1SearchAnalysesCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AnalysisSummaryList !== undefined && data.AnalysisSummaryList !== null) {
     contents.AnalysisSummaryList = deserializeAws_restJson1AnalysisSummaryList(data.AnalysisSummaryList, context);
   }
@@ -15410,7 +15430,7 @@ export const deserializeAws_restJson1SearchDashboardsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DashboardSummaryList !== undefined && data.DashboardSummaryList !== null) {
     contents.DashboardSummaryList = deserializeAws_restJson1DashboardSummaryList(data.DashboardSummaryList, context);
   }
@@ -15517,7 +15537,7 @@ export const deserializeAws_restJson1SearchFoldersCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FolderSummaryList !== undefined && data.FolderSummaryList !== null) {
     contents.FolderSummaryList = deserializeAws_restJson1FolderSummaryList(data.FolderSummaryList, context);
   }
@@ -15630,7 +15650,7 @@ export const deserializeAws_restJson1TagResourceCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -15729,7 +15749,7 @@ export const deserializeAws_restJson1UntagResourceCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -15824,7 +15844,7 @@ export const deserializeAws_restJson1UpdateAccountCustomizationCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccountCustomization !== undefined && data.AccountCustomization !== null) {
     contents.AccountCustomization = deserializeAws_restJson1AccountCustomization(data.AccountCustomization, context);
   }
@@ -15935,7 +15955,7 @@ export const deserializeAws_restJson1UpdateAccountSettingsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -16037,7 +16057,7 @@ export const deserializeAws_restJson1UpdateAnalysisCommand = async (
     Status: undefined,
     UpdateStatus: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AnalysisId !== undefined && data.AnalysisId !== null) {
     contents.AnalysisId = __expectString(data.AnalysisId);
   }
@@ -16156,7 +16176,7 @@ export const deserializeAws_restJson1UpdateAnalysisPermissionsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AnalysisArn !== undefined && data.AnalysisArn !== null) {
     contents.AnalysisArn = __expectString(data.AnalysisArn);
   }
@@ -16268,7 +16288,7 @@ export const deserializeAws_restJson1UpdateDashboardCommand = async (
     Status: undefined,
     VersionArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -16282,7 +16302,7 @@ export const deserializeAws_restJson1UpdateDashboardCommand = async (
     contents.RequestId = __expectString(data.RequestId);
   }
   if (data.Status !== undefined && data.Status !== null) {
-    contents.Status = __expectInt(data.Status);
+    contents.Status = __expectInt32(data.Status);
   }
   if (data.VersionArn !== undefined && data.VersionArn !== null) {
     contents.VersionArn = __expectString(data.VersionArn);
@@ -16390,7 +16410,7 @@ export const deserializeAws_restJson1UpdateDashboardPermissionsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DashboardArn !== undefined && data.DashboardArn !== null) {
     contents.DashboardArn = __expectString(data.DashboardArn);
   }
@@ -16500,7 +16520,7 @@ export const deserializeAws_restJson1UpdateDashboardPublishedVersionCommand = as
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DashboardArn !== undefined && data.DashboardArn !== null) {
     contents.DashboardArn = __expectString(data.DashboardArn);
   }
@@ -16609,7 +16629,7 @@ export const deserializeAws_restJson1UpdateDataSetCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -16738,7 +16758,7 @@ export const deserializeAws_restJson1UpdateDataSetPermissionsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DataSetArn !== undefined && data.DataSetArn !== null) {
     contents.DataSetArn = __expectString(data.DataSetArn);
   }
@@ -16846,7 +16866,7 @@ export const deserializeAws_restJson1UpdateDataSourceCommand = async (
     Status: undefined,
     UpdateStatus: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -16956,7 +16976,7 @@ export const deserializeAws_restJson1UpdateDataSourcePermissionsCommand = async 
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DataSourceArn !== undefined && data.DataSourceArn !== null) {
     contents.DataSourceArn = __expectString(data.DataSourceArn);
   }
@@ -17063,7 +17083,7 @@ export const deserializeAws_restJson1UpdateFolderCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -17187,7 +17207,7 @@ export const deserializeAws_restJson1UpdateFolderPermissionsCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -17201,7 +17221,7 @@ export const deserializeAws_restJson1UpdateFolderPermissionsCommand = async (
     contents.RequestId = __expectString(data.RequestId);
   }
   if (data.Status !== undefined && data.Status !== null) {
-    contents.Status = __expectInt(data.Status);
+    contents.Status = __expectInt32(data.Status);
   }
   return Promise.resolve(contents);
 };
@@ -17304,7 +17324,7 @@ export const deserializeAws_restJson1UpdateGroupCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Group !== undefined && data.Group !== null) {
     contents.Group = deserializeAws_restJson1Group(data.Group, context);
   }
@@ -17419,7 +17439,7 @@ export const deserializeAws_restJson1UpdateIAMPolicyAssignmentCommand = async (
     RequestId: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AssignmentId !== undefined && data.AssignmentId !== null) {
     contents.AssignmentId = __expectString(data.AssignmentId);
   }
@@ -17545,7 +17565,7 @@ export const deserializeAws_restJson1UpdateTemplateCommand = async (
     TemplateId: undefined,
     VersionArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -17673,7 +17693,7 @@ export const deserializeAws_restJson1UpdateTemplateAliasCommand = async (
     Status: undefined,
     TemplateAlias: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -17770,7 +17790,7 @@ export const deserializeAws_restJson1UpdateTemplatePermissionsCommand = async (
     TemplateArn: undefined,
     TemplateId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Permissions !== undefined && data.Permissions !== null) {
     contents.Permissions = deserializeAws_restJson1ResourcePermissionList(data.Permissions, context);
   }
@@ -17882,7 +17902,7 @@ export const deserializeAws_restJson1UpdateThemeCommand = async (
     ThemeId: undefined,
     VersionArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
@@ -18010,7 +18030,7 @@ export const deserializeAws_restJson1UpdateThemeAliasCommand = async (
     Status: undefined,
     ThemeAlias: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -18123,7 +18143,7 @@ export const deserializeAws_restJson1UpdateThemePermissionsCommand = async (
     ThemeArn: undefined,
     ThemeId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Permissions !== undefined && data.Permissions !== null) {
     contents.Permissions = deserializeAws_restJson1ResourcePermissionList(data.Permissions, context);
   }
@@ -18232,7 +18252,7 @@ export const deserializeAws_restJson1UpdateUserCommand = async (
     Status: undefined,
     User: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RequestId !== undefined && data.RequestId !== null) {
     contents.RequestId = __expectString(data.RequestId);
   }
@@ -19008,6 +19028,17 @@ const serializeAws_restJson1ColumnTagList = (input: ColumnTag[], context: __Serd
     });
 };
 
+const serializeAws_restJson1ColumnTagNames = (input: (ColumnTagName | string)[], context: __SerdeContext): any => {
+  return input
+    .filter((e: any) => e != null)
+    .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
+      return entry;
+    });
+};
+
 const serializeAws_restJson1CreateColumnsOperation = (input: CreateColumnsOperation, context: __SerdeContext): any => {
   return {
     ...(input.Columns !== undefined &&
@@ -19133,6 +19164,20 @@ const serializeAws_restJson1DataSetReferenceList = (input: DataSetReference[], c
       }
       return serializeAws_restJson1DataSetReference(entry, context);
     });
+};
+
+const serializeAws_restJson1DataSetUsageConfiguration = (
+  input: DataSetUsageConfiguration,
+  context: __SerdeContext
+): any => {
+  return {
+    ...(input.DisableUseAsDirectQuerySource !== undefined &&
+      input.DisableUseAsDirectQuerySource !== null && {
+        DisableUseAsDirectQuerySource: input.DisableUseAsDirectQuerySource,
+      }),
+    ...(input.DisableUseAsImportedSource !== undefined &&
+      input.DisableUseAsImportedSource !== null && { DisableUseAsImportedSource: input.DisableUseAsImportedSource }),
+  };
 };
 
 const serializeAws_restJson1DataSourceCredentials = (input: DataSourceCredentials, context: __SerdeContext): any => {
@@ -19445,6 +19490,7 @@ const serializeAws_restJson1LogicalTableMap = (
 
 const serializeAws_restJson1LogicalTableSource = (input: LogicalTableSource, context: __SerdeContext): any => {
   return {
+    ...(input.DataSetArn !== undefined && input.DataSetArn !== null && { DataSetArn: input.DataSetArn }),
     ...(input.JoinInstruction !== undefined &&
       input.JoinInstruction !== null && {
         JoinInstruction: serializeAws_restJson1JoinInstruction(input.JoinInstruction, context),
@@ -19982,6 +20028,9 @@ const serializeAws_restJson1TransformOperation = (input: TransformOperation, con
       RenameColumnOperation: serializeAws_restJson1RenameColumnOperation(value, context),
     }),
     TagColumnOperation: (value) => ({ TagColumnOperation: serializeAws_restJson1TagColumnOperation(value, context) }),
+    UntagColumnOperation: (value) => ({
+      UntagColumnOperation: serializeAws_restJson1UntagColumnOperation(value, context),
+    }),
     _: (name, value) => ({ name: value } as any),
   });
 };
@@ -20032,6 +20081,14 @@ const serializeAws_restJson1UIColorPalette = (input: UIColorPalette, context: __
     ...(input.Warning !== undefined && input.Warning !== null && { Warning: input.Warning }),
     ...(input.WarningForeground !== undefined &&
       input.WarningForeground !== null && { WarningForeground: input.WarningForeground }),
+  };
+};
+
+const serializeAws_restJson1UntagColumnOperation = (input: UntagColumnOperation, context: __SerdeContext): any => {
+  return {
+    ...(input.ColumnName !== undefined && input.ColumnName !== null && { ColumnName: input.ColumnName }),
+    ...(input.TagNames !== undefined &&
+      input.TagNames !== null && { TagNames: serializeAws_restJson1ColumnTagNames(input.TagNames, context) }),
   };
 };
 
@@ -20215,7 +20272,7 @@ const deserializeAws_restJson1AuroraParameters = (output: any, context: __SerdeC
   return {
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -20226,7 +20283,7 @@ const deserializeAws_restJson1AuroraPostgreSqlParameters = (
   return {
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -20448,6 +20505,17 @@ const deserializeAws_restJson1ColumnTagList = (output: any, context: __SerdeCont
     });
 };
 
+const deserializeAws_restJson1ColumnTagNames = (output: any, context: __SerdeContext): (ColumnTagName | string)[] => {
+  return (output || [])
+    .filter((e: any) => e != null)
+    .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
+      return __expectString(entry) as any;
+    });
+};
+
 const deserializeAws_restJson1CreateColumnsOperation = (
   output: any,
   context: __SerdeContext
@@ -20531,7 +20599,7 @@ const deserializeAws_restJson1DashboardSummary = (output: any, context: __SerdeC
         ? new Date(Math.round(output.LastUpdatedTime * 1000))
         : undefined,
     Name: __expectString(output.Name),
-    PublishedVersionNumber: __expectInt(output.PublishedVersionNumber),
+    PublishedVersionNumber: __expectLong(output.PublishedVersionNumber),
   } as any;
 };
 
@@ -20569,7 +20637,7 @@ const deserializeAws_restJson1DashboardVersion = (output: any, context: __SerdeC
     SourceEntityArn: __expectString(output.SourceEntityArn),
     Status: __expectString(output.Status),
     ThemeArn: __expectString(output.ThemeArn),
-    VersionNumber: __expectInt(output.VersionNumber),
+    VersionNumber: __expectLong(output.VersionNumber),
   } as any;
 };
 
@@ -20586,7 +20654,7 @@ const deserializeAws_restJson1DashboardVersionSummary = (
     Description: __expectString(output.Description),
     SourceEntityArn: __expectString(output.SourceEntityArn),
     Status: __expectString(output.Status),
-    VersionNumber: __expectInt(output.VersionNumber),
+    VersionNumber: __expectLong(output.VersionNumber),
   } as any;
 };
 
@@ -20629,12 +20697,16 @@ const deserializeAws_restJson1DataSet = (output: any, context: __SerdeContext): 
       output.ColumnLevelPermissionRules !== undefined && output.ColumnLevelPermissionRules !== null
         ? deserializeAws_restJson1ColumnLevelPermissionRuleList(output.ColumnLevelPermissionRules, context)
         : undefined,
-    ConsumedSpiceCapacityInBytes: __expectInt(output.ConsumedSpiceCapacityInBytes),
+    ConsumedSpiceCapacityInBytes: __expectLong(output.ConsumedSpiceCapacityInBytes),
     CreatedTime:
       output.CreatedTime !== undefined && output.CreatedTime !== null
         ? new Date(Math.round(output.CreatedTime * 1000))
         : undefined,
     DataSetId: __expectString(output.DataSetId),
+    DataSetUsageConfiguration:
+      output.DataSetUsageConfiguration !== undefined && output.DataSetUsageConfiguration !== null
+        ? deserializeAws_restJson1DataSetUsageConfiguration(output.DataSetUsageConfiguration, context)
+        : undefined,
     FieldFolders:
       output.FieldFolders !== undefined && output.FieldFolders !== null
         ? deserializeAws_restJson1FieldFolderMap(output.FieldFolders, context)
@@ -20748,6 +20820,16 @@ const deserializeAws_restJson1DataSetSummaryList = (output: any, context: __Serd
       }
       return deserializeAws_restJson1DataSetSummary(entry, context);
     });
+};
+
+const deserializeAws_restJson1DataSetUsageConfiguration = (
+  output: any,
+  context: __SerdeContext
+): DataSetUsageConfiguration => {
+  return {
+    DisableUseAsDirectQuerySource: __expectBoolean(output.DisableUseAsDirectQuerySource),
+    DisableUseAsImportedSource: __expectBoolean(output.DisableUseAsImportedSource),
+  } as any;
 };
 
 const deserializeAws_restJson1DataSource = (output: any, context: __SerdeContext): DataSource => {
@@ -21177,9 +21259,9 @@ const deserializeAws_restJson1Ingestion = (output: any, context: __SerdeContext)
         ? deserializeAws_restJson1ErrorInfo(output.ErrorInfo, context)
         : undefined,
     IngestionId: __expectString(output.IngestionId),
-    IngestionSizeInBytes: __expectInt(output.IngestionSizeInBytes),
+    IngestionSizeInBytes: __expectLong(output.IngestionSizeInBytes),
     IngestionStatus: __expectString(output.IngestionStatus),
-    IngestionTimeInSeconds: __expectInt(output.IngestionTimeInSeconds),
+    IngestionTimeInSeconds: __expectLong(output.IngestionTimeInSeconds),
     QueueInfo:
       output.QueueInfo !== undefined && output.QueueInfo !== null
         ? deserializeAws_restJson1QueueInfo(output.QueueInfo, context)
@@ -21282,6 +21364,7 @@ const deserializeAws_restJson1LogicalTableMap = (
 
 const deserializeAws_restJson1LogicalTableSource = (output: any, context: __SerdeContext): LogicalTableSource => {
   return {
+    DataSetArn: __expectString(output.DataSetArn),
     JoinInstruction:
       output.JoinInstruction !== undefined && output.JoinInstruction !== null
         ? deserializeAws_restJson1JoinInstruction(output.JoinInstruction, context)
@@ -21307,7 +21390,7 @@ const deserializeAws_restJson1MariaDbParameters = (output: any, context: __Serde
   return {
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21322,7 +21405,7 @@ const deserializeAws_restJson1MySqlParameters = (output: any, context: __SerdeCo
   return {
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21362,7 +21445,7 @@ const deserializeAws_restJson1OracleParameters = (output: any, context: __SerdeC
   return {
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21434,7 +21517,7 @@ const deserializeAws_restJson1PostgreSqlParameters = (output: any, context: __Se
   return {
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21442,7 +21525,7 @@ const deserializeAws_restJson1PrestoParameters = (output: any, context: __SerdeC
   return {
     Catalog: __expectString(output.Catalog),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21496,7 +21579,7 @@ const deserializeAws_restJson1RedshiftParameters = (output: any, context: __Serd
     ClusterId: __expectString(output.ClusterId),
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21543,8 +21626,8 @@ const deserializeAws_restJson1ResourcePermissionList = (output: any, context: __
 
 const deserializeAws_restJson1RowInfo = (output: any, context: __SerdeContext): RowInfo => {
   return {
-    RowsDropped: __expectInt(output.RowsDropped),
-    RowsIngested: __expectInt(output.RowsIngested),
+    RowsDropped: __expectLong(output.RowsDropped),
+    RowsIngested: __expectLong(output.RowsIngested),
   } as any;
 };
 
@@ -21671,7 +21754,7 @@ const deserializeAws_restJson1SnowflakeParameters = (output: any, context: __Ser
 const deserializeAws_restJson1SparkParameters = (output: any, context: __SerdeContext): SparkParameters => {
   return {
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21679,7 +21762,7 @@ const deserializeAws_restJson1SqlServerParameters = (output: any, context: __Ser
   return {
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21741,7 +21824,7 @@ const deserializeAws_restJson1TemplateAlias = (output: any, context: __SerdeCont
   return {
     AliasName: __expectString(output.AliasName),
     Arn: __expectString(output.Arn),
-    TemplateVersionNumber: __expectInt(output.TemplateVersionNumber),
+    TemplateVersionNumber: __expectLong(output.TemplateVersionNumber),
   } as any;
 };
 
@@ -21785,7 +21868,7 @@ const deserializeAws_restJson1TemplateSummary = (output: any, context: __SerdeCo
       output.LastUpdatedTime !== undefined && output.LastUpdatedTime !== null
         ? new Date(Math.round(output.LastUpdatedTime * 1000))
         : undefined,
-    LatestVersionNumber: __expectInt(output.LatestVersionNumber),
+    LatestVersionNumber: __expectLong(output.LatestVersionNumber),
     Name: __expectString(output.Name),
     TemplateId: __expectString(output.TemplateId),
   } as any;
@@ -21824,7 +21907,7 @@ const deserializeAws_restJson1TemplateVersion = (output: any, context: __SerdeCo
     SourceEntityArn: __expectString(output.SourceEntityArn),
     Status: __expectString(output.Status),
     ThemeArn: __expectString(output.ThemeArn),
-    VersionNumber: __expectInt(output.VersionNumber),
+    VersionNumber: __expectLong(output.VersionNumber),
   } as any;
 };
 
@@ -21840,7 +21923,7 @@ const deserializeAws_restJson1TemplateVersionSummary = (
         : undefined,
     Description: __expectString(output.Description),
     Status: __expectString(output.Status),
-    VersionNumber: __expectInt(output.VersionNumber),
+    VersionNumber: __expectLong(output.VersionNumber),
   } as any;
 };
 
@@ -21862,7 +21945,7 @@ const deserializeAws_restJson1TeradataParameters = (output: any, context: __Serd
   return {
     Database: __expectString(output.Database),
     Host: __expectString(output.Host),
-    Port: __expectInt(output.Port),
+    Port: __expectInt32(output.Port),
   } as any;
 };
 
@@ -21891,7 +21974,7 @@ const deserializeAws_restJson1ThemeAlias = (output: any, context: __SerdeContext
   return {
     AliasName: __expectString(output.AliasName),
     Arn: __expectString(output.Arn),
-    ThemeVersionNumber: __expectInt(output.ThemeVersionNumber),
+    ThemeVersionNumber: __expectLong(output.ThemeVersionNumber),
   } as any;
 };
 
@@ -21952,7 +22035,7 @@ const deserializeAws_restJson1ThemeSummary = (output: any, context: __SerdeConte
       output.LastUpdatedTime !== undefined && output.LastUpdatedTime !== null
         ? new Date(Math.round(output.LastUpdatedTime * 1000))
         : undefined,
-    LatestVersionNumber: __expectInt(output.LatestVersionNumber),
+    LatestVersionNumber: __expectLong(output.LatestVersionNumber),
     Name: __expectString(output.Name),
     ThemeId: __expectString(output.ThemeId),
   } as any;
@@ -21987,7 +22070,7 @@ const deserializeAws_restJson1ThemeVersion = (output: any, context: __SerdeConte
         ? deserializeAws_restJson1ThemeErrorList(output.Errors, context)
         : undefined,
     Status: __expectString(output.Status),
-    VersionNumber: __expectInt(output.VersionNumber),
+    VersionNumber: __expectLong(output.VersionNumber),
   } as any;
 };
 
@@ -22000,7 +22083,7 @@ const deserializeAws_restJson1ThemeVersionSummary = (output: any, context: __Ser
         : undefined,
     Description: __expectString(output.Description),
     Status: __expectString(output.Status),
-    VersionNumber: __expectInt(output.VersionNumber),
+    VersionNumber: __expectLong(output.VersionNumber),
   } as any;
 };
 
@@ -22071,6 +22154,11 @@ const deserializeAws_restJson1TransformOperation = (output: any, context: __Serd
       TagColumnOperation: deserializeAws_restJson1TagColumnOperation(output.TagColumnOperation, context),
     };
   }
+  if (output.UntagColumnOperation !== undefined && output.UntagColumnOperation !== null) {
+    return {
+      UntagColumnOperation: deserializeAws_restJson1UntagColumnOperation(output.UntagColumnOperation, context),
+    };
+  }
   return { $unknown: Object.entries(output)[0] };
 };
 
@@ -22087,7 +22175,7 @@ const deserializeAws_restJson1TransformOperationList = (output: any, context: __
 
 const deserializeAws_restJson1TwitterParameters = (output: any, context: __SerdeContext): TwitterParameters => {
   return {
-    MaxRows: __expectInt(output.MaxRows),
+    MaxRows: __expectInt32(output.MaxRows),
     Query: __expectString(output.Query),
   } as any;
 };
@@ -22113,12 +22201,22 @@ const deserializeAws_restJson1UIColorPalette = (output: any, context: __SerdeCon
   } as any;
 };
 
+const deserializeAws_restJson1UntagColumnOperation = (output: any, context: __SerdeContext): UntagColumnOperation => {
+  return {
+    ColumnName: __expectString(output.ColumnName),
+    TagNames:
+      output.TagNames !== undefined && output.TagNames !== null
+        ? deserializeAws_restJson1ColumnTagNames(output.TagNames, context)
+        : undefined,
+  } as any;
+};
+
 const deserializeAws_restJson1UploadSettings = (output: any, context: __SerdeContext): UploadSettings => {
   return {
     ContainsHeader: __expectBoolean(output.ContainsHeader),
     Delimiter: __expectString(output.Delimiter),
     Format: __expectString(output.Format),
-    StartFromRow: __expectInt(output.StartFromRow),
+    StartFromRow: __expectInt32(output.StartFromRow),
     TextQualifier: __expectString(output.TextQualifier),
   } as any;
 };

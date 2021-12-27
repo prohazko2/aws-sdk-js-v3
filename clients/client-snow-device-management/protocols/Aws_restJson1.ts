@@ -48,7 +48,10 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "@aws-sdk/smithy-client";
@@ -468,7 +471,7 @@ export const deserializeAws_restJson1CancelTaskCommand = async (
     $metadata: deserializeMetadata(output),
     taskId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.taskId !== undefined && data.taskId !== null) {
     contents.taskId = __expectString(data.taskId);
   }
@@ -556,7 +559,7 @@ export const deserializeAws_restJson1CreateTaskCommand = async (
     taskArn: undefined,
     taskId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.taskArn !== undefined && data.taskArn !== null) {
     contents.taskArn = __expectString(data.taskArn);
   }
@@ -664,7 +667,7 @@ export const deserializeAws_restJson1DescribeDeviceCommand = async (
     software: undefined,
     tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.associatedWithJob !== undefined && data.associatedWithJob !== null) {
     contents.associatedWithJob = __expectString(data.associatedWithJob);
   }
@@ -784,7 +787,7 @@ export const deserializeAws_restJson1DescribeDeviceEc2InstancesCommand = async (
     $metadata: deserializeMetadata(output),
     instances: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.instances !== undefined && data.instances !== null) {
     contents.instances = deserializeAws_restJson1InstanceSummaryList(data.instances, context);
   }
@@ -876,7 +879,7 @@ export const deserializeAws_restJson1DescribeExecutionCommand = async (
     state: undefined,
     taskId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.executionId !== undefined && data.executionId !== null) {
     contents.executionId = __expectString(data.executionId);
   }
@@ -986,7 +989,7 @@ export const deserializeAws_restJson1DescribeTaskCommand = async (
     taskArn: undefined,
     taskId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.completedAt !== undefined && data.completedAt !== null) {
     contents.completedAt = new Date(Math.round(data.completedAt * 1000));
   }
@@ -1098,7 +1101,7 @@ export const deserializeAws_restJson1ListDeviceResourcesCommand = async (
     nextToken: undefined,
     resources: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -1189,7 +1192,7 @@ export const deserializeAws_restJson1ListDevicesCommand = async (
     devices: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.devices !== undefined && data.devices !== null) {
     contents.devices = deserializeAws_restJson1DeviceSummaryList(data.devices, context);
   }
@@ -1272,7 +1275,7 @@ export const deserializeAws_restJson1ListExecutionsCommand = async (
     executions: undefined,
     nextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.executions !== undefined && data.executions !== null) {
     contents.executions = deserializeAws_restJson1ExecutionSummaryList(data.executions, context);
   }
@@ -1362,7 +1365,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.tags !== undefined && data.tags !== null) {
     contents.tags = deserializeAws_restJson1TagMap(data.tags, context);
   }
@@ -1434,7 +1437,7 @@ export const deserializeAws_restJson1ListTasksCommand = async (
     nextToken: undefined,
     tasks: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
@@ -1797,11 +1800,11 @@ const serializeAws_restJson1Unlock = (input: Unlock, context: __SerdeContext): a
 
 const deserializeAws_restJson1Capacity = (output: any, context: __SerdeContext): Capacity => {
   return {
-    available: __expectInt(output.available),
+    available: __expectLong(output.available),
     name: __expectString(output.name),
-    total: __expectInt(output.total),
+    total: __expectLong(output.total),
     unit: __expectString(output.unit),
-    used: __expectInt(output.used),
+    used: __expectLong(output.used),
   } as any;
 };
 
@@ -1818,8 +1821,8 @@ const deserializeAws_restJson1CapacityList = (output: any, context: __SerdeConte
 
 const deserializeAws_restJson1CpuOptions = (output: any, context: __SerdeContext): CpuOptions => {
   return {
-    coreCount: __expectInt(output.coreCount),
-    threadsPerCore: __expectInt(output.threadsPerCore),
+    coreCount: __expectInt32(output.coreCount),
+    threadsPerCore: __expectInt32(output.threadsPerCore),
   } as any;
 };
 
@@ -1883,7 +1886,7 @@ const deserializeAws_restJson1ExecutionSummaryList = (output: any, context: __Se
 
 const deserializeAws_restJson1Instance = (output: any, context: __SerdeContext): Instance => {
   return {
-    amiLaunchIndex: __expectInt(output.amiLaunchIndex),
+    amiLaunchIndex: __expectInt32(output.amiLaunchIndex),
     blockDeviceMappings:
       output.blockDeviceMappings !== undefined && output.blockDeviceMappings !== null
         ? deserializeAws_restJson1InstanceBlockDeviceMappingList(output.blockDeviceMappings, context)
@@ -1946,7 +1949,7 @@ const deserializeAws_restJson1InstanceBlockDeviceMappingList = (
 
 const deserializeAws_restJson1InstanceState = (output: any, context: __SerdeContext): InstanceState => {
   return {
-    code: __expectInt(output.code),
+    code: __expectInt32(output.code),
     name: __expectString(output.name),
   } as any;
 };

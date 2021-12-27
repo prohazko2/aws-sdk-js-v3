@@ -111,10 +111,12 @@ import {
 } from "../models/models_0";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
   serializeFloat as __serializeFloat,
 } from "@aws-sdk/smithy-client";
 import {
@@ -1229,7 +1231,7 @@ export const deserializeAws_restJson1AddFlowMediaStreamsCommand = async (
     FlowArn: undefined,
     MediaStreams: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -1328,7 +1330,7 @@ export const deserializeAws_restJson1AddFlowOutputsCommand = async (
     FlowArn: undefined,
     Outputs: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -1435,7 +1437,7 @@ export const deserializeAws_restJson1AddFlowSourcesCommand = async (
     FlowArn: undefined,
     Sources: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -1534,7 +1536,7 @@ export const deserializeAws_restJson1AddFlowVpcInterfacesCommand = async (
     FlowArn: undefined,
     VpcInterfaces: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -1632,7 +1634,7 @@ export const deserializeAws_restJson1CreateFlowCommand = async (
     $metadata: deserializeMetadata(output),
     Flow: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flow !== undefined && data.flow !== null) {
     contents.Flow = deserializeAws_restJson1Flow(data.flow, context);
   }
@@ -1728,7 +1730,7 @@ export const deserializeAws_restJson1DeleteFlowCommand = async (
     FlowArn: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -1827,7 +1829,7 @@ export const deserializeAws_restJson1DescribeFlowCommand = async (
     Flow: undefined,
     Messages: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flow !== undefined && data.flow !== null) {
     contents.Flow = deserializeAws_restJson1Flow(data.flow, context);
   }
@@ -1925,7 +1927,7 @@ export const deserializeAws_restJson1DescribeOfferingCommand = async (
     $metadata: deserializeMetadata(output),
     Offering: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.offering !== undefined && data.offering !== null) {
     contents.Offering = deserializeAws_restJson1Offering(data.offering, context);
   }
@@ -2012,7 +2014,7 @@ export const deserializeAws_restJson1DescribeReservationCommand = async (
     $metadata: deserializeMetadata(output),
     Reservation: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.reservation !== undefined && data.reservation !== null) {
     contents.Reservation = deserializeAws_restJson1Reservation(data.reservation, context);
   }
@@ -2100,7 +2102,7 @@ export const deserializeAws_restJson1GrantFlowEntitlementsCommand = async (
     Entitlements: undefined,
     FlowArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.entitlements !== undefined && data.entitlements !== null) {
     contents.Entitlements = deserializeAws_restJson1__listOfEntitlement(data.entitlements, context);
   }
@@ -2207,7 +2209,7 @@ export const deserializeAws_restJson1ListEntitlementsCommand = async (
     Entitlements: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.entitlements !== undefined && data.entitlements !== null) {
     contents.Entitlements = deserializeAws_restJson1__listOfListedEntitlement(data.entitlements, context);
   }
@@ -2290,7 +2292,7 @@ export const deserializeAws_restJson1ListFlowsCommand = async (
     Flows: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flows !== undefined && data.flows !== null) {
     contents.Flows = deserializeAws_restJson1__listOfListedFlow(data.flows, context);
   }
@@ -2373,7 +2375,7 @@ export const deserializeAws_restJson1ListOfferingsCommand = async (
     NextToken: undefined,
     Offerings: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.NextToken = __expectString(data.nextToken);
   }
@@ -2456,7 +2458,7 @@ export const deserializeAws_restJson1ListReservationsCommand = async (
     NextToken: undefined,
     Reservations: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.NextToken = __expectString(data.nextToken);
   }
@@ -2538,7 +2540,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1__mapOf__string(data.tags, context);
   }
@@ -2609,7 +2611,7 @@ export const deserializeAws_restJson1PurchaseOfferingCommand = async (
     $metadata: deserializeMetadata(output),
     Reservation: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.reservation !== undefined && data.reservation !== null) {
     contents.Reservation = deserializeAws_restJson1Reservation(data.reservation, context);
   }
@@ -2705,7 +2707,7 @@ export const deserializeAws_restJson1RemoveFlowMediaStreamCommand = async (
     FlowArn: undefined,
     MediaStreamName: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -2804,7 +2806,7 @@ export const deserializeAws_restJson1RemoveFlowOutputCommand = async (
     FlowArn: undefined,
     OutputArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -2903,7 +2905,7 @@ export const deserializeAws_restJson1RemoveFlowSourceCommand = async (
     FlowArn: undefined,
     SourceArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -3003,7 +3005,7 @@ export const deserializeAws_restJson1RemoveFlowVpcInterfaceCommand = async (
     NonDeletedNetworkInterfaceIds: undefined,
     VpcInterfaceName: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -3108,7 +3110,7 @@ export const deserializeAws_restJson1RevokeFlowEntitlementCommand = async (
     EntitlementArn: undefined,
     FlowArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.entitlementArn !== undefined && data.entitlementArn !== null) {
     contents.EntitlementArn = __expectString(data.entitlementArn);
   }
@@ -3207,7 +3209,7 @@ export const deserializeAws_restJson1StartFlowCommand = async (
     FlowArn: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -3306,7 +3308,7 @@ export const deserializeAws_restJson1StopFlowCommand = async (
     FlowArn: undefined,
     Status: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -3538,7 +3540,7 @@ export const deserializeAws_restJson1UpdateFlowCommand = async (
     $metadata: deserializeMetadata(output),
     Flow: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flow !== undefined && data.flow !== null) {
     contents.Flow = deserializeAws_restJson1Flow(data.flow, context);
   }
@@ -3634,7 +3636,7 @@ export const deserializeAws_restJson1UpdateFlowEntitlementCommand = async (
     Entitlement: undefined,
     FlowArn: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.entitlement !== undefined && data.entitlement !== null) {
     contents.Entitlement = deserializeAws_restJson1Entitlement(data.entitlement, context);
   }
@@ -3733,7 +3735,7 @@ export const deserializeAws_restJson1UpdateFlowMediaStreamCommand = async (
     FlowArn: undefined,
     MediaStream: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -3832,7 +3834,7 @@ export const deserializeAws_restJson1UpdateFlowOutputCommand = async (
     FlowArn: undefined,
     Output: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -3931,7 +3933,7 @@ export const deserializeAws_restJson1UpdateFlowSourceCommand = async (
     FlowArn: undefined,
     Source: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flowArn !== undefined && data.flowArn !== null) {
     contents.FlowArn = __expectString(data.flowArn);
   }
@@ -4794,7 +4796,7 @@ const deserializeAws_restJson1DestinationConfiguration = (
 ): DestinationConfiguration => {
   return {
     DestinationIp: __expectString(output.destinationIp),
-    DestinationPort: __expectInt(output.destinationPort),
+    DestinationPort: __expectInt32(output.destinationPort),
     Interface:
       output.interface !== undefined && output.interface !== null
         ? deserializeAws_restJson1Interface(output.interface, context)
@@ -4805,7 +4807,7 @@ const deserializeAws_restJson1DestinationConfiguration = (
 
 const deserializeAws_restJson1EncodingParameters = (output: any, context: __SerdeContext): EncodingParameters => {
   return {
-    CompressionFactor: __limitedParseFloat(output.compressionFactor),
+    CompressionFactor: __limitedParseDouble(output.compressionFactor),
     EncoderProfile: __expectString(output.encoderProfile),
   } as any;
 };
@@ -4826,7 +4828,7 @@ const deserializeAws_restJson1Encryption = (output: any, context: __SerdeContext
 
 const deserializeAws_restJson1Entitlement = (output: any, context: __SerdeContext): Entitlement => {
   return {
-    DataTransferSubscriberFeePercent: __expectInt(output.dataTransferSubscriberFeePercent),
+    DataTransferSubscriberFeePercent: __expectInt32(output.dataTransferSubscriberFeePercent),
     Description: __expectString(output.description),
     Encryption:
       output.encryption !== undefined && output.encryption !== null
@@ -4845,7 +4847,7 @@ const deserializeAws_restJson1Entitlement = (output: any, context: __SerdeContex
 const deserializeAws_restJson1FailoverConfig = (output: any, context: __SerdeContext): FailoverConfig => {
   return {
     FailoverMode: __expectString(output.failoverMode),
-    RecoveryWindow: __expectInt(output.recoveryWindow),
+    RecoveryWindow: __expectInt32(output.recoveryWindow),
     SourcePriority:
       output.sourcePriority !== undefined && output.sourcePriority !== null
         ? deserializeAws_restJson1SourcePriority(output.sourcePriority, context)
@@ -4908,7 +4910,7 @@ const deserializeAws_restJson1Fmtp = (output: any, context: __SerdeContext): Fmt
 const deserializeAws_restJson1InputConfiguration = (output: any, context: __SerdeContext): InputConfiguration => {
   return {
     InputIp: __expectString(output.inputIp),
-    InputPort: __expectInt(output.inputPort),
+    InputPort: __expectInt32(output.inputPort),
     Interface:
       output.interface !== undefined && output.interface !== null
         ? deserializeAws_restJson1Interface(output.interface, context)
@@ -4924,7 +4926,7 @@ const deserializeAws_restJson1Interface = (output: any, context: __SerdeContext)
 
 const deserializeAws_restJson1ListedEntitlement = (output: any, context: __SerdeContext): ListedEntitlement => {
   return {
-    DataTransferSubscriberFeePercent: __expectInt(output.dataTransferSubscriberFeePercent),
+    DataTransferSubscriberFeePercent: __expectInt32(output.dataTransferSubscriberFeePercent),
     EntitlementArn: __expectString(output.entitlementArn),
     EntitlementName: __expectString(output.entitlementName),
   } as any;
@@ -4947,10 +4949,10 @@ const deserializeAws_restJson1MediaStream = (output: any, context: __SerdeContex
       output.attributes !== undefined && output.attributes !== null
         ? deserializeAws_restJson1MediaStreamAttributes(output.attributes, context)
         : undefined,
-    ClockRate: __expectInt(output.clockRate),
+    ClockRate: __expectInt32(output.clockRate),
     Description: __expectString(output.description),
-    Fmt: __expectInt(output.fmt),
-    MediaStreamId: __expectInt(output.mediaStreamId),
+    Fmt: __expectInt32(output.fmt),
+    MediaStreamId: __expectInt32(output.mediaStreamId),
     MediaStreamName: __expectString(output.mediaStreamName),
     MediaStreamType: __expectString(output.mediaStreamType),
     VideoFormat: __expectString(output.videoFormat),
@@ -5011,7 +5013,7 @@ const deserializeAws_restJson1Messages = (output: any, context: __SerdeContext):
 const deserializeAws_restJson1Offering = (output: any, context: __SerdeContext): Offering => {
   return {
     CurrencyCode: __expectString(output.currencyCode),
-    Duration: __expectInt(output.duration),
+    Duration: __expectInt32(output.duration),
     DurationUnits: __expectString(output.durationUnits),
     OfferingArn: __expectString(output.offeringArn),
     OfferingDescription: __expectString(output.offeringDescription),
@@ -5026,7 +5028,7 @@ const deserializeAws_restJson1Offering = (output: any, context: __SerdeContext):
 
 const deserializeAws_restJson1Output = (output: any, context: __SerdeContext): Output => {
   return {
-    DataTransferSubscriberFeePercent: __expectInt(output.dataTransferSubscriberFeePercent),
+    DataTransferSubscriberFeePercent: __expectInt32(output.dataTransferSubscriberFeePercent),
     Description: __expectString(output.description),
     Destination: __expectString(output.destination),
     Encryption:
@@ -5045,7 +5047,7 @@ const deserializeAws_restJson1Output = (output: any, context: __SerdeContext): O
         : undefined,
     Name: __expectString(output.name),
     OutputArn: __expectString(output.outputArn),
-    Port: __expectInt(output.port),
+    Port: __expectInt32(output.port),
     Transport:
       output.transport !== undefined && output.transport !== null
         ? deserializeAws_restJson1Transport(output.transport, context)
@@ -5060,7 +5062,7 @@ const deserializeAws_restJson1Output = (output: any, context: __SerdeContext): O
 const deserializeAws_restJson1Reservation = (output: any, context: __SerdeContext): Reservation => {
   return {
     CurrencyCode: __expectString(output.currencyCode),
-    Duration: __expectInt(output.duration),
+    Duration: __expectInt32(output.duration),
     DurationUnits: __expectString(output.durationUnits),
     End: __expectString(output.end),
     OfferingArn: __expectString(output.offeringArn),
@@ -5080,14 +5082,14 @@ const deserializeAws_restJson1Reservation = (output: any, context: __SerdeContex
 
 const deserializeAws_restJson1ResourceSpecification = (output: any, context: __SerdeContext): ResourceSpecification => {
   return {
-    ReservedBitrate: __expectInt(output.reservedBitrate),
+    ReservedBitrate: __expectInt32(output.reservedBitrate),
     ResourceType: __expectString(output.resourceType),
   } as any;
 };
 
 const deserializeAws_restJson1Source = (output: any, context: __SerdeContext): Source => {
   return {
-    DataTransferSubscriberFeePercent: __expectInt(output.dataTransferSubscriberFeePercent),
+    DataTransferSubscriberFeePercent: __expectInt32(output.dataTransferSubscriberFeePercent),
     Decryption:
       output.decryption !== undefined && output.decryption !== null
         ? deserializeAws_restJson1Encryption(output.decryption, context)
@@ -5095,7 +5097,7 @@ const deserializeAws_restJson1Source = (output: any, context: __SerdeContext): S
     Description: __expectString(output.description),
     EntitlementArn: __expectString(output.entitlementArn),
     IngestIp: __expectString(output.ingestIp),
-    IngestPort: __expectInt(output.ingestPort),
+    IngestPort: __expectInt32(output.ingestPort),
     MediaStreamSourceConfigurations:
       output.mediaStreamSourceConfigurations !== undefined && output.mediaStreamSourceConfigurations !== null
         ? deserializeAws_restJson1__listOfMediaStreamSourceConfiguration(
@@ -5126,13 +5128,13 @@ const deserializeAws_restJson1Transport = (output: any, context: __SerdeContext)
       output.cidrAllowList !== undefined && output.cidrAllowList !== null
         ? deserializeAws_restJson1__listOf__string(output.cidrAllowList, context)
         : undefined,
-    MaxBitrate: __expectInt(output.maxBitrate),
-    MaxLatency: __expectInt(output.maxLatency),
-    MaxSyncBuffer: __expectInt(output.maxSyncBuffer),
-    MinLatency: __expectInt(output.minLatency),
+    MaxBitrate: __expectInt32(output.maxBitrate),
+    MaxLatency: __expectInt32(output.maxLatency),
+    MaxSyncBuffer: __expectInt32(output.maxSyncBuffer),
+    MinLatency: __expectInt32(output.minLatency),
     Protocol: __expectString(output.protocol),
     RemoteId: __expectString(output.remoteId),
-    SmoothingLatency: __expectInt(output.smoothingLatency),
+    SmoothingLatency: __expectInt32(output.smoothingLatency),
     StreamId: __expectString(output.streamId),
   } as any;
 };

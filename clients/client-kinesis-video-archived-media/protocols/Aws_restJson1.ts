@@ -33,7 +33,12 @@ import {
   UnsupportedStreamMediaTypeException,
 } from "../models/models_0";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
-import { expectInt as __expectInt, expectString as __expectString } from "@aws-sdk/smithy-client";
+import {
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
+  expectString as __expectString,
+} from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
   MetadataBearer as __MetadataBearer,
@@ -341,7 +346,7 @@ export const deserializeAws_restJson1GetDASHStreamingSessionURLCommand = async (
     $metadata: deserializeMetadata(output),
     DASHStreamingSessionURL: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DASHStreamingSessionURL !== undefined && data.DASHStreamingSessionURL !== null) {
     contents.DASHStreamingSessionURL = __expectString(data.DASHStreamingSessionURL);
   }
@@ -452,7 +457,7 @@ export const deserializeAws_restJson1GetHLSStreamingSessionURLCommand = async (
     $metadata: deserializeMetadata(output),
     HLSStreamingSessionURL: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.HLSStreamingSessionURL !== undefined && data.HLSStreamingSessionURL !== null) {
     contents.HLSStreamingSessionURL = __expectString(data.HLSStreamingSessionURL);
   }
@@ -645,7 +650,7 @@ export const deserializeAws_restJson1ListFragmentsCommand = async (
     Fragments: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Fragments !== undefined && data.Fragments !== null) {
     contents.Fragments = deserializeAws_restJson1FragmentList(data.Fragments, context);
   }
@@ -962,9 +967,9 @@ const serializeAws_restJson1TimestampRange = (input: TimestampRange, context: __
 
 const deserializeAws_restJson1Fragment = (output: any, context: __SerdeContext): Fragment => {
   return {
-    FragmentLengthInMilliseconds: __expectInt(output.FragmentLengthInMilliseconds),
+    FragmentLengthInMilliseconds: __expectLong(output.FragmentLengthInMilliseconds),
     FragmentNumber: __expectString(output.FragmentNumber),
-    FragmentSizeInBytes: __expectInt(output.FragmentSizeInBytes),
+    FragmentSizeInBytes: __expectLong(output.FragmentSizeInBytes),
     ProducerTimestamp:
       output.ProducerTimestamp !== undefined && output.ProducerTimestamp !== null
         ? new Date(Math.round(output.ProducerTimestamp * 1000))

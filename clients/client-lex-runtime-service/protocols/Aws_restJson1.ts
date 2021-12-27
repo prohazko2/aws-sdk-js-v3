@@ -29,10 +29,12 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   LazyJsonString as __LazyJsonString,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -357,7 +359,7 @@ export const deserializeAws_restJson1DeleteSessionCommand = async (
     sessionId: undefined,
     userId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.botAlias !== undefined && data.botAlias !== null) {
     contents.botAlias = __expectString(data.botAlias);
   }
@@ -457,7 +459,7 @@ export const deserializeAws_restJson1GetSessionCommand = async (
     sessionAttributes: undefined,
     sessionId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.activeContexts !== undefined && data.activeContexts !== null) {
     contents.activeContexts = deserializeAws_restJson1ActiveContextsList(data.activeContexts, context);
   }
@@ -770,7 +772,7 @@ export const deserializeAws_restJson1PostTextCommand = async (
     slotToElicit: undefined,
     slots: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.activeContexts !== undefined && data.activeContexts !== null) {
     contents.activeContexts = deserializeAws_restJson1ActiveContextsList(data.activeContexts, context);
   }
@@ -1407,8 +1409,8 @@ const deserializeAws_restJson1ActiveContextTimeToLive = (
   context: __SerdeContext
 ): ActiveContextTimeToLive => {
   return {
-    timeToLiveInSeconds: __expectInt(output.timeToLiveInSeconds),
-    turnsToLive: __expectInt(output.turnsToLive),
+    timeToLiveInSeconds: __expectInt32(output.timeToLiveInSeconds),
+    turnsToLive: __expectInt32(output.turnsToLive),
   } as any;
 };
 
@@ -1460,7 +1462,7 @@ const deserializeAws_restJson1genericAttachmentList = (output: any, context: __S
 
 const deserializeAws_restJson1IntentConfidence = (output: any, context: __SerdeContext): IntentConfidence => {
   return {
-    score: __limitedParseFloat(output.score),
+    score: __limitedParseDouble(output.score),
   } as any;
 };
 

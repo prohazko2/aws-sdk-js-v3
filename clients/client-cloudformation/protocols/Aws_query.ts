@@ -114,6 +114,7 @@ import {
 } from "../commands/RecordHandlerProgressCommand";
 import { RegisterPublisherCommandInput, RegisterPublisherCommandOutput } from "../commands/RegisterPublisherCommand";
 import { RegisterTypeCommandInput, RegisterTypeCommandOutput } from "../commands/RegisterTypeCommand";
+import { RollbackStackCommandInput, RollbackStackCommandOutput } from "../commands/RollbackStackCommand";
 import { SetStackPolicyCommandInput, SetStackPolicyCommandOutput } from "../commands/SetStackPolicyCommand";
 import {
   SetTypeConfigurationCommandInput,
@@ -284,6 +285,8 @@ import {
   ResourceTargetDefinition,
   ResourceToImport,
   RollbackConfiguration,
+  RollbackStackInput,
+  RollbackStackOutput,
   RollbackTrigger,
   SetStackPolicyInput,
   SetTypeConfigurationInput,
@@ -353,7 +356,7 @@ import {
   getArrayIfSingleItem as __getArrayIfSingleItem,
   getValueFromTextNode as __getValueFromTextNode,
   parseBoolean as __parseBoolean,
-  strictParseInt as __strictParseInt,
+  strictParseInt32 as __strictParseInt32,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -1210,6 +1213,22 @@ export const serializeAws_queryRegisterTypeCommand = async (
   body = buildFormUrlencodedString({
     ...serializeAws_queryRegisterTypeInput(input, context),
     Action: "RegisterType",
+    Version: "2010-05-15",
+  });
+  return buildHttpRpcRequest(context, headers, "/", undefined, body);
+};
+
+export const serializeAws_queryRollbackStackCommand = async (
+  input: RollbackStackCommandInput,
+  context: __SerdeContext
+): Promise<__HttpRequest> => {
+  const headers: __HeaderBag = {
+    "content-type": "application/x-www-form-urlencoded",
+  };
+  let body: any;
+  body = buildFormUrlencodedString({
+    ...serializeAws_queryRollbackStackInput(input, context),
+    Action: "RollbackStack",
     Version: "2010-05-15",
   });
   return buildHttpRpcRequest(context, headers, "/", undefined, body);
@@ -4421,6 +4440,60 @@ const deserializeAws_queryRegisterTypeCommandError = async (
   return Promise.reject(Object.assign(new Error(message), response));
 };
 
+export const deserializeAws_queryRollbackStackCommand = async (
+  output: __HttpResponse,
+  context: __SerdeContext
+): Promise<RollbackStackCommandOutput> => {
+  if (output.statusCode >= 300) {
+    return deserializeAws_queryRollbackStackCommandError(output, context);
+  }
+  const data: any = await parseBody(output.body, context);
+  let contents: any = {};
+  contents = deserializeAws_queryRollbackStackOutput(data.RollbackStackResult, context);
+  const response: RollbackStackCommandOutput = {
+    $metadata: deserializeMetadata(output),
+    ...contents,
+  };
+  return Promise.resolve(response);
+};
+
+const deserializeAws_queryRollbackStackCommandError = async (
+  output: __HttpResponse,
+  context: __SerdeContext
+): Promise<RollbackStackCommandOutput> => {
+  const parsedOutput: any = {
+    ...output,
+    body: await parseBody(output.body, context),
+  };
+  let response: __SmithyException & __MetadataBearer & { [key: string]: any };
+  let errorCode: string = "UnknownError";
+  errorCode = loadQueryErrorCode(output, parsedOutput.body);
+  switch (errorCode) {
+    case "TokenAlreadyExistsException":
+    case "com.amazonaws.cloudformation#TokenAlreadyExistsException":
+      response = {
+        ...(await deserializeAws_queryTokenAlreadyExistsExceptionResponse(parsedOutput, context)),
+        name: errorCode,
+        $metadata: deserializeMetadata(output),
+      };
+      break;
+    default:
+      const parsedBody = parsedOutput.body;
+      errorCode = parsedBody.Error.code || parsedBody.Error.Code || errorCode;
+      response = {
+        ...parsedBody.Error,
+        name: `${errorCode}`,
+        message: parsedBody.Error.message || parsedBody.Error.Message || errorCode,
+        $fault: "client",
+        $metadata: deserializeMetadata(output),
+      } as any;
+  }
+  const message = response.message || response.Message || errorCode;
+  response.message = message;
+  delete response.Message;
+  return Promise.reject(Object.assign(new Error(message), response));
+};
+
 export const deserializeAws_querySetStackPolicyCommand = async (
   output: __HttpResponse,
   context: __SerdeContext
@@ -6284,6 +6357,9 @@ const serializeAws_queryExecuteChangeSetInput = (input: ExecuteChangeSetInput, c
   if (input.ClientRequestToken !== undefined && input.ClientRequestToken !== null) {
     entries["ClientRequestToken"] = input.ClientRequestToken;
   }
+  if (input.DisableRollback !== undefined && input.DisableRollback !== null) {
+    entries["DisableRollback"] = input.DisableRollback;
+  }
   return entries;
 };
 
@@ -6875,6 +6951,20 @@ const serializeAws_queryRollbackConfiguration = (input: RollbackConfiguration, c
   return entries;
 };
 
+const serializeAws_queryRollbackStackInput = (input: RollbackStackInput, context: __SerdeContext): any => {
+  const entries: any = {};
+  if (input.StackName !== undefined && input.StackName !== null) {
+    entries["StackName"] = input.StackName;
+  }
+  if (input.RoleARN !== undefined && input.RoleARN !== null) {
+    entries["RoleARN"] = input.RoleARN;
+  }
+  if (input.ClientRequestToken !== undefined && input.ClientRequestToken !== null) {
+    entries["ClientRequestToken"] = input.ClientRequestToken;
+  }
+  return entries;
+};
+
 const serializeAws_queryRollbackTrigger = (input: RollbackTrigger, context: __SerdeContext): any => {
   const entries: any = {};
   if (input.Arn !== undefined && input.Arn !== null) {
@@ -7266,6 +7356,9 @@ const serializeAws_queryUpdateStackInput = (input: UpdateStackInput, context: __
       entries[loc] = value;
     });
   }
+  if (input.DisableRollback !== undefined && input.DisableRollback !== null) {
+    entries["DisableRollback"] = input.DisableRollback;
+  }
   if (input.ClientRequestToken !== undefined && input.ClientRequestToken !== null) {
     entries["ClientRequestToken"] = input.ClientRequestToken;
   }
@@ -7469,7 +7562,7 @@ const deserializeAws_queryAccountLimit = (output: any, context: __SerdeContext):
     contents.Name = __expectString(output["Name"]);
   }
   if (output["Value"] !== undefined) {
-    contents.Value = __strictParseInt(output["Value"]) as number;
+    contents.Value = __strictParseInt32(output["Value"]) as number;
   }
   return contents;
 };
@@ -8056,7 +8149,7 @@ const deserializeAws_queryDescribeStackDriftDetectionStatusOutput = (
     contents.DetectionStatusReason = __expectString(output["DetectionStatusReason"]);
   }
   if (output["DriftedStackResourceCount"] !== undefined) {
-    contents.DriftedStackResourceCount = __strictParseInt(output["DriftedStackResourceCount"]) as number;
+    contents.DriftedStackResourceCount = __strictParseInt32(output["DriftedStackResourceCount"]) as number;
   }
   if (output["Timestamp"] !== undefined) {
     contents.Timestamp = new Date(output["Timestamp"]);
@@ -9467,7 +9560,17 @@ const deserializeAws_queryRollbackConfiguration = (output: any, context: __Serde
     );
   }
   if (output["MonitoringTimeInMinutes"] !== undefined) {
-    contents.MonitoringTimeInMinutes = __strictParseInt(output["MonitoringTimeInMinutes"]) as number;
+    contents.MonitoringTimeInMinutes = __strictParseInt32(output["MonitoringTimeInMinutes"]) as number;
+  }
+  return contents;
+};
+
+const deserializeAws_queryRollbackStackOutput = (output: any, context: __SerdeContext): RollbackStackOutput => {
+  let contents: any = {
+    StackId: undefined,
+  };
+  if (output["StackId"] !== undefined) {
+    contents.StackId = __expectString(output["StackId"]);
   }
   return contents;
 };
@@ -9609,7 +9712,7 @@ const deserializeAws_queryStack = (output: any, context: __SerdeContext): Stack 
     );
   }
   if (output["TimeoutInMinutes"] !== undefined) {
-    contents.TimeoutInMinutes = __strictParseInt(output["TimeoutInMinutes"]) as number;
+    contents.TimeoutInMinutes = __strictParseInt32(output["TimeoutInMinutes"]) as number;
   }
   if (output.Capabilities === "") {
     contents.Capabilities = [];
@@ -10299,19 +10402,19 @@ const deserializeAws_queryStackSetDriftDetectionDetails = (
     contents.LastDriftCheckTimestamp = new Date(output["LastDriftCheckTimestamp"]);
   }
   if (output["TotalStackInstancesCount"] !== undefined) {
-    contents.TotalStackInstancesCount = __strictParseInt(output["TotalStackInstancesCount"]) as number;
+    contents.TotalStackInstancesCount = __strictParseInt32(output["TotalStackInstancesCount"]) as number;
   }
   if (output["DriftedStackInstancesCount"] !== undefined) {
-    contents.DriftedStackInstancesCount = __strictParseInt(output["DriftedStackInstancesCount"]) as number;
+    contents.DriftedStackInstancesCount = __strictParseInt32(output["DriftedStackInstancesCount"]) as number;
   }
   if (output["InSyncStackInstancesCount"] !== undefined) {
-    contents.InSyncStackInstancesCount = __strictParseInt(output["InSyncStackInstancesCount"]) as number;
+    contents.InSyncStackInstancesCount = __strictParseInt32(output["InSyncStackInstancesCount"]) as number;
   }
   if (output["InProgressStackInstancesCount"] !== undefined) {
-    contents.InProgressStackInstancesCount = __strictParseInt(output["InProgressStackInstancesCount"]) as number;
+    contents.InProgressStackInstancesCount = __strictParseInt32(output["InProgressStackInstancesCount"]) as number;
   }
   if (output["FailedStackInstancesCount"] !== undefined) {
-    contents.FailedStackInstancesCount = __strictParseInt(output["FailedStackInstancesCount"]) as number;
+    contents.FailedStackInstancesCount = __strictParseInt32(output["FailedStackInstancesCount"]) as number;
   }
   return contents;
 };
@@ -10427,16 +10530,16 @@ const deserializeAws_queryStackSetOperationPreferences = (
     );
   }
   if (output["FailureToleranceCount"] !== undefined) {
-    contents.FailureToleranceCount = __strictParseInt(output["FailureToleranceCount"]) as number;
+    contents.FailureToleranceCount = __strictParseInt32(output["FailureToleranceCount"]) as number;
   }
   if (output["FailureTolerancePercentage"] !== undefined) {
-    contents.FailureTolerancePercentage = __strictParseInt(output["FailureTolerancePercentage"]) as number;
+    contents.FailureTolerancePercentage = __strictParseInt32(output["FailureTolerancePercentage"]) as number;
   }
   if (output["MaxConcurrentCount"] !== undefined) {
-    contents.MaxConcurrentCount = __strictParseInt(output["MaxConcurrentCount"]) as number;
+    contents.MaxConcurrentCount = __strictParseInt32(output["MaxConcurrentCount"]) as number;
   }
   if (output["MaxConcurrentPercentage"] !== undefined) {
-    contents.MaxConcurrentPercentage = __strictParseInt(output["MaxConcurrentPercentage"]) as number;
+    contents.MaxConcurrentPercentage = __strictParseInt32(output["MaxConcurrentPercentage"]) as number;
   }
   return contents;
 };
@@ -10677,7 +10780,7 @@ const deserializeAws_querySupportedMajorVersions = (output: any, context: __Serd
       if (entry === null) {
         return null as any;
       }
-      return __strictParseInt(entry) as number;
+      return __strictParseInt32(entry) as number;
     });
 };
 

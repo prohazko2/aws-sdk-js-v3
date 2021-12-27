@@ -99,12 +99,14 @@ import {
 } from "../models/models_0";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseFloat32 as __limitedParseFloat32,
   serializeFloat as __serializeFloat,
-  strictParseInt as __strictParseInt,
+  strictParseInt32 as __strictParseInt32,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -1404,7 +1406,7 @@ export const deserializeAws_restJson1CreateApplicationCommand = async (
     Id: undefined,
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Description !== undefined && data.Description !== null) {
     contents.Description = __expectString(data.Description);
   }
@@ -1479,7 +1481,7 @@ export const deserializeAws_restJson1CreateConfigurationProfileCommand = async (
     RetrievalRoleArn: undefined,
     Validators: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -1575,18 +1577,18 @@ export const deserializeAws_restJson1CreateDeploymentStrategyCommand = async (
     Name: undefined,
     ReplicateTo: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DeploymentDurationInMinutes !== undefined && data.DeploymentDurationInMinutes !== null) {
-    contents.DeploymentDurationInMinutes = __expectInt(data.DeploymentDurationInMinutes);
+    contents.DeploymentDurationInMinutes = __expectInt32(data.DeploymentDurationInMinutes);
   }
   if (data.Description !== undefined && data.Description !== null) {
     contents.Description = __expectString(data.Description);
   }
   if (data.FinalBakeTimeInMinutes !== undefined && data.FinalBakeTimeInMinutes !== null) {
-    contents.FinalBakeTimeInMinutes = __expectInt(data.FinalBakeTimeInMinutes);
+    contents.FinalBakeTimeInMinutes = __expectInt32(data.FinalBakeTimeInMinutes);
   }
   if (data.GrowthFactor !== undefined && data.GrowthFactor !== null) {
-    contents.GrowthFactor = __limitedParseFloat(data.GrowthFactor);
+    contents.GrowthFactor = __limitedParseFloat32(data.GrowthFactor);
   }
   if (data.GrowthType !== undefined && data.GrowthType !== null) {
     contents.GrowthType = __expectString(data.GrowthType);
@@ -1664,7 +1666,7 @@ export const deserializeAws_restJson1CreateEnvironmentCommand = async (
     Name: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -1762,7 +1764,7 @@ export const deserializeAws_restJson1CreateHostedConfigurationVersionCommand = a
     contents.ConfigurationProfileId = output.headers["configuration-profile-id"];
   }
   if (output.headers["version-number"] !== undefined) {
-    contents.VersionNumber = __strictParseInt(output.headers["version-number"]);
+    contents.VersionNumber = __strictParseInt32(output.headers["version-number"]);
   }
   if (output.headers["description"] !== undefined) {
     contents.Description = output.headers["description"];
@@ -2216,7 +2218,7 @@ export const deserializeAws_restJson1GetApplicationCommand = async (
     Id: undefined,
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Description !== undefined && data.Description !== null) {
     contents.Description = __expectString(data.Description);
   }
@@ -2376,7 +2378,7 @@ export const deserializeAws_restJson1GetConfigurationProfileCommand = async (
     RetrievalRoleArn: undefined,
     Validators: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -2482,7 +2484,7 @@ export const deserializeAws_restJson1GetDeploymentCommand = async (
     StartedAt: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -2502,10 +2504,10 @@ export const deserializeAws_restJson1GetDeploymentCommand = async (
     contents.ConfigurationVersion = __expectString(data.ConfigurationVersion);
   }
   if (data.DeploymentDurationInMinutes !== undefined && data.DeploymentDurationInMinutes !== null) {
-    contents.DeploymentDurationInMinutes = __expectInt(data.DeploymentDurationInMinutes);
+    contents.DeploymentDurationInMinutes = __expectInt32(data.DeploymentDurationInMinutes);
   }
   if (data.DeploymentNumber !== undefined && data.DeploymentNumber !== null) {
-    contents.DeploymentNumber = __expectInt(data.DeploymentNumber);
+    contents.DeploymentNumber = __expectInt32(data.DeploymentNumber);
   }
   if (data.DeploymentStrategyId !== undefined && data.DeploymentStrategyId !== null) {
     contents.DeploymentStrategyId = __expectString(data.DeploymentStrategyId);
@@ -2520,16 +2522,16 @@ export const deserializeAws_restJson1GetDeploymentCommand = async (
     contents.EventLog = deserializeAws_restJson1DeploymentEvents(data.EventLog, context);
   }
   if (data.FinalBakeTimeInMinutes !== undefined && data.FinalBakeTimeInMinutes !== null) {
-    contents.FinalBakeTimeInMinutes = __expectInt(data.FinalBakeTimeInMinutes);
+    contents.FinalBakeTimeInMinutes = __expectInt32(data.FinalBakeTimeInMinutes);
   }
   if (data.GrowthFactor !== undefined && data.GrowthFactor !== null) {
-    contents.GrowthFactor = __limitedParseFloat(data.GrowthFactor);
+    contents.GrowthFactor = __limitedParseFloat32(data.GrowthFactor);
   }
   if (data.GrowthType !== undefined && data.GrowthType !== null) {
     contents.GrowthType = __expectString(data.GrowthType);
   }
   if (data.PercentageComplete !== undefined && data.PercentageComplete !== null) {
-    contents.PercentageComplete = __limitedParseFloat(data.PercentageComplete);
+    contents.PercentageComplete = __limitedParseFloat32(data.PercentageComplete);
   }
   if (data.StartedAt !== undefined && data.StartedAt !== null) {
     contents.StartedAt = new Date(data.StartedAt);
@@ -2611,18 +2613,18 @@ export const deserializeAws_restJson1GetDeploymentStrategyCommand = async (
     Name: undefined,
     ReplicateTo: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DeploymentDurationInMinutes !== undefined && data.DeploymentDurationInMinutes !== null) {
-    contents.DeploymentDurationInMinutes = __expectInt(data.DeploymentDurationInMinutes);
+    contents.DeploymentDurationInMinutes = __expectInt32(data.DeploymentDurationInMinutes);
   }
   if (data.Description !== undefined && data.Description !== null) {
     contents.Description = __expectString(data.Description);
   }
   if (data.FinalBakeTimeInMinutes !== undefined && data.FinalBakeTimeInMinutes !== null) {
-    contents.FinalBakeTimeInMinutes = __expectInt(data.FinalBakeTimeInMinutes);
+    contents.FinalBakeTimeInMinutes = __expectInt32(data.FinalBakeTimeInMinutes);
   }
   if (data.GrowthFactor !== undefined && data.GrowthFactor !== null) {
-    contents.GrowthFactor = __limitedParseFloat(data.GrowthFactor);
+    contents.GrowthFactor = __limitedParseFloat32(data.GrowthFactor);
   }
   if (data.GrowthType !== undefined && data.GrowthType !== null) {
     contents.GrowthType = __expectString(data.GrowthType);
@@ -2708,7 +2710,7 @@ export const deserializeAws_restJson1GetEnvironmentCommand = async (
     Name: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -2806,7 +2808,7 @@ export const deserializeAws_restJson1GetHostedConfigurationVersionCommand = asyn
     contents.ConfigurationProfileId = output.headers["configuration-profile-id"];
   }
   if (output.headers["version-number"] !== undefined) {
-    contents.VersionNumber = __strictParseInt(output.headers["version-number"]);
+    contents.VersionNumber = __strictParseInt32(output.headers["version-number"]);
   }
   if (output.headers["description"] !== undefined) {
     contents.Description = output.headers["description"];
@@ -2884,7 +2886,7 @@ export const deserializeAws_restJson1ListApplicationsCommand = async (
     Items: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Items !== undefined && data.Items !== null) {
     contents.Items = deserializeAws_restJson1ApplicationList(data.Items, context);
   }
@@ -2951,7 +2953,7 @@ export const deserializeAws_restJson1ListConfigurationProfilesCommand = async (
     Items: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Items !== undefined && data.Items !== null) {
     contents.Items = deserializeAws_restJson1ConfigurationProfileSummaryList(data.Items, context);
   }
@@ -3026,7 +3028,7 @@ export const deserializeAws_restJson1ListDeploymentsCommand = async (
     Items: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Items !== undefined && data.Items !== null) {
     contents.Items = deserializeAws_restJson1DeploymentList(data.Items, context);
   }
@@ -3101,7 +3103,7 @@ export const deserializeAws_restJson1ListDeploymentStrategiesCommand = async (
     Items: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Items !== undefined && data.Items !== null) {
     contents.Items = deserializeAws_restJson1DeploymentStrategyList(data.Items, context);
   }
@@ -3168,7 +3170,7 @@ export const deserializeAws_restJson1ListEnvironmentsCommand = async (
     Items: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Items !== undefined && data.Items !== null) {
     contents.Items = deserializeAws_restJson1EnvironmentList(data.Items, context);
   }
@@ -3243,7 +3245,7 @@ export const deserializeAws_restJson1ListHostedConfigurationVersionsCommand = as
     Items: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Items !== undefined && data.Items !== null) {
     contents.Items = deserializeAws_restJson1HostedConfigurationVersionSummaryList(data.Items, context);
   }
@@ -3317,7 +3319,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1TagMap(data.Tags, context);
   }
@@ -3405,7 +3407,7 @@ export const deserializeAws_restJson1StartDeploymentCommand = async (
     StartedAt: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -3425,10 +3427,10 @@ export const deserializeAws_restJson1StartDeploymentCommand = async (
     contents.ConfigurationVersion = __expectString(data.ConfigurationVersion);
   }
   if (data.DeploymentDurationInMinutes !== undefined && data.DeploymentDurationInMinutes !== null) {
-    contents.DeploymentDurationInMinutes = __expectInt(data.DeploymentDurationInMinutes);
+    contents.DeploymentDurationInMinutes = __expectInt32(data.DeploymentDurationInMinutes);
   }
   if (data.DeploymentNumber !== undefined && data.DeploymentNumber !== null) {
-    contents.DeploymentNumber = __expectInt(data.DeploymentNumber);
+    contents.DeploymentNumber = __expectInt32(data.DeploymentNumber);
   }
   if (data.DeploymentStrategyId !== undefined && data.DeploymentStrategyId !== null) {
     contents.DeploymentStrategyId = __expectString(data.DeploymentStrategyId);
@@ -3443,16 +3445,16 @@ export const deserializeAws_restJson1StartDeploymentCommand = async (
     contents.EventLog = deserializeAws_restJson1DeploymentEvents(data.EventLog, context);
   }
   if (data.FinalBakeTimeInMinutes !== undefined && data.FinalBakeTimeInMinutes !== null) {
-    contents.FinalBakeTimeInMinutes = __expectInt(data.FinalBakeTimeInMinutes);
+    contents.FinalBakeTimeInMinutes = __expectInt32(data.FinalBakeTimeInMinutes);
   }
   if (data.GrowthFactor !== undefined && data.GrowthFactor !== null) {
-    contents.GrowthFactor = __limitedParseFloat(data.GrowthFactor);
+    contents.GrowthFactor = __limitedParseFloat32(data.GrowthFactor);
   }
   if (data.GrowthType !== undefined && data.GrowthType !== null) {
     contents.GrowthType = __expectString(data.GrowthType);
   }
   if (data.PercentageComplete !== undefined && data.PercentageComplete !== null) {
-    contents.PercentageComplete = __limitedParseFloat(data.PercentageComplete);
+    contents.PercentageComplete = __limitedParseFloat32(data.PercentageComplete);
   }
   if (data.StartedAt !== undefined && data.StartedAt !== null) {
     contents.StartedAt = new Date(data.StartedAt);
@@ -3552,7 +3554,7 @@ export const deserializeAws_restJson1StopDeploymentCommand = async (
     StartedAt: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -3572,10 +3574,10 @@ export const deserializeAws_restJson1StopDeploymentCommand = async (
     contents.ConfigurationVersion = __expectString(data.ConfigurationVersion);
   }
   if (data.DeploymentDurationInMinutes !== undefined && data.DeploymentDurationInMinutes !== null) {
-    contents.DeploymentDurationInMinutes = __expectInt(data.DeploymentDurationInMinutes);
+    contents.DeploymentDurationInMinutes = __expectInt32(data.DeploymentDurationInMinutes);
   }
   if (data.DeploymentNumber !== undefined && data.DeploymentNumber !== null) {
-    contents.DeploymentNumber = __expectInt(data.DeploymentNumber);
+    contents.DeploymentNumber = __expectInt32(data.DeploymentNumber);
   }
   if (data.DeploymentStrategyId !== undefined && data.DeploymentStrategyId !== null) {
     contents.DeploymentStrategyId = __expectString(data.DeploymentStrategyId);
@@ -3590,16 +3592,16 @@ export const deserializeAws_restJson1StopDeploymentCommand = async (
     contents.EventLog = deserializeAws_restJson1DeploymentEvents(data.EventLog, context);
   }
   if (data.FinalBakeTimeInMinutes !== undefined && data.FinalBakeTimeInMinutes !== null) {
-    contents.FinalBakeTimeInMinutes = __expectInt(data.FinalBakeTimeInMinutes);
+    contents.FinalBakeTimeInMinutes = __expectInt32(data.FinalBakeTimeInMinutes);
   }
   if (data.GrowthFactor !== undefined && data.GrowthFactor !== null) {
-    contents.GrowthFactor = __limitedParseFloat(data.GrowthFactor);
+    contents.GrowthFactor = __limitedParseFloat32(data.GrowthFactor);
   }
   if (data.GrowthType !== undefined && data.GrowthType !== null) {
     contents.GrowthType = __expectString(data.GrowthType);
   }
   if (data.PercentageComplete !== undefined && data.PercentageComplete !== null) {
-    contents.PercentageComplete = __limitedParseFloat(data.PercentageComplete);
+    contents.PercentageComplete = __limitedParseFloat32(data.PercentageComplete);
   }
   if (data.StartedAt !== undefined && data.StartedAt !== null) {
     contents.StartedAt = new Date(data.StartedAt);
@@ -3810,7 +3812,7 @@ export const deserializeAws_restJson1UpdateApplicationCommand = async (
     Id: undefined,
     Name: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Description !== undefined && data.Description !== null) {
     contents.Description = __expectString(data.Description);
   }
@@ -3893,7 +3895,7 @@ export const deserializeAws_restJson1UpdateConfigurationProfileCommand = async (
     RetrievalRoleArn: undefined,
     Validators: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -3989,18 +3991,18 @@ export const deserializeAws_restJson1UpdateDeploymentStrategyCommand = async (
     Name: undefined,
     ReplicateTo: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DeploymentDurationInMinutes !== undefined && data.DeploymentDurationInMinutes !== null) {
-    contents.DeploymentDurationInMinutes = __expectInt(data.DeploymentDurationInMinutes);
+    contents.DeploymentDurationInMinutes = __expectInt32(data.DeploymentDurationInMinutes);
   }
   if (data.Description !== undefined && data.Description !== null) {
     contents.Description = __expectString(data.Description);
   }
   if (data.FinalBakeTimeInMinutes !== undefined && data.FinalBakeTimeInMinutes !== null) {
-    contents.FinalBakeTimeInMinutes = __expectInt(data.FinalBakeTimeInMinutes);
+    contents.FinalBakeTimeInMinutes = __expectInt32(data.FinalBakeTimeInMinutes);
   }
   if (data.GrowthFactor !== undefined && data.GrowthFactor !== null) {
-    contents.GrowthFactor = __limitedParseFloat(data.GrowthFactor);
+    contents.GrowthFactor = __limitedParseFloat32(data.GrowthFactor);
   }
   if (data.GrowthType !== undefined && data.GrowthType !== null) {
     contents.GrowthType = __expectString(data.GrowthType);
@@ -4086,7 +4088,7 @@ export const deserializeAws_restJson1UpdateEnvironmentCommand = async (
     Name: undefined,
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ApplicationId !== undefined && data.ApplicationId !== null) {
     contents.ApplicationId = __expectString(data.ApplicationId);
   }
@@ -4294,7 +4296,7 @@ const deserializeAws_restJson1PayloadTooLargeExceptionResponse = async (
   };
   const data: any = parsedOutput.body;
   if (data.Limit !== undefined && data.Limit !== null) {
-    contents.Limit = __limitedParseFloat(data.Limit);
+    contents.Limit = __limitedParseFloat32(data.Limit);
   }
   if (data.Measure !== undefined && data.Measure !== null) {
     contents.Measure = __expectString(data.Measure);
@@ -4303,7 +4305,7 @@ const deserializeAws_restJson1PayloadTooLargeExceptionResponse = async (
     contents.Message = __expectString(data.Message);
   }
   if (data.Size !== undefined && data.Size !== null) {
-    contents.Size = __limitedParseFloat(data.Size);
+    contents.Size = __limitedParseFloat32(data.Size);
   }
   return contents;
 };
@@ -4476,10 +4478,10 @@ const deserializeAws_restJson1DeploymentList = (output: any, context: __SerdeCon
 
 const deserializeAws_restJson1DeploymentStrategy = (output: any, context: __SerdeContext): DeploymentStrategy => {
   return {
-    DeploymentDurationInMinutes: __expectInt(output.DeploymentDurationInMinutes),
+    DeploymentDurationInMinutes: __expectInt32(output.DeploymentDurationInMinutes),
     Description: __expectString(output.Description),
-    FinalBakeTimeInMinutes: __expectInt(output.FinalBakeTimeInMinutes),
-    GrowthFactor: __limitedParseFloat(output.GrowthFactor),
+    FinalBakeTimeInMinutes: __expectInt32(output.FinalBakeTimeInMinutes),
+    GrowthFactor: __limitedParseFloat32(output.GrowthFactor),
     GrowthType: __expectString(output.GrowthType),
     Id: __expectString(output.Id),
     Name: __expectString(output.Name),
@@ -4504,12 +4506,12 @@ const deserializeAws_restJson1DeploymentSummary = (output: any, context: __Serde
       output.CompletedAt !== undefined && output.CompletedAt !== null ? new Date(output.CompletedAt) : undefined,
     ConfigurationName: __expectString(output.ConfigurationName),
     ConfigurationVersion: __expectString(output.ConfigurationVersion),
-    DeploymentDurationInMinutes: __expectInt(output.DeploymentDurationInMinutes),
-    DeploymentNumber: __expectInt(output.DeploymentNumber),
-    FinalBakeTimeInMinutes: __expectInt(output.FinalBakeTimeInMinutes),
-    GrowthFactor: __limitedParseFloat(output.GrowthFactor),
+    DeploymentDurationInMinutes: __expectInt32(output.DeploymentDurationInMinutes),
+    DeploymentNumber: __expectInt32(output.DeploymentNumber),
+    FinalBakeTimeInMinutes: __expectInt32(output.FinalBakeTimeInMinutes),
+    GrowthFactor: __limitedParseFloat32(output.GrowthFactor),
     GrowthType: __expectString(output.GrowthType),
-    PercentageComplete: __limitedParseFloat(output.PercentageComplete),
+    PercentageComplete: __limitedParseFloat32(output.PercentageComplete),
     StartedAt: output.StartedAt !== undefined && output.StartedAt !== null ? new Date(output.StartedAt) : undefined,
     State: __expectString(output.State),
   } as any;
@@ -4549,7 +4551,7 @@ const deserializeAws_restJson1HostedConfigurationVersionSummary = (
     ConfigurationProfileId: __expectString(output.ConfigurationProfileId),
     ContentType: __expectString(output.ContentType),
     Description: __expectString(output.Description),
-    VersionNumber: __expectInt(output.VersionNumber),
+    VersionNumber: __expectInt32(output.VersionNumber),
   } as any;
 };
 

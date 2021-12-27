@@ -160,14 +160,20 @@ import {
 } from "@aws-sdk/protocol-http";
 import {
   dateToUtcString as __dateToUtcString,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
   getArrayIfSingleItem as __getArrayIfSingleItem,
   getValueFromTextNode as __getValueFromTextNode,
   parseBoolean as __parseBoolean,
   splitEvery as __splitEvery,
+  strictParseByte as __strictParseByte,
+  strictParseDouble as __strictParseDouble,
   strictParseFloat as __strictParseFloat,
-  strictParseInt as __strictParseInt,
+  strictParseInt32 as __strictParseInt32,
+  strictParseLong as __strictParseLong,
+  strictParseShort as __strictParseShort,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -2262,7 +2268,7 @@ export const deserializeAws_restXmlBodyWithXmlNameCommand = async (
     $metadata: deserializeMetadata(output),
     nested: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["nested"] !== undefined) {
     contents.nested = deserializeAws_restXmlPayloadWithXmlName(data["nested"], context);
   }
@@ -2567,7 +2573,7 @@ export const deserializeAws_restXmlFlattenedXmlMapCommand = async (
     $metadata: deserializeMetadata(output),
     myMap: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.myMap === "") {
     contents.myMap = {};
   }
@@ -2617,7 +2623,7 @@ export const deserializeAws_restXmlFlattenedXmlMapWithXmlNameCommand = async (
     $metadata: deserializeMetadata(output),
     myMap: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.KVP === "") {
     contents.myMap = {};
   }
@@ -2670,7 +2676,7 @@ export const deserializeAws_restXmlFlattenedXmlMapWithXmlNamespaceCommand = asyn
     $metadata: deserializeMetadata(output),
     myMap: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.KVP === "") {
     contents.myMap = {};
   }
@@ -2884,7 +2890,7 @@ export const deserializeAws_restXmlHttpPayloadWithMemberXmlNameCommand = async (
     $metadata: deserializeMetadata(output),
     nested: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: object | undefined = __expectObject(await parseBody(output.body, context));
   contents.nested = deserializeAws_restXmlPayloadWithXmlName(data, context);
   return Promise.resolve(contents);
 };
@@ -2929,7 +2935,7 @@ export const deserializeAws_restXmlHttpPayloadWithStructureCommand = async (
     $metadata: deserializeMetadata(output),
     nested: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: object | undefined = __expectObject(await parseBody(output.body, context));
   contents.nested = deserializeAws_restXmlNestedPayload(data, context);
   return Promise.resolve(contents);
 };
@@ -2974,7 +2980,7 @@ export const deserializeAws_restXmlHttpPayloadWithXmlNameCommand = async (
     $metadata: deserializeMetadata(output),
     nested: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: object | undefined = __expectObject(await parseBody(output.body, context));
   contents.nested = deserializeAws_restXmlPayloadWithXmlName(data, context);
   return Promise.resolve(contents);
 };
@@ -3019,7 +3025,7 @@ export const deserializeAws_restXmlHttpPayloadWithXmlNamespaceCommand = async (
     $metadata: deserializeMetadata(output),
     nested: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: object | undefined = __expectObject(await parseBody(output.body, context));
   contents.nested = deserializeAws_restXmlPayloadWithXmlNamespace(data, context);
   return Promise.resolve(contents);
 };
@@ -3064,7 +3070,7 @@ export const deserializeAws_restXmlHttpPayloadWithXmlNamespaceAndPrefixCommand =
     $metadata: deserializeMetadata(output),
     nested: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: object | undefined = __expectObject(await parseBody(output.body, context));
   contents.nested = deserializeAws_restXmlPayloadWithXmlNamespaceAndPrefix(data, context);
   return Promise.resolve(contents);
 };
@@ -3384,7 +3390,7 @@ export const deserializeAws_restXmlIgnoreQueryParamsInResponseCommand = async (
     $metadata: deserializeMetadata(output),
     baz: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["baz"] !== undefined) {
     contents.baz = __expectString(data["baz"]);
   }
@@ -3450,22 +3456,22 @@ export const deserializeAws_restXmlInputAndOutputWithHeadersCommand = async (
     contents.headerString = output.headers["x-string"];
   }
   if (output.headers["x-byte"] !== undefined) {
-    contents.headerByte = __strictParseInt(output.headers["x-byte"]);
+    contents.headerByte = __strictParseByte(output.headers["x-byte"]);
   }
   if (output.headers["x-short"] !== undefined) {
-    contents.headerShort = __strictParseInt(output.headers["x-short"]);
+    contents.headerShort = __strictParseShort(output.headers["x-short"]);
   }
   if (output.headers["x-integer"] !== undefined) {
-    contents.headerInteger = __strictParseInt(output.headers["x-integer"]);
+    contents.headerInteger = __strictParseInt32(output.headers["x-integer"]);
   }
   if (output.headers["x-long"] !== undefined) {
-    contents.headerLong = __strictParseInt(output.headers["x-long"]);
+    contents.headerLong = __strictParseLong(output.headers["x-long"]);
   }
   if (output.headers["x-float"] !== undefined) {
     contents.headerFloat = __strictParseFloat(output.headers["x-float"]);
   }
   if (output.headers["x-double"] !== undefined) {
-    contents.headerDouble = __strictParseFloat(output.headers["x-double"]);
+    contents.headerDouble = __strictParseDouble(output.headers["x-double"]);
   }
   if (output.headers["x-boolean1"] !== undefined) {
     contents.headerTrueBool = __parseBoolean(output.headers["x-boolean1"]);
@@ -3482,7 +3488,7 @@ export const deserializeAws_restXmlInputAndOutputWithHeadersCommand = async (
   if (output.headers["x-integerlist"] !== undefined) {
     contents.headerIntegerList = (output.headers["x-integerlist"] || "")
       .split(",")
-      .map((_entry) => __strictParseInt(_entry.trim()) as any);
+      .map((_entry) => __strictParseInt32(_entry.trim()) as any);
   }
   if (output.headers["x-booleanlist"] !== undefined) {
     contents.headerBooleanList = (output.headers["x-booleanlist"] || "")
@@ -3545,7 +3551,7 @@ export const deserializeAws_restXmlNestedXmlMapsCommand = async (
     flatNestedMap: undefined,
     nestedMap: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.flatNestedMap === "") {
     contents.flatNestedMap = {};
   }
@@ -3969,7 +3975,7 @@ export const deserializeAws_restXmlRecursiveShapesCommand = async (
     $metadata: deserializeMetadata(output),
     nested: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["nested"] !== undefined) {
     contents.nested = deserializeAws_restXmlRecursiveShapesInputOutputNested1(data["nested"], context);
   }
@@ -4028,9 +4034,9 @@ export const deserializeAws_restXmlSimpleScalarPropertiesCommand = async (
   if (output.headers["x-foo"] !== undefined) {
     contents.foo = output.headers["x-foo"];
   }
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["byteValue"] !== undefined) {
-    contents.byteValue = __strictParseInt(data["byteValue"]) as number;
+    contents.byteValue = __strictParseByte(data["byteValue"]) as number;
   }
   if (data["DoubleDribble"] !== undefined) {
     contents.doubleValue = __strictParseFloat(data["DoubleDribble"]) as number;
@@ -4042,13 +4048,13 @@ export const deserializeAws_restXmlSimpleScalarPropertiesCommand = async (
     contents.floatValue = __strictParseFloat(data["floatValue"]) as number;
   }
   if (data["integerValue"] !== undefined) {
-    contents.integerValue = __strictParseInt(data["integerValue"]) as number;
+    contents.integerValue = __strictParseInt32(data["integerValue"]) as number;
   }
   if (data["longValue"] !== undefined) {
-    contents.longValue = __strictParseInt(data["longValue"]) as number;
+    contents.longValue = __strictParseLong(data["longValue"]) as number;
   }
   if (data["shortValue"] !== undefined) {
-    contents.shortValue = __strictParseInt(data["shortValue"]) as number;
+    contents.shortValue = __strictParseShort(data["shortValue"]) as number;
   }
   if (data["stringValue"] !== undefined) {
     contents.stringValue = __expectString(data["stringValue"]);
@@ -4171,7 +4177,7 @@ export const deserializeAws_restXmlXmlAttributesCommand = async (
     attr: undefined,
     foo: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["test"] !== undefined) {
     contents.attr = __expectString(data["test"]);
   }
@@ -4221,7 +4227,7 @@ export const deserializeAws_restXmlXmlAttributesOnPayloadCommand = async (
     $metadata: deserializeMetadata(output),
     payload: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: object | undefined = __expectObject(await parseBody(output.body, context));
   contents.payload = deserializeAws_restXmlXmlAttributesInputOutput(data, context);
   return Promise.resolve(contents);
 };
@@ -4266,7 +4272,7 @@ export const deserializeAws_restXmlXmlBlobsCommand = async (
     $metadata: deserializeMetadata(output),
     data: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["data"] !== undefined) {
     contents.data = context.base64Decoder(data["data"]);
   }
@@ -4313,7 +4319,7 @@ export const deserializeAws_restXmlXmlEmptyBlobsCommand = async (
     $metadata: deserializeMetadata(output),
     data: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["data"] !== undefined) {
     contents.data = context.base64Decoder(data["data"]);
   }
@@ -4373,7 +4379,7 @@ export const deserializeAws_restXmlXmlEmptyListsCommand = async (
     structureList: undefined,
     timestampList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.booleanList === "") {
     contents.booleanList = [];
   }
@@ -4537,7 +4543,7 @@ export const deserializeAws_restXmlXmlEmptyMapsCommand = async (
     $metadata: deserializeMetadata(output),
     myMap: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.myMap === "") {
     contents.myMap = {};
   }
@@ -4590,7 +4596,7 @@ export const deserializeAws_restXmlXmlEmptyStringsCommand = async (
     $metadata: deserializeMetadata(output),
     emptyString: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["emptyString"] !== undefined) {
     contents.emptyString = __expectString(data["emptyString"]);
   }
@@ -4642,7 +4648,7 @@ export const deserializeAws_restXmlXmlEnumsCommand = async (
     fooEnumMap: undefined,
     fooEnumSet: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["fooEnum1"] !== undefined) {
     contents.fooEnum1 = __expectString(data["fooEnum1"]);
   }
@@ -4735,7 +4741,7 @@ export const deserializeAws_restXmlXmlListsCommand = async (
     structureList: undefined,
     timestampList: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.booleanList === "") {
     contents.booleanList = [];
   }
@@ -4899,7 +4905,7 @@ export const deserializeAws_restXmlXmlMapsCommand = async (
     $metadata: deserializeMetadata(output),
     myMap: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.myMap === "") {
     contents.myMap = {};
   }
@@ -4952,7 +4958,7 @@ export const deserializeAws_restXmlXmlMapsXmlNameCommand = async (
     $metadata: deserializeMetadata(output),
     myMap: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.myMap === "") {
     contents.myMap = {};
   }
@@ -5005,7 +5011,7 @@ export const deserializeAws_restXmlXmlNamespacesCommand = async (
     $metadata: deserializeMetadata(output),
     nested: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["nested"] !== undefined) {
     contents.nested = deserializeAws_restXmlXmlNamespaceNested(data["nested"], context);
   }
@@ -5055,7 +5061,7 @@ export const deserializeAws_restXmlXmlTimestampsCommand = async (
     httpDate: undefined,
     normal: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["dateTime"] !== undefined) {
     contents.dateTime = new Date(data["dateTime"]);
   }
@@ -5111,7 +5117,7 @@ export const deserializeAws_restXmlXmlUnionsCommand = async (
     $metadata: deserializeMetadata(output),
     unionValue: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data["unionValue"] !== undefined) {
     contents.unionValue = deserializeAws_restXmlXmlUnionShape(data["unionValue"], context);
   }
@@ -5958,16 +5964,16 @@ const deserializeAws_restXmlXmlNestedUnionStruct = (output: any, context: __Serd
     contents.booleanValue = __parseBoolean(output["booleanValue"]);
   }
   if (output["byteValue"] !== undefined) {
-    contents.byteValue = __strictParseInt(output["byteValue"]) as number;
+    contents.byteValue = __strictParseByte(output["byteValue"]) as number;
   }
   if (output["shortValue"] !== undefined) {
-    contents.shortValue = __strictParseInt(output["shortValue"]) as number;
+    contents.shortValue = __strictParseShort(output["shortValue"]) as number;
   }
   if (output["integerValue"] !== undefined) {
-    contents.integerValue = __strictParseInt(output["integerValue"]) as number;
+    contents.integerValue = __strictParseInt32(output["integerValue"]) as number;
   }
   if (output["longValue"] !== undefined) {
-    contents.longValue = __strictParseInt(output["longValue"]) as number;
+    contents.longValue = __strictParseLong(output["longValue"]) as number;
   }
   if (output["floatValue"] !== undefined) {
     contents.floatValue = __strictParseFloat(output["floatValue"]) as number;
@@ -5991,22 +5997,22 @@ const deserializeAws_restXmlXmlUnionShape = (output: any, context: __SerdeContex
   }
   if (output["byteValue"] !== undefined) {
     return {
-      byteValue: __strictParseInt(output["byteValue"]) as number,
+      byteValue: __strictParseByte(output["byteValue"]) as number,
     };
   }
   if (output["shortValue"] !== undefined) {
     return {
-      shortValue: __strictParseInt(output["shortValue"]) as number,
+      shortValue: __strictParseShort(output["shortValue"]) as number,
     };
   }
   if (output["integerValue"] !== undefined) {
     return {
-      integerValue: __strictParseInt(output["integerValue"]) as number,
+      integerValue: __strictParseInt32(output["integerValue"]) as number,
     };
   }
   if (output["longValue"] !== undefined) {
     return {
-      longValue: __strictParseInt(output["longValue"]) as number,
+      longValue: __strictParseLong(output["longValue"]) as number,
     };
   }
   if (output["floatValue"] !== undefined) {
@@ -6097,7 +6103,7 @@ const deserializeAws_restXmlIntegerList = (output: any, context: __SerdeContext)
       if (entry === null) {
         return null as any;
       }
-      return __strictParseInt(entry) as number;
+      return __strictParseInt32(entry) as number;
     });
 };
 

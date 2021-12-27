@@ -40,10 +40,12 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -473,12 +475,12 @@ export const deserializeAws_restJson1ClaimDevicesByClaimCodeCommand = async (
     ClaimCode: undefined,
     Total: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.claimCode !== undefined && data.claimCode !== null) {
     contents.ClaimCode = __expectString(data.claimCode);
   }
   if (data.total !== undefined && data.total !== null) {
-    contents.Total = __expectInt(data.total);
+    contents.Total = __expectInt32(data.total);
   }
   return Promise.resolve(contents);
 };
@@ -547,7 +549,7 @@ export const deserializeAws_restJson1DescribeDeviceCommand = async (
     $metadata: deserializeMetadata(output),
     DeviceDescription: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.deviceDescription !== undefined && data.deviceDescription !== null) {
     contents.DeviceDescription = deserializeAws_restJson1DeviceDescription(data.deviceDescription, context);
   }
@@ -618,7 +620,7 @@ export const deserializeAws_restJson1FinalizeDeviceClaimCommand = async (
     $metadata: deserializeMetadata(output),
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.state !== undefined && data.state !== null) {
     contents.State = __expectString(data.state);
   }
@@ -705,7 +707,7 @@ export const deserializeAws_restJson1GetDeviceMethodsCommand = async (
     $metadata: deserializeMetadata(output),
     DeviceMethods: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.deviceMethods !== undefined && data.deviceMethods !== null) {
     contents.DeviceMethods = deserializeAws_restJson1__listOfDeviceMethod(data.deviceMethods, context);
   }
@@ -776,7 +778,7 @@ export const deserializeAws_restJson1InitiateDeviceClaimCommand = async (
     $metadata: deserializeMetadata(output),
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.state !== undefined && data.state !== null) {
     contents.State = __expectString(data.state);
   }
@@ -855,7 +857,7 @@ export const deserializeAws_restJson1InvokeDeviceMethodCommand = async (
     $metadata: deserializeMetadata(output),
     DeviceMethodResponse: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.deviceMethodResponse !== undefined && data.deviceMethodResponse !== null) {
     contents.DeviceMethodResponse = __expectString(data.deviceMethodResponse);
   }
@@ -951,7 +953,7 @@ export const deserializeAws_restJson1ListDeviceEventsCommand = async (
     Events: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.events !== undefined && data.events !== null) {
     contents.Events = deserializeAws_restJson1__listOfDeviceEvent(data.events, context);
   }
@@ -1034,7 +1036,7 @@ export const deserializeAws_restJson1ListDevicesCommand = async (
     Devices: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.devices !== undefined && data.devices !== null) {
     contents.Devices = deserializeAws_restJson1__listOfDeviceDescription(data.devices, context);
   }
@@ -1108,7 +1110,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1__mapOf__string(data.tags, context);
   }
@@ -1238,7 +1240,7 @@ export const deserializeAws_restJson1UnclaimDeviceCommand = async (
     $metadata: deserializeMetadata(output),
     State: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.state !== undefined && data.state !== null) {
     contents.State = __expectString(data.state);
   }
@@ -1682,7 +1684,7 @@ const deserializeAws_restJson1DeviceDescription = (output: any, context: __Serde
         : undefined,
     DeviceId: __expectString(output.deviceId),
     Enabled: __expectBoolean(output.enabled),
-    RemainingLife: __limitedParseFloat(output.remainingLife),
+    RemainingLife: __limitedParseDouble(output.remainingLife),
     Tags:
       output.tags !== undefined && output.tags !== null
         ? deserializeAws_restJson1__mapOf__string(output.tags, context)

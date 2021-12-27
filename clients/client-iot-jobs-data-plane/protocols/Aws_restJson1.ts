@@ -25,7 +25,9 @@ import {
 } from "../models/models_0";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
-  expectInt as __expectInt,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "@aws-sdk/smithy-client";
@@ -215,7 +217,7 @@ export const deserializeAws_restJson1DescribeJobExecutionCommand = async (
     $metadata: deserializeMetadata(output),
     execution: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.execution !== undefined && data.execution !== null) {
     contents.execution = deserializeAws_restJson1JobExecution(data.execution, context);
   }
@@ -311,7 +313,7 @@ export const deserializeAws_restJson1GetPendingJobExecutionsCommand = async (
     inProgressJobs: undefined,
     queuedJobs: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.inProgressJobs !== undefined && data.inProgressJobs !== null) {
     contents.inProgressJobs = deserializeAws_restJson1JobExecutionSummaryList(data.inProgressJobs, context);
   }
@@ -401,7 +403,7 @@ export const deserializeAws_restJson1StartNextPendingJobExecutionCommand = async
     $metadata: deserializeMetadata(output),
     execution: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.execution !== undefined && data.execution !== null) {
     contents.execution = deserializeAws_restJson1JobExecution(data.execution, context);
   }
@@ -489,7 +491,7 @@ export const deserializeAws_restJson1UpdateJobExecutionCommand = async (
     executionState: undefined,
     jobDocument: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.executionState !== undefined && data.executionState !== null) {
     contents.executionState = deserializeAws_restJson1JobExecutionState(data.executionState, context);
   }
@@ -725,20 +727,20 @@ const deserializeAws_restJson1DetailsMap = (output: any, context: __SerdeContext
 
 const deserializeAws_restJson1JobExecution = (output: any, context: __SerdeContext): JobExecution => {
   return {
-    approximateSecondsBeforeTimedOut: __expectInt(output.approximateSecondsBeforeTimedOut),
-    executionNumber: __expectInt(output.executionNumber),
+    approximateSecondsBeforeTimedOut: __expectLong(output.approximateSecondsBeforeTimedOut),
+    executionNumber: __expectLong(output.executionNumber),
     jobDocument: __expectString(output.jobDocument),
     jobId: __expectString(output.jobId),
-    lastUpdatedAt: __expectInt(output.lastUpdatedAt),
-    queuedAt: __expectInt(output.queuedAt),
-    startedAt: __expectInt(output.startedAt),
+    lastUpdatedAt: __expectLong(output.lastUpdatedAt),
+    queuedAt: __expectLong(output.queuedAt),
+    startedAt: __expectLong(output.startedAt),
     status: __expectString(output.status),
     statusDetails:
       output.statusDetails !== undefined && output.statusDetails !== null
         ? deserializeAws_restJson1DetailsMap(output.statusDetails, context)
         : undefined,
     thingName: __expectString(output.thingName),
-    versionNumber: __expectInt(output.versionNumber),
+    versionNumber: __expectLong(output.versionNumber),
   } as any;
 };
 
@@ -749,18 +751,18 @@ const deserializeAws_restJson1JobExecutionState = (output: any, context: __Serde
       output.statusDetails !== undefined && output.statusDetails !== null
         ? deserializeAws_restJson1DetailsMap(output.statusDetails, context)
         : undefined,
-    versionNumber: __expectInt(output.versionNumber),
+    versionNumber: __expectLong(output.versionNumber),
   } as any;
 };
 
 const deserializeAws_restJson1JobExecutionSummary = (output: any, context: __SerdeContext): JobExecutionSummary => {
   return {
-    executionNumber: __expectInt(output.executionNumber),
+    executionNumber: __expectLong(output.executionNumber),
     jobId: __expectString(output.jobId),
-    lastUpdatedAt: __expectInt(output.lastUpdatedAt),
-    queuedAt: __expectInt(output.queuedAt),
-    startedAt: __expectInt(output.startedAt),
-    versionNumber: __expectInt(output.versionNumber),
+    lastUpdatedAt: __expectLong(output.lastUpdatedAt),
+    queuedAt: __expectLong(output.queuedAt),
+    startedAt: __expectLong(output.startedAt),
+    versionNumber: __expectLong(output.versionNumber),
   } as any;
 };
 

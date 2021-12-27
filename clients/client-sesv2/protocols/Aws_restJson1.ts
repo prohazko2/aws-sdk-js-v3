@@ -334,10 +334,13 @@ import {
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
   expectBoolean as __expectBoolean,
-  expectInt as __expectInt,
+  expectInt32 as __expectInt32,
+  expectLong as __expectLong,
+  expectNonNull as __expectNonNull,
+  expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  limitedParseFloat as __limitedParseFloat,
+  limitedParseDouble as __limitedParseDouble,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -3512,7 +3515,7 @@ export const deserializeAws_restJson1CreateDeliverabilityTestReportCommand = asy
     DeliverabilityTestStatus: undefined,
     ReportId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DeliverabilityTestStatus !== undefined && data.DeliverabilityTestStatus !== null) {
     contents.DeliverabilityTestStatus = __expectString(data.DeliverabilityTestStatus);
   }
@@ -3636,7 +3639,7 @@ export const deserializeAws_restJson1CreateEmailIdentityCommand = async (
     IdentityType: undefined,
     VerifiedForSendingStatus: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DkimAttributes !== undefined && data.DkimAttributes !== null) {
     contents.DkimAttributes = deserializeAws_restJson1DkimAttributes(data.DkimAttributes, context);
   }
@@ -3895,7 +3898,7 @@ export const deserializeAws_restJson1CreateImportJobCommand = async (
     $metadata: deserializeMetadata(output),
     JobId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.JobId !== undefined && data.JobId !== null) {
     contents.JobId = __expectString(data.JobId);
   }
@@ -4674,7 +4677,7 @@ export const deserializeAws_restJson1GetAccountCommand = async (
     SendingEnabled: undefined,
     SuppressionAttributes: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DedicatedIpAutoWarmupEnabled !== undefined && data.DedicatedIpAutoWarmupEnabled !== null) {
     contents.DedicatedIpAutoWarmupEnabled = __expectBoolean(data.DedicatedIpAutoWarmupEnabled);
   }
@@ -4755,7 +4758,7 @@ export const deserializeAws_restJson1GetBlacklistReportsCommand = async (
     $metadata: deserializeMetadata(output),
     BlacklistReport: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BlacklistReport !== undefined && data.BlacklistReport !== null) {
     contents.BlacklistReport = deserializeAws_restJson1BlacklistReport(data.BlacklistReport, context);
   }
@@ -4832,7 +4835,7 @@ export const deserializeAws_restJson1GetConfigurationSetCommand = async (
     Tags: undefined,
     TrackingOptions: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ConfigurationSetName !== undefined && data.ConfigurationSetName !== null) {
     contents.ConfigurationSetName = __expectString(data.ConfigurationSetName);
   }
@@ -4921,7 +4924,7 @@ export const deserializeAws_restJson1GetConfigurationSetEventDestinationsCommand
     $metadata: deserializeMetadata(output),
     EventDestinations: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.EventDestinations !== undefined && data.EventDestinations !== null) {
     contents.EventDestinations = deserializeAws_restJson1EventDestinations(data.EventDestinations, context);
   }
@@ -4999,7 +5002,7 @@ export const deserializeAws_restJson1GetContactCommand = async (
     TopicPreferences: undefined,
     UnsubscribeAll: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AttributesData !== undefined && data.AttributesData !== null) {
     contents.AttributesData = __expectString(data.AttributesData);
   }
@@ -5099,7 +5102,7 @@ export const deserializeAws_restJson1GetContactListCommand = async (
     Tags: undefined,
     Topics: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ContactListName !== undefined && data.ContactListName !== null) {
     contents.ContactListName = __expectString(data.ContactListName);
   }
@@ -5190,7 +5193,7 @@ export const deserializeAws_restJson1GetCustomVerificationEmailTemplateCommand =
     TemplateName: undefined,
     TemplateSubject: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.FailureRedirectionURL !== undefined && data.FailureRedirectionURL !== null) {
     contents.FailureRedirectionURL = __expectString(data.FailureRedirectionURL);
   }
@@ -5276,7 +5279,7 @@ export const deserializeAws_restJson1GetDedicatedIpCommand = async (
     $metadata: deserializeMetadata(output),
     DedicatedIp: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DedicatedIp !== undefined && data.DedicatedIp !== null) {
     contents.DedicatedIp = deserializeAws_restJson1DedicatedIp(data.DedicatedIp, context);
   }
@@ -5348,7 +5351,7 @@ export const deserializeAws_restJson1GetDedicatedIpsCommand = async (
     DedicatedIps: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DedicatedIps !== undefined && data.DedicatedIps !== null) {
     contents.DedicatedIps = deserializeAws_restJson1DedicatedIpList(data.DedicatedIps, context);
   }
@@ -5426,7 +5429,7 @@ export const deserializeAws_restJson1GetDeliverabilityDashboardOptionsCommand = 
     PendingExpirationSubscribedDomains: undefined,
     SubscriptionExpiryDate: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.AccountStatus !== undefined && data.AccountStatus !== null) {
     contents.AccountStatus = __expectString(data.AccountStatus);
   }
@@ -5519,7 +5522,7 @@ export const deserializeAws_restJson1GetDeliverabilityTestReportCommand = async 
     OverallPlacement: undefined,
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DeliverabilityTestReport !== undefined && data.DeliverabilityTestReport !== null) {
     contents.DeliverabilityTestReport = deserializeAws_restJson1DeliverabilityTestReport(
       data.DeliverabilityTestReport,
@@ -5605,7 +5608,7 @@ export const deserializeAws_restJson1GetDomainDeliverabilityCampaignCommand = as
     $metadata: deserializeMetadata(output),
     DomainDeliverabilityCampaign: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DomainDeliverabilityCampaign !== undefined && data.DomainDeliverabilityCampaign !== null) {
     contents.DomainDeliverabilityCampaign = deserializeAws_restJson1DomainDeliverabilityCampaign(
       data.DomainDeliverabilityCampaign,
@@ -5680,7 +5683,7 @@ export const deserializeAws_restJson1GetDomainStatisticsReportCommand = async (
     DailyVolumes: undefined,
     OverallVolume: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DailyVolumes !== undefined && data.DailyVolumes !== null) {
     contents.DailyVolumes = deserializeAws_restJson1DailyVolumes(data.DailyVolumes, context);
   }
@@ -5761,7 +5764,7 @@ export const deserializeAws_restJson1GetEmailIdentityCommand = async (
     Tags: undefined,
     VerifiedForSendingStatus: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ConfigurationSetName !== undefined && data.ConfigurationSetName !== null) {
     contents.ConfigurationSetName = __expectString(data.ConfigurationSetName);
   }
@@ -5853,7 +5856,7 @@ export const deserializeAws_restJson1GetEmailIdentityPoliciesCommand = async (
     $metadata: deserializeMetadata(output),
     Policies: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Policies !== undefined && data.Policies !== null) {
     contents.Policies = deserializeAws_restJson1PolicyMap(data.Policies, context);
   }
@@ -5925,7 +5928,7 @@ export const deserializeAws_restJson1GetEmailTemplateCommand = async (
     TemplateContent: undefined,
     TemplateName: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.TemplateContent !== undefined && data.TemplateContent !== null) {
     contents.TemplateContent = deserializeAws_restJson1EmailTemplateContent(data.TemplateContent, context);
   }
@@ -6007,7 +6010,7 @@ export const deserializeAws_restJson1GetImportJobCommand = async (
     JobStatus: undefined,
     ProcessedRecordsCount: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CompletedTimestamp !== undefined && data.CompletedTimestamp !== null) {
     contents.CompletedTimestamp = new Date(Math.round(data.CompletedTimestamp * 1000));
   }
@@ -6015,7 +6018,7 @@ export const deserializeAws_restJson1GetImportJobCommand = async (
     contents.CreatedTimestamp = new Date(Math.round(data.CreatedTimestamp * 1000));
   }
   if (data.FailedRecordsCount !== undefined && data.FailedRecordsCount !== null) {
-    contents.FailedRecordsCount = __expectInt(data.FailedRecordsCount);
+    contents.FailedRecordsCount = __expectInt32(data.FailedRecordsCount);
   }
   if (data.FailureInfo !== undefined && data.FailureInfo !== null) {
     contents.FailureInfo = deserializeAws_restJson1FailureInfo(data.FailureInfo, context);
@@ -6033,7 +6036,7 @@ export const deserializeAws_restJson1GetImportJobCommand = async (
     contents.JobStatus = __expectString(data.JobStatus);
   }
   if (data.ProcessedRecordsCount !== undefined && data.ProcessedRecordsCount !== null) {
-    contents.ProcessedRecordsCount = __expectInt(data.ProcessedRecordsCount);
+    contents.ProcessedRecordsCount = __expectInt32(data.ProcessedRecordsCount);
   }
   return Promise.resolve(contents);
 };
@@ -6102,7 +6105,7 @@ export const deserializeAws_restJson1GetSuppressedDestinationCommand = async (
     $metadata: deserializeMetadata(output),
     SuppressedDestination: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.SuppressedDestination !== undefined && data.SuppressedDestination !== null) {
     contents.SuppressedDestination = deserializeAws_restJson1SuppressedDestination(data.SuppressedDestination, context);
   }
@@ -6174,7 +6177,7 @@ export const deserializeAws_restJson1ListConfigurationSetsCommand = async (
     ConfigurationSets: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ConfigurationSets !== undefined && data.ConfigurationSets !== null) {
     contents.ConfigurationSets = deserializeAws_restJson1ConfigurationSetNameList(data.ConfigurationSets, context);
   }
@@ -6241,7 +6244,7 @@ export const deserializeAws_restJson1ListContactListsCommand = async (
     ContactLists: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ContactLists !== undefined && data.ContactLists !== null) {
     contents.ContactLists = deserializeAws_restJson1ListOfContactLists(data.ContactLists, context);
   }
@@ -6308,7 +6311,7 @@ export const deserializeAws_restJson1ListContactsCommand = async (
     Contacts: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Contacts !== undefined && data.Contacts !== null) {
     contents.Contacts = deserializeAws_restJson1ListOfContacts(data.Contacts, context);
   }
@@ -6383,7 +6386,7 @@ export const deserializeAws_restJson1ListCustomVerificationEmailTemplatesCommand
     CustomVerificationEmailTemplates: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.CustomVerificationEmailTemplates !== undefined && data.CustomVerificationEmailTemplates !== null) {
     contents.CustomVerificationEmailTemplates = deserializeAws_restJson1CustomVerificationEmailTemplatesList(
       data.CustomVerificationEmailTemplates,
@@ -6453,7 +6456,7 @@ export const deserializeAws_restJson1ListDedicatedIpPoolsCommand = async (
     DedicatedIpPools: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DedicatedIpPools !== undefined && data.DedicatedIpPools !== null) {
     contents.DedicatedIpPools = deserializeAws_restJson1ListOfDedicatedIpPools(data.DedicatedIpPools, context);
   }
@@ -6520,7 +6523,7 @@ export const deserializeAws_restJson1ListDeliverabilityTestReportsCommand = asyn
     DeliverabilityTestReports: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DeliverabilityTestReports !== undefined && data.DeliverabilityTestReports !== null) {
     contents.DeliverabilityTestReports = deserializeAws_restJson1DeliverabilityTestReports(
       data.DeliverabilityTestReports,
@@ -6598,7 +6601,7 @@ export const deserializeAws_restJson1ListDomainDeliverabilityCampaignsCommand = 
     DomainDeliverabilityCampaigns: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DomainDeliverabilityCampaigns !== undefined && data.DomainDeliverabilityCampaigns !== null) {
     contents.DomainDeliverabilityCampaigns = deserializeAws_restJson1DomainDeliverabilityCampaignList(
       data.DomainDeliverabilityCampaigns,
@@ -6676,7 +6679,7 @@ export const deserializeAws_restJson1ListEmailIdentitiesCommand = async (
     EmailIdentities: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.EmailIdentities !== undefined && data.EmailIdentities !== null) {
     contents.EmailIdentities = deserializeAws_restJson1IdentityInfoList(data.EmailIdentities, context);
   }
@@ -6743,7 +6746,7 @@ export const deserializeAws_restJson1ListEmailTemplatesCommand = async (
     NextToken: undefined,
     TemplatesMetadata: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6810,7 +6813,7 @@ export const deserializeAws_restJson1ListImportJobsCommand = async (
     ImportJobs: undefined,
     NextToken: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.ImportJobs !== undefined && data.ImportJobs !== null) {
     contents.ImportJobs = deserializeAws_restJson1ImportJobSummaryList(data.ImportJobs, context);
   }
@@ -6877,7 +6880,7 @@ export const deserializeAws_restJson1ListSuppressedDestinationsCommand = async (
     NextToken: undefined,
     SuppressedDestinationSummaries: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
@@ -6954,7 +6957,7 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
     $metadata: deserializeMetadata(output),
     Tags: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1TagList(data.Tags, context);
   }
@@ -7956,7 +7959,7 @@ export const deserializeAws_restJson1PutEmailIdentityDkimSigningAttributesComman
     DkimStatus: undefined,
     DkimTokens: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.DkimStatus !== undefined && data.DkimStatus !== null) {
     contents.DkimStatus = __expectString(data.DkimStatus);
   }
@@ -8223,7 +8226,7 @@ export const deserializeAws_restJson1SendBulkEmailCommand = async (
     $metadata: deserializeMetadata(output),
     BulkEmailEntryResults: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.BulkEmailEntryResults !== undefined && data.BulkEmailEntryResults !== null) {
     contents.BulkEmailEntryResults = deserializeAws_restJson1BulkEmailEntryResultList(
       data.BulkEmailEntryResults,
@@ -8337,7 +8340,7 @@ export const deserializeAws_restJson1SendCustomVerificationEmailCommand = async 
     $metadata: deserializeMetadata(output),
     MessageId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.MessageId !== undefined && data.MessageId !== null) {
     contents.MessageId = __expectString(data.MessageId);
   }
@@ -8440,7 +8443,7 @@ export const deserializeAws_restJson1SendEmailCommand = async (
     $metadata: deserializeMetadata(output),
     MessageId: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.MessageId !== undefined && data.MessageId !== null) {
     contents.MessageId = __expectString(data.MessageId);
   }
@@ -8626,7 +8629,7 @@ export const deserializeAws_restJson1TestRenderEmailTemplateCommand = async (
     $metadata: deserializeMetadata(output),
     RenderedTemplate: undefined,
   };
-  const data: any = await parseBody(output.body, context);
+  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
   if (data.RenderedTemplate !== undefined && data.RenderedTemplate !== null) {
     contents.RenderedTemplate = __expectString(data.RenderedTemplate);
   }
@@ -10130,7 +10133,7 @@ const deserializeAws_restJson1DedicatedIp = (output: any, context: __SerdeContex
   return {
     Ip: __expectString(output.Ip),
     PoolName: __expectString(output.PoolName),
-    WarmupPercentage: __expectInt(output.WarmupPercentage),
+    WarmupPercentage: __expectInt32(output.WarmupPercentage),
     WarmupStatus: __expectString(output.WarmupStatus),
   } as any;
 };
@@ -10213,7 +10216,7 @@ const deserializeAws_restJson1DomainDeliverabilityCampaign = (
 ): DomainDeliverabilityCampaign => {
   return {
     CampaignId: __expectString(output.CampaignId),
-    DeleteRate: __limitedParseFloat(output.DeleteRate),
+    DeleteRate: __limitedParseDouble(output.DeleteRate),
     Esps:
       output.Esps !== undefined && output.Esps !== null
         ? deserializeAws_restJson1Esps(output.Esps, context)
@@ -10224,19 +10227,19 @@ const deserializeAws_restJson1DomainDeliverabilityCampaign = (
         : undefined,
     FromAddress: __expectString(output.FromAddress),
     ImageUrl: __expectString(output.ImageUrl),
-    InboxCount: __expectInt(output.InboxCount),
+    InboxCount: __expectLong(output.InboxCount),
     LastSeenDateTime:
       output.LastSeenDateTime !== undefined && output.LastSeenDateTime !== null
         ? new Date(Math.round(output.LastSeenDateTime * 1000))
         : undefined,
-    ProjectedVolume: __expectInt(output.ProjectedVolume),
-    ReadDeleteRate: __limitedParseFloat(output.ReadDeleteRate),
-    ReadRate: __limitedParseFloat(output.ReadRate),
+    ProjectedVolume: __expectLong(output.ProjectedVolume),
+    ReadDeleteRate: __limitedParseDouble(output.ReadDeleteRate),
+    ReadRate: __limitedParseDouble(output.ReadRate),
     SendingIps:
       output.SendingIps !== undefined && output.SendingIps !== null
         ? deserializeAws_restJson1IpList(output.SendingIps, context)
         : undefined,
-    SpamCount: __expectInt(output.SpamCount),
+    SpamCount: __expectLong(output.SpamCount),
     Subject: __expectString(output.Subject),
   } as any;
 };
@@ -10288,11 +10291,11 @@ const deserializeAws_restJson1DomainDeliverabilityTrackingOptions = (
 
 const deserializeAws_restJson1DomainIspPlacement = (output: any, context: __SerdeContext): DomainIspPlacement => {
   return {
-    InboxPercentage: __limitedParseFloat(output.InboxPercentage),
-    InboxRawCount: __expectInt(output.InboxRawCount),
+    InboxPercentage: __limitedParseDouble(output.InboxPercentage),
+    InboxRawCount: __expectLong(output.InboxRawCount),
     IspName: __expectString(output.IspName),
-    SpamPercentage: __limitedParseFloat(output.SpamPercentage),
-    SpamRawCount: __expectInt(output.SpamRawCount),
+    SpamPercentage: __limitedParseDouble(output.SpamPercentage),
+    SpamRawCount: __expectLong(output.SpamRawCount),
   } as any;
 };
 
@@ -10584,7 +10587,7 @@ const deserializeAws_restJson1OverallVolume = (output: any, context: __SerdeCont
       output.DomainIspPlacements !== undefined && output.DomainIspPlacements !== null
         ? deserializeAws_restJson1DomainIspPlacements(output.DomainIspPlacements, context)
         : undefined,
-    ReadRatePercent: __limitedParseFloat(output.ReadRatePercent),
+    ReadRatePercent: __limitedParseDouble(output.ReadRatePercent),
     VolumeStatistics:
       output.VolumeStatistics !== undefined && output.VolumeStatistics !== null
         ? deserializeAws_restJson1VolumeStatistics(output.VolumeStatistics, context)
@@ -10600,11 +10603,11 @@ const deserializeAws_restJson1PinpointDestination = (output: any, context: __Ser
 
 const deserializeAws_restJson1PlacementStatistics = (output: any, context: __SerdeContext): PlacementStatistics => {
   return {
-    DkimPercentage: __limitedParseFloat(output.DkimPercentage),
-    InboxPercentage: __limitedParseFloat(output.InboxPercentage),
-    MissingPercentage: __limitedParseFloat(output.MissingPercentage),
-    SpamPercentage: __limitedParseFloat(output.SpamPercentage),
-    SpfPercentage: __limitedParseFloat(output.SpfPercentage),
+    DkimPercentage: __limitedParseDouble(output.DkimPercentage),
+    InboxPercentage: __limitedParseDouble(output.InboxPercentage),
+    MissingPercentage: __limitedParseDouble(output.MissingPercentage),
+    SpamPercentage: __limitedParseDouble(output.SpamPercentage),
+    SpfPercentage: __limitedParseDouble(output.SpfPercentage),
   } as any;
 };
 
@@ -10645,9 +10648,9 @@ const deserializeAws_restJson1SendingOptions = (output: any, context: __SerdeCon
 
 const deserializeAws_restJson1SendQuota = (output: any, context: __SerdeContext): SendQuota => {
   return {
-    Max24HourSend: __limitedParseFloat(output.Max24HourSend),
-    MaxSendRate: __limitedParseFloat(output.MaxSendRate),
-    SentLast24Hours: __limitedParseFloat(output.SentLast24Hours),
+    Max24HourSend: __limitedParseDouble(output.Max24HourSend),
+    MaxSendRate: __limitedParseDouble(output.MaxSendRate),
+    SentLast24Hours: __limitedParseDouble(output.SentLast24Hours),
   } as any;
 };
 
@@ -10815,10 +10818,10 @@ const deserializeAws_restJson1TrackingOptions = (output: any, context: __SerdeCo
 
 const deserializeAws_restJson1VolumeStatistics = (output: any, context: __SerdeContext): VolumeStatistics => {
   return {
-    InboxRawCount: __expectInt(output.InboxRawCount),
-    ProjectedInbox: __expectInt(output.ProjectedInbox),
-    ProjectedSpam: __expectInt(output.ProjectedSpam),
-    SpamRawCount: __expectInt(output.SpamRawCount),
+    InboxRawCount: __expectLong(output.InboxRawCount),
+    ProjectedInbox: __expectLong(output.ProjectedInbox),
+    ProjectedSpam: __expectLong(output.ProjectedSpam),
+    SpamRawCount: __expectLong(output.SpamRawCount),
   } as any;
 };
 
