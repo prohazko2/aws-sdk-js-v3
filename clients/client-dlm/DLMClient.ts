@@ -166,10 +166,9 @@ export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__
   maxAttempts?: number | __Provider<number>;
 
   /**
-   * Specifies provider for retry algorithm to use.
-   * @internal
+   * Specifies which retry algorithm to use.
    */
-  retryModeProvider?: __Provider<string>;
+  retryMode?: string | __Provider<string>;
 
   /**
    * Optional logger for logging debug/info/warn/error.
@@ -234,7 +233,7 @@ export interface DLMClientResolvedConfig extends DLMClientResolvedConfigType {}
 
 /**
  * <fullname>Amazon Data Lifecycle Manager</fullname>
- * 		       <p>With Amazon Data Lifecycle Manager, you can manage the lifecycle of your AWS resources. You create
+ * 		       <p>With Amazon Data Lifecycle Manager, you can manage the lifecycle of your Amazon Web Services resources. You create
  * 			lifecycle policies, which are used to automate operations on the specified
  * 			resources.</p>
  * 		       <p>Amazon DLM supports Amazon EBS volumes and snapshots. For information about using Amazon DLM

@@ -2983,6 +2983,8 @@ const serializeAws_json1_1CreateTaskRequest = (input: CreateTaskRequest, context
       input.DestinationLocationArn !== null && { DestinationLocationArn: input.DestinationLocationArn }),
     ...(input.Excludes !== undefined &&
       input.Excludes !== null && { Excludes: serializeAws_json1_1FilterList(input.Excludes, context) }),
+    ...(input.Includes !== undefined &&
+      input.Includes !== null && { Includes: serializeAws_json1_1FilterList(input.Includes, context) }),
     ...(input.Name !== undefined && input.Name !== null && { Name: input.Name }),
     ...(input.Options !== undefined &&
       input.Options !== null && { Options: serializeAws_json1_1Options(input.Options, context) }),
@@ -3294,6 +3296,8 @@ const serializeAws_json1_1StartTaskExecutionRequest = (
   context: __SerdeContext
 ): any => {
   return {
+    ...(input.Excludes !== undefined &&
+      input.Excludes !== null && { Excludes: serializeAws_json1_1FilterList(input.Excludes, context) }),
     ...(input.Includes !== undefined &&
       input.Includes !== null && { Includes: serializeAws_json1_1FilterList(input.Includes, context) }),
     ...(input.OverrideOptions !== undefined &&
@@ -3442,6 +3446,8 @@ const serializeAws_json1_1UpdateTaskRequest = (input: UpdateTaskRequest, context
       input.CloudWatchLogGroupArn !== null && { CloudWatchLogGroupArn: input.CloudWatchLogGroupArn }),
     ...(input.Excludes !== undefined &&
       input.Excludes !== null && { Excludes: serializeAws_json1_1FilterList(input.Excludes, context) }),
+    ...(input.Includes !== undefined &&
+      input.Includes !== null && { Includes: serializeAws_json1_1FilterList(input.Includes, context) }),
     ...(input.Name !== undefined && input.Name !== null && { Name: input.Name }),
     ...(input.Options !== undefined &&
       input.Options !== null && { Options: serializeAws_json1_1Options(input.Options, context) }),
@@ -3768,6 +3774,10 @@ const deserializeAws_json1_1DescribeTaskResponse = (output: any, context: __Serd
     Excludes:
       output.Excludes !== undefined && output.Excludes !== null
         ? deserializeAws_json1_1FilterList(output.Excludes, context)
+        : undefined,
+    Includes:
+      output.Includes !== undefined && output.Includes !== null
+        ? deserializeAws_json1_1FilterList(output.Includes, context)
         : undefined,
     Name: __expectString(output.Name),
     Options:
@@ -4180,13 +4190,13 @@ const buildHttpRpcRequest = async (
   resolvedHostname: string | undefined,
   body: any
 ): Promise<__HttpRequest> => {
-  const { hostname, protocol = "https", port } = await context.endpoint();
+  const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const contents: any = {
     protocol,
     hostname,
     port,
     method: "POST",
-    path,
+    path: basePath.endsWith("/") ? basePath.slice(0, -1) + path : basePath + path,
     headers,
   };
   if (resolvedHostname !== undefined) {
