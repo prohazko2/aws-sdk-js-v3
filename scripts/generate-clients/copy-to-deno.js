@@ -111,14 +111,9 @@ async function denoifyTsFile(file, depth) {
   const extraHeaderLines = {};
   const output = [];
 
-  let state = "nothing";
+  const context = { state: null };
 
-  const isRuntimeConfig = file.endsWith("/runtimeConfig.ts");
-
-  // very fragile line & regex based fixer-upper:   assuming fairly pretty source lines
   for (const line of lines) {
-    let replaced = line;
-
     if (line.match(/\bBuffer\b/)) {
       if (file !== "deno/util-buffer-from/mod.ts") {
         extraHeaderLines[
@@ -131,224 +126,189 @@ async function denoifyTsFile(file, depth) {
       extraHeaderLines["process"] = `import process from "https://deno.land/std@${DENO_STD_VERSION}/node/process.ts";`;
     }
 
-    if (line.match(/\bprocess\.emitWarning/)) {
-      replaced = line.replace("process.emitWarning", "console.warn");
-    }
-
-    if (line.match(/\bNodeJS\.ProcessEnv\b/)) {
-      replaced = line.replace("NodeJS.ProcessEnv", "{[key: string]: string}");
-    }
-
-    if (line.match(/\bhomedir()\b/)) {
-      replaced = line.replace("homedir()", "homedir()!");
-    }
-
-    if (line === 'import { Hash } from "@aws-sdk/hash-node";') {
-      output.push('import { Hash } from "https://jspm.dev/@aws-sdk/hash-node";');
-      continue;
-    }
-
-    if (line === 'import packageInfo from "./package.json";') {
-      const pkgjson = await fsx.readJson(path.join(path.dirname(file), "package.json"));
-      output.push(`const packageInfo = { version: "${pkgjson.version}" };`);
-      continue;
-    }
-
-    if (line.match(/tagValueProcessor: \(val\) => /)) {
-      replaced = line.replace("(val)", "(val: string)");
-    }
-
-    if (state === "nothing") {
-      const match = line.match(/^[ ]*import/);
-      if (match) {
-        state = "import";
-      }
-    }
-    if (state === "nothing") {
-      const match = line.match(/^[ ]*export/);
-      if (match) {
-        state = "export";
-      }
-    }
-
-    if (state === "import" || state === "export") {
-      const match = line.match(/^(.*)from[ ]+("|')([^"']+)("|');/);
-      if (match) {
-        const importLhs = match[1];
-        const importFrom = match[3];
-
-        state = "nothing";
-
-        let relpath = "";
-        for (let i = 1; i < depth; ++i) {
-          relpath = relpath + "../";
-        }
-
-        const importFromAWSSDKmatch = importFrom.match(/@aws-sdk\/(.*)/);
-        if (importFromAWSSDKmatch) {
-          if (depth === 0) {
-            throw new Error(`denoifyTsFile ${file} - unexpected import to @aws-sdk at depth 0`);
-          }
-
-          const module = importFromAWSSDKmatch[1].replace(/(body-checksum|eventstream-serde)-node/, "$1-browser");
-          const checkAt = path.resolve(path.join(file, "..", `${relpath}${module}/mod.ts`));
-          const exists = await fsx.exists(checkAt);
-          if (!exists) {
-            console.error(`denoifyTsFile ${file} - Cannot find ${checkAt}`);
-          }
-          replaced = `${match[1]}from "${relpath}${importFromAWSSDKmatch[1]}/mod.ts";`;
-        } else {
-          const absImportFromMatch = importFrom.match(/^([^.].*)/);
-
-          if (absImportFromMatch) {
-            if (importFrom.startsWith("https://deno.land/std")) {
-              // ignore
-            } else if (importFrom === "uuid") {
-              replaced = `${match[1]}from "${relpath}uuid/mod.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "fast-xml-parser") {
-              replaced = `${match[1]}from "https://jspm.dev/fast-xml-parser@3";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "entities") {
-              replaced = `${match[1]}from "https://jspm.dev/entities";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "mnemonist/lru-cache") {
-              replaced = `${match[1]}from "../lru-cache/mod.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "stream") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/stream.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "fs") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/fs.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "os") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/os.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "path") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/path.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "crypto") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/crypto.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "url") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/url.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "http") {
-              continue;
-            } else if (importFrom === "buffer") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/buffer.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "@aws-crypto/crc32") {
-              replaced = `${match[1]}from "https://jspm.dev/@aws-crypto/crc32";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "http2") {
-              continue;
-            } else if (importFrom === "https") {
-              continue;
-            } else if (importFrom === "net") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/net.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "nock") {
-              continue;
-            } else if (importFrom === "child_process") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/child_process.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "process") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/process.ts";`;
-              output.push(replaced);
-              continue;
-            } else if (importFrom === "events") {
-              replaced = `${match[1]}from "https://deno.land/std@${DENO_STD_VERSION}/node/events.ts";`;
-              output.push(replaced);
-              continue;
-            } else {
-              console.error(`Absolute import of: ${importFrom} (${file})`);
-            }
-          }
-
-          if (!importFrom.endsWith(".ts")) {
-            const importDir = path.resolve(path.join(file, "..", importFrom));
-            if (fs.existsSync(importDir)) {
-              replaced = `${importLhs}from "${importFrom}/index.ts";`;
-            } else {
-              replaced = `${importLhs}from "${importFrom}.ts";`;
-            }
-          }
-        }
-      }
-    }
-
-    if (isRuntimeConfig) {
-      let match;
-      if ((match = line.match(/runtime: "node"/))) {
-        replaced = line.replace(match[0], 'runtime: "deno"');
-      }
-
-      // Don't show warnings for deno versions
-      if (line.match(/emitWarningIfUnsupportedVersion\(process\.version\);/)) {
-        continue;
-      }
-
-      // Use fetch API instead of http module
-      else if ((match = line.match(/import .* NodeHttpHandler,? .* from .*/))) {
-        replaced = line.replace(
-          match[0],
-          'import { FetchHttpHandler, streamCollector } from "../fetch-http-handler/mod.ts";'
-        );
-      } else if ((match = line.match(/new NodeHttpHandler\(/))) {
-        replaced = line.replace(match[0], "new FetchHttpHandler(");
-      }
-
-      // Use blobHasher instead of fileStreamHasher
-      else if ((match = line.match(/import .* fileStreamHasher,? .* from .*/))) {
-        replaced = line.replace(match[0], 'import { blobHasher as streamHasher } from "../hash-blob-browser/mod.ts";');
-      }
-
-      // Use eventstream-serde-browser
-      else if ((match = line.match(/import .* eventStreamSerdeProvider,? .* from .*/))) {
-        replaced = line.replace(
-          match[0],
-          'import { eventStreamSerdeProvider } from "../eventstream-serde-browser/mod.ts";'
-        );
-      }
-
-      // Use body-checksum-browser
-      else if ((match = line.match(/import .* from .*body-checksum-node.*/))) {
-        replaced = line.replace(match[0], 'import { bodyChecksumGenerator } from "../body-checksum-browser/mod.ts";');
-      }
-    }
-
-    if (file === "deno/shared-ini-file-loader/mod.ts") {
-      if (line.match(/resolve\(data\);/)) {
-        replaced = line.replace("data", "data!");
-      }
-    }
-
-    // Ignore type check on passing Readable chunk to Buffer.from()
-    if (file === "deno/lib-storage/chunker.ts" || file === "deno/lib-storage/chunks/getDataReadable.ts") {
-      if (line.match(/Buffer\.from\(/)) {
-        output.push("    // @ts-ignore");
-      }
-    }
-
-    output.push(replaced);
+    output.push(await denoifyLine(file, context, depth, line));
   }
 
-  await fsx.writeFile(file, [...Object.values(extraHeaderLines), ...output].join("\n"));
+  await fsx.writeFile(
+    file,
+    [...Object.values(extraHeaderLines), ...output.filter((line) => line !== undefined)].join("\n")
+  );
+}
+
+async function denoifyLine(file, context, depth, line) {
+  const isRuntimeConfig = file.endsWith("/runtimeConfig.ts");
+  if (isRuntimeConfig) {
+    let match;
+    if ((match = line.match(/runtime: "node"/))) {
+      return line.replace(match[0], 'runtime: "deno"');
+    }
+
+    // Don't show warnings for deno versions
+    if (line.match(/emitWarningIfUnsupportedVersion\(process\.version\);/)) {
+      return;
+    }
+
+    // Use fetch API instead of http module
+    if ((match = line.match(/import .* NodeHttpHandler,? .* from .*/))) {
+      return line.replace(
+        match[0],
+        'import { FetchHttpHandler, streamCollector } from "../fetch-http-handler/mod.ts";'
+      );
+    }
+
+    if ((match = line.match(/new NodeHttpHandler\(/))) {
+      return line.replace(match[0], "new FetchHttpHandler(");
+    }
+
+    // Use blobHasher instead of fileStreamHasher
+    if ((match = line.match(/import .* fileStreamHasher,? .* from .*/))) {
+      return line.replace(match[0], 'import { blobHasher as streamHasher } from "../hash-blob-browser/mod.ts";');
+    }
+
+    // Use eventstream-serde-browser
+    if ((match = line.match(/import .* eventStreamSerdeProvider,? .* from .*/))) {
+      return line.replace(match[0], 'import { eventStreamSerdeProvider } from "../eventstream-serde-browser/mod.ts";');
+    }
+
+    // Use body-checksum-browser
+    if ((match = line.match(/import .* from .*body-checksum-node.*/))) {
+      return line.replace(match[0], 'import { bodyChecksumGenerator } from "../body-checksum-browser/mod.ts";');
+    }
+  }
+
+  if (line.match(/\bprocess\.emitWarning/)) {
+    return line.replace("process.emitWarning", "console.warn");
+  }
+
+  if (line.match(/\bNodeJS\.ProcessEnv\b/)) {
+    return line.replace("NodeJS.ProcessEnv", "{[key: string]: string}");
+  }
+
+  if (line.match(/\bhomedir\(\)/)) {
+    return line.replace("homedir()", "homedir()!");
+  }
+
+  if (line === 'import packageInfo from "./package.json";') {
+    const pkgjson = await fsx.readJson(path.join(path.dirname(file), "package.json"));
+    return `const packageInfo = { version: "${pkgjson.version}" };`;
+  }
+
+  if (line.match(/tagValueProcessor: \(val\) => /)) {
+    return line.replace("(val)", "(val: string)");
+  }
+
+  if (context.state === null && line.match(/^ *import/)) {
+    context.state = "import";
+  }
+  if (context.state === null && line.match(/^ *export/)) {
+    context.state = "export";
+  }
+
+  if (context.state === "import" || context.state === "export") {
+    const match = line.match(/^(.*) from +("|')([^"']+)("|');/);
+    if (match) {
+      const importLhs = match[1];
+      const importFrom = match[3];
+
+      context.state = null;
+
+      const relpath = [...new Array(depth - 1)].map(() => "..").join("/");
+
+      line = await denoifyImport(file, relpath, importLhs, importFrom);
+
+      if (depth === 0) {
+        throw new Error(`denoifyTsFile ${file} - unexpected import to @aws-sdk at depth 0`);
+      }
+    }
+  }
+
+  if (file === "deno/shared-ini-file-loader/mod.ts") {
+    if (line.match(/resolve\(data\);/)) {
+      return line.replace("data", "data!");
+    }
+  }
+
+  // Ignore type check on passing Readable chunk to Buffer.from()
+  if (file === "deno/lib-storage/chunker.ts" || file === "deno/lib-storage/chunks/getDataReadable.ts") {
+    if (line.match(/Buffer\.from\(/)) {
+      return `    // @ts-ignore\n${line}`;
+    }
+  }
+
+  return line;
+}
+
+async function denoifyImport(file, relpath, importLhs, importFrom) {
+  const importFromAWSSDKmatch = importFrom.match(/@aws-sdk\/(.*)/);
+  if (!importFromAWSSDKmatch || importFrom.match(/@aws-sdk\/hash-node/)) {
+    const absImportFromMatch = importFrom.match(/^([^.].*)/);
+    if (absImportFromMatch) {
+      if (importFrom.startsWith("https://deno.land/std")) {
+        // ignore
+      }
+
+      switch (importFrom) {
+        case "@aws-crypto/crc32":
+        case "@aws-sdk/hash-node":
+        case "entities":
+          return `${importLhs} from "https://jspm.dev/${importFrom}";`;
+
+        case "fast-xml-parser":
+          return `${importLhs} from "https://jspm.dev/${importFrom}@3";`;
+
+        case "uuid":
+          return `${importLhs} from "${relpath}/${importFrom}/mod.ts";`;
+
+        case "mnemonist/lru-cache":
+          return `${importLhs} from "${relpath}/lru-cache/mod.ts";`;
+
+        case "buffer":
+        case "child_process":
+        case "crypto":
+        case "events":
+        case "fs":
+        case "net":
+        case "os":
+        case "path":
+        case "process":
+        case "stream":
+        case "url":
+          return `${importLhs} from "https://deno.land/std@${DENO_STD_VERSION}/node/${importFrom}.ts";`;
+
+        case "http":
+        case "http2":
+        case "https":
+        case "nock":
+          return;
+
+        default:
+          console.error(`Absolute import of: ${importFrom} (${file})`);
+      }
+    }
+
+    if (!importFrom.endsWith(".ts")) {
+      const importDir = path.resolve(path.join(file, "..", importFrom));
+      if (fs.existsSync(importDir)) {
+        return `${importLhs} from "${importFrom}/index.ts";`;
+      }
+      return `${importLhs} from "${importFrom}.ts";`;
+    }
+
+    console.error("import not handled:", file, importFrom);
+  }
+
+  if (importFromAWSSDKmatch) {
+    const module = importFromAWSSDKmatch[1].replace(/(body-checksum|eventstream-serde)-node/, "$1-browser");
+    const checkAt = path.resolve(path.join(file, "..", `${relpath}/${module}/mod.ts`));
+    const exists = await fsx.exists(checkAt);
+    if (!exists) {
+      console.error(`denoifyLine ${file} - Cannot find ${checkAt}`);
+    }
+
+    return `${importLhs} from "${relpath}/${module}/mod.ts";`;
+  }
+
+  console.error("import not handled:", file, importFrom);
 }
 
 async function copyToDeno(sourceDirs, destinationDir) {
